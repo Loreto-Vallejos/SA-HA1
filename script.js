@@ -59,14 +59,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* --- Scroll Reveal (Optional Simple Effect) --- */
-    const sr = ScrollReveal({
-        origin: 'top',
-        distance: '60px',
-        duration: 2000,
-        delay: 200,
-    });
-    // Note: ScrollReveal is not imported, so we'll skip this or add a simple IntersectionObserver if needed.
-    // For now, we'll stick to CSS transitions on hover.
+    if (typeof ScrollReveal !== 'undefined') {
+        const sr = ScrollReveal({
+            origin: 'top',
+            distance: '60px',
+            duration: 2000,
+            delay: 200,
+        });
+    }
 
     // Simple Intersection Observer for fade-in elements
     const observerOptions = {
@@ -93,30 +93,38 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
+    /* --- Carousel --- */
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
+
+    function showSlide(n) {
+        if (!slides || slides.length === 0) return;
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[n].classList.add('active');
+    }
+
+    if (totalSlides > 0) {
+        showSlide(currentSlide);
+
+        const nextBtn = document.querySelector('.carousel-control.next');
+        const prevBtn = document.querySelector('.carousel-control.prev');
+
+        if (nextBtn) nextBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        });
+
+        if (prevBtn) prevBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        });
+
+        // Auto change every 5s
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }, 5000);
+    }
+
 });
-
-
-let currentSlide = 0;
-const slides = document.querySelectorAll('.carousel-slide');
-const totalSlides = slides.length;
-
-function showSlide(n) {
-    slides.forEach(slide => slide.classList.remove('active'));
-    slides[n].classList.add('active');
-}
-
-document.querySelector('.next').addEventListener('click', () => {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    showSlide(currentSlide);
-});
-
-document.querySelector('.prev').addEventListener('click', () => {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    showSlide(currentSlide);
-});
-
-// Cambio automático cada 5s
-setInterval(() => {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    showSlide(currentSlide);
-}, 5000);
