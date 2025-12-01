@@ -15,7 +15,7 @@
     <!-- Header -->
     <header class="header">
         <div class="container header__container">
-            <a href="#" class="logo">Eternia<span class="logo__accent">Customs</span></a>
+            <a href="#" class="logo">Eternia</a>
             
             <nav class="nav" id="nav-menu">
                 <ul class="nav__list">
@@ -36,26 +36,35 @@
     <main>
         <!-- Hero Section -->
         <section id="inicio" class="hero">
-            <div class="container hero__container">
-                <div class="hero__content">
-                    <h1 class="hero__title">Tu Último Viaje, <br>A Tu Manera.</h1>
-                    <p class="hero__description">
-                        Rompemos con lo tradicional. Ataúdes personalizados con temáticas únicas que celebran tu personalidad y pasiones. Porque la despedida también puede tener estilo.
-                    </p>
-                    <div class="hero__actions">
-                        <a href="#catalogo" class="btn btn--primary">Ver Colección</a>
-                        <a href="#contacto" class="btn btn--outline">Diseñar el Mío</a>
-                    </div>
-                </div>
-                <div class="hero__visual">
-                    <!-- Placeholder visual using CSS art/gradient representation -->
-                    <div class="coffin-showcase">
-                        <div class="coffin-shape"></div>
-                        <div class="glow-effect"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    
+    <!-- CARROUSEL -->
+    <div class="carousel-container">
+        <div class="carousel-slide active">
+            <img src="Assets/hip_hop_graffiti_coffin.png" alt="Imagen 1">
+        </div>
+        <div class="carousel-slide">
+            <img src="Assets/reggaeton_urban_luxury_coffin.png" alt="Imagen 2">
+        </div>
+        <div class="carousel-slide">
+            <img src="Assets/heavy_metal_studded_coffin.png" alt="Imagen 3">
+        </div>
+
+        <!-- Controles -->
+        <button class="carousel-control prev">&#10094;</button>
+        <button class="carousel-control next">&#10095;</button>
+    </div>
+
+    <!-- TEXTO SOBRE EL CARROUSEL -->
+    <div class="hero__content">
+        <h1 class="hero__title">Tu Último Viaje,<br>A Tu Manera.</h1>
+        <p class="hero__description">
+            Rompemos con lo tradicional. Ataúdes personalizados con temáticas únicas que celebran tu personalidad.
+        </p>
+        <a href="#catalogo" class="btn btn--primary">Ver Catálogo</a>
+    </div>
+
+</section>
+
 
         <!-- Catalog Section -->
         <section id="catalogo" class="section catalog">
@@ -72,8 +81,8 @@
                             <div class="card__image card__image--gamer"></div>
                         </div>
                         <div class="card__content">
-                            <h3 class="card__title">The Gamer</h3>
-                            <p class="card__desc">Diseño inspirado en consolas retro y neón. Para los que juegan hasta el final.</p>
+                            <h3 class="card__title">The reggaeton</h3>
+                            <p class="card__desc">Diseño con brillo urbano y detalles blin-blin. Para quienes viven —y se despiden— con flow, estilo y perreo eterno.</p>
                             <a href="#contacto" class="card__link">Ver detalles &rarr;</a>
                         </div>
                     </article>
@@ -84,8 +93,8 @@
                             <div class="card__image card__image--nature"></div>
                         </div>
                         <div class="card__content">
-                            <h3 class="card__title">Eco Return</h3>
-                            <p class="card__desc">Materiales 100% biodegradables con estética de bosque encantado.</p>
+                            <h3 class="card__title">Animé</h3>
+                            <p class="card__desc">Diseño digno de protagonista de shōnen: colores vibrantes, brillo exagerado y drama garantizado. Perfecto para quienes quieren irse al más allá haciendo su última transformación.</p>
                             <a href="#contacto" class="card__link">Ver detalles &rarr;</a>
                         </div>
                     </article>
@@ -96,8 +105,8 @@
                             <div class="card__image card__image--galaxy"></div>
                         </div>
                         <div class="card__content">
-                            <h3 class="card__title">Stardust</h3>
-                            <p class="card__desc">Acabado negro profundo con nebulosas pintadas a mano. Somos polvo de estrellas.</p>
+                            <h3 class="card__title">Motor Sport</h3>
+                            <p class="card__desc">Diseño aerodinámico listo para la última vuelta. Ideal para quienes quieren despedirse acelerando a fondo… y llegar al más allá antes que todos.</p>
                             <a href="#contacto" class="card__link">Ver detalles &rarr;</a>
                         </div>
                     </article>
@@ -108,8 +117,8 @@
                             <div class="card__image card__image--music"></div>
                         </div>
                         <div class="card__content">
-                            <h3 class="card__title">Rock Legend</h3>
-                            <p class="card__desc">Estuche de guitarra gigante o acabados en cuero y tachas. Actitud eterna.</p>
+                            <h3 class="card__title">Legenda Gótica</h3>
+                            <p class="card__desc">Diseño tan oscuro que hasta los vampiros piden foto. Perfecto para quienes quieren despedirse con misterio, estilo… y una pizca de drama sobrenatural.</p>
                             <a href="#contacto" class="card__link">Ver detalles &rarr;</a>
                         </div>
                     </article>
@@ -118,12 +127,12 @@
         </section>
 
         <!-- About Section -->
-        <section id="nosotros" class="section about">
+        <section id="nosotros" class="section about fondo-petroleo">
             <div class="container about__container">
                 <div class="about__content">
-                    <h2 class="section__title">Más que un ataúd, un tributo.</h2>
+                    <h2 class="section__title">Sobre Nosotros</h2>
                     <p>
-                        En <strong>EternalCustoms</strong>, creemos que los funerales tradicionales son grises e impersonales. 
+                        En <strong>Eternia</strong>, creemos que los funerales tradicionales son grises e impersonales. 
                         Nacimos con la idea de que la muerte es parte de la vida, y como tal, debe reflejar quién fuiste.
                     </p>
                     <p>
@@ -189,7 +198,7 @@
                     <h2 class="section__title">Diseña tu legado</h2>
                     <p>¿Tienes una idea loca? ¿Un color específico? Cuéntanos y lo haremos realidad.</p>
                     <div class="contact__details">
-                        <p>📍 Av. Siempre Viva 742, Springfield</p>
+                        <p>📍 Av. Principal 123, Santiago, Chile.</p>
                         <p>📧 contacto@eternalcustoms.com</p>
                         <p>📱 +56 9 1234 5678</p>
                     </div>
@@ -217,28 +226,57 @@
     <footer class="footer">
         <div class="container footer__container">
             <div class="footer__brand">
-                <a href="#" class="logo">Eternal<span class="logo__accent">Customs</span></a>
-                <p>Redefiniendo el descanso eterno.</p>
+                <h3 class="footer__title">ETERNIA</h3>
+                <p class="footer__description">Construimos memoria, honramos legado. Ofrecemos un servicio distinguido para despedir a sus seres queridos con la elegancia y respeto que merecen.</p>
+
+                <div class="footer__socials">
+                    <span class="sr-only">Redes sociales</span>
+                    <a class="social-icon" href="#" aria-label="Instagram" target="_blank" rel="noopener">
+                        <!-- Instagram SVG -->
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.5"/>
+                            <circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.5"/>
+                            <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+                        </svg>
+                    </a>
+                    <a class="social-icon" href="#" aria-label="Facebook" target="_blank" rel="noopener">
+                        <!-- Facebook SVG -->
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M18 2h-3a4 4 0 0 0-4 4v2H8v3h3v7h3v-7h2.5l.5-3H14V6a1 1 0 0 1 1-1h3V2z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+                        </svg>
+                    </a>
+                    <a class="social-icon" href="https://wa.me/525551234567" aria-label="WhatsApp" target="_blank" rel="noopener">
+                        <!-- WhatsApp SVG -->
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M20.5 3.5A11.9 11.9 0 0012 .5C6.2.5 1.5 5.2 1.5 11c0 1.95.5 3.85 1.4 5.55L.5 23.5l6.2-2.05A11.9 11.9 0 0012 22.5c5.8 0 10.5-4.7 10.5-10.5 0-2.83-1.02-5.48-2.95-7.55z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+                            <path d="M17.2 14.1c-.3-.15-1.7-.85-1.95-.95-.25-.1-.43-.15-.62.15-.18.3-.7.95-.85 1.15-.15.2-.3.22-.6.08-.3-.15-1.25-.46-2.38-1.48-.88-.78-1.48-1.74-1.65-2.04-.17-.3-.02-.46.13-.61.13-.12.3-.3.45-.45.15-.15.2-.25.3-.42.1-.18.05-.34-.02-.49-.08-.15-.62-1.5-.85-2.05-.22-.54-.45-.47-.62-.48-.16-.01-.34-.01-.52-.01s-.48.07-.73.34c-.25.28-.95.93-.95 2.28s.97 2.65 1.1 2.83c.13.18 1.9 2.9 4.6 3.95 3 .12 3-.98 3.35-1.07.35-.08 1.22-.5 1.4-.98.18-.48.18-.9.13-1 .05-.1.2-.16.3-.26z" stroke="currentColor" stroke-width="1.1" fill="none"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
-            <div class="footer__links">
+
+            <div class="footer__contact">
+                <h4>Contacto</h4>
+                <address>
+                    <p>Av. Principal 123, Santiago, Chile.</p>
+                    <p><a href="tel:+525551234567">+52 555 123 4567</a></p>
+                    <p><a href="mailto:contacto@eternia.com">contacto@eternia.com</a></p>
+                </address>
+            </div>
+
+            <nav class="footer__nav" aria-label="Enlaces de pie de página">
                 <h4>Enlaces</h4>
                 <ul>
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#catalogo">Catálogo</a></li>
-                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#aviso">Aviso de Privacidad</a></li>
                 </ul>
-            </div>
-            <div class="footer__socials">
-                <h4>Síguenos</h4>
-                <div class="social-icons">
-                    <a href="#" aria-label="Instagram">IG</a>
-                    <a href="#" aria-label="Facebook">FB</a>
-                    <a href="#" aria-label="Twitter">TW</a>
-                </div>
-            </div>
+            </nav>
         </div>
         <div class="footer__bottom">
-            <p>&copy; 2024 EternalCustoms. Todos los derechos reservados.</p>
+            <p>&copy; 2025 Eternia. Todos los derechos reservados.</p>
         </div>
     </footer>
 
