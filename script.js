@@ -92,5 +92,33 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
         observer.observe(el);
     });
-
+    
 });
+
+    //testimonial WASHINGTON M.
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const cards = document.querySelectorAll('.testimonial-card');
+    if (!cards.length) return;
+
+    let current = 0;
+
+    // Muestra la tarjeta actual
+    function showCard(index) {
+      cards.forEach(card => card.classList.remove('is-active'));
+      cards[index].classList.add('is-active');
+    }
+
+    // Mostrar la primera al cargar
+    showCard(current);
+
+    // Cambiar cada 5 segundos (5000 ms)
+    setInterval(() => {
+      current = (current + 1) % cards.length;
+      showCard(current);
+    }, 5000);
+  });
+
+  
+
+  
