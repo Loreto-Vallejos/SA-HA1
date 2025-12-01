@@ -129,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
     
-});
 
     //testimonial WASHINGTON M.
 
@@ -158,3 +157,4 @@ document.addEventListener('DOMContentLoaded', () => {
   
 
   
+
