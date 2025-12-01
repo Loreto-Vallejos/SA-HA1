@@ -92,31 +92,33 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
         observer.observe(el);
     });
-
+    
 });
 
+    //testimonial WASHINGTON M.
 
-let currentSlide = 0;
-const slides = document.querySelectorAll('.carousel-slide');
-const totalSlides = slides.length;
+  document.addEventListener('DOMContentLoaded', function () {
+    const cards = document.querySelectorAll('.testimonial-card');
+    if (!cards.length) return;
 
-function showSlide(n) {
-    slides.forEach(slide => slide.classList.remove('active'));
-    slides[n].classList.add('active');
-}
+    let current = 0;
 
-document.querySelector('.next').addEventListener('click', () => {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    showSlide(currentSlide);
-});
+    // Muestra la tarjeta actual
+    function showCard(index) {
+      cards.forEach(card => card.classList.remove('is-active'));
+      cards[index].classList.add('is-active');
+    }
 
-document.querySelector('.prev').addEventListener('click', () => {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    showSlide(currentSlide);
-});
+    // Mostrar la primera al cargar
+    showCard(current);
 
-// Cambio automático cada 5s
-setInterval(() => {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    showSlide(currentSlide);
-}, 5000);
+    // Cambiar cada 5 segundos (5000 ms)
+    setInterval(() => {
+      current = (current + 1) % cards.length;
+      showCard(current);
+    }, 5000);
+  });
+
+  
+
+  
