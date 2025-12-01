@@ -15,7 +15,7 @@
     <!-- Header -->
     <header class="header">
         <div class="container header__container">
-            <a href="#" class="logo">Eternia<span class="logo__accent">Customs</span></a>
+            <a href="#" class="logo">Eternia</a>
             
             <nav class="nav" id="nav-menu">
                 <ul class="nav__list">
@@ -36,26 +36,35 @@
     <main>
         <!-- Hero Section -->
         <section id="inicio" class="hero">
-            <div class="container hero__container">
-                <div class="hero__content">
-                    <h1 class="hero__title">Tu Último Viaje, <br>A Tu Manera.</h1>
-                    <p class="hero__description">
-                        Rompemos con lo tradicional. Ataúdes personalizados con temáticas únicas que celebran tu personalidad y pasiones. Porque la despedida también puede tener estilo.
-                    </p>
-                    <div class="hero__actions">
-                        <a href="#catalogo" class="btn btn--primary">Ver Colección</a>
-                        <a href="#contacto" class="btn btn--outline">Diseñar el Mío</a>
-                    </div>
-                </div>
-                <div class="hero__visual">
-                    <!-- Placeholder visual using CSS art/gradient representation -->
-                    <div class="coffin-showcase">
-                        <div class="coffin-shape"></div>
-                        <div class="glow-effect"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    
+    <!-- CARROUSEL -->
+    <div class="carousel-container">
+        <div class="carousel-slide active">
+            <img src="Assets/hip_hop_graffiti_coffin.png" alt="Imagen 1">
+        </div>
+        <div class="carousel-slide">
+            <img src="Assets/reggaeton_urban_luxury_coffin.png" alt="Imagen 2">
+        </div>
+        <div class="carousel-slide">
+            <img src="Assets/heavy_metal_studded_coffin.png" alt="Imagen 3">
+        </div>
+
+        <!-- Controles -->
+        <button class="carousel-control prev">&#10094;</button>
+        <button class="carousel-control next">&#10095;</button>
+    </div>
+
+    <!-- TEXTO SOBRE EL CARROUSEL -->
+    <div class="hero__content">
+        <h1 class="hero__title">Tu Último Viaje,<br>A Tu Manera.</h1>
+        <p class="hero__description">
+            Rompemos con lo tradicional. Ataúdes personalizados con temáticas únicas que celebran tu personalidad.
+        </p>
+        <a href="#catalogo" class="btn btn--primary">Ver Catálogo</a>
+    </div>
+
+</section>
+
 
         <!-- Catalog Section -->
         <section id="catalogo" class="section catalog">
@@ -72,8 +81,8 @@
                             <div class="card__image card__image--gamer"></div>
                         </div>
                         <div class="card__content">
-                            <h3 class="card__title">The Gamer</h3>
-                            <p class="card__desc">Diseño inspirado en consolas retro y neón. Para los que juegan hasta el final.</p>
+                            <h3 class="card__title">The reggaeton</h3>
+                            <p class="card__desc">Diseño con brillo urbano y detalles blin-blin. Para quienes viven —y se despiden— con flow, estilo y perreo eterno.</p>
                             <a href="#contacto" class="card__link">Ver detalles &rarr;</a>
                         </div>
                     </article>
@@ -84,8 +93,8 @@
                             <div class="card__image card__image--nature"></div>
                         </div>
                         <div class="card__content">
-                            <h3 class="card__title">Eco Return</h3>
-                            <p class="card__desc">Materiales 100% biodegradables con estética de bosque encantado.</p>
+                            <h3 class="card__title">Animé</h3>
+                            <p class="card__desc">Diseño digno de protagonista de shōnen: colores vibrantes, brillo exagerado y drama garantizado. Perfecto para quienes quieren irse al más allá haciendo su última transformación.</p>
                             <a href="#contacto" class="card__link">Ver detalles &rarr;</a>
                         </div>
                     </article>
@@ -96,8 +105,8 @@
                             <div class="card__image card__image--galaxy"></div>
                         </div>
                         <div class="card__content">
-                            <h3 class="card__title">Stardust</h3>
-                            <p class="card__desc">Acabado negro profundo con nebulosas pintadas a mano. Somos polvo de estrellas.</p>
+                            <h3 class="card__title">Motor Sport</h3>
+                            <p class="card__desc">Diseño aerodinámico listo para la última vuelta. Ideal para quienes quieren despedirse acelerando a fondo… y llegar al más allá antes que todos.</p>
                             <a href="#contacto" class="card__link">Ver detalles &rarr;</a>
                         </div>
                     </article>
@@ -108,8 +117,8 @@
                             <div class="card__image card__image--music"></div>
                         </div>
                         <div class="card__content">
-                            <h3 class="card__title">Rock Legend</h3>
-                            <p class="card__desc">Estuche de guitarra gigante o acabados en cuero y tachas. Actitud eterna.</p>
+                            <h3 class="card__title">Legenda Gótica</h3>
+                            <p class="card__desc">Diseño tan oscuro que hasta los vampiros piden foto. Perfecto para quienes quieren despedirse con misterio, estilo… y una pizca de drama sobrenatural.</p>
                             <a href="#contacto" class="card__link">Ver detalles &rarr;</a>
                         </div>
                     </article>
@@ -118,12 +127,12 @@
         </section>
 
         <!-- About Section -->
-        <section id="nosotros" class="section about">
+        <section id="nosotros" class="section about fondo-petroleo">
             <div class="container about__container">
                 <div class="about__content">
-                    <h2 class="section__title">Más que un ataúd, un tributo.</h2>
+                    <h2 class="section__title">Sobre Nosotros</h2>
                     <p>
-                        En <strong>EternalCustoms</strong>, creemos que los funerales tradicionales son grises e impersonales. 
+                        En <strong>Eternia</strong>, creemos que los funerales tradicionales son grises e impersonales. 
                         Nacimos con la idea de que la muerte es parte de la vida, y como tal, debe reflejar quién fuiste.
                     </p>
                     <p>
@@ -238,7 +247,7 @@
             </div>
         </div>
         <div class="footer__bottom">
-            <p>&copy; 2024 EternalCustoms. Todos los derechos reservados.</p>
+            <p>&copy; 2025 Eternia. Todos los derechos reservados.</p>
         </div>
     </footer>
 

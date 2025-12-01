@@ -94,3 +94,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+
+let currentSlide = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const totalSlides = slides.length;
+
+function showSlide(n) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[n].classList.add('active');
+}
+
+document.querySelector('.next').addEventListener('click', () => {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+});
+
+document.querySelector('.prev').addEventListener('click', () => {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(currentSlide);
+});
+
+// Cambio automático cada 5s
+setInterval(() => {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+}, 5000);
