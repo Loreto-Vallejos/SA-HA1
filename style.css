@@ -333,10 +333,10 @@ img {
 }
 
 /* Placeholder Gradients for Images */
-.card__image--gamer { background-image: url("assets/reggaeton_urban_luxury_coffin.png") }
-.card__image--nature { background-image: url("assets/anime_warrior_themed_coffin.png") }
-.card__image--galaxy { background-image: url("assets/custom_coffin_with_race_car_livery_design.png")  }
-.card__image--music { background-image: url("assets/heavy_metal_studded_coffin.png") }
+.card__image--gamer { background-image: url("Assets/reggaeton_urban_luxury_coffin.png") }
+.card__image--nature { background-image: url("Assets/anime_warrior_themed_coffin.png") }
+.card__image--galaxy { background-image: url("Assets/custom_coffin_with_race_car_livery_design.png")  }
+.card__image--music { background-image: url("Assets/heavy_metal_studded_coffin.png") }
 
 .card__content {
     padding: var(--spacing-sm);
@@ -863,4 +863,5 @@ img {
 .fondo-petroleo{
     background-color: var(--color-primary);
     color: white;
+
 }
