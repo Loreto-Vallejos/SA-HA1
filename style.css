@@ -484,59 +484,102 @@ img {
 
 /* --- Footer --- */
 .footer {
-    background-color: #000;
+    background-color: #0b0b0b;
+    color: #ddd;
     padding: var(--spacing-lg) 0 var(--spacing-md);
-    border-top: 1px solid rgba(255,255,255,0.05);
+    border-top: 1px solid rgba(255,255,255,0.04);
 }
 
 .footer__container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: 1fr 1fr 1fr;
     gap: var(--spacing-lg);
+    align-items: start;
     margin-bottom: var(--spacing-md);
 }
 
-.footer__brand p {
-    color: var(--color-text-muted);
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-}
-
-.footer__links h4,
-.footer__socials h4 {
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-}
-
-.footer__links ul li {
+.footer__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
     margin-bottom: 0.5rem;
+    color: #fff;
 }
 
-.footer__links a {
-    color: var(--color-text-muted);
+.footer__description {
+    color: #cfcfcf;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: var(--spacing-sm);
 }
 
-.footer__links a:hover {
-    color: var(--color-primary);
-}
-
-.social-icons {
+.footer__socials {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
+    align-items: center;
+    margin-top: 0.6rem;
 }
 
-.social-icons a {
-    color: var(--color-text-muted);
-    font-weight: bold;
-    font-size: 0.9rem;
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: transparent;
+    color: #ddd;
+    border: 1px solid rgba(255,255,255,0.04);
+    transition: all 0.18s ease;
 }
+
+.social-icon svg { display: block; }
+
+.social-icon:hover {
+    background: rgba(22,95,117,0.12);
+    color: var(--color-primary);
+    transform: translateY(-3px);
+    border-color: rgba(22,95,117,0.35);
+}
+
+.footer__contact h4,
+.footer__nav h4 {
+    margin-bottom: 0.6rem;
+    color: #fff;
+}
+
+.footer__contact address,
+.footer__contact p {
+    color: #cfcfcf;
+    font-style: normal;
+    line-height: 1.5;
+}
+
+.footer__contact a {
+    color: #cfcfcf;
+}
+
+.footer__contact a:hover { color: var(--color-primary); }
+
+.footer__nav ul { list-style: none; padding: 0; }
+.footer__nav li { margin-bottom: 0.5rem; }
+.footer__nav a { color: #cfcfcf; }
+.footer__nav a:hover { color: var(--color-primary); }
 
 .footer__bottom {
     text-align: center;
     padding-top: var(--spacing-md);
-    border-top: 1px solid rgba(255,255,255,0.05);
-    color: #555;
-    font-size: 0.8rem;
+    border-top: 1px solid rgba(255,255,255,0.03);
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+@media (max-width: 900px) {
+    .footer__container { grid-template-columns: 1fr; }
+    .footer__brand { margin-bottom: var(--spacing-md); }
+    .footer__bottom { font-size: 0.85rem; }
 }
 
 /* --- Toast --- */
