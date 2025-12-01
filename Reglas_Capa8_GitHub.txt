@@ -1,0 +1,32 @@
+
+Paso a paso para git trabajo colaborativo:
+
+
+IMPORTANTE !!
+-Elegir donde guardar el repositorio (carpeta) 
+
+-Clonar repo:  git clone https://github.com/Loreto-Vallejos/fizzbuzz-lab.git
+
+-Actualizar el repo: git pull
+
+-Crear una rama: git checkout -b feature/Nombre-compañero
+
+-Cambiarse de rama: git checkout feature/Nombre-compañero
+
+-Comunicarse es clave, no tocar archivos de otros compañeros sin avisar.
+
+-Ver archivos modificados: git status 
+
+-Subir cambios: git add . (solo si no tocaron nada mas)
+
+-Subir solo un archivo: git add NombreArchivo
+
+-Hacer commit: git commit -m "conventional commit: nombre del cambio" 
+
+-Actualiza repo: git pull
+
+-Subimos cambios al repo: git push
+
+-Una vez arriba los cambios hacemos pull request ----- Una persona designada cuando no nos reunamos -------- O su doble 
+
+-Luego merge 
