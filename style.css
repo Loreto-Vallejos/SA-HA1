@@ -9,7 +9,7 @@
     
     /* Spacing */
     --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
+    --spacing-sm: rem;
     --spacing-md: 2rem;
     --spacing-lg: 4rem;
     --spacing-xl: 6rem;
@@ -141,7 +141,7 @@ img {
 
 /* --- Header --- */
 .header {
-    background-color: #ffffff;
+    background-color: #f5f5fa;
     backdrop-filter: blur(10px);
     height: var(--header-height);
     position: fixed;
