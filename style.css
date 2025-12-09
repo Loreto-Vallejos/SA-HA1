@@ -1,29 +1,31 @@
 /* --- Variables & Reset --- */
 :root {
     /* Cambios loreto*/
-    --color-bg: #ffffff; 
+    --color-bg: #ffffff;
     --color-primary: #054060;
     --color-primary-hover: #032d44;
     --color-text: #090808;
-  
-    
+    --color-accent: #d4af37;
+    --color-bg-alt: #f7f9fb;
+    --color-text-muted: #6b7280;
+
     /* Spacing */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 2rem;
     --spacing-lg: 4rem;
     --spacing-xl: 6rem;
-    
+
     /* Layout */
     --container-width: 1200px;
     --header-height: 70px;
-    
+
     /* Border Radius */
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-lg: 16px;
 }
-/*Reset css*/
+/* Reset css */
 * {
     margin: 0;
     padding: 0;
@@ -72,6 +74,7 @@ img {
 
 .text-gradient {
     background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -89,6 +92,11 @@ img {
     font-size: 2.5rem;
     margin-bottom: var(--spacing-xs);
     color:black;
+}
+.section__title2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-xs);
+    color:white;
 }
 
 .section__title--center {
@@ -164,6 +172,7 @@ img {
     font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: 1px;
+    color: #054060;
 }
 
 .logo__accent {
@@ -206,6 +215,12 @@ img {
     cursor: pointer;
 }
 
+/* Header elevated when scrolling */
+.header.scrolled {
+    box-shadow: 0 6px 20px rgba(5,64,96,0.12);
+    background-color: rgba(255,255,255,0.98);
+}
+
 /* --- Hero --- */
 .hero {
     padding-top: calc(var(--header-height) + var(--spacing-xl));
@@ -231,7 +246,7 @@ img {
 }
 
 .hero__description {
-    color: var(--color-text-muted);
+    color: #ffffff;
     font-size: 1.1rem;
     margin-bottom: var(--spacing-md);
     max-width: 500px;
@@ -318,9 +333,9 @@ img {
 }
 
 /* Placeholder Gradients for Images */
-.card__image--gamer {background-image: url("Assets/reggaeton_urban_luxury_coffin.png") ; }
+.card__image--gamer { background-image: url("Assets/reggaeton_urban_luxury_coffin.png") }
 .card__image--nature { background-image: url("Assets/anime_warrior_themed_coffin.png") }
-.card__image--galaxy {background-image: url("Assets/custom_coffin_with_race_car_livery_design.png")  }
+.card__image--galaxy { background-image: url("Assets/custom_coffin_with_race_car_livery_design.png")  }
 .card__image--music { background-image: url("Assets/heavy_metal_studded_coffin.png") }
 
 .card__content {
@@ -355,7 +370,21 @@ img {
 
 .about__content p {
     margin-bottom: 1rem;
-    color: var(--color-text-muted);
+    color: #ffffff;
+    line-height: 1.6;
+    opacity: 0.95;
+}
+
+.about__content .benefits-list li {
+    color: #ffffff;
+}
+
+.check-icon {
+    background: var(--color-accent);
+    color: #0b1220;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: 700;
 }
 
 .benefits-list {
@@ -377,13 +406,17 @@ img {
 
 .about__image {
     height: 400px;
-    background-color: var(--color-bg-alt);
+    background-image: url("Assets/sobre-nosotros.webp");
+    background-size: cover;      /* hace que cubra todo */
+    background-position: center; /* centra la imagen */
+    background-repeat: no-repeat;
     border-radius: var(--radius-lg);
     display: flex;
     align-items: center;
     justify-content: center;
     border: 1px solid rgba(255,255,255,0.05);
 }
+
 
 .image-placeholder {
     color: var(--color-text-muted);
@@ -523,25 +556,24 @@ img {
 
 /* --- Footer --- */
 .footer {
-    background-color: #054060;
-    padding: var(--spacing-lg) 0 var(--spacing-md);
-    border-top: 1px solid rgba(255,255,255,0.05);
+    background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+    padding: calc(var(--spacing-lg) + 1rem) 0 var(--spacing-md);
+    border-top: 1px solid rgba(0,0,0,0.06);
     color: white;
+    font-size: 0.95rem;
 }
 
 .footer__container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: var(--spacing-lg);
-    align-items: start;
     margin-bottom: var(--spacing-md);
 }
 
 .footer__brand p {
-    color: white;
+    color: rgba(255,255,255,0.9);
     margin-top: 0.5rem;
-    font-size: 0.9rem;
-    color: white;
+    font-size: 0.95rem;
 }
 
 .footer__links h4,
@@ -551,43 +583,72 @@ img {
     color: white;
 }
 
-.footer__socials {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    margin-top: 0.6rem;
+.footer__links ul li {
+    margin-bottom: 0.5rem;
 }
 
 .footer__links a {
-    color: white;
+    color: rgba(255,255,255,0.92);
+    display: inline-block;
+    padding: 6px 0;
 }
 
 .footer__links a:hover {
-    color: rgb(176, 174, 174);
+    color: var(--color-accent);
+    transform: translateX(4px);
 }
 
-.footer__contact h4,
-.footer__nav h4 {
-    margin-bottom: 0.6rem;
+.footer__container {
+    align-items: start;
+}
+
+.footer__brand .logo {
+    font-size: 1.3rem;
     color: #fff;
+}
+
+.footer__links ul {
+    padding: 0;
+    margin: 0;
+}
+
+.footer__links ul li {
+    margin-bottom: 0.6rem;
+}
+
+.footer__bottom {
+    background: rgba(0,0,0,0.06);
+    padding: 0.8rem 0;
+    margin-top: var(--spacing-md);
+}
+
+/* Footer responsive tweaks */
+@media (max-width: 768px) {
+    .footer__container { text-align: center; }
+    .footer__links, .footer__socials { margin-top: 1rem; }
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
 }
 
 .social-icons a {
     color: white;
-    font-weight: bold;
-    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 8px;
+    transition: transform 0.15s ease, background 0.15s ease;
 }
 
-.footer__contact a {
-    color: #cfcfcf;
+.social-icons a:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,0.12);
 }
-
-.footer__contact a:hover { color: var(--color-primary); }
-
-.footer__nav ul { list-style: none; padding: 0; }
-.footer__nav li { margin-bottom: 0.5rem; }
-.footer__nav a { color: #cfcfcf; }
-.footer__nav a:hover { color: var(--color-primary); }
 
 .footer__bottom {
     text-align: center;
@@ -800,6 +861,7 @@ img {
 
 
 .fondo-petroleo{
-    background-color: #054060 ;
+    background-color: var(--color-primary);
     color: white;
+
 }
