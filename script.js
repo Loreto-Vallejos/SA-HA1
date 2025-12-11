@@ -31,13 +31,51 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contactForm');
     const toast = document.getElementById('toast');
 
+    // Funciones de Validación del formulario - (Modificado por seba - washington)
+
+
+    function validarNombre(nombre) {
+        return nombre.trim().length >= 3;
+    }
+
+    function validarEmail(email) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+
+    function validarIdea(idea) {
+        return idea.trim().length >= 10;
+    }
+
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // Prevent actual submission
+            e.preventDefault();
 
-            // Simulate sending data (e.g., to an API)
             const formData = new FormData(contactForm);
             const name = formData.get('name');
+            const email = formData.get('email');
+            const idea = formData.get('idea');
+
+            // Validar nombre
+            if (!validarNombre(name)) {
+                alert('El nombre debe tener al menos 3 caracteres');
+                document.getElementById('name').value = '';
+                return;
+            }
+
+            // Validar email
+            if (!validarEmail(email)) {
+                alert('Por favor ingresa un email válido');
+                document.getElementById('email').value = '';
+                return;
+            }
+
+            // Validar idea
+            if (!validarIdea(idea)) {
+                alert('La idea debe tener al menos 10 caracteres');
+                document.getElementById('idea').value = '';
+                return;
+            }
 
             console.log(`Mensaje recibido de: ${name}`);
 
