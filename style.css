@@ -46,6 +46,7 @@ h1, h2, h3, h4 {
     font-family: 'Playfair Display', serif;
     color: var(--color-text);
     line-height: 1.2;
+    
 }
 
 a {
@@ -72,7 +73,7 @@ img {
 
 .text-gradient {
     background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-    -webkit-background-clip: text;
+   
     -webkit-text-fill-color: transparent;
 }
 
@@ -83,6 +84,7 @@ img {
 .section__header {
     text-align: center;
     margin-bottom: var(--spacing-lg);
+    
 }
 
 .section__title {
@@ -659,4 +661,6 @@ img {
     .contact__form {
         order: 1;
     }
+    
 }
+
