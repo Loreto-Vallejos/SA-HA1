@@ -158,6 +158,7 @@ img {
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border: 3px solid black ;
 }
 
 .header__container {
@@ -169,7 +170,7 @@ img {
 
 .logo {
     font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+    font-size: 3rem;
     font-weight: 700;
     letter-spacing: 1px;
     color: #054060;
@@ -186,7 +187,7 @@ img {
 }
 
 .nav__link {
-    font-size: 0.95rem;
+    font-size: 2rem;
     font-weight: 500;
 }
 
