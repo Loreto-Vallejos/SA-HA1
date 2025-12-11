@@ -22,20 +22,20 @@
     <!-- Header -->
     <header class="header">
         <div class="container header__container">
-            <a href="#" class="logo">Eternia<span class="logo__accent ">Customs</span></a>
-
-            <nav class="nav" id="nav-menu">
+            <a href="#inicio" class="logo" aria-label="Eternia - Inicio">Eternia</a>
+            
+            <nav class="nav" id="nav-menu" aria-label="Navegación principal">
                 <ul class="nav__list">
                     <li class="nav__item"><a href="#inicio" class="nav__link ">Inicio</a></li>
                     <li class="nav__item"><a href="#catalogo" class="nav__link">Catálogo</a></li>
-                    <li class="nav__item"><a href="#nosotros" class="nav__link">Nosotros</a></li>
+                    <li class="nav__item"><a href="nosotros.html" class="nav__link">Nosotros</a></li>
                     <li class="nav__item"><a href="#contacto" class="nav__link nav__link--cta">Cotizar</a></li>
                 </ul>
                 <button class="nav__close" id="nav-close" aria-label="Cerrar menú">&times;</button>
             </nav>
 
-            <button class="nav__toggle" id="nav-toggle" aria-label="Abrir menú">
-                <span class="hamburger"></span>
+            <button class="nav__toggle" id="nav-toggle" aria-label="Abrir menú" aria-controls="nav-menu" aria-expanded="false">
+                <span class="hamburger" aria-hidden="true"></span>
             </button>
         </div>
     </header>
@@ -43,27 +43,35 @@
     <main>
         <!-- Hero Section -->
         <section id="inicio" class="hero">
-            <div class="container hero__container">
-                <div class="hero__content">
-                    <h1 class="hero__title">Tu Último Viaje, <br>A Tu Manera.</h1>
-                    <p class="hero__description">
-                        Rompemos con lo tradicional. Ataúdes personalizados con temáticas únicas que celebran tu
-                        personalidad y pasiones. Porque la despedida también puede tener estilo.
-                    </p>
-                    <div class="hero__actions">
-                        <a href="#catalogo" class="btn btn--primary">Ver Colección</a>
-                        <a href="#contacto" class="btn btn--outline">Diseñar el Mío</a>
-                    </div>
-                </div>
-                <div class="hero__visual">
-                    <!-- Placeholder visual using CSS art/gradient representation -->
-                    <div class="coffin-showcase">
-                        <div class="coffin-shape"></div>
-                        <div class="glow-effect"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    
+    <!-- CARROUSEL -->
+    <div class="carousel-container">
+        <div class="carousel-slide active">
+            <img src="Assets/hip_hop_graffiti_coffin.png" alt="ataud grafiti">
+        </div>
+        <div class="carousel-slide">
+            <img src="Assets/reggaeton_urban_luxury_coffin.png" alt="ataud reggaeton">
+        </div>
+        <div class="carousel-slide">
+            <img src="Assets/heavy_metal_studded_coffin.png" alt="ataud gotico">
+        </div>
+
+        <!-- Controles 
+        <button class="carousel-control prev">&#10094;</button>
+        <button class="carousel-control next">&#10095;</button> -->
+    </div>
+
+    <!-- TEXTO SOBRE EL CARROUSEL -->
+    <div class="hero__content">
+        <h1 class="hero__title">Tu Último Viaje,<br>A Tu Manera.</h1>
+        <p class="hero__description">
+            Rompemos con lo tradicional. Ataúdes personalizados con temáticas únicas que celebran tu personalidad.
+        </p>
+        <a href="#catalogo" class="btn btn--primary">Ver Catálogo</a>
+    </div>
+
+</section>
+
 
         <!-- Catalog Section -->
         <section id="catalogo" class="section catalog">
@@ -80,9 +88,8 @@
                             <div class="card__image card__image--gamer"></div>
                         </div>
                         <div class="card__content">
-                            <h3 class="card__title">The Gamer</h3>
-                            <p class="card__desc">Diseño inspirado en consolas retro y neón. Para los que juegan hasta
-                                el final.</p>
+                            <h3 class="card__title">The reggaeton</h3>
+                            <p class="card__desc">Diseño con brillo urbano y detalles blin-blin. Para quienes viven —y se despiden— con flow, estilo y perreo eterno.</p>
                             <a href="#contacto" class="card__link">Ver detalles &rarr;</a>
                         </div>
                     </article>
@@ -93,8 +100,8 @@
                             <div class="card__image card__image--nature"></div>
                         </div>
                         <div class="card__content">
-                            <h3 class="card__title">Eco Return</h3>
-                            <p class="card__desc">Materiales 100% biodegradables con estética de bosque encantado.</p>
+                            <h3 class="card__title">Animé</h3>
+                            <p class="card__desc">Diseño digno de protagonista de shōnen: colores vibrantes, brillo exagerado y drama garantizado. Perfecto para quienes quieren irse al más allá haciendo su última transformación.</p>
                             <a href="#contacto" class="card__link">Ver detalles &rarr;</a>
                         </div>
                     </article>
@@ -105,9 +112,8 @@
                             <div class="card__image card__image--galaxy"></div>
                         </div>
                         <div class="card__content">
-                            <h3 class="card__title">Stardust</h3>
-                            <p class="card__desc">Acabado negro profundo con nebulosas pintadas a mano. Somos polvo de
-                                estrellas.</p>
+                            <h3 class="card__title">Motor Sport</h3>
+                            <p class="card__desc">Diseño aerodinámico listo para la última vuelta. Ideal para quienes quieren despedirse acelerando a fondo… y llegar al más allá antes que todos.</p>
                             <a href="#contacto" class="card__link">Ver detalles &rarr;</a>
                         </div>
                     </article>
@@ -118,10 +124,9 @@
                             <div class="card__image card__image--music"></div>
                         </div>
                         <div class="card__content">
-                            <h3 class="card__title">Rock Legend</h3>
-                            <p class="card__desc">Estuche de guitarra gigante o acabados en cuero y tachas. Actitud
-                                eterna.</p>
-                            <a href="#contacto" class="card__link ">Ver detalles &rarr;</a>
+                            <h3 class="card__title">Legenda Gótica</h3>
+                            <p class="card__desc">Diseño tan oscuro que hasta los vampiros piden foto. Perfecto para quienes quieren despedirse con misterio, estilo… y una pizca de drama sobrenatural.</p>
+                            <a href="#contacto" class="card__link">Ver detalles &rarr;</a>
                         </div>
                     </article>
                 </div>
@@ -129,15 +134,13 @@
         </section>
 
         <!-- About Section -->
-        <section id="nosotros" class="section about">
+        <section id="nosotros" class="section about fondo-petroleo">
             <div class="container about__container">
                 <div class="about__content">
-                    <h2 class="section__title">Más que un ataúd, un tributo.</h2>
+                    <h2 class="section__title2">Sobre Nosotros</h2>
                     <p>
-                        En <strong>EternalCustoms</strong>, creemos que los funerales tradicionales son grises e
-                        impersonales.
-                        Nacimos con la idea de que la muerte es parte de la vida, y como tal, debe reflejar quién
-                        fuiste.
+                        En <strong>Eternia</strong>, creemos que los funerales tradicionales son grises e impersonales. 
+                        Nacimos con la idea de que la muerte es parte de la vida, y como tal, debe reflejar quién fuiste.
                     </p>
                     <p>
                         Desde fanáticos del fútbol hasta amantes del arte, creamos piezas maestras que generan
@@ -161,7 +164,7 @@
                     </ul>
                 </div>
                 <div class="about__image">
-                    <div class="image-placeholder">Sobre Nosotros</div>
+                    
                 </div>
             </div>
         </section>
@@ -169,13 +172,15 @@
         <!-- Testimonials -->
         <section class="section testimonials">
             <div class="container">
-                <h2 class="section__title section__title--center">Lo que dicen las familias</h2>
+                <h2 class="section_title section_title--center">Lo que dicen las familias</h2>
+                <br>
+                <br>
                 <div class="testimonials__grid">
                     <div class="testimonial-card">
                         <p class="testimonial__text">"Mi abuelo era fanático de la F1. Su despedida fue en un ataúd rojo
                             Ferrari que todos amaron. Fue un homenaje perfecto."</p>
                         <div class="testimonial__author">
-                            <div class="avatar">M</div>
+                            <div class="avatar"> M </div> <!-- "MEJORA" <img src="ruta/de/tu/imagen.jpg" alt="Foto del cliente">-->
                             <span>María González</span>
                         </div>
                     </div>
@@ -183,7 +188,7 @@
                         <p class="testimonial__text">"Gracias por entender mi visión. Quería algo gótico victoriano y el
                             nivel de detalle fue impresionante."</p>
                         <div class="testimonial__author">
-                            <div class="avatar">J</div>
+                            <div class="avatar" >J </div>  <!-- "MEJORA" <img src="ruta/de/tu/imagen.jpg" alt="Foto del cliente">-->
                             <span>Javier R.</span>
                         </div>
                     </div>
@@ -191,7 +196,7 @@
                         <p class="testimonial__text">"La atención fue muy respetuosa pero moderna. Nada de ese ambiente
                             lúgubre de las funerarias de siempre."</p>
                         <div class="testimonial__author">
-                            <div class="avatar">S</div>
+                            <div class="avatar"> S <!-- "MEJORA" <img src="ruta/de/tu/imagen.jpg" alt="Foto del cliente">--></div>
                             <span>Sofía L.</span>
                         </div>
                     </div>
@@ -232,31 +237,51 @@
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container footer__container">
             <div class="footer__brand">
-                <a href="#" class="logo">Eternal<span class="logo__accent">Customs</span></a>
-                <p>Redefiniendo el descanso eterno.</p>
+                <a href="#inicio" class="logo">Eternia <span class="logo__accent"></span></a>
+                <p>Redefiniendo el descanso eterno con estilo y respeto.</p>
             </div>
+
             <div class="footer__links">
                 <h4>Enlaces</h4>
                 <ul>
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#catalogo">Catálogo</a></li>
                     <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#">Política de privacidad</a></li>
+                    <li><a href="#">Términos y condiciones</a></li>
                 </ul>
             </div>
+
             <div class="footer__socials">
                 <h4>Síguenos</h4>
                 <div class="social-icons">
-                    <a href="#" aria-label="Instagram">IG</a>
-                    <a href="#" aria-label="Facebook">FB</a>
-                    <a href="#" aria-label="Twitter">TW</a>
+                    <a href="#" aria-label="Instagram" title="Instagram">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.5" />
+                            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5" />
+                            <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Facebook" title="Facebook">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M15 3h3v4h-3c-1.657 0-3 1.343-3 3v2H9v4h3v6h4v-6h3l1-4h-4v-2c0-.552.448-1 1-1z" stroke="currentColor" stroke-width="1.2" fill="currentColor"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="X (Twitter)" title="X">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M23 4.01c-.8.36-1.66.61-2.56.72a4.48 4.48 0 0 0-7.66 3v.36A12.8 12.8 0 0 1 3 3.59a4.48 4.48 0 0 0 1.39 5.98c-.67-.02-1.3-.2-1.85-.5v.05c0 2.16 1.53 3.96 3.57 4.37-.6.16-1.23.2-1.88.08.53 1.64 2.04 2.85 3.84 2.88A9 9 0 0 1 1 19.54 12.7 12.7 0 0 0 7.29 21c8.47 0 13.11-7.02 13.11-13.11v-.6c.9-.65 1.65-1.46 2.3-2.38z" stroke="currentColor" stroke-width="0.5" fill="currentColor"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
+
         <div class="footer__bottom">
-            <p>&copy; 2024 EternalCustoms. Todos los derechos reservados.</p>
+            <p>&copy; 2025 Eternia. Todos los derechos reservados.</p>
         </div>
     </footer>
 
@@ -273,3 +298,6 @@
 </body>
 
 </html>
+
+
+
