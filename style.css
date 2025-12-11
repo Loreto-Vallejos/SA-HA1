@@ -9,9 +9,9 @@
     --color-bg-alt: #f7f9fb;
     --color-text-muted: #6b7280;
 
-    /* Spacing */
+    /* Spacing, padding lateral*/
     --spacing-xs: 0.5rem;
-    --spacing-sm: rem;
+    --spacing-sm: 2rem;
     --spacing-md: 2rem;
     --spacing-lg: 4rem;
     --spacing-xl: 6rem;
@@ -222,6 +222,15 @@ img {
     font-size: 1.5rem;
     cursor: pointer;
 }
+
+/* se añade el active state, resalta los enlaces del navbar washington */
+.nav__link--active {
+    color: var(--color-primary);
+    font-weight: 700;
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 4px;
+}
+
 
 /* Header elevated when scrolling */
 .header.scrolled {
@@ -544,22 +553,26 @@ img {
     color: #054060;
     
 }
-
+/* cambio de color de contactanos de los bordes, washington*/
 .form-group input,
 .form-group textarea {
     width: 100%;
     padding: 0.8rem;
     background-color: var(--color-bg);
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid #05406080; /* azul con transparencia */
     border-radius: var(--radius-sm);
     color: var(--color-text);
     font-family: 'Outfit', sans-serif;
+    outline: none;
+    border-color: #054060;
+    box-shadow: 0 0 0 3px #05406020;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: #054060;
+    
 }
 
 /* --- Footer --- */
@@ -734,9 +747,26 @@ img {
         flex-direction: column;
         align-items: flex-start;
     }
-
+        /* simbolo x de salida washington */
     .nav__toggle, .nav__close {
         display: block;
+        
+
+    }
+        /* simbolo X cuando esta responsiva y con margen washington*/
+    .nav__close {
+        position: absolute;
+        top: 0.5rem;    /* distancia desde arriba */
+        left: 1rem; /* distancia desde la derecha */
+        font-size: 3rem;
+        color: #054060;
+
+        border: 1px solid var(--color-primary);
+        padding: 0.3rem 0.9rem;
+        border-radius: 4px;
+        color: var(--color-primary);
+        font-size: 1.8rem;
+        font-weight: 600;  
     }
 
     .hamburger {
