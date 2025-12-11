@@ -11,7 +11,7 @@
 
     /* Spacing */
     --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
+    --spacing-sm: rem;
     --spacing-md: 2rem;
     --spacing-lg: 4rem;
     --spacing-xl: 6rem;
@@ -50,6 +50,7 @@ h1, h2, h3, h4 {
     font-family: 'Playfair Display', serif;
     color: var(--color-text);
     line-height: 1.2;
+    
 }
 
 a {
@@ -88,6 +89,7 @@ img {
 .section__header {
     text-align: center;
     margin-bottom: var(--spacing-lg);
+    
 }
 
 .section__title {
@@ -152,7 +154,7 @@ img {
 
 /* --- Header --- */
 .header {
-    background-color: #ffffff;
+    background-color: #f5f5fa;
     backdrop-filter: blur(10px);
     height: var(--header-height);
     position: fixed;
@@ -784,6 +786,7 @@ img {
     .contact__form {
         order: 1;
     }
+    
 }
 
 
