@@ -42,6 +42,8 @@ body {
     color: var(--color-text);
     line-height: 1.6;
     overflow-x: hidden;
+    animation: slideUp 0.5s ease-out;
+    
 }
 
 h1, h2, h3, h4 {
@@ -184,15 +186,18 @@ img {
     display: flex;
     gap: var(--spacing-md);
     align-items: center;
+    
 }
 
 .nav__link {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 500;
+   
 }
 
 .nav__link:hover {
     color: var(--color-primary);
+    
 }
 
 .nav__link--cta {
@@ -865,4 +870,15 @@ img {
     background-color: var(--color-primary);
     color: white;
 
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
