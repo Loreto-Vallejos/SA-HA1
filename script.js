@@ -195,7 +195,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 5000);
   });
 
-  
+//---------------------------------------------------------------------------------------------------
+  // se agrega este codigo para una funcion del navbar de los botones de los enlaces, washington
+document.addEventListener('DOMContentLoaded', () => {
+  const links = document.querySelectorAll('.nav__link');
+  const title = document.title.toLowerCase(); // ejemplo: "eternia | contactanos"
 
+  let activeText = '';
+
+  // Detectamos en qué página estamos según el <title>
+  if (title.includes('inicio')) {
+    activeText = 'inicio';
+  } else if (title.includes('catálogo') || title.includes('catalogo')) {
+    activeText = 'catálogo';
+  } else if (title.includes('nosotros')) {
+    activeText = 'nosotros';
+  } else if (title.includes('contact')) {
+    // contactanos / contáctanos / contacto
+    activeText = 'cotizar'; // porque tu botón dice "Cotizar"
+  }
+
+  // Recorremos los 4 enlaces del navbar
+  links.forEach(link => {
+    const text = link.textContent.trim().toLowerCase(); // "inicio", "catálogo", etc.
+
+    if (text === activeText) {
+      link.classList.add('nav__link--active');
+    }
+  });
+});
+//-----------------------------------------------------------------------------------------------------------------
   
 
