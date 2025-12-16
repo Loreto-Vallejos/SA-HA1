@@ -11,13 +11,13 @@
 
     /* Spacing, padding lateral*/
     --spacing-xs: 0.5rem;
-    --spacing-sm: 2rem;
+    --spacing-sm: 1rem;
     --spacing-md: 2rem;
     --spacing-lg: 4rem;
     --spacing-xl: 6rem;
 
     /* Layout */
-    --container-width: 1200px;
+    --container-width: 1800px;
     --header-height: 70px;
 
     /* Border Radius */
@@ -69,11 +69,11 @@ img {
 }
 
 /* --- Utilities --- */
-.container {
+/* .container.custom-container {
     max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 var(--spacing-sm);
-}
+} */
 
 .text-gradient {
     background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
@@ -153,24 +153,6 @@ img {
 }
 
 /* --- Header --- */
-.header {
-    background-color: #f5f5fa;
-    backdrop-filter: blur(10px);
-    height: var(--header-height);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    border: 3px solid black ;
-}
-
-.header__container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-}
 
 .logo {
     font-family: 'Playfair Display', serif;
@@ -184,63 +166,10 @@ img {
     color: var(--color-primary);
 }
 
-.nav__list {
-    display: flex;
-    gap: var(--spacing-md);
-    align-items: center;
-    
-}
-
-.nav__link {
-    font-size: 1.5rem;
-    font-weight: 500;
-   
-}
-
-.nav__link:hover {
-    color: var(--color-primary);
-    
-}
-
-.nav__link--cta {
-    border: 1px solid var(--color-primary);
-    padding: 0.5rem 1.2rem;
-    border-radius: 4px;
-    color: var(--color-primary);
-}
-
-.nav__link--cta:hover {
-    background-color: var(--color-primary);
-    color: var(--color-bg);
-}
-
-.nav__toggle, .nav__close {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--color-text);
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-/* se añade el active state, resalta los enlaces del navbar washington */
-.nav__link--active {
-    color: var(--color-primary);
-    font-weight: 700;
-    border-bottom: 2px solid var(--color-primary);
-    padding-bottom: 4px;
-}
-
-
-/* Header elevated when scrolling */
-.header.scrolled {
-    box-shadow: 0 6px 20px rgba(5,64,96,0.12);
-    background-color: rgba(255,255,255,0.98);
-}
 
 /* --- Hero --- */
 .hero {
-    padding-top: calc(var(--header-height) + var(--spacing-xl));
+    padding-top: var(--header-height);
     padding-bottom: var(--spacing-xl);
     min-height: 90vh;
     display: flex;
@@ -727,69 +656,6 @@ img {
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
-    .nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        background-color: var(--color-bg);
-        width: 80%;
-        height: 100vh;
-        padding: var(--spacing-xl) var(--spacing-md);
-        transition: 0.4s;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.5);
-    }
-
-    .nav.show-menu {
-        right: 0;
-    }
-
-    .nav__list {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-        /* simbolo x de salida washington */
-    .nav__toggle, .nav__close {
-        display: block;
-        
-
-    }
-        /* simbolo X cuando esta responsiva y con margen washington*/
-    .nav__close {
-        position: absolute;
-        top: 0.5rem;    /* distancia desde arriba */
-        left: 1rem; /* distancia desde la derecha */
-        font-size: 3rem;
-        color: #054060;
-
-        border: 1px solid var(--color-primary);
-        padding: 0.3rem 0.9rem;
-        border-radius: 4px;
-        color: var(--color-primary);
-        font-size: 1.8rem;
-        font-weight: 600;  
-    }
-
-    .hamburger {
-        display: block;
-        width: 25px;
-        height: 2px;
-        background-color: var(--color-text);
-        position: relative;
-    }
-    
-    .hamburger::before,
-    .hamburger::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 2px;
-        background-color: var(--color-text);
-        left: 0;
-    }
-
-    .hamburger::before { top: -8px; }
-    .hamburger::after { top: 8px; }
-
     .hero__container,
     .about__container,
     .contact__container {
@@ -914,4 +780,106 @@ img {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+
+
+
+
+/* 11-12-2025
+ESTILO NAVBAR BOOTSTRAP */
+
+
+/* Estado inicial: transparente tipo Apple */
+.navbar-eternia {
+    background-color: rgba(15, 15, 15, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: background-color 0.4s ease, backdrop-filter 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+/* Cuando el usuario hace scroll */
+.navbar-eternia.scrolled {
+    background-color: #124270f1;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+    backdrop-filter: blur(18px);
+}
+
+/* Logo */
+.navbar-eternia .navbar-brand {
+    font-size: 1.5rem;
+    letter-spacing: 1.5px;
+    color: #f5f5f5;
+    transition: transform 0.3s ease;
+}
+.navbar-eternia .navbar-brand:hover {
+    transform: translateY(-2px);
+}
+
+/* Links */
+.navbar-eternia .nav-link {
+    color: #e4e4e4;
+    margin: 0 6px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Subrayado dorado animado */
+.navbar-eternia .nav-link.nav-anim::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #d4af37;
+    transition: width 0.3s ease;
+}
+
+.navbar-eternia .nav-link.nav-anim:hover::after {
+    width: 100%;
+}
+
+.navbar-eternia .nav-link:hover {
+    color: #d4af37;
+}
+
+/* CTA – Botón Cotizar */
+.btn-eternia-cta {
+    background-color: #d4af37;
+    color: #0f0f0f !important;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+    padding: 8px 16px;
+}
+
+.btn-eternia-cta:hover {
+    background-color: #c19b2d;
+    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.5);
+    transform: translateY(-1px);
+}
+
+/* Hamburguesa */
+.navbar-eternia .navbar-toggler {
+    border-color: rgba(253, 252, 252, 0.877);
+}
+
+.navbar-eternia .navbar-toggler-icon {
+    filter: invert(1);
+}
+
+/* Animación de entrada del navbar */
+.navbar-eternia {
+    animation: fadeSlideDown 0.7s ease forwards;
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+@keyframes fadeSlideDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

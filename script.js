@@ -1,32 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* --- Mobile Menu Logic --- */
-    const navMenu = document.getElementById('nav-menu');
-    const navToggle = document.getElementById('nav-toggle');
-    const navClose = document.getElementById('nav-close');
-    const navLinks = document.querySelectorAll('.nav__link');
-
-    // Open Menu
-    if (navToggle) {
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.add('show-menu');
-        });
-    }
-
-    // Close Menu
-    if (navClose) {
-        navClose.addEventListener('click', () => {
-            navMenu.classList.remove('show-menu');
-        });
-    }
-
-    // Close Menu when clicking a link
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('show-menu');
-        });
-    });
-
     /* --- Contact Form & Toast --- */
     const contactForm = document.getElementById('contactForm');
     const toast = document.getElementById('toast');
@@ -195,35 +168,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 5000);
   });
 
-//---------------------------------------------------------------------------------------------------
-  // se agrega este codigo para una funcion del navbar de los botones de los enlaces, washington
-document.addEventListener('DOMContentLoaded', () => {
-  const links = document.querySelectorAll('.nav__link');
-  const title = document.title.toLowerCase(); // ejemplo: "eternia | contactanos"
-
-  let activeText = '';
-
-  // Detectamos en qué página estamos según el <title>
-  if (title.includes('inicio')) {
-    activeText = 'inicio';
-  } else if (title.includes('catálogo') || title.includes('catalogo')) {
-    activeText = 'catálogo';
-  } else if (title.includes('nosotros')) {
-    activeText = 'nosotros';
-  } else if (title.includes('contact')) {
-    // contactanos / contáctanos / contacto
-    activeText = 'cotizar'; // porque tu botón dice "Cotizar"
-  }
-
-  // Recorremos los 4 enlaces del navbar
-  links.forEach(link => {
-    const text = link.textContent.trim().toLowerCase(); // "inicio", "catálogo", etc.
-
-    if (text === activeText) {
-      link.classList.add('nav__link--active');
-    }
-  });
-});
-//-----------------------------------------------------------------------------------------------------------------
   
 
+ 
+// 11-12-2025  
+// FUNCIONAMIENTO NAVBAR BOOTSTRAP
+window.addEventListener("scroll", () => {
+    const navbar = document.querySelector(".navbar-eternia");
+    if (window.scrollY > 20) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+});
