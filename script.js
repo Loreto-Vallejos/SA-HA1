@@ -169,11 +169,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    
 
-    //testimonial WASHINGTON M.
 
-  document.addEventListener('DOMContentLoaded', function () {
+//testimonial WASHINGTON M.
+
+document.addEventListener('DOMContentLoaded', function () {
     const cards = document.querySelectorAll('.testimonial-card');
     if (!cards.length) return;
 
@@ -181,8 +181,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Muestra la tarjeta actual
     function showCard(index) {
-      cards.forEach(card => card.classList.remove('is-active'));
-      cards[index].classList.add('is-active');
+        cards.forEach(card => card.classList.remove('is-active'));
+        cards[index].classList.add('is-active');
     }
 
     // Mostrar la primera al cargar
@@ -190,40 +190,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Cambiar cada 5 segundos (5000 ms)
     setInterval(() => {
-      current = (current + 1) % cards.length;
-      showCard(current);
+        current = (current + 1) % cards.length;
+        showCard(current);
     }, 5000);
-  });
+});
 
 //---------------------------------------------------------------------------------------------------
-  // se agrega este codigo para una funcion del navbar de los botones de los enlaces, washington
+// se agrega este codigo para una funcion del navbar de los botones de los enlaces, washington
 document.addEventListener('DOMContentLoaded', () => {
-  const links = document.querySelectorAll('.nav__link');
-  const title = document.title.toLowerCase(); // ejemplo: "eternia | contactanos"
+    const links = document.querySelectorAll('.nav__link');
+    const title = document.title.toLowerCase(); // ejemplo: "eternia | contactanos"
 
-  let activeText = '';
+    let activeText = '';
 
-  // Detectamos en qué página estamos según el <title>
-  if (title.includes('inicio')) {
-    activeText = 'inicio';
-  } else if (title.includes('catálogo') || title.includes('catalogo')) {
-    activeText = 'catálogo';
-  } else if (title.includes('nosotros')) {
-    activeText = 'nosotros';
-  } else if (title.includes('contact')) {
-    // contactanos / contáctanos / contacto
-    activeText = 'cotizar'; // porque tu botón dice "Cotizar"
-  }
-
-  // Recorremos los 4 enlaces del navbar
-  links.forEach(link => {
-    const text = link.textContent.trim().toLowerCase(); // "inicio", "catálogo", etc.
-
-    if (text === activeText) {
-      link.classList.add('nav__link--active');
+    // Detectamos en qué página estamos según el <title>
+    if (title.includes('inicio')) {
+        activeText = 'inicio';
+    } else if (title.includes('catálogo') || title.includes('catalogo')) {
+        activeText = 'catálogo';
+    } else if (title.includes('nosotros')) {
+        activeText = 'nosotros';
+    } else if (title.includes('contact')) {
+        // contactanos / contáctanos / contacto
+        activeText = 'cotizar'; // porque tu botón dice "Cotizar"
     }
-  });
+
+    // Recorremos los 4 enlaces del navbar
+    links.forEach(link => {
+        const text = link.textContent.trim().toLowerCase(); // "inicio", "catálogo", etc.
+
+        if (text === activeText) {
+            link.classList.add('nav__link--active');
+        }
+    });
 });
 //-----------------------------------------------------------------------------------------------------------------
-  
+
+
+/* --- Navbar Scroll Effect (Added for Bootstrap Navbar) --- */
+const navbar = document.querySelector('.navbar-eternia');
+
+if (navbar) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+}
+
 
