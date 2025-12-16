@@ -1,56 +1,85 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eternia | nosotros</title>
-    <meta name="description" content="Ataúdes personalizados que celebran la vida. Diseños únicos, temáticos y fuera de lo común.">
+    <meta name="description"
+        content="Ataúdes personalizados que celebran la vida. Diseños únicos, temáticos y fuera de lo común.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <!-- Header -->
+    <!-- Header con Navbar Bootstrap-->
     <header class="header">
-        <div class="container header__container">
-            <a href="index.html" class="logo" aria-label="Eternia - Inicio">Eternia</a>
-            
-            <nav class="nav" id="nav-menu" aria-label="Navegación principal">
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="index.html" class="nav__link">Inicio</a></li>
-                    <li class="nav__item"><a href="#catalogo" class="nav__link">Catálogo</a></li>
-                    <li class="nav__item"><a href="nosotros.html" class="nav__link">Nosotros</a></li>
-                    <!-- <li class="nav__item"><a href="nosotros.html" class="nav__link">Contacto</a></li> -->
-                    <li class="nav__item"><a href="#contacto" class="nav__link nav__link--cta">Cotizar</a></li>
-                    
-                </ul>
-                <button class="nav__close" id="nav-close" aria-label="Cerrar menú">&times;</button>
-            </nav>
 
-            <button class="nav__toggle" id="nav-toggle" aria-label="Abrir menú" aria-controls="nav-menu" aria-expanded="false">
-                <span class="hamburger" aria-hidden="true"></span>
-            </button>
-        </div>
+        <!-- NAVBAR CON BOOSTRAP -->
+        <nav class="navbar navbar-expand-md navbar-dark navbar-eternia fixed-top py-3">
+            <div class="container">
+
+                <!-- LOGO -->
+                <a class="navbar-brand" href="index.html">Eternia</a>
+
+                <!-- BOTÓN HAMBURGUESA -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- MENÚ -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+                        <li class="nav-item">
+                            <a class="nav-link nav-anim" href="index.html">Inicio</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link nav-anim" href="index.html#catalogo">Catálogo</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link nav-anim" href="nosotros.html">Nosotros</a>
+                        </li>
+
+                        <li class="nav-item ms-md-2">
+                            <a class="btn btn-eternia-cta px-3" href="contactanos.html">Cotizar</a>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
 
-    
-
+    <!-- CORRECCIÓN: Agregada etiqueta <main> para mejorar semántica HTML5 (16-12-2025) -->
+    <main>
         <!-- SOBRE NOSOTROS -->
         <section id="nosotros" class="section about fondo-petroleo">
             <div class="container about__container">
                 <div class="about__content">
                     <h2 class="section__title2">Sobre Nosotros</h2>
                     <p>
-                        En <strong>Eternia</strong>, creemos que los funerales tradicionales son grises e impersonales. 
-                        Nacimos con la idea de que la muerte es parte de la vida, y como tal, debe reflejar quién fuiste.
+                        En <strong>Eternia</strong>, creemos que los funerales tradicionales son grises e impersonales.
+                        Nacimos con la idea de que la muerte es parte de la vida, y como tal, debe reflejar quién
+                        fuiste.
                     </p>
                     <p>
-                        Desde fanáticos del fútbol hasta amantes del arte, creamos piezas maestras que generan conversación y 
+                        Desde fanáticos del fútbol hasta amantes del arte, creamos piezas maestras que generan
+                        conversación y
                         transforman la tristeza en un recuerdo memorable de tu esencia.
                     </p>
-                    
+
                     <ul class="benefits-list">
                         <li>
                             <span class="check-icon">✓</span>
@@ -65,9 +94,40 @@
                             <span>Envíos Discretos y Seguros</span>
                         </li>
                     </ul>
+                    <div class="about_extra">
+                        <!--nuestro equipo!-->
+                        <!-- CORRECCIÓN: Agregada clase section__title2 para texto blanco (16-12-2025) -->
+                        <h3 class="section__title2">Nuestro Equipo</h3>
+                        <!-- OPTIMIZACIÓN: Usando Bootstrap Grid (row/col) en lugar de CSS custom (16-12-2025) -->
+                        <div class="row g-4 mt-4 mb-4" id="teamGrid">
+                            <div class="col-md-6 text-center">
+                                <img src="Assets/equipo-ana.jpg" alt="Ana - Fundadora"
+                                    class="rounded-circle border border-warning border-3 shadow"
+                                    style="width: 150px; height: 150px; object-fit: cover;">
+                                <h4 class="text-white mt-3 mb-2">Ana Gómez</h4>
+                                <p class="text-white-50 mb-0">Fundadora & Diseño</p>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <img src="Assets/equipo-carlos.jpg" alt="Carlos - Carpintería"
+                                    class="rounded-circle border border-warning border-3 shadow"
+                                    style="width: 150px; height: 150px; object-fit: cover;">
+                                <h4 class="text-white mt-3 mb-2">Carlos Ruiz</h4>
+                                <p class="text-white-50 mb-0">Maestro Carpintero</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- CORRECCIÓN: Agregada clase section__title2 para texto blanco (16-12-2025) -->
+                    <h3 class="section__title2">Nuestra Historia</h3>
+                    <!-- Línea del tiempo -->
+                    <ol class="timeline">
+                        <li><strong>2015</strong> - Nace la idea en un taller pequeño.</li>
+                        <li><strong>2018</strong> - Primer catálogo temático lanzado.</li>
+                        <li><strong>2022</strong> - Expansión a envíos nacionales.</li>
+                    </ol>
+
                 </div>
                 <div class="about__image">
-                    
+
                 </div>
             </div>
         </section>
@@ -80,23 +140,30 @@
                 <br>
                 <div class="testimonials__grid">
                     <div class="testimonial-card">
-                        <p class="testimonial__text">"Mi abuelo era fanático de la F1. Su despedida fue en un ataúd rojo Ferrari que todos amaron. Fue un homenaje perfecto."</p>
+                        <p class="testimonial__text">"Mi abuelo era fanático de la F1. Su despedida fue en un ataúd rojo
+                            Ferrari que todos amaron. Fue un homenaje perfecto."</p>
                         <div class="testimonial__author">
-                            <div class="avatar"> M </div> <!-- "MEJORA" <img src="ruta/de/tu/imagen.jpg" alt="Foto del cliente">-->
+                            <div class="avatar"> M </div>
+                            <!-- "MEJORA" <img src="ruta/de/tu/imagen.jpg" alt="Foto del cliente">-->
                             <span>María González</span>
                         </div>
                     </div>
                     <div class="testimonial-card">
-                        <p class="testimonial__text">"Gracias por entender mi visión. Quería algo gótico victoriano y el nivel de detalle fue impresionante."</p>
+                        <p class="testimonial__text">"Gracias por entender mi visión. Quería algo gótico victoriano y el
+                            nivel de detalle fue impresionante."</p>
                         <div class="testimonial__author">
-                            <div class="avatar" >J </div>  <!-- "MEJORA" <img src="ruta/de/tu/imagen.jpg" alt="Foto del cliente">-->
+                            <div class="avatar">J </div>
+                            <!-- "MEJORA" <img src="ruta/de/tu/imagen.jpg" alt="Foto del cliente">-->
                             <span>Javier R.</span>
                         </div>
                     </div>
                     <div class="testimonial-card">
-                        <p class="testimonial__text">"La atención fue muy respetuosa pero moderna. Nada de ese ambiente lúgubre de las funerarias de siempre."</p>
+                        <p class="testimonial__text">"La atención fue muy respetuosa pero moderna. Nada de ese ambiente
+                            lúgubre de las funerarias de siempre."</p>
                         <div class="testimonial__author">
-                            <div class="avatar"> S <!-- "MEJORA" <img src="ruta/de/tu/imagen.jpg" alt="Foto del cliente">--></div>
+                            <div class="avatar"> S
+                                <!-- "MEJORA" <img src="ruta/de/tu/imagen.jpg" alt="Foto del cliente">-->
+                            </div>
                             <span>Sofía L.</span>
                         </div>
                     </div>
@@ -116,7 +183,7 @@
                         <p>📱 +56 9 1234 5678</p>
                     </div>
                 </div>
-                
+
                 <form class="contact__form" id="contactForm">
                     <div class="form-group">
                         <label for="name">Nombre</label>
@@ -128,7 +195,8 @@
                     </div>
                     <div class="form-group">
                         <label for="idea">Tu Idea o Temática</label>
-                        <textarea id="idea" name="idea" rows="4" placeholder="Cuéntanos qué tienes en mente..." required></textarea>
+                        <textarea id="idea" name="idea" rows="4" placeholder="Cuéntanos qué tienes en mente..."
+                            required></textarea>
                     </div>
                     <button type="submit" class="btn btn--primary btn--full">Enviar Solicitud</button>
                 </form>
@@ -159,20 +227,26 @@
                 <h4>Síguenos</h4>
                 <div class="social-icons">
                     <a href="#" aria-label="Instagram" title="Instagram">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true">
                             <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.5" />
                             <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5" />
                             <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
                         </svg>
                     </a>
                     <a href="#" aria-label="Facebook" title="Facebook">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path d="M15 3h3v4h-3c-1.657 0-3 1.343-3 3v2H9v4h3v6h4v-6h3l1-4h-4v-2c0-.552.448-1 1-1z" stroke="currentColor" stroke-width="1.2" fill="currentColor"/>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true">
+                            <path d="M15 3h3v4h-3c-1.657 0-3 1.343-3 3v2H9v4h3v6h4v-6h3l1-4h-4v-2c0-.552.448-1 1-1z"
+                                stroke="currentColor" stroke-width="1.2" fill="currentColor" />
                         </svg>
                     </a>
                     <a href="#" aria-label="X (Twitter)" title="X">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path d="M23 4.01c-.8.36-1.66.61-2.56.72a4.48 4.48 0 0 0-7.66 3v.36A12.8 12.8 0 0 1 3 3.59a4.48 4.48 0 0 0 1.39 5.98c-.67-.02-1.3-.2-1.85-.5v.05c0 2.16 1.53 3.96 3.57 4.37-.6.16-1.23.2-1.88.08.53 1.64 2.04 2.85 3.84 2.88A9 9 0 0 1 1 19.54 12.7 12.7 0 0 0 7.29 21c8.47 0 13.11-7.02 13.11-13.11v-.6c.9-.65 1.65-1.46 2.3-2.38z" stroke="currentColor" stroke-width="0.5" fill="currentColor"/>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true">
+                            <path
+                                d="M23 4.01c-.8.36-1.66.61-2.56.72a4.48 4.48 0 0 0-7.66 3v.36A12.8 12.8 0 0 1 3 3.59a4.48 4.48 0 0 0 1.39 5.98c-.67-.02-1.3-.2-1.85-.5v.05c0 2.16 1.53 3.96 3.57 4.37-.6.16-1.23.2-1.88.08.53 1.64 2.04 2.85 3.84 2.88A9 9 0 0 1 1 19.54 12.7 12.7 0 0 0 7.29 21c8.47 0 13.11-7.02 13.11-13.11v-.6c.9-.65 1.65-1.46 2.3-2.38z"
+                                stroke="currentColor" stroke-width="0.5" fill="currentColor" />
                         </svg>
                     </a>
                 </div>
@@ -192,7 +266,9 @@
             <p class="toast__message">Te contactaremos pronto para diseñar tu idea.</p>
         </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 
