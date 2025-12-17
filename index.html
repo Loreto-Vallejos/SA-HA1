@@ -14,6 +14,7 @@
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -21,7 +22,7 @@
 
     <!-- Header con Navbar Bootstrap-->
     <header class="header">
-        <!-- NAVBAR CON BOOSTRAP -->
+        <!-- NAVBAR CON BOOTSTRAP -->
         <nav class="navbar navbar-expand-md navbar-dark navbar-eternia fixed-top py-3">
             <div class="container">
 
@@ -159,78 +160,162 @@
             </div>
         </section>
 
-        <!-- About Section -->
-        <section id="nosotros" class="section about fondo-petroleo">
-            <div class="container about__container">
-                <div class="about__content">
-                    <h2 class="section__title2">Sobre Nosotros</h2>
-                    <p>
-                        En <strong>Eternia</strong>, creemos que los funerales tradicionales son grises e impersonales.
-                        Nacimos con la idea de que la muerte es parte de la vida, y como tal, debe reflejar quién
-                        fuiste.
-                    </p>
-                    <p>
-                        Desde fanáticos del fútbol hasta amantes del arte, creamos piezas maestras que generan
-                        conversación y
-                        transforman la tristeza en un recuerdo memorable de tu esencia.
-                    </p>
+        <!-- About Section con Bootstrap Grid -->
+        <section id="nosotros" class="py-5 fondo-petroleo">
+            <div class="container">
+                <div class="row align-items-center g-5">
 
-                    <ul class="benefits-list">
-                        <li>
-                            <span class="check-icon">✓</span>
-                            <span>Diseños 100% Personalizables</span>
-                        </li>
-                        <li>
-                            <span class="check-icon">✓</span>
-                            <span>Materiales de Alta Calidad</span>
-                        </li>
-                        <li>
-                            <span class="check-icon">✓</span>
-                            <span>Envíos Discretos y Seguros</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="about__image">
+                    <div class="col-12 col-lg-6">
+                        <h2 class="section__title2 mb-4">Sobre Nosotros</h2>
+
+                        <p>
+                            En Eternia, creemos que los funerales tradicionales son grises e impersonales.
+                            Nacimos con la idea de que la muerte es parte de la vida y, como tal,
+                            debe reflejar quién fuiste.
+                        </p>
+
+                        <p>
+                            Desde fanáticos del fútbol hasta amantes del arte, creamos piezas maestras
+                            que generan conversación y transforman la tristeza en un recuerdo
+                            memorable de tu esencia.
+                        </p>
+
+                        <ul class="list-unstyled mt-4 benefits-list">
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="check-icon me-2">✓</span>
+                                <span>Diseños 100% Personalizables</span>
+                            </li>
+                            <li class="d-flex align-items-start mb-2">
+                                <span class="check-icon me-2">✓</span>
+                                <span>Materiales de Alta Calidad</span>
+                            </li>
+                            <li class="d-flex align-items-start">
+                                <span class="check-icon me-2">✓</span>
+                                <span>Envíos Discretos y Seguros</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Imagen -->
+                    <div class="col-12 col-lg-6">
+                        <div class="about__image rounded-4 shadow-sm">
+                            <!-- Imagen o background desde CSS -->
+                        </div>
+                    </div>
 
                 </div>
             </div>
         </section>
 
-        <!-- Testimonials -->
-        <section class="section testimonials">
+        <!-- Testimonials con Bootstrap Cards -->
+        <section class="section testimonials py-5">
             <div class="container">
-                <h2 class="section_title section_title--center">Lo que dicen las familias</h2>
-                <br>
-                <br>
-                <div class="testimonials__grid">
-                    <div class="testimonial-card">
-                        <p class="testimonial__text">"Mi abuelo era fanático de la F1. Su despedida fue en un ataúd rojo
-                            Ferrari que todos amaron. Fue un homenaje perfecto."</p>
-                        <div class="testimonial__author">
-                            <div class="avatar"> M </div>
-                            <!-- "MEJORA" <img src="ruta/de/tu/imagen.jpg" alt="Foto del cliente">-->
-                            <span>María González</span>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <p class="testimonial__text">"Gracias por entender mi visión. Quería algo gótico victoriano y el
-                            nivel de detalle fue impresionante."</p>
-                        <div class="testimonial__author">
-                            <div class="avatar">J </div>
-                            <!-- "MEJORA" <img src="ruta/de/tu/imagen.jpg" alt="Foto del cliente">-->
-                            <span>Javier R.</span>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <p class="testimonial__text">"La atención fue muy respetuosa pero moderna. Nada de ese ambiente
-                            lúgubre de las funerarias de siempre."</p>
-                        <div class="testimonial__author">
-                            <div class="avatar"> S
-                                <!-- "MEJORA" <img src="ruta/de/tu/imagen.jpg" alt="Foto del cliente">-->
+
+                <!-- Header -->
+                <div class="section__header text-center mb-4">
+                    <h2 class="section__title mb-2">Reseñas</h2>
+                    <p class="section__subtitle mb-0">¿Qué dicen las familias?</p>
+                </div>
+
+                <div class="testimonials__grid position-relative">
+
+                    <!-- Card 1 -->
+                    <article class="testimonial-card card shadow-sm border-0 mx-auto">
+                        <div class="card-body p-4">
+
+                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                                <div class="testimonial__rating" aria-label="Calificación 5 de 5">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="badge text-bg-light">Cliente verificado</span>
                             </div>
-                            <span>Sofía L.</span>
+
+                            <p class="testimonial__text mb-4">
+                                "Mi abuelo era fanático de la F1. Su despedida fue en un ataúd rojo Ferrari que todos
+                                amaron. Fue un homenaje perfecto."
+                            </p>
+
+                            <div class="testimonial__author d-flex align-items-center gap-3">
+                                <img src="assets/avatar1.jpg" alt="Foto de Mariana González"
+                                    class="testimonial__img rounded-circle" width="56" height="56" loading="lazy" />
+
+                                <div class="lh-sm">
+                                    <strong class="d-block">Mariana González</strong>
+                                    <small class="text-muted">Santiago, Chile</small>
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="testimonial-card card shadow-sm border-0 mx-auto">
+                        <div class="card-body p-4">
+
+                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                                <div class="testimonial__rating" aria-label="Calificación 4 de 5">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <span class="badge text-bg-light">Diseño a medida</span>
+                            </div>
+
+                            <p class="testimonial__text mb-4">
+                                "Gracias por entender mi visión. Quería algo gótico victoriano y el nivel de detalle fue
+                                impresionante."
+                            </p>
+
+                            <div class="testimonial__author d-flex align-items-center gap-3">
+                                <img src="assets/avatar2.jpg" alt="Foto de Javier R."
+                                    class="testimonial__img rounded-circle" width="56" height="56" loading="lazy" />
+                                <div class="lh-sm">
+                                    <strong class="d-block">Javier R.</strong>
+                                    <small class="text-muted">Valparaíso, Chile</small>
+                                </div>
+                            </div>
+
+                        </div>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="testimonial-card card shadow-sm border-0 mx-auto">
+                        <div class="card-body p-4">
+
+                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                                <div class="testimonial__rating" aria-label="Calificación 5 de 5">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="badge text-bg-light">Servicio premium</span>
+                            </div>
+
+                            <p class="testimonial__text mb-4">
+                                "La atención fue muy respetuosa pero moderna. Nada de ese ambiente lúgubre de las
+                                funerarias de siempre."
+                            </p>
+
+                            <div class="testimonial__author d-flex align-items-center gap-3">
+                                <img src="assets/avatar6.jpg" alt="Foto de Luis M."
+                                    class="testimonial__img rounded-circle" width="56" height="56" loading="lazy" />
+                                <div class="lh-sm">
+                                    <strong class="d-block">Luis M.</strong>
+                                    <small class="text-muted">Concepción, Chile</small>
+                                </div>
+                            </div>
+
+                        </div>
+                    </article>
+
                 </div>
             </div>
         </section>
@@ -268,57 +353,78 @@
         </section>
     </main>
 
-    <footer class="footer" role="contentinfo">
-        <div class="container footer__container">
-            <div class="footer__brand">
-                <a href="#inicio" class="logo">Eternia <span class="logo__accent"></span></a>
-                <p>Redefiniendo el descanso eterno con estilo y respeto.</p>
-            </div>
+    <!-- Footer con Bootstrap Grid -->
+    <footer class="footer py-5" role="contentinfo">
+        <div class="container">
+            <div class="row g-4 align-items-start">
 
-            <div class="footer__links">
-                <h4>Enlaces</h4>
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#catalogo">Catálogo</a></li>
-                    <li><a href="#nosotros">Nosotros</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                    <li><a href="#">Política de privacidad</a></li>
-                    <li><a href="#">Términos y condiciones</a></li>
-                </ul>
-            </div>
+                <!-- Brand -->
+                <div class="col-12 col-lg-4">
+                    <a href="#inicio" class="logo d-inline-block" aria-label="Eternia - Inicio">Eternia <span
+                            class="logo__accent"></span></a>
 
-            <div class="footer__socials">
-                <h4>Síguenos</h4>
-                <div class="social-icons">
-                    <a href="#" aria-label="Instagram" title="Instagram">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                            aria-hidden="true">
-                            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.5" />
-                            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5" />
-                            <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
-                        </svg>
-                    </a>
-                    <a href="#" aria-label="Facebook" title="Facebook">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                            aria-hidden="true">
-                            <path d="M15 3h3v4h-3c-1.657 0-3 1.343-3 3v2H9v4h3v6h4v-6h3l1-4h-4v-2c0-.552.448-1 1-1z"
-                                stroke="currentColor" stroke-width="1.2" fill="currentColor" />
-                        </svg>
-                    </a>
-                    <a href="#" aria-label="X (Twitter)" title="X">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                            aria-hidden="true">
-                            <path
-                                d="M23 4.01c-.8.36-1.66.61-2.56.72a4.48 4.48 0 0 0-7.66 3v.36A12.8 12.8 0 0 1 3 3.59a4.48 4.48 0 0 0 1.39 5.98c-.67-.02-1.3-.2-1.85-.5v.05c0 2.16 1.53 3.96 3.57 4.37-.6.16-1.23.2-1.88.08.53 1.64 2.04 2.85 3.84 2.88A9 9 0 0 1 1 19.54 12.7 12.7 0 0 0 7.29 21c8.47 0 13.11-7.02 13.11-13.11v-.6c.9-.65 1.65-1.46 2.3-2.38z"
-                                stroke="currentColor" stroke-width="0.5" fill="currentColor" />
-                        </svg>
-                    </a>
+                    <p class="mb-0 opacity-75">
+                        Redefiniendo el descanso eterno con estilo y respeto.
+                    </p>
+                </div>
+
+                <!-- Links -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <h4 class="h6 text-uppercase fw-semibold mb-3">Enlaces</h4>
+                    <ul class="list-unstyled mb-0 d-grid gap-2">
+                        <li><a class="text-decoration-none" href="#inicio">Inicio</a></li>
+                        <li><a class="text-decoration-none" href="#catalogo">Catálogo</a></li>
+                        <li><a class="text-decoration-none" href="#nosotros">Nosotros</a></li>
+                        <li><a class="text-decoration-none" href="#contacto">Contacto</a></li>
+                        <li><a class="text-decoration-none" href="#">Política de privacidad</a></li>
+                        <li><a class="text-decoration-none" href="#">Términos y condiciones</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes sociales -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <h4 class="h6 text-uppercase fw-semibold mb-3">Síguenos</h4>
+
+                    <div class="d-flex gap-2">
+                        <a href="#" class="footer__social d-inline-flex align-items-center justify-content-center"
+                            style="width: 42px; height: 42px;" aria-label="Instagram" title="Instagram">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor"
+                                    stroke-width="1.5" />
+                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5" />
+                                <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
+                            </svg>
+                        </a>
+                        <a href="#" class="footer__social d-inline-flex align-items-center justify-content-center"
+                            style="width: 42px; height: 42px;" aria-label="Facebook" title="Facebook">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M15 3h3v4h-3c-1.657 0-3 1.343-3 3v2H9v4h3v6h4v-6h3l1-4h-4v-2c0-.552.448-1 1-1z"
+                                    stroke="currentColor" stroke-width="1.2" fill="currentColor" />
+                            </svg>
+                        </a>
+                        <a href="#" class="footer__social d-inline-flex align-items-center justify-content-center"
+                            style="width: 42px; height: 42px;" aria-label="X (Twitter)" title="X">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path
+                                    d="M23 4.01c-.8.36-1.66.61-2.56.72a4.48 4.48 0 0 0-7.66 3v.36A12.8 12.8 0 0 1 3 3.59a4.48 4.48 0 0 0 1.39 5.98c-.67-.02-1.3-.2-1.85-.5v.05c0 2.16 1.53 3.96 3.57 4.37-.6.16-1.23.2-1.88.08.53 1.64 2.04 2.85 3.84 2.88A9 9 0 0 1 1 19.54 12.7 12.7 0 0 0 7.29 21c8.47 0 13.11-7.02 13.11-13.11v-.6c.9-.65 1.65-1.46 2.3-2.38z"
+                                    stroke="currentColor" stroke-width="0.5" fill="currentColor" />
+                            </svg>
+                        </a>
+                    </div>
+
                 </div>
             </div>
-        </div>
 
-        <div class="footer__bottom">
-            <p>&copy; 2025 Eternia. Todos los derechos reservados.</p>
+            <hr class="my-4 opacity-25">
+
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+                <p class="mb-0 small opacity-75">
+                    &copy; 2025 Eternia. Todos los derechos reservados.
+                </p>
+            </div>
         </div>
     </footer>
 
