@@ -1,243 +1,161 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-    /* --- Mobile Menu Logic --- */
-    const navMenu = document.getElementById('nav-menu');
-    const navToggle = document.getElementById('nav-toggle');
-    const navClose = document.getElementById('nav-close');
-    const navLinks = document.querySelectorAll('.nav__link');
-
-    // Open Menu
-    if (navToggle) {
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.add('show-menu');
-        });
-    }
-
-    // Close Menu
-    if (navClose) {
-        navClose.addEventListener('click', () => {
-            navMenu.classList.remove('show-menu');
-        });
-    }
-
-    // Close Menu when clicking a link
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('show-menu');
-        });
-    });
-
-    /* --- Contact Form & Toast --- */
-    const contactForm = document.getElementById('contactForm');
-    const toast = document.getElementById('toast');
-
-    // Funciones de Validación del formulario - (Modificado por seba - washington)
-
-
-    function validarNombre(nombre) {
-        return nombre.trim().length >= 3;
-    }
-
-    function validarEmail(email) {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
-    }
-
-    function validarIdea(idea) {
-        return idea.trim().length >= 10;
-    }
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const formData = new FormData(contactForm);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const idea = formData.get('idea');
-
-            // Validar nombre
-            if (!validarNombre(name)) {
-                alert('El nombre debe tener al menos 3 caracteres');
-                document.getElementById('name').value = '';
-                return;
-            }
-
-            // Validar email
-            if (!validarEmail(email)) {
-                alert('Por favor ingresa un email válido');
-                document.getElementById('email').value = '';
-                return;
-            }
-
-            // Validar idea
-            if (!validarIdea(idea)) {
-                alert('La idea debe tener al menos 10 caracteres');
-                document.getElementById('idea').value = '';
-                return;
-            }
-
-            console.log(`Mensaje recibido de: ${name}`);
-
-            // Show Toast
-            showToast();
-
-            // Reset Form
-            contactForm.reset();
-        });
-    }
-
-    function showToast() {
-        toast.classList.add('show');
-
-        // Hide after 3 seconds
-        setTimeout(() => {
-            toast.classList.remove('show');
-        }, 3000);
-    }
-
-    /* --- Scroll Reveal (Optional Simple Effect) --- */
-    if (typeof ScrollReveal !== 'undefined') {
-        const sr = ScrollReveal({
-            origin: 'top',
-            distance: '60px',
-            duration: 2000,
-            delay: 200,
-        });
-    }
-
-    // Simple Intersection Observer for fade-in elements
-    const observerOptions = {
-        threshold: 0.1
+  /* =========================
+     Navbar: efecto "scrolled"
+  ========================= */
+  const navbar = document.querySelector(".navbar-eternia");
+  if (navbar) {
+    const onScroll = () => {
+      navbar.classList.toggle("scrolled", window.scrollY > 50);
     };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
+  /* =========================
+     Nav: estado activo
+  ========================= */
+  const navLinks = document.querySelectorAll(".navbar-eternia .nav-link");
 
-    // Select elements to animate
-    const animateElements = document.querySelectorAll('.card, .section__title, .hero__content');
+  const setActiveByHash = () => {
+    const hash = (window.location.hash || "#inicio").toLowerCase();
+    navLinks.forEach((a) => {
+      const href = (a.getAttribute("href") || "").toLowerCase();
+      a.classList.toggle("active", href === hash);
+      a.setAttribute("aria-current", href === hash ? "page" : "false");
+    });
+  };
 
-    animateElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        observer.observe(el);
+  setActiveByHash();
+  window.addEventListener("hashchange", setActiveByHash);
+
+  /* =========================
+     Contact Form
+  ========================= */
+  const contactForm = document.getElementById("contactForm");
+  const toast = document.getElementById("toast");
+
+  const validarNombre = (n) => (n || "").trim().length >= 3;
+  const validarEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((e || "").trim());
+  const validarIdea = (i) => (i || "").trim().length >= 10;
+
+  const setFieldState = (id, isValid) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.toggle("is-invalid", !isValid);
+    el.classList.toggle("is-valid", isValid);
+  };
+
+  const showToast = () => {
+    if (!toast) return;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 3000);
+  };
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(contactForm);
+      const name = formData.get("name");
+      const email = formData.get("email");
+      const idea = formData.get("idea");
+
+      const okName = validarNombre(name);
+      const okEmail = validarEmail(email);
+      const okIdea = validarIdea(idea);
+
+      setFieldState("name", okName);
+      setFieldState("email", okEmail);
+      setFieldState("idea", okIdea);
+
+      if (!okName || !okEmail || !okIdea) return;
+
+      showToast();
+      contactForm.reset();
+
+      ["name", "email", "idea"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove("is-valid", "is-invalid");
+      });
+    });
+  }
+
+  /* =========================
+     Animaciones
+  ========================= */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.style.opacity = "1";
+      entry.target.style.transform = "translateY(0)";
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll(".card, .section__title, .hero__content")
+    .forEach((el) => {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(20px)";
+      el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+      observer.observe(el);
     });
 
-    /* --- Carousel --- */
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.carousel-slide');
-    const totalSlides = slides.length;
+  /* =========================
+     Cotización
+  ========================= */
+  const form = document.getElementById("formCotizacion");
+  const inputReferencia = document.getElementById("referencia");
+  const previewBox = document.getElementById("previewBox");
+  const previewImg = document.getElementById("previewImg");
+  const btnQuitarImagen = document.getElementById("btnQuitarImagen");
+  const msgExito = document.getElementById("msgExito");
 
-    function showSlide(n) {
-        if (!slides || slides.length === 0) return;
-        slides.forEach(slide => slide.classList.remove('active'));
-        slides[n].classList.add('active');
-    }
+  if (form && inputReferencia) {
+    inputReferencia.addEventListener("change", () => {
+      const file = inputReferencia.files[0];
+      if (!file) return;
 
-    if (totalSlides > 0) {
-        showSlide(currentSlide);
+      if (!file.type.startsWith("image/") || file.size > 5 * 1024 * 1024) {
+        inputReferencia.value = "";
+        previewBox.classList.remove("is-visible");
+        return;
+      }
 
-        const nextBtn = document.querySelector('.carousel-control.next');
-        const prevBtn = document.querySelector('.carousel-control.prev');
-
-        if (nextBtn) nextBtn.addEventListener('click', () => {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            showSlide(currentSlide);
-        });
-
-        if (prevBtn) prevBtn.addEventListener('click', () => {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            showSlide(currentSlide);
-        });
-
-        // Auto change every 5s
-        setInterval(() => {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            showSlide(currentSlide);
-        }, 5000);
-    }
-
-});
-
-
-
-
-
-//testimonial WASHINGTON M.
-
-document.addEventListener('DOMContentLoaded', function () {
-    const cards = document.querySelectorAll('.testimonial-card');
-    if (!cards.length) return;
-
-    let current = 0;
-
-    // Muestra la tarjeta actual
-    function showCard(index) {
-        cards.forEach(card => card.classList.remove('is-active'));
-        cards[index].classList.add('is-active');
-    }
-
-    // Mostrar la primera al cargar
-    showCard(current);
-
-    // Cambiar cada 5 segundos (5000 ms)
-    setInterval(() => {
-        current = (current + 1) % cards.length;
-        showCard(current);
-    }, 5000);
-});
-
-//---------------------------------------------------------------------------------------------------
-// se agrega este codigo para una funcion del navbar de los botones de los enlaces, washington
-document.addEventListener('DOMContentLoaded', () => {
-    const links = document.querySelectorAll('.nav__link');
-    const title = document.title.toLowerCase(); // ejemplo: "eternia | contactanos"
-
-    let activeText = '';
-
-    // Detectamos en qué página estamos según el <title>
-    if (title.includes('inicio')) {
-        activeText = 'inicio';
-    } else if (title.includes('catálogo') || title.includes('catalogo')) {
-        activeText = 'catálogo';
-    } else if (title.includes('nosotros')) {
-        activeText = 'nosotros';
-    } else if (title.includes('contact')) {
-        // contactanos / contáctanos / contacto
-        activeText = 'cotizar'; // porque tu botón dice "Cotizar"
-    }
-
-    // Recorremos los 4 enlaces del navbar
-    links.forEach(link => {
-        const text = link.textContent.trim().toLowerCase(); // "inicio", "catálogo", etc.
-
-        if (text === activeText) {
-            link.classList.add('nav__link--active');
-        }
+      previewImg.src = URL.createObjectURL(file);
+      previewBox.classList.add("is-visible");
     });
-});
-//-----------------------------------------------------------------------------------------------------------------
 
-
-/* --- Navbar Scroll Effect (Added for Bootstrap Navbar) --- */
-const navbar = document.querySelector('.navbar-eternia');
-
-if (navbar) {
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+    btnQuitarImagen?.addEventListener("click", () => {
+      inputReferencia.value = "";
+      previewBox.classList.remove("is-visible");
+      previewImg.removeAttribute("src");
     });
-}
 
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      msgExito.textContent = "¡Listo! Recibimos tu solicitud.";
+      form.reset();
+      previewBox.classList.remove("is-visible");
+    });
+  }
 
+  /* =========================
+     Cuenta (login / register)
+  ========================= */
+  const tabs = document.querySelectorAll(".account__tab");
+  const forms = document.querySelectorAll(".account__form");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("is-active"));
+      forms.forEach(f => f.classList.remove("is-active"));
+
+      tab.classList.add("is-active");
+      document
+        .getElementById(tab.dataset.target + "Form")
+        ?.classList.add("is-active");
+    });
+  });
+
+});

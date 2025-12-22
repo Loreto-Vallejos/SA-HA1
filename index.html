@@ -2,445 +2,443 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eternia | inicio</title>
-    <meta name="description"
-        content="Ataúdes personalizados que celebran la vida. Diseños únicos, temáticos y fuera de lo común.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap"
-        rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eternia | inicio</title>
+
+  <meta name="description"
+    content="Ataúdes personalizados que celebran la vida. Diseños únicos, temáticos y fuera de lo común." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet"/>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"/>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 
 <body>
 
-    <!-- Header con Navbar Bootstrap-->
-    <header class="header">
-        <!-- NAVBAR CON BOOTSTRAP -->
-        <nav class="navbar navbar-expand-md navbar-dark navbar-eternia fixed-top py-3">
-            <div class="container">
+  <!-- Header con Navbar-->
+  <header class="header">
+    <nav class="navbar navbar-expand-md navbar-dark navbar-eternia fixed-top py-3">
+      <div class="container">
 
-                <!-- LOGO -->
-                <a class="navbar-brand" href="index.html">Eternia</a>
+        <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Eternia - Inicio">
+        <img src="assets/logo-eternia-blanco.png" alt="Logo Eternia" class="navbar-logo" loading="eager">
+        </a>
 
-                <!-- BOTÓN HAMBURGUESA -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+          aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-                <!-- MENÚ -->
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-md-0 align-items-md-center">
+            <li class="nav-item">
+              <a class="nav-link nav-anim" href="./index.html">Inicio</a>
+            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link nav-anim" href="index.html">Inicio</a>
-                        </li>
+            <li class="nav-item">
+              <a class="nav-link nav-anim" href="./catalogo.html">Catálogo</a>
+            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link nav-anim" href="#catalogo">Catálogo</a>
-                        </li>
+            <li class="nav-item">
+              <a class="nav-link nav-anim" href="nosotros.html">Nosotros</a>
+            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link nav-anim" href="nosotros.html">Nosotros</a>
-                        </li>
+            <li class="nav-item d-flex align-items-center gap-2 ms-md-2 navbar-icons">
 
-                        <li class="nav-item ms-md-2">
-                            <a class="btn btn-eternia-cta px-3" href="contactanos.html">Cotizar</a>
-                        </li>
-                    </ul>
-                </div>
+            <!-- Mi cuenta -->
+            <a class="nav-link nav-icon" href="./cuenta.html" aria-label="Mi cuenta">
+                <i class="fa-regular fa-user"></i>
+            </a>
+
+            <!-- Wishlist -->
+            <a class="nav-link nav-icon" href="./wishlist.html" aria-label="Wishlist">
+                <i class="fa-regular fa-heart"></i>
+            </a>
+
+            <!-- Carrito -->
+            <a class="nav-link nav-icon position-relative" href="./carrito.html" aria-label="Carrito">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+            </li>
+
+            <li class="nav-item ms-md-2">
+              <a class="btn btn-eternia-cta px-3" href="./contactanos.html">Cotizar</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero-bs position-relative overflow-hidden">
+        <div id="heroCarousel" class="carousel slide hero-bs__carousel" data-bs-ride="carousel" data-bs-interval="6000">
+            <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="Assets/hip_hop_graffiti_coffin.png" class="d-block w-100 hero-bs__img"
+                alt="Ataúd estilo hip hop con grafiti">
             </div>
-        </nav>
-    </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="inicio" class="hero">
-
-            <!-- CARROUSEL -->
-            <div class="carousel-container">
-                <div class="carousel-slide active">
-                    <img src="Assets/hip_hop_graffiti_coffin.png" alt="ataud grafiti">
-                </div>
-                <div class="carousel-slide">
-                    <img src="Assets/reggaeton_urban_luxury_coffin.png" alt="ataud reggaeton">
-                </div>
-                <div class="carousel-slide">
-                    <img src="Assets/heavy_metal_studded_coffin.png" alt="ataud gotico">
-                </div>
-
-                <!-- Controles 
-        <button class="carousel-control prev">&#10094;</button>
-        <button class="carousel-control next">&#10095;</button> -->
+            <div class="carousel-item">
+                <img src="Assets/reggaeton_urban_luxury_coffin.png" class="d-block w-100 hero-bs__img"
+                alt="Ataúd estilo reggaetón urbano">
             </div>
 
-            <!-- TEXTO SOBRE EL CARROUSEL -->
-            <div class="hero__content">
-                <h1 class="hero__title">Tu Último Viaje,<br>A Tu Manera.</h1>
-                <p class="hero__description">
-                    Rompemos con lo tradicional. Ataúdes personalizados con temáticas únicas que celebran tu
-                    personalidad.
-                </p>
+            <div class="carousel-item">
+                <img src="Assets/heavy_metal_studded_coffin.png" class="d-block w-100 hero-bs__img"
+                alt="Ataúd estilo heavy metal con detalles oscuros">
+            </div>
+            </div>
+
+            <!-- Controles -->
+            <button class="carousel-control-prev hero-bs__control" type="button" data-bs-target="#heroCarousel"
+            data-bs-slide="prev" aria-label="Anterior">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+
+            <button class="carousel-control-next hero-bs__control" type="button" data-bs-target="#heroCarousel"
+            data-bs-slide="next" aria-label="Siguiente">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+
+            <!-- Indicadores -->
+            <div class="carousel-indicators hero-bs__indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+
+        </div>
+        <div class="hero-bs__overlay"></div>
+        <div class="container hero-bs__content">
+            <div class="row">
+            <div class="col-12 col-lg-12 col-xl-12">
+                <h1 class="hero-bs__title">Tu Último Viaje,<br>A Tu Manera.</h1>
+                <p class="hero-bs__text">Rompemos con lo tradicional. Ataúdes personalizados con temáticas únicas que celebran tu personalidad.</p>
                 <a href="#catalogo" class="btn btn--primary">Ver Catálogo</a>
             </div>
-
-        </section>
-
-
-        <!-- Catalog Section -->
-        <section id="catalogo" class="section catalog">
-            <div class="container">
-                <div class="section__header">
-                    <h2 class="section__title">Nuestras Colecciones</h2>
-                    <p class="section__subtitle">Elige el diseño que cuente tu historia.</p>
-                </div>
-
-                <div class="catalog__grid">
-                    <!-- Card 1 -->
-                    <article class="card">
-                        <div class="card__image-container">
-                            <div class="card__image card__image--gamer"></div>
-                        </div>
-                        <div class="card__content">
-                            <h3 class="card__title">The reggaeton</h3>
-                            <p class="card__desc">Diseño con brillo urbano y detalles blin-blin. Para quienes viven —y
-                                se despiden— con flow, estilo y perreo eterno.</p>
-                            <a href="#contacto" class="card__link">Ver detalles &rarr;</a>
-                        </div>
-                    </article>
-
-                    <!-- Card 2 -->
-                    <article class="card">
-                        <div class="card__image-container">
-                            <div class="card__image card__image--nature"></div>
-                        </div>
-                        <div class="card__content">
-                            <h3 class="card__title">Animé</h3>
-                            <p class="card__desc">Diseño digno de protagonista de shōnen: colores vibrantes, brillo
-                                exagerado y drama garantizado. Perfecto para quienes quieren irse al más allá haciendo
-                                su última transformación.</p>
-                            <a href="#contacto" class="card__link">Ver detalles &rarr;</a>
-                        </div>
-                    </article>
-
-                    <!-- Card 3 -->
-                    <article class="card">
-                        <div class="card__image-container">
-                            <div class="card__image card__image--galaxy"></div>
-                        </div>
-                        <div class="card__content">
-                            <h3 class="card__title">Motor Sport</h3>
-                            <p class="card__desc">Diseño aerodinámico listo para la última vuelta. Ideal para quienes
-                                quieren despedirse acelerando a fondo… y llegar al más allá antes que todos.</p>
-                            <a href="#contacto" class="card__link">Ver detalles &rarr;</a>
-                        </div>
-                    </article>
-
-                    <!-- Card 4 -->
-                    <article class="card">
-                        <div class="card__image-container">
-                            <div class="card__image card__image--music"></div>
-                        </div>
-                        <div class="card__content">
-                            <h3 class="card__title">Legenda Gótica</h3>
-                            <p class="card__desc">Diseño tan oscuro que hasta los vampiros piden foto. Perfecto para
-                                quienes quieren despedirse con misterio, estilo… y una pizca de drama sobrenatural.</p>
-                            <a href="#contacto" class="card__link">Ver detalles &rarr;</a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section con Bootstrap Grid -->
-        <section id="nosotros" class="py-5 fondo-petroleo">
-            <div class="container">
-                <div class="row align-items-center g-5">
-
-                    <div class="col-12 col-lg-6">
-                        <h2 class="section__title2 mb-4">Sobre Nosotros</h2>
-
-                        <p>
-                            En Eternia, creemos que los funerales tradicionales son grises e impersonales.
-                            Nacimos con la idea de que la muerte es parte de la vida y, como tal,
-                            debe reflejar quién fuiste.
-                        </p>
-
-                        <p>
-                            Desde fanáticos del fútbol hasta amantes del arte, creamos piezas maestras
-                            que generan conversación y transforman la tristeza en un recuerdo
-                            memorable de tu esencia.
-                        </p>
-
-                        <ul class="list-unstyled mt-4 benefits-list">
-                            <li class="d-flex align-items-start mb-2">
-                                <span class="check-icon me-2">✓</span>
-                                <span>Diseños 100% Personalizables</span>
-                            </li>
-                            <li class="d-flex align-items-start mb-2">
-                                <span class="check-icon me-2">✓</span>
-                                <span>Materiales de Alta Calidad</span>
-                            </li>
-                            <li class="d-flex align-items-start">
-                                <span class="check-icon me-2">✓</span>
-                                <span>Envíos Discretos y Seguros</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Imagen -->
-                    <div class="col-12 col-lg-6">
-                        <div class="about__image rounded-4 shadow-sm">
-                            <!-- Imagen o background desde CSS -->
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials con Bootstrap Cards -->
-        <section class="section testimonials py-5">
-            <div class="container">
-
-                <!-- Header -->
-                <div class="section__header text-center mb-4">
-                    <h2 class="section__title mb-2">Reseñas</h2>
-                    <p class="section__subtitle mb-0">¿Qué dicen las familias?</p>
-                </div>
-
-                <div class="testimonials__grid position-relative">
-
-                    <!-- Card 1 -->
-                    <article class="testimonial-card card shadow-sm border-0 mx-auto">
-                        <div class="card-body p-4">
-
-                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-                                <div class="testimonial__rating" aria-label="Calificación 5 de 5">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <span class="badge text-bg-light">Cliente verificado</span>
-                            </div>
-
-                            <p class="testimonial__text mb-4">
-                                "Mi abuelo era fanático de la F1. Su despedida fue en un ataúd rojo Ferrari que todos
-                                amaron. Fue un homenaje perfecto."
-                            </p>
-
-                            <div class="testimonial__author d-flex align-items-center gap-3">
-                                <img src="assets/avatar1.jpg" alt="Foto de Mariana González"
-                                    class="testimonial__img rounded-circle" width="56" height="56" loading="lazy" />
-
-                                <div class="lh-sm">
-                                    <strong class="d-block">Mariana González</strong>
-                                    <small class="text-muted">Santiago, Chile</small>
-                                </div>
-                            </div>
-
-                        </div>
-                    </article>
-
-                    <!-- Card 2 -->
-                    <article class="testimonial-card card shadow-sm border-0 mx-auto">
-                        <div class="card-body p-4">
-
-                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-                                <div class="testimonial__rating" aria-label="Calificación 4 de 5">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                </div>
-                                <span class="badge text-bg-light">Diseño a medida</span>
-                            </div>
-
-                            <p class="testimonial__text mb-4">
-                                "Gracias por entender mi visión. Quería algo gótico victoriano y el nivel de detalle fue
-                                impresionante."
-                            </p>
-
-                            <div class="testimonial__author d-flex align-items-center gap-3">
-                                <img src="assets/avatar2.jpg" alt="Foto de Javier R."
-                                    class="testimonial__img rounded-circle" width="56" height="56" loading="lazy" />
-                                <div class="lh-sm">
-                                    <strong class="d-block">Javier R.</strong>
-                                    <small class="text-muted">Valparaíso, Chile</small>
-                                </div>
-                            </div>
-
-                        </div>
-                    </article>
-
-                    <!-- Card 3 -->
-                    <article class="testimonial-card card shadow-sm border-0 mx-auto">
-                        <div class="card-body p-4">
-
-                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-                                <div class="testimonial__rating" aria-label="Calificación 5 de 5">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <span class="badge text-bg-light">Servicio premium</span>
-                            </div>
-
-                            <p class="testimonial__text mb-4">
-                                "La atención fue muy respetuosa pero moderna. Nada de ese ambiente lúgubre de las
-                                funerarias de siempre."
-                            </p>
-
-                            <div class="testimonial__author d-flex align-items-center gap-3">
-                                <img src="assets/avatar6.jpg" alt="Foto de Luis M."
-                                    class="testimonial__img rounded-circle" width="56" height="56" loading="lazy" />
-                                <div class="lh-sm">
-                                    <strong class="d-block">Luis M.</strong>
-                                    <small class="text-muted">Concepción, Chile</small>
-                                </div>
-                            </div>
-
-                        </div>
-                    </article>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contacto" class="section contact">
-            <div class="container contact__container">
-                <div class="contact__info">
-                    <h2 class="section__title">Diseña tu legado</h2>
-                    <p>¿Tienes una idea loca? ¿Un color específico? Cuéntanos y lo haremos realidad.</p>
-                    <div class="contact__details">
-                        <p>📍 Av. Siempre Viva 742, Springfield</p>
-                        <p>📧 contacto@eternalcustoms.com</p>
-                        <p>📱 +56 9 1234 5678</p>
-                    </div>
-                </div>
-
-                <form class="contact__form" id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Nombre</label>
-                        <input type="text" id="name" name="name" placeholder="Tu nombre" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="idea">Tu Idea o Temática</label>
-                        <textarea id="idea" name="idea" rows="4" placeholder="Cuéntanos qué tienes en mente..."
-                            required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn--primary btn--full">Enviar Solicitud</button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer con Bootstrap Grid -->
-    <footer class="footer py-5" role="contentinfo">
-        <div class="container">
-            <div class="row g-4 align-items-start">
-
-                <!-- Brand -->
-                <div class="col-12 col-lg-4">
-                    <a href="#inicio" class="logo d-inline-block" aria-label="Eternia - Inicio">Eternia <span
-                            class="logo__accent"></span></a>
-
-                    <p class="mb-0 opacity-75">
-                        Redefiniendo el descanso eterno con estilo y respeto.
-                    </p>
-                </div>
-
-                <!-- Links -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <h4 class="h6 text-uppercase fw-semibold mb-3">Enlaces</h4>
-                    <ul class="list-unstyled mb-0 d-grid gap-2">
-                        <li><a class="text-decoration-none" href="#inicio">Inicio</a></li>
-                        <li><a class="text-decoration-none" href="#catalogo">Catálogo</a></li>
-                        <li><a class="text-decoration-none" href="#nosotros">Nosotros</a></li>
-                        <li><a class="text-decoration-none" href="#contacto">Contacto</a></li>
-                        <li><a class="text-decoration-none" href="#">Política de privacidad</a></li>
-                        <li><a class="text-decoration-none" href="#">Términos y condiciones</a></li>
-                    </ul>
-                </div>
-
-                <!-- Redes sociales -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <h4 class="h6 text-uppercase fw-semibold mb-3">Síguenos</h4>
-
-                    <div class="d-flex gap-2">
-                        <a href="#" class="footer__social d-inline-flex align-items-center justify-content-center"
-                            style="width: 42px; height: 42px;" aria-label="Instagram" title="Instagram">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor"
-                                    stroke-width="1.5" />
-                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5" />
-                                <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
-                            </svg>
-                        </a>
-                        <a href="#" class="footer__social d-inline-flex align-items-center justify-content-center"
-                            style="width: 42px; height: 42px;" aria-label="Facebook" title="Facebook">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path d="M15 3h3v4h-3c-1.657 0-3 1.343-3 3v2H9v4h3v6h4v-6h3l1-4h-4v-2c0-.552.448-1 1-1z"
-                                    stroke="currentColor" stroke-width="1.2" fill="currentColor" />
-                            </svg>
-                        </a>
-                        <a href="#" class="footer__social d-inline-flex align-items-center justify-content-center"
-                            style="width: 42px; height: 42px;" aria-label="X (Twitter)" title="X">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path
-                                    d="M23 4.01c-.8.36-1.66.61-2.56.72a4.48 4.48 0 0 0-7.66 3v.36A12.8 12.8 0 0 1 3 3.59a4.48 4.48 0 0 0 1.39 5.98c-.67-.02-1.3-.2-1.85-.5v.05c0 2.16 1.53 3.96 3.57 4.37-.6.16-1.23.2-1.88.08.53 1.64 2.04 2.85 3.84 2.88A9 9 0 0 1 1 19.54 12.7 12.7 0 0 0 7.29 21c8.47 0 13.11-7.02 13.11-13.11v-.6c.9-.65 1.65-1.46 2.3-2.38z"
-                                    stroke="currentColor" stroke-width="0.5" fill="currentColor" />
-                            </svg>
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-
-            <hr class="my-4 opacity-25">
-
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
-                <p class="mb-0 small opacity-75">
-                    &copy; 2025 Eternia. Todos los derechos reservados.
-                </p>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="toast">
-        <div class="toast__icon">✓</div>
-        <div class="toast__content">
-            <p class="toast__title">¡Mensaje Enviado!</p>
-            <p class="toast__message">Te contactaremos pronto para diseñar tu idea.</p>
+    <!-- COLECCIONES-->
+    <section id="catalogo" class="section catalog">
+    <div class="container">
+
+        <div class="text-center">
+        <h2 class="section__title">Disponibles para entrega inmediata</h2>
+        <p class="section__subtitle">Elige el diseño que cuente tu historia y lo tendrás en menos de 24 horas</p>
         </div>
+
+    <!--llamo al json-->
+
+        <div class="row g-4 mt-4" id="catalogo-grid"></div>   
+
+    <!--botón ver más-->
+
+        <div class="text-center mt-4">
+        <a href="./catalogo.html" class="btn btn--primary">Ver más</a>
+        </div>
+      </div>  
+  </section>
+
+    <!-- SOBRE NOSOTROS -->
+  <section class="py-5 fondo-petroleo">
+    <div class="container">
+      <div class="row align-items-center g-5">
+
+        <div class="col-12 col-lg-6">
+          <h2 class="section__title2 mb-4">Sobre Nosotros</h2>
+          <p>En Eternia creemos que la despedida de una persona no debe ser impuesta.</p>
+          <p>
+            Diseñamos ataúdes personalizados que permiten expresar identidad, valores y memorias,
+            alejándonos de lo genérico y estandarizado.
+          </p>
+
+          <ul class="list-unstyled mt-4 benefits-list">
+            <li><span class="check-icon me-3 mb-2">✓</span>Diseños 100% personalizables</li>
+            <li><span class="check-icon me-3 mb-2">✓</span>Materiales de alta calidad</li>
+            <li><span class="check-icon me-3 mb-2">✓</span>Envíos discretos y seguros</li>
+          </ul>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <div class="about__image rounded-4 shadow-sm"
+               aria-label="Equipo Eternia trabajando"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  
+ <!-- RESEÑAS -->
+<section class="section testimonials py-5">
+  <div class="container">
+
+    <div class="section__header text-center mb-4">
+      <h2 class="section__title mb-2">Reseñas</h2>
+      <p class="section__subtitle mb-0">¿Qué dicen las familias?</p>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <div class="row g-4 justify-content-center">
+
+      <!-- CARD 1 -->
+      <div class="col-12 col-lg-4">
+        <article class="testimonial-card card border-0 h-100">
+          <div class="card-body p-4">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="testimonial__rating" aria-label="Calificación 5 de 5">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <span class="badge text-bg-light">Cliente verificado</span>
+            </div>
+
+            <p class="testimonial__text mb-4">
+              “Mi abuelo era fanático de la F1. Su despedida fue en un ataúd rojo Ferrari.
+              Fue un homenaje perfecto.”
+            </p>
+
+            <div class="d-flex align-items-center gap-3">
+              <img src="assets/avatar1.jpg" alt="Mariana González"
+                   class="rounded-circle" width="56" height="56" loading="lazy">
+              <div>
+                <strong>Mariana González</strong><br>
+                <small class="text-muted">Santiago, Chile</small>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="col-12 col-lg-4">
+        <article class="testimonial-card card border-0 h-100">
+          <div class="card-body p-4">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="testimonial__rating" aria-label="Calificación 4 de 5">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+              <span class="badge text-bg-light">Diseño a medida</span>
+            </div>
+
+            <p class="testimonial__text mb-4">
+              “Quería algo gótico victoriano y el nivel de detalle fue impresionante.”
+            </p>
+
+            <div class="d-flex align-items-center gap-3">
+              <img src="assets/avatar2.jpg" alt="Javier R."
+                   class="rounded-circle" width="56" height="56" loading="lazy">
+              <div>
+                <strong>Javier R.</strong><br>
+                <small class="text-muted">Valparaíso, Chile</small>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="col-12 col-lg-4">
+        <article class="testimonial-card card border-0 h-100">
+          <div class="card-body p-4">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="testimonial__rating" aria-label="Calificación 5 de 5">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <span class="badge text-bg-light">Servicio premium</span>
+            </div>
+
+            <p class="testimonial__text mb-4">
+              “Nada del ambiente lúgubre de siempre. Fue moderno y muy respetuoso.”
+            </p>
+
+            <div class="d-flex align-items-center gap-3">
+              <img src="assets/avatar6.jpg" alt="Luis M."
+                   class="rounded-circle" width="56" height="56" loading="lazy">
+              <div>
+                <strong>Luis M.</strong><br>
+                <small class="text-muted">Concepción, Chile</small>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section contact">
+      <div class="container">
+
+        <div class="row g-5 align-items-start">
+
+          <div class="col-12 col-lg-6 contact__info">
+            <h2 class="section__title">Diseña tu legado</h2>
+            <p>¿Tienes una idea loca? ¿Un color específico? Cuéntanos y lo haremos realidad.</p>
+
+            <div class="contact__details">
+              <p class="mb-2">📍 Av. Siempre Viva 742, Springfield</p>
+              <p class="mb-2">📧 contacto@eternalcustoms.com</p>
+              <p class="mb-0">📱 +56 9 1234 5678</p>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <form class="contact__form" id="contactForm" novalidate>
+
+              <div class="mb-3">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Tu nombre" required />
+                <div class="invalid-feedback">Por favor ingresa tu nombre.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="tucorreo@ejemplo.com" required />
+                <div class="invalid-feedback">Por favor ingresa un email válido.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="idea" class="form-label">Tu Idea o Temática</label>
+                <textarea id="idea" name="idea" class="form-control" rows="4"
+                  placeholder="Cuéntanos qué tienes en mente..." required></textarea>
+                <div class="invalid-feedback">Cuéntanos tu idea para poder ayudarte.</div>
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--full">Enviar Solicitud</button>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+    <!-- Footer -->
+  <footer class="footer footer--modern py-5" role="contentinfo">
+  <div class="container">
+
+    <!-- Top gradient hairline -->
+    <div class="footer__topline" aria-hidden="true"></div>
+
+    <div class="row g-4 align-items-start pt-4">
+
+      <!-- Brand -->
+      <div class="col-12 col-lg-5">
+        <a href="#inicio" class="footer__brand d-inline-flex align-items-center gap-2 text-decoration-none">
+          
+          <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Eternia - Inicio">
+            <img src="assets/logo-eternia-blanco.png" alt="Logo Eternia" class="navbar-logo" loading="eager">
+          </a>
+
+        <p class="footer__desc mt-3 mb-4">
+          Tu último viaje, a tu manera.<br> Ataúdes personalizados que celebran la vida con diseños únicos y temáticos.
+        </p>
+
+        <!-- Social -->
+        <div class="d-flex flex-wrap gap-2">
+
+          <a class="footer__social" href="https://wa.me/569XXXXXXXX" target="_blank" rel="noopener noreferrer"aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+          </a>
+
+          <a class="footer__social" href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>            
+          </a>
+
+          <a class="footer__social" href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>           
+          </a>
+
+          <a class="footer__social" href="#" target="_blank" rel="noopener noreferrer" aria-label="X">
+            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+          </a>          
+
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div class="col-6 col-lg-3">
+        <h6 class="footer__title">Explorar</h6>
+        <ul class="list-unstyled footer__list mb-0">
+          <li><a class="footer__link" href="#inicio">Inicio</a></li>
+          <li><a class="footer__link" href="#catalogo">Catálogo</a></li>
+          <li><a class="footer__link" href="#nosotros">Nosotros</a></li>
+          <li><a class="footer__link" href="#contacto">Contacto</a></li>
+          <li><a class="footer__link" href="#contacto">Mi cuenta</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-lg-4">
+        <h6 class="footer__title">Legal</h6>
+        <ul class="list-unstyled footer__list mb-3">
+          <li><a class="footer__link" href="#">Política de privacidad</a></li>
+          <li><a class="footer__link" href="#">Términos y condiciones</a></li>
+        </ul>
+
+        <a>Suscríbete y recibe novedades</a>
+        <form class="mt-3" action="#" method="post">
+          <div class="input-group footer__inputgroup">            
+            <input type="email" class="form-control footer__input" placeholder="tucorreo@email.com" aria-label="Correo">
+            <button class="btn footer__btn" type="submit">Suscribirme</button>
+          </div>
+          <small class="footer__hint d-block mt-2">Al suscribirte aceptas la política de privacidad.</small>
+        </form>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom mt-5 pt-4 d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+      <p class="mb-0 footer__copy">© 2025 Eternia. Todos los derechos reservados.</p>
+      <!--logo transbank-->
+      <img src="assets/logo-web-pay-plus.png" alt="Logo webpay" class="footer__logo_wp">
+    </div>
+
+    </div>
+    </footer>
+
+
+
+        <!-- Toast custom-->
+        <div id="toast" class="toast" aria-live="polite" aria-atomic="true">
+            <div class="toast__icon">✓</div>
+            <div class="toast__content">
+            <p class="toast__title">¡Mensaje Enviado!</p>
+            <p class="toast__message">Te contactaremos pronto para diseñar tu idea.</p>
+            </div>
+        </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+<script src="catalogo.js"></script>
+
 </body>
 
 </html>

@@ -84,8 +84,8 @@
         <div id="heroCarousel" class="carousel slide hero-bs__carousel" data-bs-ride="carousel" data-bs-interval="6000">
             <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="assets/banner-contactanos.png" class="d-block w-100 hero-bs__img"
-                alt="banner-contactanos">
+                <img src="assets/banner-catalogo.png" class="d-block w-100 hero-bs__img"
+                alt="banner-promo-catalogo">
             </div>
             </div>
 
@@ -102,63 +102,16 @@
         </div>
     </section>
 
-   <!-- Titulo-->
-   
-
-    <section id="cotizacion" class="section cotizacion">
-  <div class="container">
-    <div class="cotizacion__header text-center">
-      <h2 class="section__title">Cotiza tu ataúd personalizado</h2>
-      <p class="section__subtitle">
-        Cuéntanos tu idea y adjunta una imagen de referencia si la tienes.
-      </p>
-    </div>
-
-    <div class="cotizacion__wrap">
-      <form id="formCotizacion" class="cotizacion__form" novalidate>
-
-        <div class="field">
-          <label for="nombre" class="field__label">Nombre completo</label>
-          <input type="text" id="nombre" name="nombre" class="field__input" placeholder="Ej: Juan Pérez" required>
-          <small class="field__error" data-error-for="nombre"></small>
+   <!-- COLECCIONES-->
+    <section id="catalogo" class="section catalog">
+    <div class="container">
+        <div class="text-center">
+        <h2 class="section__title">Revisa nuestro catálogo online</h2>
+        <p class="section__subtitle">Elige el diseño que cuente tu historia y lo tendrás en menos de 24 horas</p>
         </div>
+    <!--llamo al json-->
 
-        <div class="field">
-          <label for="correo" class="field__label">Correo electrónico</label>
-          <input type="email" id="correo" name="correo" class="field__input" placeholder="ejemplo@correo.cl" required>
-          <small class="field__error" data-error-for="correo"></small>
-        </div>
-
-        <div class="field">
-          <label for="telefono" class="field__label">Teléfono (opcional)</label>
-          <input type="tel" id="telefono" name="telefono" class="field__input" placeholder="+56 9 1234 5678">
-          <small class="field__hint">Formato recomendado: +56 9 xxxx xxxx</small>
-        </div>
-
-        <div class="field">
-          <label for="referencia" class="field__label">Imagen referencial (opcional)</label>
-          <input type="file" id="referencia" name="referencia" class="field__input" accept="image/*">
-          <small class="field__hint">Puedes subir una foto, un boceto o una inspiración.</small>
-          <small class="field__error" data-error-for="referencia"></small>
-
-          <div class="preview" id="previewBox" aria-hidden="true">
-            <img id="previewImg" class="preview__img" alt="Vista previa de la imagen subida">
-            <button type="button" class="preview__remove" id="btnQuitarImagen">Quitar imagen</button>
-          </div>
-        </div>
-
-        <div class="cotizacion__actions">
-          <button type="submit" class="btn btn--primary">Enviar cotización</button>
-        </div>
-
-        <div class="cotizacion__success" id="msgExito" role="status" aria-live="polite"></div>
-
-      </form>
-    </div>
-  </div>
-</section>
-
-    
+        <div class="row g-4 mt-4" id="catalogo-grid"></div>    
   </main>
       <!-- Footer -->
   <footer class="footer footer--modern py-5" role="contentinfo">

@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "nombre": "Villano Otaku",
+    "descripcion": "Ataúd temático inspirado en estética anime urbana.",
+    "precio": 2500000,
+    "precioAnterior": 3500000,
+    "descuento": "-30%",
+    "badgeColor": "sandia",
+    "imagen": "assets/anime_warrior_themed_coffin.png"
+  },
+  {
+    "id": 2,
+    "nombre": "Barbie Legend",
+    "descripcion": "Diseño rebelde inspirado en el rock clásico.",
+    "precio": 2800000,
+    "precioAnterior": "" ,
+    "descuento": "",
+    "badgeColor": "calipso",
+    "imagen": "assets/ataud-barbie.png"
+  },
+  {
+    "id": 3,
+    "nombre": "Pop Icon",
+    "descripcion": "Colores vibrantes y estilo pop contemporáneo.",
+    "precio": 2300000,
+    "precioAnterior": 3200000,
+    "descuento": "-20%",
+    "badgeColor": "sandia",
+    "imagen": "assets/hip_hop_graffiti_coffin.png"
+  },
+  {
+    "id": 4,
+    "nombre": "Pokemon Soul",
+    "descripcion": "Elegancia clásica con inspiración jazz.",
+    "precio": 3000000,
+    "precioAnterior": 4000000,
+    "descuento": "-15%",
+    "badgeColor": "calipso",
+    "imagen": "assets/ataud-pokemon.png"
+  }
+
+  
+]
