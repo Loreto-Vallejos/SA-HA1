@@ -11,8 +11,8 @@
   },
   {
     "id": 2,
-    "nombre": "Barbie Legend",
-    "descripcion": "Diseño rebelde inspirado en el rock clásico.",
+    "nombre": "Barbie Girl",
+    "descripcion": "Estética vibrante inspirada en fantasía y glamour.",
     "precio": 2800000,
     "precioAnterior": "" ,
     "descuento": "",
@@ -21,8 +21,8 @@
   },
   {
     "id": 3,
-    "nombre": "Pop Icon",
-    "descripcion": "Colores vibrantes y estilo pop contemporáneo.",
+    "nombre": "Hip-Hop Style",
+    "descripcion": "Estética urbana inspirada en espíritu hip hop",
     "precio": 2300000,
     "precioAnterior": 3200000,
     "descuento": "-20%",
@@ -32,13 +32,52 @@
   {
     "id": 4,
     "nombre": "Pokemon Soul",
-    "descripcion": "Elegancia clásica con inspiración jazz.",
+    "descripcion": "Diseño épico inspirado en evolución Pokémon final",
     "precio": 3000000,
     "precioAnterior": 4000000,
     "descuento": "-15%",
     "badgeColor": "calipso",
     "imagen": "assets/ataud-pokemon.png"
+  },
+  {
+    "id": 5,
+    "nombre": "Sueño de Lujo",
+    "descripcion": "Prestigio británico inspirado en Aston Martin",
+    "precio": 2700000,
+    "precioAnterior": "",
+    "descuento": "",
+    "badgeColor": "calipso",
+    "imagen": "assets/ataud-aston-martin.png"
+  },
+  {
+    "id": 6,
+    "nombre": "Naruto Legend",
+    "descripcion": "Fuerza y honor inspirados en camino ninja",
+    "precio": 2600000,
+    "precioAnterior": 3300000,
+    "descuento": "-25%",
+    "badgeColor": "sandia",
+    "imagen": "assets/ataud-naruto.png"
+  },
+  {
+    "id": 7,
+    "nombre": "One piece",
+    "descripcion": "Legado aventurero inspirado en mares sin límites",
+    "precio": 2400000,
+    "precioAnterior": "",
+    "descuento": "",
+    "badgeColor": "calipso",
+    "imagen": "assets/ataud-one-piece.png"
+  },
+  {
+    "id": 8,
+    "nombre": "Motoquero",
+    "descripcion": "Alma libre inspirada en caminos infinitos",
+    "precio": 3100000,
+    "precioAnterior": 4200000,
+    "descuento": "-10%",
+    "badgeColor": "sandia",
+    "imagen": "assets/ataud-motoquero.png"
   }
-
-  
+    
 ]
