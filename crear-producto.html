@@ -67,12 +67,24 @@
             </div>
 
             <!-- Imagen -->
-            <div class="col-12">
-              <label for="imageUrl" class="form-label">URL de imagen <span class="text-danger">*</span></label>
-              <input id="imageUrl" name="imageUrl" type="url" class="form-control" placeholder="https://..." />
-              <div class="invalid-feedback">Ingresa una URL válida (http/https) para la imagen.</div>
-              <div class="form-text">Puede ser una URL o luego adaptarlo a tu carpeta assets.</div>
+          <div class="col-12">
+            <label for="imageFile" class="form-label">Imagen del producto <span class="text-danger">*</span>
+            </label>
+
+            <input id="imageFile" name="imageFile" type="file" class="form-control"accept="image/png, image/jpeg, image/webp"/>
+
+            <div class="invalid-feedback">
+              Debes seleccionar una imagen válida (PNG, JPG o WEBP).
             </div>
+
+            <div class="form-text">
+              La imagen se selecciona desde tu computador.
+            </div>
+
+            <!-- Preview -->
+            <img id="imagePreview" class="img-fluid rounded mt-3 d-none" alt="Vista previa de la imagen" style="max-height: 220px;"/>
+            </div>
+
 
             <!-- Descripción -->
             <div class="col-12">
@@ -138,7 +150,7 @@
   </main>
 
   <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="./crear-producto.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="crear-producto.js"></script>
 </body>
 </html>

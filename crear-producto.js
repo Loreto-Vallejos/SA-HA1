@@ -9,20 +9,21 @@ document.addEventListener("DOMContentLoaded", () => {
     price: document.getElementById("price"),
     stock: document.getElementById("stock"),
     discount: document.getElementById("discount"),
-    imageUrl: document.getElementById("imageUrl"),
     description: document.getElementById("description"),
     material: document.getElementById("material"),
     size: document.getElementById("size"),
     tags: document.getElementById("tags"),
     isActive: document.getElementById("isActive"),
+    imageFile: document.getElementById("imageFile"),
   };
+
+  const imagePreview = document.getElementById("imagePreview");
 
   const clearAlerts = () => {
     alertContainer.innerHTML = "";
   };
 
   const showAlert = (type, title, items = []) => {
-    // type: "danger" | "success" | "warning" | "info"
     const list = items.length
       ? `<ul class="mb-0 mt-2">${items.map((i) => `<li>${i}</li>`).join("")}</ul>`
       : "";
@@ -36,19 +37,39 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   };
 
-  const isValidUrl = (value) => {
-    try {
-      const url = new URL(value);
-      return url.protocol === "http:" || url.protocol === "https:";
-    } catch {
-      return false;
-    }
-  };
-
   const setValidState = (el, ok) => {
     el.classList.toggle("is-invalid", !ok);
     el.classList.toggle("is-valid", ok);
   };
+
+  // ✅ Preview + validación básica de tipo
+  fields.imageFile.addEventListener("change", () => {
+    const file = fields.imageFile.files[0];
+
+    if (!file) {
+      setValidState(fields.imageFile, false);
+      if (imagePreview) imagePreview.classList.add("d-none");
+      return;
+    }
+
+    const validTypes = ["image/png", "image/jpeg", "image/webp"];
+    const okType = validTypes.includes(file.type);
+    setValidState(fields.imageFile, okType);
+
+    if (!okType) {
+      if (imagePreview) imagePreview.classList.add("d-none");
+      return;
+    }
+
+    if (!imagePreview) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      imagePreview.src = e.target.result;
+      imagePreview.classList.remove("d-none");
+    };
+    reader.readAsDataURL(file);
+  });
 
   const validate = () => {
     const errors = [];
@@ -59,12 +80,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const stock = Number(fields.stock.value);
     const discountRaw = fields.discount.value.trim();
     const discount = discountRaw === "" ? 0 : Number(discountRaw);
-    const imageUrl = fields.imageUrl.value.trim();
     const description = fields.description.value.trim();
     const material = fields.material.value;
     const size = fields.size.value;
 
-    // Reglas
     const okTitle = title.length >= 3;
     setValidState(fields.title, okTitle);
     if (!okTitle) errors.push("Nombre: mínimo 3 caracteres.");
@@ -85,9 +104,12 @@ document.addEventListener("DOMContentLoaded", () => {
     setValidState(fields.discount, okDiscount);
     if (!okDiscount) errors.push("Descuento: debe estar entre 0 y 90.");
 
-    const okImage = isValidUrl(imageUrl);
-    setValidState(fields.imageUrl, okImage);
-    if (!okImage) errors.push("Imagen: URL inválida (usa http/https).");
+    // ✅ Imagen por archivo
+    const file = fields.imageFile.files[0];
+    const validTypes = ["image/png", "image/jpeg", "image/webp"];
+    const okImage = !!file && validTypes.includes(file.type);
+    setValidState(fields.imageFile, okImage);
+    if (!okImage) errors.push("Imagen: debes seleccionar un archivo PNG, JPG o WEBP.");
 
     const okDesc = description.length >= 10;
     setValidState(fields.description, okDesc);
@@ -110,18 +132,26 @@ document.addEventListener("DOMContentLoaded", () => {
       .map((t) => t.trim())
       .filter(Boolean);
 
-    // Modelo final (JSON)
+    const file = fields.imageFile.files[0];
+
     return {
       id: crypto?.randomUUID ? crypto.randomUUID() : String(Date.now()),
       title: fields.title.value.trim(),
       category: fields.category.value,
       description: fields.description.value.trim(),
-      imageUrl: fields.imageUrl.value.trim(),
+
+      image: {
+        name: file.name,
+        type: file.type,
+        sizeKB: Math.round(file.size / 1024),
+      },
+
       material: fields.material.value,
       size: fields.size.value,
       price: Number(fields.price.value),
       stock: Number(fields.stock.value),
       discount: fields.discount.value.trim() === "" ? 0 : Number(fields.discount.value),
+
       tags,
       isActive: fields.isActive.checked,
       createdAt: new Date().toISOString(),
@@ -147,9 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("reset", () => {
     clearAlerts();
     jsonOutput.textContent = "";
-    // limpiar estados visuales
-    Object.values(fields).forEach((el) => {
-      el.classList.remove("is-valid", "is-invalid");
-    });
+    Object.values(fields).forEach((el) => el.classList.remove("is-valid", "is-invalid"));
+    if (imagePreview) imagePreview.classList.add("d-none");
   });
 });
