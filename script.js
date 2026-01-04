@@ -159,3 +159,15 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+ /*Inicio de washington m.*/ 
+/* función para card donde se pueden expandir suave en botón VER MAS y VER MENOS.*/ 
+document.querySelectorAll('.privacy-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.closest('.privacy-card');
+    const open = card.classList.toggle('is-open');
+
+    btn.textContent = open ? 'Ver menos ↑' : 'Ver más →';
+  });
+});
+ /*termnio de washington m.*/ 

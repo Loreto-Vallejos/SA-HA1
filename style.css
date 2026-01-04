@@ -1063,3 +1063,116 @@ figure.producto:hover .overlay {
   .hero__title { font-size: 2.5rem; }
   .hero__description { margin: 0 auto var(--spacing-md); }
 }
+
+
+
+
+/* ===== POLITICA Y PRIVACIDAD=====Inicio washington m */
+
+
+#privacy-page main{
+  padding-top: 0 !important; /* IMPORTANTE: ya no empujamos el contenido */
+}
+
+/* Hero ocupa toda la pantalla */
+#privacy-page .privacy-hero-full{
+  position: relative;
+  min-height: 45vh;              /* pantalla completa */
+  display: flex;
+  align-items: center;
+  color: #fff;
+
+  background-image: url("assets/privacy_bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Oscurece para leer texto */
+#privacy-page .privacy-hero-full__overlay{
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 33, 48, 0.55);
+}
+
+/* Contenido: baja para que no lo tape el navbar fixed */
+#privacy-page .privacy-hero-full__content{
+  position: relative;
+  z-index: 1;
+  padding-top: 140px; /* ajusta 120–160 según tu navbar */
+  padding-bottom: 40px;
+}
+
+#privacy-page .privacy-hero-full__content h1{
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+}
+
+#privacy-page .privacy-hero-full__content p{
+  opacity: .9;
+}
+
+/* PRIVACIDAD: espacio entre contenido y footer */
+#privacy-page .legal-content{
+  padding-bottom: 50px; /* prueba 80–160px */
+  margin-top: 40px;
+}
+
+/* ===== PRIVACIDAD: TARJETAS (FORZADO) ===== */
+#privacy-page .privacy-card{
+  background: #ffffff !important;
+  color: #062130 !important;
+  border-radius: 14px !important;
+  padding: 28px !important;
+  height: 100% !important;
+  box-shadow: 0 12px 30px rgba(0,0,0,.10) !important;
+}
+
+#privacy-page .privacy-card h3{
+  margin: 0 0 10px 0 !important;
+  font-size: 1.2rem !important;
+}
+
+#privacy-page .privacy-card p{
+  margin: 0 0 14px 0 !important;
+  opacity: .9 !important;
+}
+
+#privacy-page .privacy-link{
+  display: inline-block !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  color: #0b5ed7 !important;
+}
+
+#privacy-page .privacy-link:hover{
+  text-decoration: underline !important;
+}
+
+/* ===== PRIVACIDAD: EXPANSIÓN DE TARJETAS ===== */
+#privacy-page .privacy-extra{
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .4s ease;
+}
+
+#privacy-page .privacy-card.is-open .privacy-extra{
+  max-height: 300px; /* subir o bajar, suficiente para el texto */
+}
+
+#privacy-page .privacy-toggle{
+  background: none;
+  border: none;
+  padding: 0;
+  font-weight: 600;
+  color: #0b5ed7;
+  cursor: pointer;
+}
+
+#privacy-page .privacy-toggle:hover{
+  text-decoration: underline;
+}
+
+
+
+ /*termnio de washington m.*/ 

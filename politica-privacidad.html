@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eternia | inicio</title>
+  <title>Eternia | politica-privacidad</title>
 
   <meta name="description"
     content="Ataúdes personalizados que celebran la vida. Diseños únicos, temáticos y fuera de lo común." />
@@ -19,14 +19,16 @@
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"/>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css">
+  
 </head>
 
-<body>
+<body id="privacy-page" > <!-- Esto nos permite afectar solo esta página desde style.css.-->
 
   <!-- Header con Navbar-->
   <header class="header">
     <nav class="navbar navbar-expand-md navbar-dark navbar-eternia fixed-top py-3">
+
       <div class="container">
 
         <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Eternia - Inicio">
@@ -49,7 +51,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link nav-anim" href="./nosotros.html">Nosotros</a>
+              <a class="nav-link nav-anim" href="nosotros.html">Nosotros</a>
             </li>
 
             <li class="nav-item d-flex align-items-center gap-2 ms-md-2 navbar-icons">
@@ -78,114 +80,141 @@
       </div>
     </nav>
   </header>
-  <main>
-  
-    <section id="inicio" class="hero-bs position-relative overflow-hidden">
-        <div id="heroCarousel" class="carousel slide hero-bs__carousel" data-bs-ride="carousel" data-bs-interval="6000">
-            <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="assets/banner-cuenta.png" class="d-block w-100 hero-bs__img"
-                alt="banner-promo-cuenta">
+
+<main>
+    
+  <!-- HERO FULL (imagen ocupa todo, NAV encima) -->
+<section class="privacy-hero-full">
+  <div class="privacy-hero-full__overlay"></div>
+
+  <div class="container privacy-hero-full__content" style="max-width: 500px;">
+    <h1 class="mb-2">Política de Privacidad</h1>
+    <p class="mb-0">Última actualización: Enero 2026</p>
+  </div>
+</section>
+
+
+  <!-- CONTENIDO LEGAL -->
+  <section class="legal-content">
+    <div class="container" style="max-width: 900px;">
+
+      <sect class="mb-4">
+        <p>
+          En <strong>Eternia,</strong> entendemos que nos acompañas en un momento de profundo significado. Por ello, valoramos 
+          la confianza que depositas en nosotros y nos comprometemos a gestionar tu información personal bajo los más estrictos 
+          estándares de transparencia, seguridad y respeto.
+        </p>
+        <p class="mb-0">
+          Esta Política de Privacidad detalla de manera clara y directa cómo recopilamos, utilizamos y blindamos los datos que nos 
+          entregas a través de nuestra plataforma, asegurando que tu experiencia digital sea tan íntegra y profesional como nuestro 
+          servicio.
+        </p>
+    </sect>
+      <main>
+
+  <!-- HERO PRIVACIDAD CON FONDO COMPLETO -->
+  <section class="privacy-hero">
+    <div class="privacy-hero__overlay"></div>
+
+    <div class="container privacy-hero__content">
+      <nav class="breadcrumb small mb-3">
+        <a href="index.html">Inicio</a>
+        <span class="mx-2">›</span>
+        <span>Políticas de Privacidad</span>
+      </nav>
+
+      
+
+      <!-- TARJETAS -->
+      <div class="row g-4">
+<!-- card 1 -->
+        <div class="col-12 col-md-6">
+          <div class="privacy-card">
+            <h3>Gestión de Datos Personales</h3>
+                <p>
+                Explica qué datos recolectamos y quién es el responsable de protegerlos para tu tranquilidad.
+                </p>
+             <!-- CONTENIDO OCULTO -->
+            <div class="privacy-extra">
+                <p>
+                Eternia actúa como responsable del tratamiento de tus datos personales (nombre, correo y teléfono) 
+                obtenidos en formularios de contacto. Esta información se utiliza exclusivamente para fines operativos del 
+                e-commerce y atención directa al usuario, garantizando un manejo ético y transparente.
             </div>
-            </div>
-
-        </div>
-        <div class="hero-bs__overlay"></div>
-        <div class="container hero-bs__content">
-            <div class="row">
-            <div class="col-12 col-lg-12 col-xl-12">
-                <h1 class="hero-bs__title">Ingresa a tu cuenta</h1>
-                <p class="hero-bs__text"></p>
-                 <!--<a href="./contactanos.html" class="btn btn--primary"></a>-->
-            </div>
-            </div>
-        </div>
-    </section>
-
-   <!--cuerpo del sitio-->
-
-  <section class=" account account__section">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-6">
-
-          <div class="account__card">
-
-            <!-- TABS -->
-            <div class="account__tabs">
-              <button class="account__tab is-active" data-target="login">Iniciar sesión</button>
-              <button class="account__tab" data-target="register">Crear cuenta</button>
-            </div>
-
-            <!-- LOGIN -->
-            <form id="loginForm" class="account__form is-active" novalidate>
-              <h2 class="account__title">Bienvenido de vuelta</h2>
-
-              <div class="field">
-                <label>Email</label>
-                <input type="email" id="loginEmail" required>
-                <small class="error"></small>
-              </div>
-
-              <div class="field">
-                <label>Contraseña</label>
-                <input type="password" id="loginPassword" required>
-                <small class="error"></small>
-              </div>
-
-              <button type="submit" class="btn btn--primary w-100">
-                Iniciar sesión
-              </button>
-
-              <p class="account__message" id="loginMsg"></p>
-            </form>
-
-            <!-- REGISTER -->
-            <form id="registerForm" class="account__form" novalidate>
-              <h2 class="account__title">Crear cuenta</h2>
-
-              <div class="field">
-                <label>Nombre completo</label>
-                <input type="text" id="registerName" required>
-                <small class="error"></small>
-              </div>
-
-              <div class="field">
-                <label>Email</label>
-                <input type="email" id="registerEmail" required>
-                <small class="error"></small>
-              </div>
-
-              <div class="field">
-                <label>Contraseña</label>
-                <input type="password" id="registerPassword" required>
-                <small class="error"></small>
-              </div>
-
-              <button type="submit" class="btn btn--primary w-100">
-                Crear cuenta
-              </button>
-
-              <p class="account__message" id="registerMsg"></p>
-            </form>
-
+            <button class="privacy-toggle">Ver más →</button>
           </div>
-
         </div>
+
+<!-- card 2 -->
+        <div class="col-12 col-md-6">
+          <div class="privacy-card">
+            <h3>Uso de la Información</h3>
+                <p>
+                Detalla para qué utilizamos tus datos, enfocándonos siempre en mejorar tu experiencia de compra.
+                </p>
+             <!-- CONTENIDO OCULTO -->
+            <div class="privacy-extra">
+                <p>
+                Los datos recopilados se destinan únicamente a: responder tus consultas, gestionar cotizaciones 
+                personalizadas, coordinar la logística de entrega y, solo si lo autorizas, enviarte novedades de 
+                nuestro catálogo. No compartimos tu información con terceros con fines publicitarios.
+            </div>
+            <button class="privacy-toggle">Ver más →</button>
+          </div>
+        </div>
+
+<!-- card 3 -->
+        <div class="col-12 col-md-6">
+          <div class="privacy-card">
+            <h3>Seguridad y Pagos</h3>
+                <p>
+                Información sobre cómo protegemos tu navegación y tus transacciones financieras.
+                </p>
+             <!-- CONTENIDO OCULTO -->
+            <div class="privacy-extra">
+                <p>
+                Adoptamos medidas de seguridad avanzadas para proteger tu información contra accesos no autorizados. 
+                En cuanto a los pagos, se realizan mediante plataformas externas seguras (como Webpay/Transbank); Eternia no 
+                almacena ni procesa datos sensibles de tus tarjetas bancarias.
+            </div>
+            <button class="privacy-toggle">Ver más →</button>
+          </div>
+        </div>
+
+<!-- card 4 -->
+        <div class="col-12 col-md-6">
+          <div class="privacy-card">
+            <h3>Cookies y Tus Derechos</h3>
+                <p>
+                    Conoce cómo optimizamos el sitio y cómo puedes ejercer el control total sobre tus datos.
+                </p>
+
+             <!-- CONTENIDO OCULTO -->
+            <div class="privacy-extra">
+                <p>
+                    Utilizamos cookies para analizar el uso del sitio y recordar tus preferencias. Como usuario,
+                    tienes el derecho de solicitar en cualquier momento el acceso, rectificación o eliminación definitiva 
+                    de tus datos de nuestros registros, escribiéndonos directamente a nuestro canal de contacto oficial.
+            </div>
+            <button class="privacy-toggle">Ver más →</button>
+          </div>
+        </div>
+
       </div>
+    </div>
+  </section>
+
+  <!-- CONTENIDO LEGAL -->
+  <section id="contenido" class="legal-content">
+    
+      <!-- aquí va TODO tu texto legal largo -->
     </div>
   </section>
 
 </main>
 
-<script src="cuenta.js"></script>
-</body>
-</html>
 
 
-
-
-  </main>
       <!-- Footer -->
   <footer class="footer footer--modern py-5" role="contentinfo">
   <div class="container">
@@ -269,8 +298,22 @@
     </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
-    <script src="catalogo.js"></script>
+
+
+        <!-- Toast custom-->
+        <div id="toast" class="toast" aria-live="polite" aria-atomic="true">
+            <div class="toast__icon">✓</div>
+            <div class="toast__content">
+            <p class="toast__title">¡Mensaje Enviado!</p>
+            <p class="toast__message">Te contactaremos pronto para diseñar tu idea.</p>
+            </div>
+        </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+<script src="catalogo.js"></script>
+
 </body>
+
 </html>
