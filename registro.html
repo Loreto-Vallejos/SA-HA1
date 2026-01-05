@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro de Usuario</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="registro.css" />
+</head>
+
+<body>
+  <main class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-6">
+        <section class="card shadow-sm border-0">
+          <div class="card-body p-4">
+            <h1 class="h3 mb-2">Registro de usuario</h1>
+            <p class="text-muted mb-4">Completa tus datos para crear tu cuenta.</p>
+
+            <!-- Alertas Bootstrap (errores / éxito) -->
+            <div id="alertContainer" class="mb-3" aria-live="polite"></div>
+
+            <form id="registerForm" novalidate>
+              <!-- Nombre completo -->
+              <div class="mb-3">
+                <label for="fullName" class="form-label">Nombre completo</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fullName"
+                  name="fullName"
+                  placeholder="Ej: Juan Pérez"
+                  required
+                  minlength="3"
+                />
+                <div class="invalid-feedback">Ingresa tu nombre completo (mínimo 3 caracteres).</div>
+              </div>
+
+              <!-- Teléfono -->
+              <div class="mb-3">
+                <label for="phone" class="form-label">Número de teléfono</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="phone"
+                  name="phone"
+                  placeholder="Ej: +56912345678"
+                  required
+                />
+                <div class="form-text">Formato recomendado: +569XXXXXXXX (Chile) o 9XXXXXXXX.</div>
+                <div class="invalid-feedback">Ingresa un teléfono válido.</div>
+              </div>
+
+              <!-- Email -->
+              <div class="mb-3">
+                <label for="email" class="form-label">Email (nombre de usuario)</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="Ej: correo@dominio.com"
+                  required
+                />
+                <div class="invalid-feedback">Ingresa un correo válido.</div>
+              </div>
+
+              <!-- Contraseña -->
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+
+                <div class="input-group">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Mínimo 8 caracteres"
+                    required
+                    minlength="8"
+                    aria-describedby="togglePassword"
+                  />
+                  <button
+                    class="btn btn-outline-secondary password-toggle"
+                    type="button"
+                    id="togglePassword"
+                    aria-label="Mostrar u ocultar contraseña"
+                    data-target="password"
+                  >
+                    <i class="bi bi-eye" aria-hidden="true"></i>
+                  </button>
+                  <div class="invalid-feedback">La contraseña debe tener al menos 8 caracteres.</div>
+                </div>
+
+              </div>
+
+              <!-- Confirmar contraseña -->
+              <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
+
+                <div class="input-group">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    placeholder="Repite tu contraseña"
+                    required
+                    aria-describedby="toggleConfirmPassword"
+                  />
+                  <button
+                    class="btn btn-outline-secondary password-toggle"
+                    type="button"
+                    id="toggleConfirmPassword"
+                    aria-label="Mostrar u ocultar confirmación"
+                    data-target="confirmPassword"
+                  >
+                    <i class="bi bi-eye" aria-hidden="true"></i>
+                  </button>
+                  <div class="invalid-feedback">Las contraseñas no coinciden.</div>
+                </div>
+
+              </div>
+
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Crear cuenta</button>
+                <button type="reset" class="btn btn-outline-secondary">Limpiar</button>
+              </div>
+            </form>
+
+            <!-- Salida JSON -->
+            <hr class="my-4">
+            <h2 class="h6 mb-2">JSON generado</h2>
+            <pre id="jsonOutput" class="json-output mb-0">{}</pre>
+
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Bootstrap JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JS -->
+  <script src="registro.js"></script>
+</body>
+</html>

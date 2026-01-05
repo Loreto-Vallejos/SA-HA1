@@ -1,0 +1,15 @@
+/* Salida JSON */
+.json-output {
+  background: #0b1020;
+  color: #e6e6e6;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 0.9rem;
+  overflow: auto;
+  min-height: 64px;
+}
+
+/* Botón de ojo: mejor hit-area y cursor */
+.password-toggle {
+  cursor: pointer;
+}
