@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eternia | inicio</title>
+  <title>Eternia | catalogo</title>
 
   <meta name="description"
     content="Ataúdes personalizados que celebran la vida. Diseños únicos, temáticos y fuera de lo común." />
@@ -60,9 +60,12 @@
             </a>
 
             <!-- Wishlist -->
-            <a class="nav-link nav-icon" href="./wishlist.html" aria-label="Wishlist">
-                <i class="fa-regular fa-heart"></i>
+           <!-- Wishlist -->
+            <a class="nav-link nav-icon position-relative" href="./wishlist.html" aria-label="Wishlist">
+            <i class="fa-regular fa-heart"></i>
+            <span id="wishlistCount" class="badge-wishlist">0</span>
             </a>
+
 
             <!-- Carrito -->
             <a class="nav-link nav-icon position-relative" href="./carrito.html" aria-label="Carrito">
@@ -96,7 +99,7 @@
             <div class="col-12 col-lg-12 col-xl-12">
                 <h1 class="hero-bs__title">Encuentra el ataúd que buscas o personaliza a tu manera</h1>
                 <p class="hero-bs__text">Envíanos tu idea y lo fabricamos para ti. <br> Ten en cuenta que los tiempos de entrega podrían aumentar.</p>
-                <a href="./contactanos.html" class="btn btn--primary">Cotizar</a>
+                <a href="contactanos.html" class="btn btn--primary">Cotizar</a>
             </div>
             </div>
         </div>
@@ -197,7 +200,11 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
-    <script src="catalogo.js"></script>
+    <!--<script src="script.js"></script> -->
+    <script src="./catalogo.js"></script>
+    <script src="./navbar.js"></script>
+    <script src="./wishlist.js"></script>
+
+
 </body>
 </html>

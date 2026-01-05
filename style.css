@@ -33,6 +33,9 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   animation: slideUp 0.5s ease-out;
+  
+
+
 }
 img { max-width: 100%; display: block; }
 
@@ -505,7 +508,7 @@ figure.producto:hover .overlay {
 }
 .about__image {
   height: 400px;
-  background-image: url("Assets/sobre-nosotros.webp");
+  background-image: url("assets/sobre-nosotros.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1173,6 +1176,159 @@ figure.producto:hover .overlay {
   text-decoration: underline;
 }
 
-
-
  /*termnio de washington m.*/ 
+
+
+ /* wishlist inicio washington M.*/
+
+ .nav-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: #fff;              /* ajusta si tu nav es claro */
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.nav-icon .badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  font-size: 11px;
+  line-height: 18px;
+  text-align: center;
+  background: #d4af37;      /* dorado estilo Eternia */
+  color: #000;
+  display: none;            /* se muestra solo si > 0 */
+}
+
+
+.wishlist-btn{
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+}
+
+.wishlist-btn.is-active{
+  color: #d4af37; /* dorado */
+}
+.badge-wishlist{
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  font-size: 11px;
+  line-height: 18px;
+  text-align: center;
+  background: #d4af37;
+  color: #000;
+  display: none; /* se muestra solo si > 0 */
+}
+/* Navbar transparente al inicio */
+.navbar-eternia {
+  background-color: transparent;
+  transition: background-color .25s ease, box-shadow .25s ease;
+}
+
+/* Navbar cuando bajas */
+.navbar-eternia.is-scrolled {
+  background-color: #0b3f5c;
+  box-shadow: 0 6px 18px rgba(0,0,0,.15);
+}
+.precio span {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 0.9em;
+  margin-left: 6px;
+}
+.page-wishlist {
+  padding-top: 90px;
+}
+
+
+
+
+/* Fondo especial para wishlist */
+/* ===== Wishlist con imagen de fondo ===== */
+/* ===== Wishlist con fondo detrás del navbar ===== */
+.wishlist-layout {
+  position: relative;
+  z-index: 1;
+
+  /* ESTE padding es solo para el contenido */
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+/* Imagen de fondo */
+.wishlist-layout::before {
+  content: "";
+  position: absolute;
+  filter: grayscale(1); /*colo de fonde de imagen, muy elegante*/
+
+  /* Empieza desde ARRIBA DE TODO */
+  top: -120px;
+  left: 0;
+  right: 0;
+  bottom: 50px;
+
+  z-index: -1;
+
+  background-image:
+    linear-gradient(
+      rgba(5, 64, 96, 0.75),
+      rgba(5, 64, 96, 0.85)
+    ),
+    url("assets/craftsman_working_on_wood.png");
+
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* Cards flotando */
+.wishlist-layout .card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 25px 60px rgba(0,0,0,.35);
+}
+/* Header de la wishlist */
+.wishlist-header {
+  max-width: 620px;
+  margin-bottom: 40px;
+}
+
+/* Título */
+.wishlist-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+/* Subtítulo */
+.wishlist-header p {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.6;
+}
+
+
+
+/*termino wishlist washington M*/
