@@ -332,3 +332,123 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+
+ /*Inicio de washington m.*/ 
+/* función para card donde se pueden expandir suave en botón VER MAS y VER MENOS.*/ 
+document.querySelectorAll('.privacy-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.closest('.privacy-card');
+    const open = card.classList.toggle('is-open');
+
+    btn.textContent = open ? 'Ver menos ↑' : 'Ver más →';
+  });
+});
+ /*termnio de washington m.*/ 
+
+
+  /*wishlist Inicio de washington m.*/ 
+ /* =========================
+   WISHLIST – LOCALSTORAGE
+   ========================= */
+
+const WISHLIST_KEY = "wishlist";
+
+/* Obtener wishlist */
+function getWishlist() {
+  try {
+    return JSON.parse(localStorage.getItem(WISHLIST_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+
+/* Guardar wishlist */
+function setWishlist(list) {
+  localStorage.setItem(WISHLIST_KEY, JSON.stringify(list));
+}
+
+/* Verificar si un id está en wishlist */
+function isInWishlist(id) {
+  return getWishlist().includes(String(id));
+}
+
+/* Agregar / quitar */
+function toggleWishlist(id) {
+  id = String(id);
+  const list = getWishlist();
+  const index = list.indexOf(id);
+
+  if (index === -1) {
+    list.push(id);
+  } else {
+    list.splice(index, 1);
+  }
+
+  setWishlist(list);
+  updateWishlistCount();
+  syncWishlistButtons();
+}
+
+/* =========================
+   NAVBAR – CONTADOR
+   ========================= */
+
+function updateWishlistCount() {
+  const countEl = document.getElementById("wishlistCount");
+  if (!countEl) return;
+
+  const n = getWishlist().length;
+  countEl.textContent = n;
+  countEl.style.display = n > 0 ? "inline-block" : "none";
+}
+
+/* =========================
+   BOTONES CORAZÓN
+   ========================= */
+
+function syncWishlistButtons() {
+  document.querySelectorAll(".wishlist-btn").forEach(btn => {
+    const id = btn.dataset.id;
+    const icon = btn.querySelector("i");
+    const active = isInWishlist(id);
+
+    btn.classList.toggle("is-active", active);
+
+    if (icon) {
+      icon.classList.toggle("fa-solid", active);
+      icon.classList.toggle("fa-regular", !active);
+    }
+  });
+}
+
+/* =========================
+   EVENTOS
+   ========================= */
+
+/* Click en corazón */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".wishlist-btn");
+  if (!btn) return;
+
+  e.preventDefault();
+  toggleWishlist(btn.dataset.id);
+});
+
+/* Inicializar al cargar */
+document.addEventListener("DOMContentLoaded", () => {
+  updateWishlistCount();
+  syncWishlistButtons();
+});
+
+/* Sync si hay varias pestañas */
+window.addEventListener("storage", () => {
+  updateWishlistCount();
+  syncWishlistButtons();
+});
+
+
+
+
+
+
+  /*wishlist termnio de washington m.*/ 
