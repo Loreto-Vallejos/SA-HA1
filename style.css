@@ -831,6 +831,29 @@ figure.producto:hover .overlay {
   font-weight: 600;
 }
 
+/* Mensaje del formulario (siempre visible cuando tenga texto) */
+.account__message{
+  display: block;
+  min-height: 24px; /* reserva espacio aunque esté vacío */
+  margin-top: 16px;
+  text-align: center;
+  font-weight: 700;
+  padding: 12px 14px;
+  border-radius: 12px;
+}
+
+/* Estados */
+.account__message.success{
+  color: #1f7a3a;
+  background: rgba(31, 122, 58, 0.12);
+  border: 1px solid rgba(31, 122, 58, 0.25);
+}
+
+.account__message.error{
+  color: #c0392b;
+  background: rgba(192, 57, 43, 0.12);
+  border: 1px solid rgba(192, 57, 43, 0.25);
+}
 
 /* =========================
    Footer
@@ -1044,6 +1067,288 @@ figure.producto:hover .overlay {
 }
 .toast__title { font-weight: 700; font-size: 0.95rem; }
 .toast__message { font-size: 0.85rem; color: var(--color-text-muted); }
+
+
+
+
+
+
+
+
+/* estilos cuenta
+
+/* =========================
+   VARIABLES (TU ESTILO ETERNIA)
+========================= */
+:root {
+  --color-bg: #ffffff;
+  --color-primary: #054060;
+  --color-primary-hover: #032d44;
+  --color-text: #090808;
+  --color-accent: #d4af37;
+  --color-bg-alt: #f7f9fb;
+  --color-text-muted: #6b7280;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+}
+
+/* Reset */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Outfit", sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ====== Botón principal (tu estilo) ====== */
+.btn--primary {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  border: 2px solid transparent;
+  border-radius: 50px;
+  padding: 0.8rem 2rem;
+  font-weight: 600;
+  font-family: "Outfit", sans-serif;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+.btn--primary:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  color: var(--color-bg);
+}
+
+/* =========================
+   NAVBAR (si la usas)
+========================= */
+.navbar-eternia {
+  background-color: transparent;
+  transition: background-color 0.4s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+}
+.navbar-eternia.scrolled {
+  background-color: var(--color-primary);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+}
+
+/* =========================
+   HERO (opcional)
+========================= */
+.hero-bs {
+  position: relative;
+  height: 45vh;
+  overflow: hidden;
+}
+.hero-bs__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(900px 280px at 20% 20%, rgba(5, 64, 96, 0.25), transparent 60%),
+    radial-gradient(900px 280px at 80% 30%, rgba(212, 175, 55, 0.18), transparent 60%),
+    linear-gradient(180deg, #053f5e, #032d44);
+}
+.hero-bs__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+.hero-bs__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 0 1rem 4rem;
+  z-index: 2;
+}
+.hero-bs__title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 3vw, 3rem);
+  color: #fff;
+  margin: 0 0 0.5rem;
+}
+.hero-bs__text {
+  color: rgba(255,255,255,.9);
+  max-width: 520px;
+  margin: 0;
+}
+
+/* =========================
+   CUENTA (LOGIN / REGISTER)  ✅ TU ESTILO
+========================= */
+.account {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--color-bg-alt);
+  padding: 3rem 0;
+}
+
+.account__card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.1);
+}
+
+.account__tabs {
+  display: flex;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.account__tab {
+  flex: 1;
+  padding: 12px;
+  background: none;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--color-text-muted);
+}
+
+.account__tab.is-active {
+  color: var(--color-primary);
+  border-bottom: 3px solid var(--color-primary);
+}
+
+.account__form { display: none; }
+.account__form.is-active { display: block; }
+
+.account__title {
+  text-align: center;
+  margin-bottom: 24px;
+  font-family: "Playfair Display", serif;
+}
+
+/* Campos */
+.field { margin-bottom: 16px; }
+
+.field label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.field input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.2);
+  background: #fff;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.field input:focus {
+  border-color: rgba(212,175,55,.9);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(212,175,55,.15);
+}
+
+/* Validación por clases (tu JS usa is-valid / is-invalid) */
+.field input.is-invalid {
+  border-color: #c0392b;
+  box-shadow: 0 0 0 4px rgba(192,57,43,.12);
+}
+
+.field input.is-valid {
+  border-color: #1f7a3a;
+  box-shadow: 0 0 0 4px rgba(31,122,58,.12);
+}
+
+/* error debajo de campo */
+.field .error {
+  color: #c0392b;
+  font-size: .85rem;
+  display: block;
+  min-height: 18px;
+  margin-top: 6px;
+}
+
+/* =========================
+   MENSAJES (ÉXITO / ERROR) ✅ para que SE VEAN
+========================= */
+.account__message {
+  display: none;
+  margin-top: 16px;
+  text-align: center;
+  font-weight: 700;
+  padding: 12px 14px;
+  border-radius: 12px;
+}
+
+.account__message.success {
+  display: block;
+  color: #1f7a3a;
+  background: rgba(31,122,58,.10);
+  border: 1px solid rgba(31,122,58,.20);
+}
+
+.account__message.error {
+  display: block;
+  color: #c0392b;
+  background: rgba(192,57,43,.10);
+  border: 1px solid rgba(192,57,43,.20);
+}
+
+/* =========================
+   SALIDA JSON (modelo)
+========================= */
+.json-output {
+  background: #0b1020;
+  color: #e6e6e6;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 0.9rem;
+  overflow: auto;
+  min-height: 64px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* =========================
+   OJO (PASSWORD TOGGLE) ✅ dentro de input-group
+========================= */
+.input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.password-toggle {
+  cursor: pointer;
+  min-width: 48px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.2);
+  background: #fff;
+  color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.password-toggle:hover {
+  transform: translateY(-1px);
+  border-color: rgba(212,175,55,.9);
+  box-shadow: 0 0 0 4px rgba(212,175,55,.12);
+}
+
+.password-toggle i { pointer-events: none; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .account__card { padding: 22px; }
+  .hero-bs { height: 38vh; }
+  .hero-bs__content { padding-bottom: 3rem; }
+}
+
 
 /* =========================
    Animations / Responsive
