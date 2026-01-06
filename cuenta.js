@@ -1,6 +1,6 @@
-// =============================
+
 // REGISTER: validaciones + JSON
-// =============================
+
 document.addEventListener("DOMContentLoaded", () => {
   const registerForm = document.getElementById("registerForm");
   if (!registerForm) return;
@@ -33,14 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
   function showFormMessage(text, type = "error") {
     if (!registerMsg) return;
     registerMsg.textContent = text;
-    // Si tu CSS no tiene estilos por clase, esto no rompe nada:
+    
     registerMsg.classList.remove("success", "error");
     registerMsg.classList.add(type);
   }
 
   // Validaciones
   function isValidEmail(email) {
-    // suficiente para tarea (sin ser exageradamente estricto)
+    
     return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
   }
 
@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // ✅ Crear objeto JSON con los campos requeridos
+    //  Crear objeto JSON con los campos requeridos
     const user = {
       nombreCompleto: fullName,
       telefono: phoneNormalized,
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const key = "users";
     const users = JSON.parse(localStorage.getItem(key) || "[]");
 
-    // Evitar duplicado por email (recomendado)
+    // Evitar duplicado por email
     const exists = users.some((u) => u.email === user.email);
     if (exists) {
       setFieldError(emailInput, "Este email ya está registrado.");
