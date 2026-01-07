@@ -1,88 +1,16 @@
 /* =========================
-   WISHLIST – LOCALSTORAGE
-   ========================= */
-
-console.log("wishlist.js cargado OK");
-
-
-const WISHLIST_KEY = "wishlist";
-
-function getWishlist() {
-  try {
-    return JSON.parse(localStorage.getItem(WISHLIST_KEY)) || [];
-  } catch {
-    return [];
-  }
-}
-
-function setWishlist(list) {
-  localStorage.setItem(WISHLIST_KEY, JSON.stringify(list));
-}
-
-function isInWishlist(id) {
-  return getWishlist().includes(String(id));
-}
-
-function toggleWishlist(id) {
-  id = String(id);
-  const list = getWishlist();
-  const index = list.indexOf(id);
-
-  if (index === -1) list.push(id);
-  else list.splice(index, 1);
-
-  setWishlist(list);
-  updateWishlistCount();
-  syncWishlistButtons();
-}
-
-function updateWishlistCount() {
-  const countEl = document.getElementById("wishlistCount");
-  if (!countEl) return;
-
-  const n = getWishlist().length;
-  countEl.textContent = n;
-  countEl.style.display = n > 0 ? "inline-block" : "none";
-}
-
-function syncWishlistButtons() {
-  document.querySelectorAll(".wishlist-btn").forEach((btn) => {
-    const id = btn.dataset.id;
-    const active = isInWishlist(id);
-
-    btn.classList.toggle("is-active", active);
-
-    const icon = btn.querySelector("i");
-    if (icon) {
-      icon.classList.toggle("fa-solid", active);
-      icon.classList.toggle("fa-regular", !active);
-    }
-  });
-}
-
-/* Click en corazón (delegación, 1 solo listener) */
-document.addEventListener("click", (e) => {
-  const btn = e.target.closest(".wishlist-btn");
-  if (!btn) return;
-
-  e.preventDefault();
-  toggleWishlist(btn.dataset.id);
-});
-
-/* Sync entre pestañas */
-window.addEventListener("storage", () => {
-  updateWishlistCount();
-  syncWishlistButtons();
-});
-
-/* =========================
    CATÁLOGO – FETCH + RENDER
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  initNavbarScrollColor();
+  if (typeof initNavbarScrollColor === 'function') {
+    initNavbarScrollColor();
+  }
 
   const grid = document.getElementById("catalogo-grid");
   if (!grid) return;
+
+  // ✅ Soporte para límite de productos (data-limit)
+  const limit = parseInt(grid.dataset.limit) || 0;
 
   // ✅ Si tu JSON está dentro de assets, usa: "./assets/catalogo.json"
   fetch("./catalogo.json", { cache: "no-store" })
@@ -92,7 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then((productos) => {
       if (!Array.isArray(productos)) throw new Error("catalogo.json debe ser un array []");
-      grid.innerHTML = productos.map(renderCard).join("");
+
+      // Aplicar el límite si existe
+      let productosAMostrar = limit > 0 ? productos.slice(0, limit) : productos;
+
+      grid.innerHTML = productosAMostrar.map(renderCard).join("");
 
       // ✅ IMPORTANTE: después de renderizar
       updateWishlistCount();
