@@ -84,6 +84,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const grid = document.getElementById("catalogo-grid");
   if (!grid) return;
 
+  // ✅ Soporte para límite de productos (data-limit)
+  const limit = parseInt(grid.dataset.limit) || 0;
+
   // ✅ Si tu JSON está dentro de assets, usa: "./assets/catalogo.json"
   fetch("./catalogo.json", { cache: "no-store" })
     .then((res) => {
@@ -92,7 +95,11 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then((productos) => {
       if (!Array.isArray(productos)) throw new Error("catalogo.json debe ser un array []");
-      grid.innerHTML = productos.map(renderCard).join("");
+
+      // Aplicar el límite si existe
+      let productosAMostrar = limit > 0 ? productos.slice(0, limit) : productos;
+
+      grid.innerHTML = productosAMostrar.map(renderCard).join("");
 
       // ✅ IMPORTANTE: después de renderizar
       updateWishlistCount();
