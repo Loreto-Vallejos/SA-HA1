@@ -79,7 +79,9 @@ window.addEventListener("storage", () => {
    CATÁLOGO – FETCH + RENDER
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  initNavbarScrollColor();
+  if (typeof initNavbarScrollColor === 'function') {
+    initNavbarScrollColor();
+  }
 
   const grid = document.getElementById("catalogo-grid");
   if (!grid) return;
