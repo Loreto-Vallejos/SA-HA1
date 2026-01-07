@@ -1,6 +1,4 @@
-/* =========================
-   Variables & Base
-========================= */
+/* Variables & Base */
 :root {
   --color-bg: #ffffff;
   --color-primary: #054060;
@@ -39,7 +37,7 @@ body {
 }
 img { max-width: 100%; display: block; }
 
-h1,h2,h3,h4 {
+h1, h2, h3, h4 {
   font-family: "Playfair Display", serif;
   line-height: 1.2;
 }
@@ -50,9 +48,7 @@ a {
   transition: color 0.3s ease;
 }
 
-/* =========================
-   Helpers / Sections
-========================= */
+/* Helpers / Sections */
 .section { padding: var(--spacing-xl) 0; }
 
 .section__header { text-align: center; margin-bottom: var(--spacing-lg); }
@@ -79,17 +75,11 @@ a {
 }
 
 .fondo-petroleo {
-  background-color: var(--color-primary);;
+  background-color: var(--color-primary);
   color: #fff;
-
 }
 
-/* =========================
-   Logo
-========================= */
-
-/*imagen logo*/
-
+/* Logo */
 .navbar-logo{
   display: block;
   object-fit: contain;
@@ -102,10 +92,7 @@ a {
   opacity: .95;
 }
 
-
-/* =========================
-   Buttons
-========================= */
+/* Buttons */
 .btn--primary {
   background-color: var(--color-primary);
   color: var(--color-bg);
@@ -124,9 +111,7 @@ a {
 }
 .btn--full { width: 100%; text-align: center; }
 
-/* =========================
-   Navbar Bootstrap)
-========================= */
+/* Navbar */
 .navbar-eternia {
   background-color: transparent;
   backdrop-filter: blur(0px);
@@ -195,11 +180,12 @@ a {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-
-/* ===== HERO ===== */
+/* =========================
+   HERO
+========================= */
 .hero-bs {
   position: relative;
-  height: 90vh;         
+  height: 90vh;
   overflow: hidden;
 }
 
@@ -210,10 +196,16 @@ a {
   z-index: 0;
 }
 
+.hero-bs__carousel .carousel-inner,
+.hero-bs__carousel .carousel-item {
+  height: 100%;
+}
+
 .hero-bs__img {
   height: 90vh;
   width: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 /* Overlay oscuro */
@@ -231,8 +223,8 @@ a {
   inset: 0;
   z-index: 2;
   display: flex;
-  align-items: flex-end;     /* abajo */
-  justify-content: flex-start; /* izquierda */
+  align-items: flex-end;
+  justify-content: flex-start;
 
   padding-left: 1rem;
   padding-bottom: 5rem;
@@ -245,23 +237,6 @@ a {
   z-index: 3;
 }
 
-/* Responsive con media queries (revisar si se sobrepone con bootstrap) */ 
-@media (max-width: 768px) {
-  .hero-bs {
-    height: 85vh;
-  }
-
-  .hero-bs__img {
-    height: 85vh;
-  }
-
-  .hero-bs__content {
-    padding-left: 1.25rem;
-    padding-bottom: 5rem;
-  }
-}
-
-
 /* Tipografías / texto */
 .hero-bs__title {
   font-size: 3rem;
@@ -272,40 +247,28 @@ a {
 .hero-bs__text {
   color: #fff;
   font-size: 1.1rem;
-  margin-bottom: 4rem;    
+  margin-bottom: 4rem;
   max-width: 520px;
 }
 
-/* Controles arriba del overlay */
-.hero-bs__control {
-  z-index: 3;
-}
-
-/* Indicadores arriba del overlay */
-.hero-bs__indicators {
-  z-index: 3;
-}
-
-
-
-/* Responsive con media queries (revisar si se sobrepone con bootstrap) */
-@media (max-width: 768px) {
-  .hero-bs__content {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-    text-align: center;
-  }
-
-  .hero-bs__title { font-size: 2.5rem; }
-  .hero-bs__text { margin-left: auto; margin-right: auto; }
-  .hero-bs__img { height: 85vh; }
-}
-
 /* =========================
-   Cards Colecciones
+   HERO responsive
 ========================= */
-/*card nuevas*/
+@media (max-width: 992px) {
+  .hero-bs { height: 85vh; }
+  .hero-bs__img { height: 85vh; }
+  .hero-bs__title { font-size: 2.5rem; }
+  .hero-bs__text { margin-bottom: 3rem; }
+}
 
+@media (max-width: 576px) {
+  .hero-bs { height: 80vh; }
+  .hero-bs__img { height: 80vh; }
+  .hero-bs__title { font-size: 2.1rem; }
+  .hero-bs__content { padding-bottom: 3rem; }
+}
+
+/* Cards Colecciones */
 .galeria-productos {
   width: 100%;
   margin: 60px 0 40px;
@@ -320,9 +283,7 @@ figure.producto {
   overflow: hidden;
 }
 
-/* ===============================
-   IMAGEN
-================================ */
+/* IMAGEN */
 .contenedor-imagen {
   position: relative;
   width: 100%;
@@ -338,9 +299,7 @@ figure.producto {
   display: block;
 }
 
-/* ===============================
-   BADGE (descuento / nuevo)
-================================ */
+/* BADGE */
 .info {
   position: absolute;
   top: 16px;
@@ -358,9 +317,7 @@ figure.producto {
 .info.sandia { background: rgb(233, 113, 113); }
 .info.calipso { background: rgb(46, 193, 172); }
 
-/* ===============================
-   CAPTION
-================================ */
+/* CAPTION */
 figure.producto figcaption {
   background: #dcdcdc;
   padding: 22px 24px 26px;
@@ -389,9 +346,7 @@ figure.producto .precio span {
   font-weight: 600;
 }
 
-/* ===============================
-   OVERLAY
-================================ */
+/* OVERLAY */
 .overlay {
   position: absolute;
   inset: 0;
@@ -421,19 +376,6 @@ figure.producto:hover .overlay {
   padding: 15px 20px;
   border-radius: 10px;
   margin-bottom: 20px;
-}
-/* ===============================
-   HOVER BOTÓN ADD TO CART
-================================ */
-
-.add-to-cart {
-  background: var(--color-accent);
-  color: var(--color-text);
-  text-decoration: none;
-  font-weight: 600;
-  padding: 15px 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
@@ -442,9 +384,7 @@ figure.producto:hover .overlay {
   transform: translateY(-2px);
 }
 
-/* ===============================
-   ACCIONES (ICONOS)
-================================ */
+/* ACCIONES */
 .acciones {
   list-style: none;
   padding: 0;
@@ -477,11 +417,7 @@ figure.producto:hover .overlay {
   display: block;
 }
 
-
-/* ===============================
-   HOVER ICONOS (ACCIONES)
-================================ */
-
+/* Hover iconos */
 .acciones a img {
   transition: filter 0.25s ease, transform 0.25s ease;
 }
@@ -492,7 +428,6 @@ figure.producto:hover .overlay {
           hue-rotate(2deg) brightness(103%) contrast(97%);
   transform: scale(1.15);
 }
-
 
 /* =========================
    SOBRE NOSOTROS
@@ -516,9 +451,7 @@ figure.producto:hover .overlay {
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/*pagina sobre nosotros*/
-
-
+/* página sobre nosotros */
 .about-hero__eyebrow {
   font-weight: 700;
   letter-spacing: .08em;
@@ -587,12 +520,9 @@ figure.producto:hover .overlay {
   color: rgba(255,255,255,.9);
 }
 
-
-
 /* =========================
    RESEÑAS
 ========================= */
-
 .testimonials {
   background-color: var(--color-bg-alt);
 }
@@ -626,18 +556,14 @@ figure.producto:hover .overlay {
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Ajuste de color borde / focus para inputs Bootstrap */
 .contact__form .form-control:focus {
   border-color: rgba(5, 64, 96, 0.6);
   box-shadow: 0 0 0 0.25rem rgba(5, 64, 96, 0.15);
 }
 
-/*pagina contactanos*/
-
 /* =========================
    Cotización
 ========================= */
-
 .cotizacion__wrap {
   max-width: 760px;
   margin: 0 auto;
@@ -741,13 +667,9 @@ figure.producto:hover .overlay {
   color: #1f7a3a;
 }
 
-
-/*pagina cuenta o ingreso*/
-
 /* =========================
    CUENTA (LOGIN / REGISTER)
 ========================= */
-
 .account {
   min-height: 100vh;
   display: flex;
@@ -834,11 +756,33 @@ figure.producto:hover .overlay {
   font-weight: 600;
 }
 
+/* Mensaje del formulario */
+.account__message{
+  display: block;
+  min-height: 24px;
+  margin-top: 16px;
+  text-align: center;
+  font-weight: 700;
+  padding: 12px 14px;
+  border-radius: 12px;
+}
+
+/* Estados */
+.account__message.success{
+  color: #1f7a3a;
+  background: rgba(31, 122, 58, 0.12);
+  border: 1px solid rgba(31, 122, 58, 0.25);
+}
+
+.account__message.error{
+  color: #c0392b;
+  background: rgba(192, 57, 43, 0.12);
+  border: 1px solid rgba(192, 57, 43, 0.25);
+}
 
 /* =========================
    Footer
 ========================= */
-
 .footer--modern{
   background: #053f5e;
   color: rgba(255,255,255,.86);
@@ -846,7 +790,6 @@ figure.producto:hover .overlay {
   overflow: hidden;
 }
 
-/* hairline con degradado */
 .footer__topline{
   height: 2px;
   width: 100%;
@@ -854,7 +797,6 @@ figure.producto:hover .overlay {
   opacity: .55;
 }
 
-/* detalle suave (glow) */
 .footer--modern::before{
   content:"";
   position:absolute;
@@ -866,9 +808,6 @@ figure.producto:hover .overlay {
   pointer-events:none;
 }
 
-
-
-/* títulos*/
 .footer__title{
   font-size: .75rem;
   letter-spacing: .12em;
@@ -877,7 +816,6 @@ figure.producto:hover .overlay {
   margin-bottom: 1rem;
 }
 
-/* links con underline animado*/
 .footer__list{
   display: grid;
   gap: .55rem;
@@ -915,7 +853,6 @@ figure.producto:hover .overlay {
   transform: scaleX(1);
 }
 
-/* social buttons */
 .footer__social{
   display: inline-flex;
   align-items: center;
@@ -933,7 +870,6 @@ figure.producto:hover .overlay {
 .footer__social:hover{
   transform: translateY(-2px);
   background: var(--color-accent);
-  
 }
 
 .footer__social:focus-visible,
@@ -944,8 +880,6 @@ figure.producto:hover .overlay {
   border-radius: 10px;
 }
 
-
-/* input*/
 .footer__inputgroup{
   border-radius: 14px;
   overflow: hidden;
@@ -993,7 +927,6 @@ figure.producto:hover .overlay {
 
 .footer__copy{
   opacity: .75;
-  
 }
 
 .footer__miniLink{
@@ -1004,14 +937,12 @@ figure.producto:hover .overlay {
 
 .footer__miniLink:hover{
   color: #fff;
-
 }
 
 .footer__logo_wp{
   width: 200px;
   height: auto;
 }
-
 
 /* =========================
    Toast
@@ -1049,23 +980,35 @@ figure.producto:hover .overlay {
 .toast__message { font-size: 0.85rem; color: var(--color-text-muted); }
 
 /* =========================
-   Animations / Responsive
+   estilos cuenta
 ========================= */
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+
+/* OJO (PASSWORD TOGGLE) */
+.input-group {
+  display: flex;
+  gap: 10px;
 }
 
-@media (max-width: 768px) {
-  .hero__content {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-    text-align: center;
-    margin: 0 auto;
-  }
-  .hero__title { font-size: 2.5rem; }
-  .hero__description { margin: 0 auto var(--spacing-md); }
+.password-toggle {
+  cursor: pointer;
+  min-width: 48px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.2);
+  background: #fff;
+  color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease;
 }
+
+.password-toggle:hover {
+  transform: translateY(-1px);
+  border-color: rgba(212,175,55,.9);
+  box-shadow: 0 0 0 4px rgba(212,175,55,.12);
+}
+
+.password-toggle i { pointer-events: none; }
 
 
 

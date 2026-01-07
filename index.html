@@ -13,13 +13,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap"
-    rel="stylesheet"/>
+    rel="stylesheet" />
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"/>
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -30,7 +30,7 @@
       <div class="container">
 
         <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Eternia - Inicio">
-        <img src="assets/logo-eternia-blanco.png" alt="Logo Eternia" class="navbar-logo" loading="eager">
+          <img src="assets/logo-eternia-blanco.png" alt="Logo Eternia" class="navbar-logo" loading="eager">
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
@@ -54,20 +54,21 @@
 
             <li class="nav-item d-flex align-items-center gap-2 ms-md-2 navbar-icons">
 
-            <!-- Mi cuenta -->
-            <a class="nav-link nav-icon" href="./cuenta.html" aria-label="Mi cuenta">
+              <!-- Mi cuenta -->
+              <a class="nav-link nav-icon" href="./cuenta.html" aria-label="Mi cuenta">
                 <i class="fa-regular fa-user"></i>
-            </a>
+              </a>
 
-            <!-- Wishlist -->
-            <a class="nav-link nav-icon" href="./wishlist.html" aria-label="Wishlist">
+              <!-- Wishlist -->
+              <a class="nav-link nav-icon position-relative" href="./wishlist.html" aria-label="Wishlist">
                 <i class="fa-regular fa-heart"></i>
-            </a>
+                <span id="wishlistCount" class="badge-wishlist">0</span>
+              </a>
 
-            <!-- Carrito -->
-            <a class="nav-link nav-icon position-relative" href="./carrito.html" aria-label="Carrito">
+              <!-- Carrito -->
+              <a class="nav-link nav-icon position-relative" href="./carrito.html" aria-label="Carrito">
                 <i class="fa-solid fa-cart-shopping"></i>
-            </a>
+              </a>
             </li>
 
             <li class="nav-item ms-md-2">
@@ -81,215 +82,324 @@
 
   <main>
     <section id="inicio" class="hero-bs position-relative overflow-hidden">
-        <div id="heroCarousel" class="carousel slide hero-bs__carousel" data-bs-ride="carousel" data-bs-interval="6000">
-            <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="Assets/hip_hop_graffiti_coffin.png" class="d-block w-100 hero-bs__img"
-                alt="Ataúd estilo hip hop con grafiti">
-            </div>
+      <div id="heroCarousel" class="carousel slide hero-bs__carousel" data-bs-ride="carousel" data-bs-interval="6000">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="assets/hip_hop_graffiti_coffin.png" class="d-block w-100 hero-bs__img"
+              alt="Ataúd estilo hip hop con grafiti">
+          </div>
 
-            <div class="carousel-item">
-                <img src="Assets/reggaeton_urban_luxury_coffin.png" class="d-block w-100 hero-bs__img"
-                alt="Ataúd estilo reggaetón urbano">
-            </div>
+          <div class="carousel-item">
+            <img src="assets/reggaeton_urban_luxury_coffin.png" class="d-block w-100 hero-bs__img"
+              alt="Ataúd estilo reggaetón urbano">
+          </div>
 
-            <div class="carousel-item">
-                <img src="Assets/heavy_metal_studded_coffin.png" class="d-block w-100 hero-bs__img"
-                alt="Ataúd estilo heavy metal con detalles oscuros">
-            </div>
-            </div>
-
-            <!-- Controles -->
-            <button class="carousel-control-prev hero-bs__control" type="button" data-bs-target="#heroCarousel"
-            data-bs-slide="prev" aria-label="Anterior">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            </button>
-
-            <button class="carousel-control-next hero-bs__control" type="button" data-bs-target="#heroCarousel"
-            data-bs-slide="next" aria-label="Siguiente">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            </button>
-
-            <!-- Indicadores -->
-            <div class="carousel-indicators hero-bs__indicators">
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-
+          <div class="carousel-item">
+            <img src="assets/heavy_metal_studded_coffin.png" class="d-block w-100 hero-bs__img"
+              alt="Ataúd estilo heavy metal con detalles oscuros">
+          </div>
         </div>
-        <div class="hero-bs__overlay"></div>
-        <div class="container hero-bs__content">
-            <div class="row">
-            <div class="col-12 col-lg-12 col-xl-12">
-                <h1 class="hero-bs__title">Tu Último Viaje,<br>A Tu Manera.</h1>
-                <p class="hero-bs__text">Rompemos con lo tradicional. Ataúdes personalizados con temáticas únicas que celebran tu personalidad.</p>
-                <a href="#catalogo" class="btn btn--primary">Ver Catálogo</a>
-            </div>
-            </div>
+
+        <!-- Controles -->
+        <button class="carousel-control-prev hero-bs__control" type="button" data-bs-target="#heroCarousel"
+          data-bs-slide="prev" aria-label="Anterior">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+
+        <button class="carousel-control-next hero-bs__control" type="button" data-bs-target="#heroCarousel"
+          data-bs-slide="next" aria-label="Siguiente">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+
+        <!-- Indicadores -->
+        <div class="carousel-indicators hero-bs__indicators">
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"
+            aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
+
+      </div>
+      <div class="hero-bs__overlay"></div>
+      <div class="container hero-bs__content">
+        <div class="row">
+          <div class="col-12 col-lg-12 col-xl-12">
+            <h1 class="hero-bs__title">Tu Último Viaje,<br>A Tu Manera.</h1>
+            <p class="hero-bs__text">Rompemos con lo tradicional. Ataúdes personalizados con temáticas únicas que
+              celebran tu personalidad.</p>
+            <a href="#catalogo" class="btn btn--primary">Ver Catálogo</a>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- COLECCIONES-->
     <section id="catalogo" class="section catalog">
-    <div class="container">
+      <div class="container">
 
         <div class="text-center">
-        <h2 class="section__title">Disponibles para entrega inmediata</h2>
-        <p class="section__subtitle">Elige el diseño que cuente tu historia y lo tendrás en menos de 24 horas</p>
+          <h2 class="section__title">Disponibles para entrega inmediata</h2>
+          <p class="section__subtitle">Elige el diseño que cuente tu historia y lo tendrás en menos de 24 horas</p>
         </div>
 
-    <!--llamo al json-->
+        <!--llamo al json-->
 
-        <div class="row g-4 mt-4" id="catalogo-grid"></div>   
+        <div class="row g-4 mt-4" id="catalogo-grid" data-limit="4">
+          <!-- Villano Otaku -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <article>
+              <div class="galeria-productos">
+                <figure class="producto">
+                  <div class="contenedor-imagen">
+                    <img src="assets/anime_warrior_themed_coffin.png" alt="Villano Otaku">
+                    <span class="info sandia">-30%</span>
+                  </div>
+                  <figcaption>
+                    <h3>Villano Otaku</h3>
+                    <p>Ataúd temático inspirado en estética anime urbana.</p>
+                    <p class="precio">$2.500.000 <span>$3.500.000</span></p>
+                  </figcaption>
+                  <div class="overlay">
+                    <a href="./carrito.html" class="add-to-cart" data-id="1">Add to cart</a>
+                    <ul class="acciones">
+                      <li><a href="#" aria-label="Compartir"><img src="assets/share.svg" alt="Compartir"></a></li>
+                      <li><a href="#" aria-label="Comparar"><img src="assets/compare.svg" alt="Comparar"></a></li>
+                      <li><button class="wishlist-btn" type="button" data-id="1" aria-label="Wishlist"><i
+                            class="fa-regular fa-heart"></i></button></li>
+                    </ul>
+                  </div>
+                </figure>
+              </div>
+            </article>
+          </div>
+          <!-- Barbie Girl -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <article>
+              <div class="galeria-productos">
+                <figure class="producto">
+                  <div class="contenedor-imagen">
+                    <img src="assets/ataud-aston-martin.png" alt="Barbie Girl">
+                  </div>
+                  <figcaption>
+                    <h3>Barbie Girl</h3>
+                    <p>Estética vibrante inspirada en fantasía y glamour.</p>
+                    <p class="precio">$2.800.000</p>
+                  </figcaption>
+                  <div class="overlay">
+                    <a href="./carrito.html" class="add-to-cart" data-id="2">Add to cart</a>
+                    <ul class="acciones">
+                      <li><a href="#" aria-label="Compartir"><img src="assets/share.svg" alt="Compartir"></a></li>
+                      <li><a href="#" aria-label="Comparar"><img src="assets/compare.svg" alt="Comparar"></a></li>
+                      <li><button class="wishlist-btn" type="button" data-id="2" aria-label="Wishlist"><i
+                            class="fa-regular fa-heart"></i></button></li>
+                    </ul>
+                  </div>
+                </figure>
+              </div>
+            </article>
+          </div>
+          <!-- Hip-Hop Style -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <article>
+              <div class="galeria-productos">
+                <figure class="producto">
+                  <div class="contenedor-imagen">
+                    <img src="assets/hip_hop_graffiti_coffin.png" alt="Hip-Hop Style">
+                    <span class="info sandia">-20%</span>
+                  </div>
+                  <figcaption>
+                    <h3>Hip-Hop Style</h3>
+                    <p>Estética urbana inspirada en espíritu hip hop</p>
+                    <p class="precio">$2.300.000 <span>$3.200.000</span></p>
+                  </figcaption>
+                  <div class="overlay">
+                    <a href="./carrito.html" class="add-to-cart" data-id="3">Add to cart</a>
+                    <ul class="acciones">
+                      <li><a href="#" aria-label="Compartir"><img src="assets/share.svg" alt="Compartir"></a></li>
+                      <li><a href="#" aria-label="Comparar"><img src="assets/compare.svg" alt="Comparar"></a></li>
+                      <li><button class="wishlist-btn" type="button" data-id="3" aria-label="Wishlist"><i
+                            class="fa-regular fa-heart"></i></button></li>
+                    </ul>
+                  </div>
+                </figure>
+              </div>
+            </article>
+          </div>
+          <!-- Pokemon Soul -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <article>
+              <div class="galeria-productos">
+                <figure class="producto">
+                  <div class="contenedor-imagen">
+                    <img src="assets/ataud-pokemon.png" alt="Pokemon Soul">
+                    <span class="info calipso">-15%</span>
+                  </div>
+                  <figcaption>
+                    <h3>Pokemon Soul</h3>
+                    <p>Diseño épico inspirado en evolución Pokémon final</p>
+                    <p class="precio">$3.000.000 <span>$4.000.000</span></p>
+                  </figcaption>
+                  <div class="overlay">
+                    <a href="./carrito.html" class="add-to-cart" data-id="4">Add to cart</a>
+                    <ul class="acciones">
+                      <li><a href="#" aria-label="Compartir"><img src="assets/share.svg" alt="Compartir"></a></li>
+                      <li><a href="#" aria-label="Comparar"><img src="assets/compare.svg" alt="Comparar"></a></li>
+                      <li><button class="wishlist-btn" type="button" data-id="4" aria-label="Wishlist"><i
+                            class="fa-regular fa-heart"></i></button></li>
+                    </ul>
+                  </div>
+                </figure>
+              </div>
+            </article>
+          </div>
+        </div>
 
-    <!--botón ver más-->
+        <!--botón ver más-->
 
         <div class="text-center mt-4">
-        <a href="./catalogo.html" class="btn btn--primary">Ver más</a>
+          <a href="./catalogo.html" class="btn btn--primary">Ver más</a>
         </div>
-      </div>  
-  </section>
+      </div>
+    </section>
 
     <!-- SOBRE NOSOTROS -->
-  <section class="py-5 fondo-petroleo">
-    <div class="container">
-      <div class="row align-items-center g-5">
+    <section class="py-5 fondo-petroleo">
+      <div class="container">
+        <div class="row align-items-center g-5">
 
-        <div class="col-12 col-lg-6">
-          <h2 class="section__title2 mb-4">Sobre Nosotros</h2>
-          <p>En Eternia creemos que la despedida de una persona no debe ser impuesta.</p>
-          <p>
-            Diseñamos ataúdes personalizados que permiten expresar identidad, valores y memorias,
-            alejándonos de lo genérico y estandarizado.
-          </p>
+          <div class="col-12 col-lg-6">
+            <h2 class="section__title2 mb-4">Sobre Nosotros</h2>
+            <p>En Eternia creemos que la despedida de una persona no debe ser impuesta.</p>
+            <p>
+              Diseñamos ataúdes personalizados que permiten expresar identidad, valores y memorias,
+              alejándonos de lo genérico y estandarizado.
+            </p>
 
-          <ul class="list-unstyled mt-4 benefits-list">
-            <li><span class="check-icon me-3 mb-2">✓</span>Diseños 100% personalizables</li>
-            <li><span class="check-icon me-3 mb-2">✓</span>Materiales de alta calidad</li>
-            <li><span class="check-icon me-3 mb-2">✓</span>Envíos discretos y seguros</li>
-          </ul>
+            <ul class="list-unstyled mt-4 benefits-list">
+              <li><span class="check-icon me-3 mb-2">✓</span>Diseños 100% personalizables</li>
+              <li><span class="check-icon me-3 mb-2">✓</span>Materiales de alta calidad</li>
+              <li><span class="check-icon me-3 mb-2">✓</span>Envíos discretos y seguros</li>
+            </ul>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <div class="about__image rounded-4 shadow-sm" aria-label="Equipo Eternia trabajando"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- RESEÑAS -->
+    <section class="section testimonials py-5">
+      <div class="container">
+
+        <div class="section__header text-center mb-4">
+          <h2 class="section__title mb-2">Reseñas</h2>
+          <p class="section__subtitle mb-0">¿Qué dicen las familias?</p>
         </div>
 
-        <div class="col-12 col-lg-6">
-          <div class="about__image rounded-4 shadow-sm"
-               aria-label="Equipo Eternia trabajando"></div>
+        <div class="row g-4 justify-content-center">
+
+          <!-- CARD 1 -->
+          <div class="col-12 col-lg-4">
+            <article class="testimonial-card card border-0 h-100">
+              <div class="card-body p-4">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <div class="testimonial__rating" aria-label="Calificación 5 de 5">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                  <span class="badge text-bg-light">Cliente verificado</span>
+                </div>
+
+                <p class="testimonial__text mb-4">
+                  “Mi abuelo era fanático de la F1. Su despedida fue en un ataúd rojo Ferrari.
+                  Fue un homenaje perfecto.”
+                </p>
+
+                <div class="d-flex align-items-center gap-3">
+                  <img src="assets/avatar1.jpg" alt="Mariana González" class="rounded-circle" width="56" height="56"
+                    loading="lazy">
+                  <div>
+                    <strong>Mariana González</strong><br>
+                    <small class="text-muted">Santiago, Chile</small>
+                  </div>
+                </div>
+
+              </div>
+            </article>
+          </div>
+
+          <!-- CARD 2 -->
+          <div class="col-12 col-lg-4">
+            <article class="testimonial-card card border-0 h-100">
+              <div class="card-body p-4">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <div class="testimonial__rating" aria-label="Calificación 4 de 5">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                  </div>
+                  <span class="badge text-bg-light">Diseño a medida</span>
+                </div>
+
+                <p class="testimonial__text mb-4">
+                  “Quería algo gótico victoriano y el nivel de detalle fue impresionante.”
+                </p>
+
+                <div class="d-flex align-items-center gap-3">
+                  <img src="assets/avatar2.jpg" alt="Javier R." class="rounded-circle" width="56" height="56"
+                    loading="lazy">
+                  <div>
+                    <strong>Javier R.</strong><br>
+                    <small class="text-muted">Valparaíso, Chile</small>
+                  </div>
+                </div>
+
+              </div>
+            </article>
+          </div>
+
+          <!-- CARD 3 -->
+          <div class="col-12 col-lg-4">
+            <article class="testimonial-card card border-0 h-100">
+              <div class="card-body p-4">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <div class="testimonial__rating" aria-label="Calificación 5 de 5">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                  <span class="badge text-bg-light">Servicio premium</span>
+                </div>
+
+                <p class="testimonial__text mb-4">
+                  “Nada del ambiente lúgubre de siempre. Fue moderno y muy respetuoso.”
+                </p>
+
+                <div class="d-flex align-items-center gap-3">
+                  <img src="assets/avatar6.jpg" alt="Luis M." class="rounded-circle" width="56" height="56"
+                    loading="lazy">
+                  <div>
+                    <strong>Luis M.</strong><br>
+                    <small class="text-muted">Concepción, Chile</small>
+                  </div>
+                </div>
+
+              </div>
+            </article>
+          </div>
+
         </div>
-
       </div>
-    </div>
-  </section>
-
-
-  
- <!-- RESEÑAS -->
-<section class="section testimonials py-5">
-  <div class="container">
-
-    <div class="section__header text-center mb-4">
-      <h2 class="section__title mb-2">Reseñas</h2>
-      <p class="section__subtitle mb-0">¿Qué dicen las familias?</p>
-    </div>
-
-    <div class="row g-4 justify-content-center">
-
-      <!-- CARD 1 -->
-      <div class="col-12 col-lg-4">
-        <article class="testimonial-card card border-0 h-100">
-          <div class="card-body p-4">
-
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <div class="testimonial__rating" aria-label="Calificación 5 de 5">
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-              <span class="badge text-bg-light">Cliente verificado</span>
-            </div>
-
-            <p class="testimonial__text mb-4">
-              “Mi abuelo era fanático de la F1. Su despedida fue en un ataúd rojo Ferrari.
-              Fue un homenaje perfecto.”
-            </p>
-
-            <div class="d-flex align-items-center gap-3">
-              <img src="assets/avatar1.jpg" alt="Mariana González"
-                   class="rounded-circle" width="56" height="56" loading="lazy">
-              <div>
-                <strong>Mariana González</strong><br>
-                <small class="text-muted">Santiago, Chile</small>
-              </div>
-            </div>
-
-          </div>
-        </article>
-      </div>
-
-      <!-- CARD 2 -->
-      <div class="col-12 col-lg-4">
-        <article class="testimonial-card card border-0 h-100">
-          <div class="card-body p-4">
-
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <div class="testimonial__rating" aria-label="Calificación 4 de 5">
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-              </div>
-              <span class="badge text-bg-light">Diseño a medida</span>
-            </div>
-
-            <p class="testimonial__text mb-4">
-              “Quería algo gótico victoriano y el nivel de detalle fue impresionante.”
-            </p>
-
-            <div class="d-flex align-items-center gap-3">
-              <img src="assets/avatar2.jpg" alt="Javier R."
-                   class="rounded-circle" width="56" height="56" loading="lazy">
-              <div>
-                <strong>Javier R.</strong><br>
-                <small class="text-muted">Valparaíso, Chile</small>
-              </div>
-            </div>
-
-          </div>
-        </article>
-      </div>
-
-      <!-- CARD 3 -->
-      <div class="col-12 col-lg-4">
-        <article class="testimonial-card card border-0 h-100">
-          <div class="card-body p-4">
-
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <div class="testimonial__rating" aria-label="Calificación 5 de 5">
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-              <span class="badge text-bg-light">Servicio premium</span>
-            </div>
-
-            <p class="testimonial__text mb-4">
-              “Nada del ambiente lúgubre de siempre. Fue moderno y muy respetuoso.”
-            </p>
-
-            <div class="d-flex align-items-center gap-3">
-              <img src="assets/avatar6.jpg" alt="Luis M."
-                   class="rounded-circle" width="56" height="56" loading="lazy">
-              <div>
-                <strong>Luis M.</strong><br>
-                <small class="text-muted">Concepción, Chile</small>
-              </div>
-            </div>
-
-          </div>
-        </article>
-      </div>
-
-    </div>
-  </div>
-</section>
+    </section>
 
 
     <!-- CONTACTO -->
@@ -320,7 +430,8 @@
 
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="tucorreo@ejemplo.com" required />
+                <input type="email" id="email" name="email" class="form-control" placeholder="tucorreo@ejemplo.com"
+                  required />
                 <div class="invalid-feedback">Por favor ingresa un email válido.</div>
               </div>
 
@@ -341,102 +452,109 @@
     </section>
 
   </main>
-    <!-- Footer -->
+  <!-- Footer -->
   <footer class="footer footer--modern py-5" role="contentinfo">
-  <div class="container">
+    <div class="container">
 
-    <!-- Top gradient hairline -->
-    <div class="footer__topline" aria-hidden="true"></div>
+      <!-- Top gradient hairline -->
+      <div class="footer__topline" aria-hidden="true"></div>
 
-    <div class="row g-4 align-items-start pt-4">
+      <div class="row g-4 align-items-start pt-4">
 
-      <!-- Brand -->
-      <div class="col-12 col-lg-5">
-        <a href="#inicio" class="footer__brand d-inline-flex align-items-center gap-2 text-decoration-none">
-          
-          <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Eternia - Inicio">
-            <img src="assets/logo-eternia-blanco.png" alt="Logo Eternia" class="navbar-logo" loading="eager">
-          </a>
+        <!-- Brand -->
+        <div class="col-12 col-lg-5">
+          <a href="#inicio" class="footer__brand d-inline-flex align-items-center gap-2 text-decoration-none">
 
-        <p class="footer__desc mt-3 mb-4">
-          Tu último viaje, a tu manera.<br> Ataúdes personalizados que celebran la vida con diseños únicos y temáticos.
-        </p>
+            <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Eternia - Inicio">
+              <img src="assets/logo-eternia-blanco.png" alt="Logo Eternia" class="navbar-logo" loading="eager">
+            </a>
 
-        <!-- Social -->
-        <div class="d-flex flex-wrap gap-2">
+            <p class="footer__desc mt-3 mb-4">
+              Tu último viaje, a tu manera.<br> Ataúdes personalizados que celebran la vida con diseños únicos y
+              temáticos.
+            </p>
 
-          <a class="footer__social" href="https://wa.me/569XXXXXXXX" target="_blank" rel="noopener noreferrer"aria-label="WhatsApp">
-            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-          </a>
+            <!-- Social -->
+            <div class="d-flex flex-wrap gap-2">
 
-          <a class="footer__social" href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-instagram" aria-hidden="true"></i>            
-          </a>
+              <a class="footer__social" href="https://wa.me/569XXXXXXXX" target="_blank" rel="noopener noreferrer"
+                aria-label="WhatsApp">
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+              </a>
 
-          <a class="footer__social" href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-            <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>           
-          </a>
+              <a class="footer__social" href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+              </a>
 
-          <a class="footer__social" href="#" target="_blank" rel="noopener noreferrer" aria-label="X">
-            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
-          </a>          
+              <a class="footer__social" href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+              </a>
 
-        </div>
-      </div>
+              <a class="footer__social" href="#" target="_blank" rel="noopener noreferrer" aria-label="X">
+                <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+              </a>
 
-      <!-- Links -->
-      <div class="col-6 col-lg-3">
-        <h6 class="footer__title">Explorar</h6>
-        <ul class="list-unstyled footer__list mb-0">
-          <li><a class="footer__link" href="#inicio">Inicio</a></li>
-          <li><a class="footer__link" href="#catalogo">Catálogo</a></li>
-          <li><a class="footer__link" href="#nosotros">Nosotros</a></li>
-          <li><a class="footer__link" href="#contacto">Contacto</a></li>
-          <li><a class="footer__link" href="#contacto">Mi cuenta</a></li>
-        </ul>
-      </div>
-
-      <div class="col-6 col-lg-4">
-        <h6 class="footer__title">Legal</h6>
-        <ul class="list-unstyled footer__list mb-3">
-          <li><a class="footer__link" href="politica-privacidad.html">Política de privacidad</a></li>
-          <li><a class="footer__link" href="#">Términos y condiciones</a></li>
-        </ul>
-
-        <a>Suscríbete y recibe novedades</a>
-        <form class="mt-3" action="#" method="post">
-          <div class="input-group footer__inputgroup">            
-            <input type="email" class="form-control footer__input" placeholder="tucorreo@email.com" aria-label="Correo">
-            <button class="btn footer__btn" type="submit">Suscribirme</button>
-          </div>
-          <small class="footer__hint d-block mt-2">Al suscribirte aceptas la política de privacidad.</small>
-        </form>
-      </div>
-
-    </div>
-
-    <div class="footer__bottom mt-5 pt-4 d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
-      <p class="mb-0 footer__copy">© 2025 Eternia. Todos los derechos reservados.</p>
-      <!--logo transbank-->
-      <img src="assets/logo-web-pay-plus.png" alt="Logo webpay" class="footer__logo_wp">
-    </div>
-
-    </div>
-    </footer>
-
-
-
-        <!-- Toast custom-->
-        <div id="toast" class="toast" aria-live="polite" aria-atomic="true">
-            <div class="toast__icon">✓</div>
-            <div class="toast__content">
-            <p class="toast__title">¡Mensaje Enviado!</p>
-            <p class="toast__message">Te contactaremos pronto para diseñar tu idea.</p>
             </div>
         </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
+        <!-- Links -->
+        <div class="col-6 col-lg-3">
+          <h6 class="footer__title">Explorar</h6>
+          <ul class="list-unstyled footer__list mb-0">
+            <li><a class="footer__link" href="#inicio">Inicio</a></li>
+            <li><a class="footer__link" href="#catalogo">Catálogo</a></li>
+            <li><a class="footer__link" href="#nosotros">Nosotros</a></li>
+            <li><a class="footer__link" href="#contacto">Contacto</a></li>
+            <li><a class="footer__link" href="#contacto">Mi cuenta</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-lg-4">
+          <h6 class="footer__title">Legal</h6>
+          <ul class="list-unstyled footer__list mb-3">
+            <li><a class="footer__link" href="politica-privacidad.html">Política de privacidad</a></li>
+            <li><a class="footer__link" href="#">Términos y condiciones</a></li>
+          </ul>
+
+          <a>Suscríbete y recibe novedades</a>
+          <form class="mt-3" action="#" method="post">
+            <div class="input-group footer__inputgroup">
+              <input type="email" class="form-control footer__input" placeholder="tucorreo@email.com"
+                aria-label="Correo">
+              <button class="btn footer__btn" type="submit">Suscribirme</button>
+            </div>
+            <small class="footer__hint d-block mt-2">Al suscribirte aceptas la política de privacidad.</small>
+          </form>
+        </div>
+
+      </div>
+
+      <div
+        class="footer__bottom mt-5 pt-4 d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+        <p class="mb-0 footer__copy">© 2025 Eternia. Todos los derechos reservados.</p>
+        <!--logo transbank-->
+        <img src="assets/logo-web-pay-plus.png" alt="Logo webpay" class="footer__logo_wp">
+      </div>
+
+    </div>
+  </footer>
+
+
+
+  <!-- Toast custom-->
+  <div id="toast" class="toast" aria-live="polite" aria-atomic="true">
+    <div class="toast__icon">✓</div>
+    <div class="toast__content">
+      <p class="toast__title">¡Mensaje Enviado!</p>
+      <p class="toast__message">Te contactaremos pronto para diseñar tu idea.</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="navbar.js"></script>
+  <script src="script.js"></script>
+  <script src="wishlist.js"></script>
+  <script src="catalogo.js"></script>
 
 
 </body>

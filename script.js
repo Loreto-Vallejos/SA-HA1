@@ -21,8 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const hash = (window.location.hash || "#inicio").toLowerCase();
     navLinks.forEach((a) => {
       const href = (a.getAttribute("href") || "").toLowerCase();
-      a.classList.toggle("active", href === hash);
-      a.setAttribute("aria-current", href === hash ? "page" : "false");
+      const isActive = href === hash;
+      a.classList.toggle("active", isActive);
+      a.setAttribute("aria-current", isActive ? "page" : "false");
     });
   };
 
@@ -82,6 +83,196 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
+     Cuenta (login / register) - TABS
+     ✅ Asegura type="button"
+  ========================= */
+  const tabs = document.querySelectorAll(".account__tab");
+  const accountForms = document.querySelectorAll(".account__form");
+
+  const setActiveTab = (target) => {
+    tabs.forEach((t) => t.classList.toggle("is-active", t.dataset.target === target));
+    accountForms.forEach((f) => f.classList.toggle("is-active", f.id === `${target}Form`));
+  };
+
+  tabs.forEach((tab) => {
+    tab.setAttribute("type", "button"); // IMPORTANTÍSIMO
+    tab.addEventListener("click", () => {
+      setActiveTab(tab.dataset.target);
+    });
+  });
+
+  /* =============================
+     REGISTER: validaciones + JSON
+     ✅ SIN DOMContentLoaded anidado
+     ✅ NO cambia a iniciar sesión
+  ============================= */
+  const registerForm = document.getElementById("registerForm");
+
+  if (registerForm) {
+    const registerMsg = document.getElementById("registerMsg");
+
+    const nameInput = document.getElementById("registerName");
+    const phoneInput = document.getElementById("registerPhone");
+    const emailInput = document.getElementById("registerEmail");
+    const passInput = document.getElementById("registerPassword");
+    const pass2Input = document.getElementById("registerPassword2");
+
+    // Helpers UI
+    function setFieldError(input, message) {
+      if (!input) return;
+      const field = input.closest(".field");
+      const errorEl = field ? field.querySelector(".error") : null;
+
+      if (field) field.classList.add("is-invalid");
+      if (errorEl) errorEl.textContent = message || "Campo inválido";
+    }
+
+    function clearFieldError(input) {
+      if (!input) return;
+      const field = input.closest(".field");
+      const errorEl = field ? field.querySelector(".error") : null;
+
+      if (field) field.classList.remove("is-invalid");
+      if (errorEl) errorEl.textContent = "";
+    }
+
+    function showFormMessage(text, type = "error") {
+      if (!registerMsg) return;
+      registerMsg.textContent = text;
+      registerMsg.classList.remove("success", "error");
+      registerMsg.classList.add(type);
+    }
+
+    // Validaciones
+    function isValidEmailLocal(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(email || "").trim());
+    }
+
+    function normalizeCLPhone(raw) {
+      const digits = String(raw || "").replace(/\D/g, "");
+
+      // 569XXXXXXXX (11) -> +569XXXXXXXX
+      if (digits.length === 11 && digits.startsWith("569")) return `+${digits}`;
+
+      // 56 + 9XXXXXXXX -> +569XXXXXXXX
+      if (digits.length === 11 && digits.startsWith("56")) {
+        const rest = digits.slice(2);
+        if (rest.length === 9 && rest.startsWith("9")) return `+56${rest}`;
+      }
+
+      // 9XXXXXXXX (9) -> +569XXXXXXXX
+      if (digits.length === 9 && digits.startsWith("9")) return `+56${digits}`;
+
+      return null;
+    }
+
+    function isValidPassword(p) {
+      return String(p || "").length >= 8;
+    }
+
+    // Limpia errores al escribir
+    [nameInput, phoneInput, emailInput, passInput, pass2Input].forEach((el) => {
+      if (!el) return;
+      el.addEventListener("input", () => clearFieldError(el));
+    });
+
+    registerForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      // ✅ Mantente en register SIEMPRE al enviar register
+      setActiveTab("register");
+
+      // Limpia mensaje general
+      if (registerMsg) {
+        registerMsg.textContent = "";
+        registerMsg.classList.remove("success", "error");
+      }
+
+      let isOk = true;
+
+      const fullName = (nameInput?.value || "").trim();
+      const phoneRaw = (phoneInput?.value || "").trim();
+      const email = (emailInput?.value || "").trim().toLowerCase();
+      const password = passInput?.value || "";
+      const password2 = pass2Input?.value || "";
+
+      // Nombre
+      if (fullName.length < 3) {
+        isOk = false;
+        setFieldError(nameInput, "Ingresa tu nombre completo (mínimo 3 caracteres).");
+      }
+
+      // Teléfono
+      const phoneNormalized = normalizeCLPhone(phoneRaw);
+      if (!phoneNormalized) {
+        isOk = false;
+        setFieldError(phoneInput, "Teléfono inválido. Ej: +56 9 1234 5678");
+      }
+
+      // Email
+      if (!isValidEmailLocal(email)) {
+        isOk = false;
+        setFieldError(emailInput, "Email inválido. Ej: correo@ejemplo.com");
+      }
+
+      // Password
+      if (!isValidPassword(password)) {
+        isOk = false;
+        setFieldError(passInput, "La contraseña debe tener al menos 8 caracteres.");
+      }
+
+      // Password coincide
+      if (password2 !== password) {
+        isOk = false;
+        setFieldError(pass2Input, "Las contraseñas no coinciden.");
+      }
+
+      if (!isOk) {
+        showFormMessage("Revisa los campos marcados en rojo.", "error");
+        return;
+      }
+
+      // ✅ Crear objeto JSON con los campos requeridos
+      const user = {
+        nombreCompleto: fullName,
+        telefono: phoneNormalized,
+        email: email,
+        password: password,
+        createdAt: new Date().toISOString()
+      };
+
+      // Guardar en localStorage (lista de usuarios)
+      const key = "users";
+      let users = [];
+      try {
+        users = JSON.parse(localStorage.getItem(key) || "[]");
+      } catch {
+        users = [];
+      }
+
+      // Evitar duplicado por email
+      const exists = users.some((u) => String(u.email || "").toLowerCase() === user.email);
+      if (exists) {
+        setFieldError(emailInput, "Este email ya está registrado.");
+        showFormMessage("Ese email ya existe. Prueba con otro.", "error");
+        return;
+      }
+
+      users.push(user);
+      localStorage.setItem(key, JSON.stringify(users));
+
+      // ✅ Mensaje visible y NO cambiar a login
+      showFormMessage("Cuenta creada correctamente ✅ (ya puedes iniciar sesión)", "success");
+
+      // Reset sin borrar el mensaje
+      registerForm.reset();
+
+      // ✅ Quédate en register (por si otro código intenta cambiar)
+      setActiveTab("register");
+    });
+  }
+
+  /* =========================
      Animaciones
   ========================= */
   const observer = new IntersectionObserver((entries) => {
@@ -118,45 +309,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!file.type.startsWith("image/") || file.size > 5 * 1024 * 1024) {
         inputReferencia.value = "";
-        previewBox.classList.remove("is-visible");
+        previewBox?.classList.remove("is-visible");
         return;
       }
 
-      previewImg.src = URL.createObjectURL(file);
-      previewBox.classList.add("is-visible");
+      if (previewImg) previewImg.src = URL.createObjectURL(file);
+      previewBox?.classList.add("is-visible");
     });
 
     btnQuitarImagen?.addEventListener("click", () => {
       inputReferencia.value = "";
-      previewBox.classList.remove("is-visible");
-      previewImg.removeAttribute("src");
+      previewBox?.classList.remove("is-visible");
+      previewImg?.removeAttribute("src");
     });
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      msgExito.textContent = "¡Listo! Recibimos tu solicitud.";
+      if (msgExito) msgExito.textContent = "¡Listo! Recibimos tu solicitud.";
       form.reset();
-      previewBox.classList.remove("is-visible");
+      previewBox?.classList.remove("is-visible");
     });
   }
-
-  /* =========================
-     Cuenta (login / register)
-  ========================= */
-  const tabs = document.querySelectorAll(".account__tab");
-  const forms = document.querySelectorAll(".account__form");
-
-  tabs.forEach(tab => {
-    tab.addEventListener("click", () => {
-      tabs.forEach(t => t.classList.remove("is-active"));
-      forms.forEach(f => f.classList.remove("is-active"));
-
-      tab.classList.add("is-active");
-      document
-        .getElementById(tab.dataset.target + "Form")
-        ?.classList.add("is-active");
-    });
-  });
 
 });
 
@@ -171,111 +344,6 @@ document.querySelectorAll('.privacy-toggle').forEach(btn => {
   });
 });
  /*termnio de washington m.*/ 
-
-
-  /*wishlist Inicio de washington m.*/ 
- /* =========================
-   WISHLIST – LOCALSTORAGE
-   ========================= */
-
-const WISHLIST_KEY = "wishlist";
-
-/* Obtener wishlist */
-function getWishlist() {
-  try {
-    return JSON.parse(localStorage.getItem(WISHLIST_KEY)) || [];
-  } catch {
-    return [];
-  }
-}
-
-/* Guardar wishlist */
-function setWishlist(list) {
-  localStorage.setItem(WISHLIST_KEY, JSON.stringify(list));
-}
-
-/* Verificar si un id está en wishlist */
-function isInWishlist(id) {
-  return getWishlist().includes(String(id));
-}
-
-/* Agregar / quitar */
-function toggleWishlist(id) {
-  id = String(id);
-  const list = getWishlist();
-  const index = list.indexOf(id);
-
-  if (index === -1) {
-    list.push(id);
-  } else {
-    list.splice(index, 1);
-  }
-
-  setWishlist(list);
-  updateWishlistCount();
-  syncWishlistButtons();
-}
-
-/* =========================
-   NAVBAR – CONTADOR
-   ========================= */
-
-function updateWishlistCount() {
-  const countEl = document.getElementById("wishlistCount");
-  if (!countEl) return;
-
-  const n = getWishlist().length;
-  countEl.textContent = n;
-  countEl.style.display = n > 0 ? "inline-block" : "none";
-}
-
-/* =========================
-   BOTONES CORAZÓN
-   ========================= */
-
-function syncWishlistButtons() {
-  document.querySelectorAll(".wishlist-btn").forEach(btn => {
-    const id = btn.dataset.id;
-    const icon = btn.querySelector("i");
-    const active = isInWishlist(id);
-
-    btn.classList.toggle("is-active", active);
-
-    if (icon) {
-      icon.classList.toggle("fa-solid", active);
-      icon.classList.toggle("fa-regular", !active);
-    }
-  });
-}
-
-/* =========================
-   EVENTOS
-   ========================= */
-
-/* Click en corazón */
-document.addEventListener("click", (e) => {
-  const btn = e.target.closest(".wishlist-btn");
-  if (!btn) return;
-
-  e.preventDefault();
-  toggleWishlist(btn.dataset.id);
-});
-
-/* Inicializar al cargar */
-document.addEventListener("DOMContentLoaded", () => {
-  updateWishlistCount();
-  syncWishlistButtons();
-});
-
-/* Sync si hay varias pestañas */
-window.addEventListener("storage", () => {
-  updateWishlistCount();
-  syncWishlistButtons();
-});
-
-
-
-
 
 
   /*wishlist termnio de washington m.*/ 
