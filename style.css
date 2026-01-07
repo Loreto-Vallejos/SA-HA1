@@ -1272,6 +1272,185 @@ figure.producto:hover .overlay {
   line-height: 1.6;
 }
 
+/* =========================
+   MODAL PREMIUM - PRODUCTO
+   ========================= */
 
+.product-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.product-modal.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.product-modal__content {
+  background: #111;
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  border-radius: 20px;
+  position: relative;
+  overflow-y: auto;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  transform: scale(0.9) translateY(20px);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.product-modal.is-active .product-modal__content {
+  transform: scale(1) translateY(0);
+}
+
+.product-modal__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.product-modal__close:hover {
+  background: #d4af37;
+  color: #000;
+  transform: rotate(90deg);
+}
+
+.product-modal__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .product-modal__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.product-modal__image {
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.product-modal__image img {
+  max-width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+  transition: transform 0.5s ease;
+}
+
+.product-modal__content:hover .product-modal__image img {
+  transform: scale(1.05);
+}
+
+.product-modal__info {
+  padding: 40px;
+  color: #fff;
+}
+
+.product-modal__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: #d4af37;
+  margin-bottom: 10px;
+}
+
+.product-modal__price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.product-modal__price span {
+  font-size: 1rem;
+  text-decoration: line-through;
+  opacity: 0.5;
+  margin-left: 10px;
+}
+
+.product-modal__description {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.product-modal__specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 25px;
+  margin-bottom: 30px;
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.spec-item span:first-child {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #d4af37;
+  margin-bottom: 5px;
+}
+
+.spec-item span:last-child {
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.product-modal__actions {
+  display: flex;
+  gap: 15px;
+}
+
+.product-modal__btn {
+  flex: 1;
+  padding: 15px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-buy {
+  background: #d4af37;
+  color: #000;
+}
+
+.btn-buy:hover {
+  background: #b8962d;
+  transform: translateY(-2px);
+}
 
 /*termino wishlist washington M*/

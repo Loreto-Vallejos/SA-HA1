@@ -186,6 +186,81 @@ async function renderWishlist() {
   }
 }
 
+
+/* =========================
+   MODAL - LOGIC
+   ========================= */
+
+const productModal = document.getElementById("productModal");
+const closeModalBtn = document.getElementById("closeModal");
+const modalBody = document.getElementById("modalBody");
+
+function openModal(productId) {
+  if (!productModal || !modalBody) return;
+
+  fetch("./catalogo.json")
+    .then(res => res.json())
+    .then(productos => {
+      const p = productos.find(item => String(item.id) === String(productId));
+      if (!p) return;
+
+      const precio = formatCLP(p.precio);
+      const precioAnterior = hasPrecioAnterior(p.precioAnterior) ? formatCLP(p.precioAnterior) : "";
+      const d = p.detalles || {};
+
+      modalBody.innerHTML = `
+        <div class="product-modal__grid">
+          <div class="product-modal__image">
+            <img src="${p.imagen}" alt="${p.nombre}">
+          </div>
+          <div class="product-modal__info">
+            <h2 class="product-modal__title">${p.nombre}</h2>
+            <p class="product-modal__price">
+              $${precio}
+              ${precioAnterior ? `<span>$${precioAnterior}</span>` : ""}
+            </p>
+            <p class="product-modal__description">${p.descripcion}</p>
+            
+            <div class="product-modal__specs">
+              <div class="spec-item">
+                <span>Material</span>
+                <span>${d.material || "Madera Premium"}</span>
+              </div>
+              <div class="spec-item">
+                <span>Medidas</span>
+                <span>${d.medidas || "Estándar"}</span>
+              </div>
+              <div class="spec-item">
+                <span>Peso</span>
+                <span>${d.peso || "S/N"}</span>
+              </div>
+              <div class="spec-item">
+                <span>Garantía</span>
+                <span>${d.garantia || "Vitalicia"}</span>
+              </div>
+            </div>
+
+            <div class="product-modal__actions">
+              <button class="product-modal__btn btn-buy add-to-cart" data-id="${p.id}">
+                Añadir al carrito
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      productModal.classList.add("is-active");
+      document.body.style.overflow = "hidden"; // Bloquear scroll
+    })
+    .catch(err => console.error("Error al cargar detalles:", err));
+}
+
+function closeModal() {
+  if (!productModal) return;
+  productModal.classList.remove("is-active");
+  document.body.style.overflow = ""; // Liberar scroll
+}
+
 /* =========================
    INITIALIZATION
    ========================= */
@@ -194,13 +269,35 @@ document.addEventListener("DOMContentLoaded", () => {
   updateWishlistCount();
   syncWishlistButtons();
   renderWishlist();
+
+  // Cerrar modal al clickear X o fuera
+  if (closeModalBtn) closeModalBtn.addEventListener("click", closeModal);
+  if (productModal) {
+    productModal.addEventListener("click", (e) => {
+      if (e.target === productModal) closeModal();
+    });
+  }
 });
 
 document.addEventListener("click", (e) => {
-  const btn = e.target.closest(".wishlist-btn");
-  if (!btn) return;
-  e.preventDefault();
-  toggleWishlist(btn.dataset.id);
+  // Manejo de Wishlist
+  const wishBtn = e.target.closest(".wishlist-btn");
+  if (wishBtn) {
+    e.preventDefault();
+    toggleWishlist(wishBtn.dataset.id);
+    return;
+  }
+
+  // Manejo de Modal de Producto (click en imagen o figure)
+  const productImg = e.target.closest(".contenedor-imagen img");
+  if (productImg) {
+    // Buscamos el ID en el botón de wishlist cercano o en el add-to-cart del overlay
+    const container = productImg.closest("article") || productImg.closest(".producto");
+    const idBtn = container?.querySelector("[data-id]");
+    if (idBtn) {
+      openModal(idBtn.dataset.id);
+    }
+  }
 });
 
 window.addEventListener("storage", () => {

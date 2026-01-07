@@ -7,17 +7,31 @@
     "precioAnterior": 3500000,
     "descuento": "-30%",
     "badgeColor": "sandia",
-    "imagen": "assets/anime_warrior_themed_coffin.png"
+    "imagen": "assets/anime_warrior_themed_coffin.png",
+    "detalles": {
+      "material": "Madera de Cedro con acabado en laca acrílica",
+      "medidas": "210cm x 75cm x 55cm",
+      "peso": "85kg",
+      "interior": "Terciopelo rojo con bordados dorados",
+      "garantia": "50 años (Estructura)"
+    }
   },
   {
     "id": 2,
     "nombre": "Barbie Girl",
     "descripcion": "Estética vibrante inspirada en fantasía y glamour.",
     "precio": 2800000,
-    "precioAnterior": "" ,
+    "precioAnterior": "",
     "descuento": "",
     "badgeColor": "calipso",
-    "imagen": "assets/ataud-aston-martin.png"
+    "imagen": "assets/ataud-aston-martin.png",
+    "detalles": {
+      "material": "Roble Americano con pigmentos rosados neón",
+      "medidas": "205cm x 70cm x 50cm",
+      "peso": "90kg",
+      "interior": "Satén rosado con cristales decorativos",
+      "garantia": "40 años (Estructura)"
+    }
   },
   {
     "id": 3,
@@ -27,7 +41,14 @@
     "precioAnterior": 3200000,
     "descuento": "-20%",
     "badgeColor": "sandia",
-    "imagen": "assets/hip_hop_graffiti_coffin.png"
+    "imagen": "assets/hip_hop_graffiti_coffin.png",
+    "detalles": {
+      "material": "Pino tratado con técnica de grafiti profesional",
+      "medidas": "215cm x 80cm x 60cm",
+      "peso": "75kg",
+      "interior": "Seda negra con costuras tipo calzado urbano",
+      "garantia": "30 años (Estructura)"
+    }
   },
   {
     "id": 4,
@@ -37,7 +58,14 @@
     "precioAnterior": 4000000,
     "descuento": "-15%",
     "badgeColor": "calipso",
-    "imagen": "assets/ataud-pokemon.png"
+    "imagen": "assets/ataud-pokemon.png",
+    "detalles": {
+      "material": "Compuesto de fibra de carbono y madera exótica",
+      "medidas": "200cm x 70cm x 55cm",
+      "peso": "65kg",
+      "interior": "Tela técnica con grabado de alto relieve",
+      "garantia": "60 años (Estructura)"
+    }
   },
   {
     "id": 5,
@@ -47,7 +75,14 @@
     "precioAnterior": "",
     "descuento": "",
     "badgeColor": "calipso",
-    "imagen": "assets/ataud-aston-martin.png"
+    "imagen": "assets/ataud-aston-martin.png",
+    "detalles": {
+      "material": "Caoba seleccionada y cuero legítimo",
+      "medidas": "210cm x 75cm x 58cm",
+      "peso": "95kg",
+      "interior": "Cuero de grano fino capitoné",
+      "garantia": "100 años (Estructura)"
+    }
   },
   {
     "id": 6,
@@ -57,7 +92,14 @@
     "precioAnterior": 3300000,
     "descuento": "-25%",
     "badgeColor": "sandia",
-    "imagen": "assets/ataud-naruto.png"
+    "imagen": "assets/ataud-naruto.png",
+    "detalles": {
+      "material": "Madera de Cerezo japonés tallada a mano",
+      "medidas": "210cm x 72cm x 52cm",
+      "peso": "82kg",
+      "interior": "Lino naranja tradicional con sellos bordados",
+      "garantia": "50 años (Estructura)"
+    }
   },
   {
     "id": 7,
@@ -67,7 +109,14 @@
     "precioAnterior": "",
     "descuento": "",
     "badgeColor": "calipso",
-    "imagen": "assets/ataud-one-piece.png"
+    "imagen": "assets/ataud-one-piece.png",
+    "detalles": {
+      "material": "Teca reforzada (estilo naval)",
+      "medidas": "220cm x 85cm x 65cm",
+      "peso": "88kg",
+      "interior": "Vela de barco suavizada y detalles en soga náutica",
+      "garantia": "45 años (Estructura)"
+    }
   },
   {
     "id": 8,
@@ -77,7 +126,13 @@
     "precioAnterior": 4200000,
     "descuento": "-10%",
     "badgeColor": "sandia",
-    "imagen": "assets/ataud-motoquero.png"
+    "imagen": "assets/ataud-motoquero.png",
+    "detalles": {
+      "material": "Madera de Nogal con apliques de acero cromado",
+      "medidas": "212cm x 78cm x 56cm",
+      "peso": "92kg",
+      "interior": "Cuero negro rudo con costuras naranjas",
+      "garantia": "40 años (Estructura)"
+    }
   }
-    
 ]
