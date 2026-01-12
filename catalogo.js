@@ -107,12 +107,7 @@ function renderCard(p) {
                     <img src="assets/share.svg" alt="Compartir">
                   </a>
                 </li>
-                <li>
-                  <a href="#" aria-label="Comparar">
-                    <img src="assets/compare.svg" alt="Comparar">
-                  </a>
-                </li>
-                <li>
+                
                   <button class="wishlist-btn" type="button" data-id="${id}" aria-label="Wishlist">
                     <i class="fa-regular fa-heart"></i>
                   </button>
