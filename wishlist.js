@@ -211,7 +211,9 @@ function openModal(productId) {
       modalBody.innerHTML = `
         <div class="product-modal__grid">
           <div class="product-modal__image">
-            <img src="${p.imagen}" alt="${p.nombre}">
+            <a href="productos.html?id=${p.id}" title="Ver detalles completos">
+              <img src="${p.imagen}" alt="${p.nombre}" style="cursor: pointer;">
+            </a>
           </div>
           <div class="product-modal__info">
             <h2 class="product-modal__title">${p.nombre}</h2>
@@ -280,7 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("click", (e) => {
-  // Manejo de Wishlist
+  // 1. Manejo de Wishlist (Botón corazón)
   const wishBtn = e.target.closest(".wishlist-btn");
   if (wishBtn) {
     e.preventDefault();
@@ -288,14 +290,20 @@ document.addEventListener("click", (e) => {
     return;
   }
 
-  // Manejo de Modal de Producto (click en imagen o figure)
-  const productImg = e.target.closest(".contenedor-imagen img");
-  if (productImg) {
-    // Buscamos el ID en el botón de wishlist cercano o en el add-to-cart del overlay
-    const container = productImg.closest("article") || productImg.closest(".producto");
-    const idBtn = container?.querySelector("[data-id]");
-    if (idBtn) {
-      openModal(idBtn.dataset.id);
+  // 2. Manejo de Carrito (Evitar que abra el modal si clickeas añadir)
+  const cartBtn = e.target.closest(".add-to-cart");
+  if (cartBtn) {
+    // Dejamos que el evento siga su curso (ir a carrito.html o lógica de carrito)
+    return;
+  }
+
+  // 3. Manejo de Modal de Producto (Click en cualquier parte de la tarjeta)
+  const productCard = e.target.closest(".producto") || e.target.closest("article");
+  if (productCard) {
+    // Buscamos el ID en cualquier elemento que lo tenga dentro de la tarjeta
+    const idSource = productCard.querySelector("[data-id]");
+    if (idSource) {
+      openModal(idSource.dataset.id);
     }
   }
 });

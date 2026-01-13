@@ -1,11 +1,187 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eternia | Carrito de Compras</title>
+
+    <meta name="description" content="Revisa tu selección de productos Eternia." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-    
+
+<body class="page-cart">
+
+    <!-- Header con Navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-md navbar-dark navbar-eternia fixed-top py-3">
+            <div class="container">
+
+                <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Eternia - Inicio">
+                    <img src="assets/logo-eternia-blanco.png" alt="Logo Eternia" class="navbar-logo" loading="eager">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                    aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menú">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav ms-auto mb-2 mb-md-0 align-items-md-center">
+                        <li class="nav-item">
+                            <a class="nav-link nav-anim" href="./index.html">Inicio</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link nav-anim" href="./catalogo.html">Catálogo</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link nav-anim" href="./nosotros.html">Nosotros</a>
+                        </li>
+
+                        <li class="nav-item d-flex align-items-center gap-2 ms-md-2 navbar-icons">
+                            <a class="nav-link nav-icon" href="./cuenta.html" aria-label="Mi cuenta">
+                                <i class="fa-regular fa-user"></i>
+                            </a>
+                            <a class="nav-link nav-icon position-relative" href="./wishlist.html" aria-label="Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                                <span id="wishlistCount" class="badge-wishlist">0</span>
+                            </a>
+                            <a class="nav-link nav-icon position-relative active" href="./carrito.html"
+                                aria-label="Carrito">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span id="cartCount" class="badge-wishlist d-none">0</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ms-md-2">
+                            <a class="btn btn-eternia-cta px-3" href="./contactanos.html">Cotizar</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container py-5 my-5">
+        <h1 class="text-center font-playfair mb-5 text-gold">Tu Carrito de Compras</h1>
+
+        <div id="emptyCartMsg" class="text-center py-5 d-none">
+            <i class="fa-solid fa-basket-shopping fa-4x text-muted mb-3"></i>
+            <h3 class="text-white">Tu carrito está vacío</h3>
+            <p class="text-white-50">Explora nuestro catálogo para encontrar el ataúd perfecto.</p>
+            <a href="catalogo.html" class="btn btn--primary mt-3">Ir al Catálogo</a>
+        </div>
+
+        <div id="cartContainer" class="row g-5">
+            <!-- Lista de Productos -->
+            <div class="col-12 col-lg-8">
+                <div
+                    class="cart-items-wrapper bg-dark bg-opacity-25 rounded-3 border border-secondary border-opacity-25 p-3">
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover align-middle mb-0"
+                            style="--bs-table-bg: transparent;">
+                            <thead>
+                                <tr
+                                    class="border-bottom border-secondary border-opacity-50 text-white-50 small text-uppercase">
+                                    <th scope="col" style="width: 45%;">Producto</th>
+                                    <th scope="col" style="width: 15%;">Precio</th>
+                                    <th scope="col" style="width: 25%;">Cantidad</th>
+                                    <th scope="col" style="width: 15%;" class="text-end">Total</th>
+                                    <th scope="col" style="width: 5%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="cartTableBody">
+                                <!-- Items inyectados por JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumen de Compra -->
+            <div class="col-12 col-lg-4">
+                <div class="cart-summary bg-dark bg-opacity-50 p-4 rounded-3 border border-gold border-opacity-25 shadow-lg position-sticky"
+                    style="top: 100px;">
+                    <h3 class="font-playfair text-white mb-4">Resumen</h3>
+
+                    <div
+                        class="d-flex justify-content-between mb-3 border-bottom border-secondary border-opacity-25 pb-3">
+                        <span class="text-white-50">Subtotal</span>
+                        <span class="text-white fw-bold" id="cartSubtotal">$0</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-4">
+                        <span class="text-white-50">Envío</span>
+                        <span class="text-gold small">Por calcular</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <span class="fs-4 text-white font-playfair">Total</span>
+                        <span class="fs-3 text-gold fw-bold" id="cartTotal">$0</span>
+                    </div>
+
+                    <div class="d-grid gap-3">
+                        <button id="btnCheckout" class="btn btn--primary btn-lg py-3">
+                            FINALIZAR COMPRA
+                        </button>
+                        <a href="catalogo.html" class="btn btn-outline-light btn-sm text-uppercase ls-1">
+                            Seguir comprando
+                        </a>
+                    </div>
+
+                    <div class="checkout-feedback mt-3 text-center d-none" id="checkoutFeedback">
+                        <div class="spinner-border text-gold spinner-border-sm" role="status"></div>
+                        <small class="d-block text-white mt-2">Generando orden...</small>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer footer--modern py-5" role="contentinfo">
+        <div class="container">
+            <div class="row g-4 align-items-start pt-4 border-top border-secondary border-opacity-25">
+                <div class="col-12 col-lg-5">
+                    <a href="index.html" class="text-decoration-none">
+                        <img src="assets/logo-eternia-blanco.png" alt="Logo Eternia" class="mb-3" style="height: 40px;">
+                    </a>
+                    <p class="text-white-50">Tu último viaje, a tu manera. Ataúdes personalizados que celebran la vida.
+                    </p>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <h6 class="text-white mb-3">Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="catalogo.html" class="text-white-50 text-decoration-none">Catálogo</a></li>
+                        <li><a href="nosotros.html" class="text-white-50 text-decoration-none">Nosotros</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom mt-5 pt-4 text-center text-white-50 small">
+                © 2025 Eternia. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="navbar.js"></script>
+    <script src="wishlist.js"></script>
+    <!-- Lógica del Carrito -->
+    <script src="carrito.js"></script>
 </body>
+
 </html>

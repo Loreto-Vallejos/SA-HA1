@@ -12,14 +12,33 @@ document.addEventListener("DOMContentLoaded", () => {
   // ✅ Soporte para límite de productos (data-limit)
   const limit = parseInt(grid.dataset.limit) || 0;
 
-  // ✅ Si tu JSON está dentro de assets, usa: "./assets/catalogo.json"
-  fetch("./catalogo.json", { cache: "no-store" })
+  // ✅ Fetch from Backend API (Spring Boot)
+  const API_URL = "http://localhost:8080/api/products";
+
+  fetch(API_URL, { cache: "no-store" })
     .then((res) => {
-      if (!res.ok) throw new Error(`HTTP ${res.status} al cargar catalogo.json`);
+      if (!res.ok) throw new Error(`HTTP ${res.status} al cargar productos desde API`);
       return res.json();
     })
-    .then((productos) => {
-      if (!Array.isArray(productos)) throw new Error("catalogo.json debe ser un array []");
+    .then((apiProducts) => {
+      if (!Array.isArray(apiProducts)) throw new Error("La API debe retornar un array []");
+
+      // Mapear campos de la API (inglés) al formato del frontend (español)
+      const productos = apiProducts.map(p => ({
+        id: p.id,
+        nombre: p.name,
+        descripcion: p.description,
+        precio: p.price,
+        precioAnterior: p.precioAnterior,
+        descuento: p.descuento,
+        badgeColor: p.badgeColor,
+        imagen: p.image,
+        galeria: p.galeria,
+        detalles: p.detalles,
+        especificaciones_tecnicas: p.especificaciones_tecnicas,
+        servicios: p.servicios,
+        opciones: p.opciones
+      }));
 
       // Aplicar el límite si existe
       let productosAMostrar = limit > 0 ? productos.slice(0, limit) : productos;
