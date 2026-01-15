@@ -2,6 +2,10 @@
    CATÁLOGO PAGE - Eternia
    ================================================ */
 
+.catalog {
+  background-color: var(--color-bg-alt);
+}
+
 .catalogo__filters {
   background: var(--color-bg-alt);
   padding: var(--spacing-md);
