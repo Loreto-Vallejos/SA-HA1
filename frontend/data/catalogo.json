@@ -7,7 +7,7 @@
     "precioAnterior": 3500000,
     "descuento": "-30%",
     "badgeColor": "sandia",
-    "imagen": "assets/anime_warrior_themed_coffin.png",
+    "imagen": "/frontend/assets/anime_warrior_themed_coffin.png",
     "detalles": {
       "material": "Madera de Cedro con acabado en laca acrílica",
       "medidas": "210cm x 75cm x 55cm",
@@ -24,7 +24,7 @@
     "precioAnterior": "",
     "descuento": "",
     "badgeColor": "calipso",
-    "imagen": "assets/ataud-aston-martin.png",
+    "imagen": "/frontend/assets/ataud-aston-martin.png",
     "detalles": {
       "material": "Roble Americano con pigmentos rosados neón",
       "medidas": "205cm x 70cm x 50cm",
@@ -41,7 +41,7 @@
     "precioAnterior": 3200000,
     "descuento": "-20%",
     "badgeColor": "sandia",
-    "imagen": "assets/hip_hop_graffiti_coffin.png",
+    "imagen": "/frontend/assets/hip_hop_graffiti_coffin.png",
     "detalles": {
       "material": "Pino tratado con técnica de grafiti profesional",
       "medidas": "215cm x 80cm x 60cm",
@@ -58,7 +58,7 @@
     "precioAnterior": 4000000,
     "descuento": "-15%",
     "badgeColor": "calipso",
-    "imagen": "assets/ataud-pokemon.png",
+    "imagen": "/frontend/assets/ataud-pokemon.png",
     "detalles": {
       "material": "Compuesto de fibra de carbono y madera exótica",
       "medidas": "200cm x 70cm x 55cm",
@@ -75,7 +75,7 @@
     "precioAnterior": "",
     "descuento": "",
     "badgeColor": "calipso",
-    "imagen": "assets/ataud-aston-martin.png",
+    "imagen": "/frontend/assets/ataud-aston-martin.png",
     "detalles": {
       "material": "Caoba seleccionada y cuero legítimo",
       "medidas": "210cm x 75cm x 58cm",
@@ -92,7 +92,7 @@
     "precioAnterior": 3300000,
     "descuento": "-25%",
     "badgeColor": "sandia",
-    "imagen": "assets/ataud-naruto.png",
+    "imagen": "/frontend/assets/ataud-naruto.png",
     "detalles": {
       "material": "Madera de Cerezo japonés tallada a mano",
       "medidas": "210cm x 72cm x 52cm",
@@ -109,7 +109,7 @@
     "precioAnterior": "",
     "descuento": "",
     "badgeColor": "calipso",
-    "imagen": "assets/ataud-one-piece.png",
+    "imagen": "/frontend/assets/ataud-one-piece.png",
     "detalles": {
       "material": "Teca reforzada (estilo naval)",
       "medidas": "220cm x 85cm x 65cm",
@@ -126,7 +126,7 @@
     "precioAnterior": 4200000,
     "descuento": "-10%",
     "badgeColor": "sandia",
-    "imagen": "assets/ataud-motoquero.png",
+    "imagen": "/frontend/assets/ataud-motoquero.png",
     "detalles": {
       "material": "Madera de Nogal con apliques de acero cromado",
       "medidas": "212cm x 78cm x 56cm",

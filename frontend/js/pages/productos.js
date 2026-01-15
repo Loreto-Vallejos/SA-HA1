@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ✅ Cargar desde JSON Local (Versión estática)
-  fetch("catalogo.json")
+  fetch("/frontend/data/catalogo.json")
     .then(res => res.json())
     .then(productos => {
       // El JSON local ya tiene la estructura correcta, no es necesario mapear

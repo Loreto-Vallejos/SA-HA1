@@ -1,0 +1,51 @@
+/* ================================================
+   PAYMENT / CHECKOUT - Eternia
+   ================================================ */
+
+.payment__container {
+  min-height: 100vh;
+  padding-top: calc(var(--header-height) + 2rem);
+  padding-bottom: var(--spacing-xl);
+  background: var(--color-bg-alt);
+}
+
+.payment__form {
+  background: var(--color-bg);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.payment__section {
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.payment__section:last-child {
+  border-bottom: none;
+}
+
+.payment__section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-primary);
+}
+
+.payment__summary {
+  background: var(--color-bg-alt);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  position: sticky;
+  top: calc(var(--header-height) + 1rem);
+}
+
+.payment__total {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--color-primary);
+}

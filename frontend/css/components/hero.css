@@ -1,0 +1,115 @@
+/* ================================================
+   HERO / CAROUSEL - Eternia
+   ================================================ */
+
+/* Hero Base */
+.hero-bs {
+  position: relative;
+  height: 90vh;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Carrusel como fondo */
+.hero-bs__carousel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-bs__carousel .carousel-item {
+  height: 100%;
+}
+
+.hero-bs__img {
+  height: 90vh;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Overlay oscuro */
+.hero-bs__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* CONTENIDO: texto */
+.hero-bs__content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding-left: 1rem;
+  padding-bottom: 5rem;
+  padding-right: 1rem;
+}
+
+/* Controles del carrusel */
+.hero-bs__control,
+.hero-bs__indicators {
+  z-index: 3;
+}
+
+/* Tipografías / texto */
+.hero-bs__title {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-sm);
+  color: #fff;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.hero-bs__text {
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 4rem;
+  max-width: 520px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.hero-bs__cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* =========================
+   HERO responsive
+========================= */
+@media (max-width: 992px) {
+  .hero-bs {
+    height: 85vh;
+  }
+  .hero-bs__img {
+    height: 85vh;
+  }
+  .hero-bs__title {
+    font-size: 2.5rem;
+  }
+  .hero-bs__text {
+    margin-bottom: 3rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-bs {
+    height: 80vh;
+  }
+  .hero-bs__img {
+    height: 80vh;
+  }
+  .hero-bs__title {
+    font-size: 2.1rem;
+  }
+  .hero-bs__content {
+    padding-bottom: 3rem;
+  }
+}

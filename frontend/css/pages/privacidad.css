@@ -1,0 +1,112 @@
+/* ================================================
+   PRIVACIDAD - POLÍTICA DE PRIVACIDAD
+   ================================================ */
+
+/* Hero Full (imagen ocupa todo, NAV encima) */
+.privacy-hero-full {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #102a34, #1e3a5f);
+  overflow: hidden;
+}
+
+.privacy-hero-full::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.1), transparent 70%);
+  pointer-events: none;
+}
+
+.privacy-hero-full__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.privacy-hero-full__content {
+  position: relative;
+  z-index: 2;
+  padding-top: calc(var(--header-height) + 2rem);
+  padding-bottom: 2rem;
+  text-align: center;
+  color: #fff;
+}
+
+/* Hero alternativo */
+.privacy-hero {
+  position: relative;
+  padding: 5rem 0 3rem;
+  background: linear-gradient(135deg, var(--color-primary), #1e3a5f);
+  color: #fff;
+}
+
+.privacy-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+.privacy-hero__content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Contenido Legal */
+.legal-content {
+  padding: var(--spacing-xl) 0;
+  background: #fff;
+}
+
+.legal-content section {
+  margin-bottom: var(--spacing-lg);
+}
+
+.legal-content h2 {
+  font-size: 1.8rem;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-primary);
+}
+
+.legal-content h3 {
+  font-size: 1.3rem;
+  margin: var(--spacing-md) 0 var(--spacing-sm);
+  color: var(--color-text);
+}
+
+.legal-content p {
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  margin-bottom: var(--spacing-sm);
+}
+
+.legal-content ul,
+.legal-content ol {
+  margin-left: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-muted);
+}
+
+.legal-content li {
+  margin-bottom: 0.5rem;
+}
+
+.breadcrumb {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.breadcrumb a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: underline;
+}
+
+.breadcrumb a:hover {
+  color: #fff;
+}

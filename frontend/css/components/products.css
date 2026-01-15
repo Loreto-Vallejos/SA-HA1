@@ -1,0 +1,433 @@
+/* ================================================
+   PRODUCT CARDS & GALLERY
+   ================================================ */
+
+/* Cards Colecciones */
+.galeria-productos {
+  width: 100%;
+  margin: 60px 0 40px;
+}
+
+figure.producto {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  background: rgb(244, 245, 247);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+figure.producto:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* IMAGEN */
+.contenedor-imagen {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  overflow: hidden;
+  background: #e9e9e9;
+}
+
+.contenedor-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+figure.producto:hover .contenedor-imagen img {
+  transform: scale(1.1);
+}
+
+/* BADGE */
+.contenedor-imagen .info {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 40px;
+  z-index: 2;
+}
+
+.info.sandia {
+  background: #c1666b;
+  color: #fff;
+}
+
+.info.denim {
+  background: #1e3a5f;
+  color: #fff;
+}
+
+.info.champagne {
+  background: #f7e7ce;
+  color: #333;
+}
+
+/* CAPTION */
+figcaption {
+  padding: 20px;
+}
+
+figcaption h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #1a1a1a;
+}
+
+figcaption p {
+  color: #6b7280;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+figcaption .precio {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+figcaption .precio span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #999;
+  text-decoration: line-through;
+  margin-left: 8px;
+}
+
+/* OVERLAY */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.9) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  z-index: 3;
+}
+
+figure.producto:hover .overlay {
+  opacity: 1;
+}
+
+/* Botón Add to Cart */
+.add-to-cart {
+  padding: 14px 32px;
+  background: var(--color-accent);
+  color: #1a1a1a;
+  font-weight: 700;
+  font-size: 1rem;
+  border: 2px solid var(--color-accent);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.add-to-cart:hover {
+  background: #c19b2d;
+  border-color: #c19b2d;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.5);
+}
+
+/* ACCIONES (iconos) */
+.acciones {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+.acciones li {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.acciones li:hover {
+  background: rgba(212, 175, 55, 0.3);
+  transform: scale(1.1);
+}
+
+.acciones a,
+.acciones button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  color: #fff;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.acciones img {
+  width: 18px;
+  height: 18px;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+.acciones i {
+  font-size: 18px;
+  color: #fff;
+}
+
+/* Hover iconos */
+.acciones a img,
+.acciones button i {
+  transition: filter 0.25s ease, transform 0.25s ease, color 0.25s ease;
+}
+
+.acciones a:hover img {
+  filter: brightness(0) saturate(100%) invert(78%) sepia(56%) saturate(636%) hue-rotate(2deg) brightness(103%) contrast(97%);
+  transform: scale(1.15);
+}
+
+.acciones button:hover i {
+  color: var(--color-accent);
+  transform: scale(1.15);
+}
+
+/* Wishlist Button */
+.wishlist-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wishlist-btn i {
+  color: inherit;
+  font-size: 18px;
+}
+
+.wishlist-btn.is-active i {
+  color: #c1666b;
+}
+
+/* Badge count en navbar */
+.badge-wishlist {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #c1666b;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 18px;
+  text-align: center;
+  display: none;
+}
+/* ================================================
+   QUICK VIEW MODAL
+   ================================================ */
+.quick-view-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  padding: 20px;
+}
+
+.quick-view-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.quick-view-modal__content {
+  background: #fff;
+  border-radius: 16px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 40px;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.quick-view-modal.active .quick-view-modal__content {
+  transform: scale(1);
+}
+
+.quick-view-modal__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 32px;
+  color: #666;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.quick-view-modal__close:hover {
+  background: #f0f0f0;
+  color: #000;
+  transform: rotate(90deg);
+}
+
+.quick-view__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.quick-view__image {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f4f5f7;
+}
+
+.quick-view__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.quick-view__details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.quick-view__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+}
+
+.quick-view__description {
+  font-size: 1rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.quick-view__price {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quick-view__precio-actual {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.quick-view__precio-anterior {
+  font-size: 1.25rem;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.quick-view__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.quick-view__actions .btn {
+  flex: 1;
+  padding: 14px 24px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Quick View Button in Product Card */
+.quick-view-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quick-view-btn i {
+  color: #fff;
+  font-size: 18px;
+}
+
+/* Responsive Quick View */
+@media (max-width: 768px) {
+  .quick-view-modal__content {
+    padding: 30px 20px;
+  }
+
+  .quick-view__content {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .quick-view__title {
+    font-size: 1.5rem;
+  }
+
+  .quick-view__precio-actual {
+    font-size: 1.5rem;
+  }
+
+  .quick-view__actions {
+    flex-direction: column;
+  }
+
+  .quick-view__actions .btn {
+    width: 100%;
+  }
+}
