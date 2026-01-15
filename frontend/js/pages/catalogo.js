@@ -12,15 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // ✅ Soporte para límite de productos (data-limit)
   const limit = parseInt(grid.dataset.limit) || 0;
 
-  // Si hay productos estáticos (home), inicializar quick view
-  const staticProducts = grid.querySelectorAll('.quick-view-btn');
-  if (staticProducts.length > 0) {
-    attachQuickViewListeners();
-    return;
-  }
+  // Detectar si estamos en el home o en la página de catálogo
+  const isHome = window.location.pathname.includes('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/frontend/');
+  const jsonPath = isHome ? "data/catalogo.json" : "../../data/catalogo.json";
 
-  // ✅ Si tu JSON está dentro de assets, usa: "./assets/catalogo.json"
-  fetch("/frontend/data/catalogo.json", { cache: "no-store" })
+  // Cargar productos dinámicamente
+  fetch(jsonPath, { cache: "no-store" })
     .then((res) => {
       if (!res.ok) throw new Error(`HTTP ${res.status} al cargar catalogo.json`);
       return res.json();
@@ -31,18 +28,17 @@ document.addEventListener("DOMContentLoaded", () => {
       // Aplicar el límite si existe
       let productosAMostrar = limit > 0 ? productos.slice(0, limit) : productos;
 
-      grid.innerHTML = productosAMostrar.map(renderCard).join("");
+      grid.innerHTML = productosAMostrar.map(p => renderCard(p, isHome)).join("");
 
       // ✅ IMPORTANTE: después de renderizar
-      updateWishlistCount();
-      syncWishlistButtons();
-      attachQuickViewListeners();
+      if (typeof updateWishlistCount === 'function') updateWishlistCount();
+      if (typeof syncWishlistButtons === 'function') syncWishlistButtons();
     })
     .catch((err) => {
       console.error(err);
       grid.innerHTML = `
         <div class="col-12">
-          <p style="margin:0;">No se pudo cargar el catálogo. Revisa consola (F12).</p>
+          <p class="text-white" style="margin:0;">No se pudo cargar el catálogo. Revisa consola (F12).</p>
         </div>
       `;
     });
@@ -75,11 +71,17 @@ function hasPrecioAnterior(val) {
 /* =========================
    RENDER CARD
    ========================= */
-function renderCard(p) {
+function renderCard(p, isHome = false) {
   const id = escapeHTML(p.id);
   const nombre = escapeHTML(p.nombre);
   const descripcion = escapeHTML(p.descripcion);
-  const imagen = escapeHTML(p.imagen);
+  
+  // Ajustar ruta de imagen según contexto
+  let imagen = escapeHTML(p.imagen);
+  if (isHome) {
+    // Si estamos en home, convertir rutas relativas a assets/
+    imagen = imagen.replace('../../assets/', 'assets/').replace('/frontend/assets/', 'assets/');
+  }
 
   const descuento = escapeHTML(p.descuento ?? "");
   const badgeColor = escapeHTML(p.badgeColor ?? "sandia");
@@ -87,47 +89,39 @@ function renderCard(p) {
   const precio = formatCLP(p.precio);
   const precioAnterior = hasPrecioAnterior(p.precioAnterior) ? formatCLP(p.precioAnterior) : "";
 
+  // Ajustar rutas según si estamos en home o catálogo
+  const productoUrl = isHome ? `pages/producto/?id=${id}` : `../producto/?id=${id}`;
+  const carritoUrl = isHome ? `pages/carrito/` : `../carrito/`;
+  const shareIcon = isHome ? `assets/share.svg` : `../../assets/share.svg`;
+
   return `
     <div class="col-12 col-md-6 col-lg-3">
       <article>
         <div class="galeria-productos">
-          <figure class="producto">
-            <div class="contenedor-imagen">
-              <img src="${imagen}" alt="${nombre}">
-              ${descuento ? `<span class="info ${badgeColor}">${descuento}</span>` : ""}
-            </div>
+          <a href="${productoUrl}" class="card-link">
+            <figure class="producto">
+              <div class="contenedor-imagen">
+                <img src="${imagen}" alt="${nombre}">
+                ${descuento ? `<span class="info ${badgeColor}">${descuento}</span>` : ""}
+                <button class="wishlist-btn-card" data-id="${id}" type="button" aria-label="Agregar a wishlist">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+              </div>
 
-            <figcaption>
-              <h3>${nombre}</h3>
-              <p>${descripcion}</p>
-              <p class="precio">
-                $${precio}
-                ${precioAnterior ? ` <span>$${precioAnterior}</span>` : ""}
-              </p>
-            </figcaption>
-
-            <div class="overlay">
-              <a href="./carrito.html" class="add-to-cart" data-id="${id}">Add to cart</a>
-
-              <ul class="acciones">
-                <li>
-                  <a href="#" aria-label="Compartir">
-                    <img src="../../assets/share.svg" alt="Compartir">
-                  </a>
-                </li>
-                <li>
-                  <button class="quick-view-btn" type="button" data-id="${id}" data-nombre="${nombre}" data-descripcion="${descripcion}" data-imagen="${imagen}" data-precio="${precio}" data-precio-anterior="${precioAnterior}" aria-label="Vista rápida">
-                    <i class="fa-regular fa-eye"></i>
-                  </button>
-                </li>
-                <li>
-                  <button class="wishlist-btn" type="button" data-id="${id}" aria-label="Wishlist">
-                    <i class="fa-regular fa-heart"></i>
-                  </button>
-                </li>
-              </ul>
-            </div>
-          </figure>
+              <figcaption>
+                <h3>${nombre}</h3>
+                <p class="descripcion">${descripcion}</p>
+                <div class="precio-container">
+                  ${precioAnterior ? `<p class="precio-anterior">$${precioAnterior}</p>` : ""}
+                  <p class="precio">$${precio}</p>
+                </div>
+                <button class="add-to-cart" data-id="${id}" data-url="${productoUrl}" type="button">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                  Agregar
+                </button>
+              </figcaption>
+            </figure>
+          </a>
         </div>
       </article>
     </div>
@@ -225,6 +219,53 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeQuickView();
+    }
+  });
+
+  // Prevenir que el botón "Agregar al carro" navegue a la página de producto
+  document.addEventListener('click', (e) => {
+    const addToCartBtn = e.target.closest('.add-to-cart');
+    if (addToCartBtn) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const productId = addToCartBtn.getAttribute('data-id');
+      const productUrl = addToCartBtn.getAttribute('data-url');
+      
+      // Aquí puedes agregar la lógica para agregar al carrito
+      console.log('Agregando producto al carrito:', productId);
+      
+      // Opcional: mostrar feedback visual
+      addToCartBtn.innerHTML = '<i class="fa-solid fa-check"></i> Agregado';
+      setTimeout(() => {
+        addToCartBtn.innerHTML = '<i class="fa-solid fa-cart-shopping"></i> Agregar';
+      }, 2000);
+    }
+
+    // Manejar botón wishlist
+    const wishlistBtn = e.target.closest('.wishlist-btn-card');
+    if (wishlistBtn) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const productId = wishlistBtn.getAttribute('data-id');
+      
+      // Usar la función toggleWishlist de wishlist.js
+      if (typeof toggleWishlist === 'function') {
+        toggleWishlist(productId);
+        
+        // Actualizar el ícono
+        const icon = wishlistBtn.querySelector('i');
+        if (isInWishlist(productId)) {
+          icon.classList.remove('fa-regular');
+          icon.classList.add('fa-solid');
+          wishlistBtn.classList.add('active');
+        } else {
+          icon.classList.remove('fa-solid');
+          icon.classList.add('fa-regular');
+          wishlistBtn.classList.remove('active');
+        }
+      }
     }
   });
 });

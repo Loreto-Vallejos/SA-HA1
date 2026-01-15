@@ -1,35 +1,51 @@
 /* ================================================
-   PRODUCT CARDS & GALLERY
+   PRODUCT CARDS & GALLERY - WOODMART STYLE
    ================================================ */
 
 /* Cards Colecciones */
 .galeria-productos {
   width: 100%;
-  margin: 60px 0 40px;
+  margin: 0;
+  padding: 0 10px;
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  cursor: pointer;
 }
 
 figure.producto {
   position: relative;
   width: 100%;
-  margin: 0;
-  background: rgb(244, 245, 247);
-  border-radius: 16px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  margin: 0 0 30px 0;
+  background: #ffffff;
+  overflow: visible;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 figure.producto:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(5, 64, 96, 0.15);
 }
 
 /* IMAGEN */
 .contenedor-imagen {
   position: relative;
   width: 100%;
-  height: 340px;
+  height: 380px;
   overflow: hidden;
-  background: #e9e9e9;
+  background: #f8f8f8;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 .contenedor-imagen img {
@@ -37,138 +53,222 @@ figure.producto:hover {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 figure.producto:hover .contenedor-imagen img {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
 /* BADGE */
 .contenedor-imagen .info {
   position: absolute;
-  top: 14px;
-  right: 14px;
-  padding: 8px 16px;
-  font-size: 0.9rem;
+  top: 16px;
+  left: 16px;
+  padding: 6px 14px;
+  font-size: 0.75rem;
   font-weight: 700;
-  border-radius: 40px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 3px;
   z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Botón Wishlist en tarjeta */
+.wishlist-btn-card {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.wishlist-btn-card:hover {
+  background: var(--color-primary);
+  transform: scale(1.1);
+}
+
+.wishlist-btn-card i {
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  transition: color 0.3s ease;
+}
+
+.wishlist-btn-card:hover i {
+  color: #fff;
+}
+
+.wishlist-btn-card.active i {
+  color: #e74c3c;
+}
+
+.wishlist-btn-card.active {
+  background: rgba(231, 76, 60, 0.1);
+}
+
+.wishlist-btn-card.active:hover {
+  background: #e74c3c;
+}
+
+.wishlist-btn-card.active:hover i {
+  color: #fff;
 }
 
 .info.sandia {
-  background: #c1666b;
+  background: #e74c3c;
+  color: #fff;
+}
+
+.info.calipso {
+  background: #3498db;
   color: #fff;
 }
 
 .info.denim {
-  background: #1e3a5f;
+  background: #2c3e50;
   color: #fff;
 }
 
 .info.champagne {
-  background: #f7e7ce;
-  color: #333;
+  background: #f39c12;
+  color: #fff;
 }
 
 /* CAPTION */
 figcaption {
-  padding: 20px;
+  padding: 0 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 figcaption h3 {
-  font-size: 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
   margin-bottom: 8px;
-  color: #1a1a1a;
+  color: #666;
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-height: 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--color-primary);
+  transition: color 0.3s ease;
 }
 
-figcaption p {
-  color: #6b7280;
-  font-size: 0.95rem;
+.card-link:hover figcaption h3 {
+  color: var(--color-accent);
+}
+
+figcaption .descripcion {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.85rem;
   margin-bottom: 12px;
+  line-height: 1.4;
+  min-height: 40px;
+}
+
+figcaption .precio-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 16px;
+  min-height: 70px;
+  justify-content: center;
+}
+
+figcaption .precio-anterior {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.45);
+  text-decoration: line-through;
+  margin: 0;
+  letter-spacing: 0.3px;
+  height: 20px;
 }
 
 figcaption .precio {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #1a1a1a;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-primary);
   margin: 0;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.5px;
 }
-
-figcaption .precio span {
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: #999;
-  text-decoration: line-through;
-  margin-left: 8px;
-}
-
-/* OVERLAY */
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.9) 100%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  z-index: 3;
-}
-
-figure.producto:hover .overlay {
-  opacity: 1;
-}
-
 /* Botón Add to Cart */
 .add-to-cart {
-  padding: 14px 32px;
-  background: var(--color-accent);
-  color: #1a1a1a;
-  font-weight: 700;
-  font-size: 1rem;
-  border: 2px solid var(--color-accent);
-  border-radius: 8px;
+  width: 100%;
+  padding: 10px 20px;
+  background: transparent;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  border: 2px solid var(--color-primary);
+  border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
-  text-decoration: none;
-  display: inline-block;
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  gap: 8px;
 }
 
 .add-to-cart:hover {
-  background: #c19b2d;
-  border-color: #c19b2d;
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.5);
+  background: var(--color-accent);
+  color: #0f0f0f;
+  border-color: var(--color-accent);
 }
 
-/* ACCIONES (iconos) */
+.add-to-cart i {
+  font-size: 1rem;
+}
+
+/* ACCIONES (iconos) - mantener para compatibilidad */
 .acciones {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  gap: 16px;
+  gap: 12px;
   justify-content: center;
   align-items: center;
 }
 
 .acciones li {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
 }
 
 .acciones li:hover {
-  background: rgba(212, 175, 55, 0.3);
-  transform: scale(1.1);
+  background: var(--gold);
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(197, 151, 88, 0.4);
 }
 
 .acciones a,
@@ -176,41 +276,36 @@ figure.producto:hover .overlay {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 44px;
-  height: 44px;
+  width: 100%;
+  height: 100%;
   color: #fff;
   text-decoration: none;
   background: transparent;
   border: none;
   cursor: pointer;
+  padding: 0;
 }
 
 .acciones img {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   display: block;
   filter: brightness(0) invert(1);
+  transition: filter 0.3s ease;
+}
+
+.acciones li:hover img {
+  filter: brightness(0) invert(0);
 }
 
 .acciones i {
-  font-size: 18px;
+  font-size: 16px;
   color: #fff;
+  transition: color 0.3s ease;
 }
 
-/* Hover iconos */
-.acciones a img,
-.acciones button i {
-  transition: filter 0.25s ease, transform 0.25s ease, color 0.25s ease;
-}
-
-.acciones a:hover img {
-  filter: brightness(0) saturate(100%) invert(78%) sepia(56%) saturate(636%) hue-rotate(2deg) brightness(103%) contrast(97%);
-  transform: scale(1.15);
-}
-
-.acciones button:hover i {
-  color: var(--color-accent);
-  transform: scale(1.15);
+.acciones li:hover i {
+  color: #000;
 }
 
 /* Wishlist Button */
@@ -222,15 +317,23 @@ figure.producto:hover .overlay {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .wishlist-btn i {
   color: inherit;
-  font-size: 18px;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
 .wishlist-btn.is-active i {
-  color: #c1666b;
+  color: #e74c3c;
+  font-weight: 900;
+}
+
+.wishlist-btn:hover i {
+  transform: scale(1.1);
 }
 
 /* Badge count en navbar */
@@ -238,7 +341,7 @@ figure.producto:hover .overlay {
   position: absolute;
   top: -8px;
   right: -8px;
-  background: #c1666b;
+  background: #e74c3c;
   color: #fff;
   font-size: 0.7rem;
   font-weight: 700;
@@ -247,6 +350,84 @@ figure.producto:hover .overlay {
   min-width: 18px;
   text-align: center;
   display: none;
+}
+
+/* ================================================
+   RESPONSIVE ADJUSTMENTS - WOODMART STYLE
+   ================================================ */
+
+@media (max-width: 991px) {
+  .contenedor-imagen {
+    height: 320px;
+  }
+
+  figcaption h3 {
+    font-size: 1rem;
+  }
+
+  figcaption .precio {
+    font-size: 1.15rem;
+  }
+
+  .add-to-cart {
+    padding: 10px 22px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .contenedor-imagen {
+    height: 280px;
+  }
+
+  .galeria-productos {
+    margin: 0;
+  }
+
+  figure.producto {
+    margin-bottom: 30px;
+  }
+
+  .overlay {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* Mostrar acciones siempre en móvil como botones flotantes */
+  .acciones {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    flex-direction: column;
+    gap: 8px;
+    opacity: 1;
+    z-index: 4;
+  }
+
+  .overlay {
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.7) 70%);
+    opacity: 1;
+    visibility: visible;
+    justify-content: flex-end;
+    padding-bottom: 20px;
+  }
+
+  .add-to-cart {
+    display: none;
+  }
+}
+
+/* ================================================
+   SECTION SPACING
+   ================================================ */
+.section.catalog {
+  padding: 80px 0;
+}
+
+@media (max-width: 767px) {
+  .section.catalog {
+    padding: 50px 0;
+  }
 }
 /* ================================================
    QUICK VIEW MODAL
