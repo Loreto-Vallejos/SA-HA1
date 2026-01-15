@@ -1,82 +1,385 @@
 /* ================================================
-   NOSOTROS PAGE - Eternia
+   NOSOTROS PAGE - Eternia (Minimalist Design)
    ================================================ */
 
-/* Hero Nosotros */
-.about-hero__eyebrow {
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-  font-size: 0.8rem;
+/* Hero con Imagen */
+.nosotros-hero-image {
+  position: relative;
+  height: 60vh;
+  min-height: 400px;
+  max-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.about-hero__title {
-  font-size: clamp(2.2rem, 3vw, 3rem);
-  font-weight: 900;
+.nosotros-hero-image__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.nosotros-hero-image__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%);
+  z-index: 2;
+}
+
+.nosotros-hero-image__content {
+  position: relative;
+  z-index: 3;
+  padding: 40px 0;
+  margin-top: 15vh;
+}
+
+.nosotros-hero__title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 300;
+  color: #fff;
+  font-family: 'Playfair Display', serif;
+  line-height: 1.2;
   letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
-.about-hero__lead {
-  font-size: 1.15rem;
-  color: var(--color-text-muted);
-  max-width: 70ch;
+.nosotros-hero__subtitle {
+  font-size: 1.125rem;
+  color: #fff;
+  font-weight: 400;
+  margin: 0;
+  opacity: 0.95;
+}
+
+/* Section Divider - Línea decorativa sutil */
+.section-divider {
+  width: 60px;
+  height: 1px;
+  background: #d1d5db;
+  margin: 0 auto 3rem;
+}
+
+/* About Intro */
+.about-intro__title {
+  font-size: clamp(1.875rem, 4vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--color-carbon);
+  font-family: 'Playfair Display', serif;
+  line-height: 1.4;
+  margin-bottom: 0;
+}
+
+.about-intro__lead {
+  font-size: 1.125rem;
+  color: #6b7280;
+  max-width: 65ch;
   margin: 0 auto;
+  line-height: 1.7;
+  font-weight: 400;
 }
 
-/* Secciones */
-.about-block__title,
-.about-features__title,
-.about-principles__title,
-.about-cta__title {
-  font-size: 1.8rem;
-  font-weight: 800;
+/* About Block */
+.about-block {
+  background: #fff;
+  padding: 80px 0;
+}
+
+.about-block__title {
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: var(--color-carbon);
+  margin-bottom: 2rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.about-block p {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: #4b5563;
+  margin-bottom: 1.25rem;
 }
 
 .about-image {
-  height: 400px;
-  border-radius: var(--radius-lg);
-  background: url("../../assets/banner-contactanos.png") center / cover no-repeat;
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+  height: 450px;
+  border-radius: 8px;
+  background: url("../../assets/craftsman_working_on_wood.png") center / cover no-repeat;
+  transition: opacity 0.3s ease;
 }
 
-/* Feature Cards */
+.about-image:hover {
+  opacity: 0.95;
+}
+
+/* Mission & Vision */
+.mission-vision {
+  background: #fff;
+  padding: 80px 0;
+}
+
+.mission-card,
+.vision-card {
+  padding: 0;
+}
+
+.mission-card__icon,
+.vision-card__icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mission-card__icon i,
+.vision-card__icon i {
+  font-size: 1.5rem;
+  color: #9ca3af;
+}
+
+.mission-card h3,
+.vision-card h3 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--color-carbon);
+  font-family: 'Playfair Display', serif;
+}
+
+.mission-card p,
+.vision-card p {
+  font-size: 1.0625rem;
+  color: #6b7280;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Features */
+.about-features {
+  background: #fafafa;
+  padding: 80px 0;
+}
+
+.about-features__title {
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--color-carbon);
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 1rem;
+}
+
+.about-features__subtitle {
+  font-size: 1.125rem;
+  color: #6b7280;
+  font-weight: 400;
+}
+
 .feature-card {
-  background: #c3c4c2;
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 0;
+  transition: transform 0.2s ease;
 }
 
 .feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.feature-card__icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-card__icon i {
+  font-size: 1.5rem;
+  color: #9ca3af;
 }
 
 .feature-card h3 {
-  font-size: 1.1rem;
-  font-weight: 800;
-  margin-bottom: 10px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-carbon);
+  margin-bottom: 0.75rem;
 }
 
-/* Principles Section */
-.about-principles {
-  background: var(--color-bg-alt);
+.feature-card p {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.6;
 }
 
-.about-principles__text {
-  font-size: 1.1rem;
-  color: var(--color-text-muted);
+/* Values */
+.values {
+  background: #fafafa;
+  padding: 80px 0;
+}
+
+.values h2 {
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--color-carbon);
+  font-family: 'Playfair Display', serif;
+}
+
+.value-item {
+  background: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.value-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-accent);
+}
+
+.value-item__icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #065a85 100%);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.75rem;
+  transition: all 0.3s ease;
+}
+
+.value-item:hover .value-item__icon {
+  background: linear-gradient(135deg, var(--color-accent) 0%, #c49a2e 100%);
+  transform: scale(1.1);
+}
+
+.value-item h4 {
+  font-weight: 600;
+  color: var(--color-carbon);
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.value-item p {
+  color: #6b7280;
+  line-height: 1.7;
+  font-size: 0.9375rem;
+  margin: 0;
 }
 
 /* CTA Section */
-.about-cta {
-  background: var(--color-primary);
-  color: #fff;
+.cta-section {
+  background: #fff;
+  border-top: 1px solid #e5e7eb;
+  padding: 80px 0;
 }
 
-.about-cta__text {
-  color: rgba(255, 255, 255, 0.9);
+.cta-section h2 {
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--color-carbon);
+  font-family: 'Playfair Display', serif;
+}
+
+.cta-section .lead {
+  font-size: 1.125rem;
+  color: #6b7280;
+  font-weight: 400;
+}
+
+.cta-section .btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+  border: 1px solid var(--color-primary);
+  font-weight: 500;
+  padding: 12px 32px;
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.cta-section .btn--primary:hover {
+  background: transparent;
+  color: var(--color-primary);
+}
+
+.cta-section .btn--secondary {
+  background: transparent;
+  color: var(--color-carbon);
+  border: 1px solid #d1d5db;
+  font-weight: 500;
+  padding: 12px 32px;
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.cta-section .btn--secondary:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-carbon);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nosotros-hero-image {
+    height: 50vh;
+    min-height: 350px;
+  }
+
+  .nosotros-hero-image__content {
+    margin-top: 10vh;
+  }
+
+  .nosotros-hero__title {
+    font-size: 2rem;
+  }
+
+  .about-intro__title {
+    font-size: 1.5rem;
+  }
+
+  .about-hero,
+  .about-block,
+  .mission-vision,
+  .about-features,
+  .values,
+  .cta-section {
+    padding: 60px 0;
+  }
+
+  .about-intro__title,
+  .about-block__title,
+  .about-features__title,
+  .values h2,
+  .cta-section h2 {
+    font-size: 1.75rem;
+  }
+
+  .about-image {
+    height: 300px;
+  }
+
+  .cta-section .btn--primary,
+  .cta-section .btn--secondary {
+    width: 100%;
+  }
 }
