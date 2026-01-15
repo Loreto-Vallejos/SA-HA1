@@ -41,38 +41,38 @@
         <div class="collapse navbar-collapse" id="mainNav">
           <ul class="navbar-nav ms-auto mb-2 mb-md-0 align-items-md-center">
             <li class="nav-item">
-              <a class="nav-link nav-anim" href="./index.html">Inicio</a>
+              <a class="nav-link nav-anim" href="/frontend/index.html">Inicio</a>
             </li>
 
             <li class="nav-item">
-            <a class="nav-link nav-anim" href="pages/catalogo/">Catálogo</a>
-          </li>
+              <a class="nav-link nav-anim" href="/frontend/pages/catalogo/">Catálogo</a>
+            </li>
 
-          <li class="nav-item">
-            <a class="nav-link nav-anim" href="pages/nosotros/">Nosotros</a>
+            <li class="nav-item">
+              <a class="nav-link nav-anim" href="/frontend/pages/nosotros/">Nosotros</a>
             </li>
 
             <li class="nav-item d-flex align-items-center gap-2 ms-md-2 navbar-icons">
 
               <!-- Mi cuenta -->
-              <a class="nav-link nav-icon" href="pages/cuenta/" aria-label="Mi cuenta">
+              <a class="nav-link nav-icon" href="/frontend/pages/cuenta/" aria-label="Mi cuenta">
                 <i class="fa-regular fa-user"></i>
               </a>
 
               <!-- Wishlist -->
-              <a class="nav-link nav-icon position-relative" href="pages/wishlist/" aria-label="Wishlist">
+              <a class="nav-link nav-icon position-relative" href="/frontend/pages/wishlist/" aria-label="Wishlist">
                 <i class="fa-regular fa-heart"></i>
                 <span id="wishlistCount" class="badge-wishlist">0</span>
               </a>
 
               <!-- Carrito -->
-              <a class="nav-link nav-icon position-relative" href="pages/carrito/" aria-label="Carrito">
+              <a class="nav-link nav-icon position-relative" href="/frontend/pages/carrito/" aria-label="Carrito">
                 <i class="fa-solid fa-cart-shopping"></i>
               </a>
             </li>
 
             <li class="nav-item ms-md-2">
-              <a class="btn btn-eternia-cta px-3" href="pages/contactanos/">Cotizar</a>
+              <a class="btn btn-eternia-cta px-3" href="/frontend/pages/contactanos/">Cotizar</a>
             </li>
           </ul>
         </div>
@@ -263,30 +263,64 @@
     </section>
 
     <!-- SOBRE NOSOTROS -->
-    <section class="py-5 fondo-petroleo">
+    <section class="py-5 about-home-section">
       <div class="container">
-        <div class="row align-items-center g-5">
-
-          <div class="col-12 col-lg-6">
-            <h2 class="section__title2 mb-4">Sobre Nosotros</h2>
-            <p>En Eternia creemos que la despedida de una persona no debe ser impuesta.</p>
-            <p>
-              Diseñamos ataúdes personalizados que permiten expresar identidad, valores y memorias,
-              alejándonos de lo genérico y estandarizado.
+        
+        <div class="row justify-content-center mb-5">
+          <div class="col-12 col-lg-8 text-center">
+            <h2 class="section__title mb-3">Sobre Nosotros</h2>
+            <p class="section__subtitle">
+              No todas las vidas son iguales. Las despedidas tampoco deberían serlo.
             </p>
+          </div>
+        </div>
 
-            <ul class="list-unstyled mt-4 benefits-list">
-              <li><span class="check-icon me-3 mb-2">✓</span>Diseños 100% personalizables</li>
-              <li><span class="check-icon me-3 mb-2">✓</span>Materiales de alta calidad</li>
-              <li><span class="check-icon me-3 mb-2">✓</span>Envíos discretos y seguros</li>
-            </ul>
+        <div class="row g-4 mb-5">
+          
+          <div class="col-12 col-md-4">
+            <div class="about-feature-card">
+              <div class="about-feature-card__icon">
+                <i class="fa-solid fa-palette"></i>
+              </div>
+              <h3 class="h5 mb-3">Personalización real</h3>
+              <p>
+                Diseños únicos que cuentan historias personales.
+              </p>
+            </div>
           </div>
 
-          <div class="col-12 col-lg-6">
-            <div class="about__image rounded-4 shadow-sm" aria-label="Equipo Eternia trabajando"></div>
+          <div class="col-12 col-md-4">
+            <div class="about-feature-card">
+              <div class="about-feature-card__icon">
+                <i class="fa-solid fa-award"></i>
+              </div>
+              <h3 class="h5 mb-3">Calidad excepcional</h3>
+              <p>
+                Materiales responsables y fabricación artesanal.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <div class="about-feature-card">
+              <div class="about-feature-card__icon">
+                <i class="fa-solid fa-heart"></i>
+              </div>
+              <h3 class="h5 mb-3">Empatía y respeto</h3>
+              <p>
+                Acompañamiento profesional en momentos sensibles.
+              </p>
+            </div>
           </div>
 
         </div>
+
+        <div class="row justify-content-center">
+          <div class="col-12 text-center">
+            <a href="/frontend/pages/nosotros/" class="btn btn--primary btn--lg">Conocer Nuestra Historia</a>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -502,17 +536,17 @@
           <h6 class="footer__title">Explorar</h6>
           <ul class="list-unstyled footer__list mb-0">
             <li><a class="footer__link" href="#inicio">Inicio</a></li>
-            <li><a class="footer__link" href="pages/catalogo/">Catálogo</a></li>
-            <li><a class="footer__link" href="pages/nosotros/">Nosotros</a></li>
-            <li><a class="footer__link" href="pages/contactanos/">Contacto</a></li>
-            <li><a class="footer__link" href="pages/cuenta/">Mi cuenta</a></li>
+            <li><a class="footer__link" href="/frontend/pages/catalogo/">Catálogo</a></li>
+            <li><a class="footer__link" href="/frontend/pages/nosotros/">Nosotros</a></li>
+            <li><a class="footer__link" href="/frontend/pages/contactanos/">Contacto</a></li>
+            <li><a class="footer__link" href="/frontend/pages/cuenta/">Mi cuenta</a></li>
           </ul>
         </div>
 
         <div class="col-6 col-lg-4">
           <h6 class="footer__title">Legal</h6>
           <ul class="list-unstyled footer__list mb-3">
-            <li><a class="footer__link" href="pages/politica-privacidad/">Política de privacidad</a></li>
+            <li><a class="footer__link" href="/frontend/pages/politica-privacidad/">Política de privacidad</a></li>
             <li><a class="footer__link" href="#">Términos y condiciones</a></li>
           </ul>
 
