@@ -1,0 +1,34 @@
+/* ================================================
+   HOME PAGE - Eternia
+   ================================================ */
+
+/* About Section */
+.about__content p {
+  margin-bottom: 1rem;
+  color: #fff;
+  opacity: 0.95;
+}
+
+.benefits-list {
+  margin-top: var(--spacing-md);
+}
+
+.check-icon {
+  background: var(--color-accent);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.about__image {
+  height: 400px;
+  background-image: url("../../assets/sobre-nosotros.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Collections Cards ya están en components/products.css */

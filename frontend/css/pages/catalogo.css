@@ -1,0 +1,22 @@
+/* ================================================
+   CATÁLOGO PAGE - Eternia
+   ================================================ */
+
+.catalogo__filters {
+  background: var(--color-bg-alt);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.catalogo__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .catalogo__grid {
+    grid-template-columns: 1fr;
+  }
+}

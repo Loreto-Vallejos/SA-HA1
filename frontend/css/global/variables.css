@@ -1,0 +1,58 @@
+/* ================================================
+   VARIABLES GLOBALES - Eternia Design System
+   ================================================ */
+
+:root {
+  /* Colores principales */
+  --color-bg: #ffffff;
+  --color-primary: #054060;
+  --color-primary-hover: #032d44;
+  --color-text: #090808;
+  --color-accent: #d4af37;
+  --color-gold: #daa520;
+  --color-bg-alt: #f7f9fb;
+  --color-text-muted: #6b7280;
+
+  /* Colores Eternia */
+  --color-carbon: #1a1a1a;
+  --color-petroleo: #102a34;
+  --color-denim: #1e3a5f;
+  --color-champagne: #f7e7ce;
+  --color-sandia: #c1666b;
+  --color-text-light: rgba(255, 255, 255, 0.86);
+
+  /* Gradientes */
+  --gradient-primary: linear-gradient(135deg, #3b82f6, #06b6d4);
+  --gradient-dark: linear-gradient(135deg, #0f172a, #1e293b);
+  --gradient-gold: linear-gradient(135deg, var(--color-accent), var(--color-gold));
+
+  /* Espaciado */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 6rem;
+
+  /* Tamaños */
+  --header-height: 70px;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  /* Sombras */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+  /* Transiciones */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  /* Tipografía */
+  --font-primary: "Outfit", sans-serif;
+  --font-heading: "Playfair Display", serif;
+}

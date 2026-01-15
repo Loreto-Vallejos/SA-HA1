@@ -1,0 +1,31 @@
+/* ================================================
+   TESTIMONIALS / RESEÑAS
+   ================================================ */
+
+.testimonials {
+  background-color: var(--color-bg-alt);
+}
+
+.testimonial-card {
+  background-color: var(--color-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+  padding: var(--spacing-md);
+  height: 100%;
+}
+
+.testimonial__text {
+  font-style: italic;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-sm);
+}
+
+.testimonial__rating {
+  margin-bottom: var(--spacing-sm);
+}
+
+.testimonial__rating i {
+  color: var(--color-accent);
+  font-size: 1rem;
+}

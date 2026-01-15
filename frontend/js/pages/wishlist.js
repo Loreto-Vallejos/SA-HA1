@@ -134,12 +134,12 @@ function renderWishlistCard(p) {
               <ul class="acciones">
                 <li>
                   <a href="#" aria-label="Compartir">
-                    <img src="assets/share.svg" alt="Compartir">
+                    <img src="../../assets/share.svg" alt="Compartir">
                   </a>
                 </li>
                 <li>
                   <a href="#" aria-label="Comparar">
-                    <img src="assets/compare.svg" alt="Comparar">
+                    <img src="../../assets/compare.svg" alt="Comparar">
                   </a>
                 </li>
                 <li>
@@ -172,7 +172,7 @@ async function renderWishlist() {
   if (empty) empty.style.display = "none";
 
   try {
-    const res = await fetch("./catalogo.json", { cache: "no-store" });
+    const res = await fetch("/frontend/data/catalogo.json", { cache: "no-store" });
     if (!res.ok) throw new Error("Error cargando catálogo");
 
     const productos = await res.json();
@@ -198,7 +198,7 @@ const modalBody = document.getElementById("modalBody");
 function openModal(productId) {
   if (!productModal || !modalBody) return;
 
-  fetch("./catalogo.json")
+  fetch("/frontend/data/catalogo.json")
     .then(res => res.json())
     .then(productos => {
       const p = productos.find(item => String(item.id) === String(productId));

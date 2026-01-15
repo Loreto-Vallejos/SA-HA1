@@ -1,0 +1,123 @@
+/* ================================================
+   RESET & BASE STYLES
+   ================================================ */
+
+/* Reset básico */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tipografía base */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-normal);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Utilidades globales */
+.section {
+  padding: var(--spacing-xl) 0;
+}
+
+.section__header {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.section__title {
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  margin-bottom: var(--spacing-xs);
+  color: #000;
+}
+
+.section__title2 {
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  margin-bottom: var(--spacing-xs);
+  color: #fff;
+}
+
+.section__subtitle {
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.fondo-petroleo {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+/* Contenedor responsivo */
+@media (max-width: 1200px) {
+  .section {
+    padding: calc(var(--spacing-xl) * 0.8) 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: calc(var(--spacing-xl) * 0.6) 0;
+  }
+}

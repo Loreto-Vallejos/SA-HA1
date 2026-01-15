@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eternia | catalogo</title>
+  <title>Eternia | inicio</title>
 
   <meta name="description"
     content="Ataúdes personalizados que celebran la vida. Diseños únicos, temáticos y fuera de lo común." />
@@ -19,7 +19,7 @@
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../../css/main.css" />
 </head>
 
 <body>
@@ -29,8 +29,8 @@
     <nav class="navbar navbar-expand-md navbar-dark navbar-eternia fixed-top py-3">
       <div class="container">
 
-        <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Eternia - Inicio">
-          <img src="assets/logo-eternia-blanco.png" alt="Logo Eternia" class="navbar-logo" loading="eager">
+        <a class="navbar-brand d-flex align-items-center" href="../../index.html" aria-label="Eternia - Inicio">
+          <img src="../../assets/logo-eternia-blanco.png" alt="Logo Eternia" class="navbar-logo" loading="eager">
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
@@ -41,40 +41,38 @@
         <div class="collapse navbar-collapse" id="mainNav">
           <ul class="navbar-nav ms-auto mb-2 mb-md-0 align-items-md-center">
             <li class="nav-item">
-              <a class="nav-link nav-anim" href="./index.html">Inicio</a>
+              <a class="nav-link nav-anim" href="../../index.html">Inicio</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link nav-anim" href="./catalogo.html">Catálogo</a>
+              <a class="nav-link nav-anim" href="../catalogo/">Catálogo</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link nav-anim" href="./nosotros.html">Nosotros</a>
+              <a class="nav-link nav-anim" href="../nosotros/">Nosotros</a>
             </li>
 
             <li class="nav-item d-flex align-items-center gap-2 ms-md-2 navbar-icons">
 
               <!-- Mi cuenta -->
-              <a class="nav-link nav-icon" href="./cuenta.html" aria-label="Mi cuenta">
+              <a class="nav-link nav-icon" href="../cuenta/" aria-label="Mi cuenta">
                 <i class="fa-regular fa-user"></i>
               </a>
 
               <!-- Wishlist -->
-              <!-- Wishlist -->
-              <a class="nav-link nav-icon position-relative" href="./wishlist.html" aria-label="Wishlist">
+              <a class="nav-link nav-icon position-relative" href="../wishlist/" aria-label="Wishlist">
                 <i class="fa-regular fa-heart"></i>
                 <span id="wishlistCount" class="badge-wishlist">0</span>
               </a>
 
-
               <!-- Carrito -->
-              <a class="nav-link nav-icon position-relative" href="./carrito.html" aria-label="Carrito">
+              <a class="nav-link nav-icon position-relative" href="../carrito/" aria-label="Carrito">
                 <i class="fa-solid fa-cart-shopping"></i>
               </a>
             </li>
 
             <li class="nav-item ms-md-2">
-              <a class="btn btn-eternia-cta px-3" href="./contactanos.html">Cotizar</a>
+              <a class="btn btn-eternia-cta px-3" href="../contactanos/">Cotizar</a>
             </li>
           </ul>
         </div>
@@ -87,34 +85,127 @@
       <div id="heroCarousel" class="carousel slide hero-bs__carousel" data-bs-ride="carousel" data-bs-interval="6000">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="assets/banner-catalogo.png" class="d-block w-100 hero-bs__img" alt="banner-promo-catalogo">
+            <img src="../../assets/sobre-nosotros.webp" class="d-block w-100 hero-bs__img" alt="banner-promo-catalogo">
           </div>
         </div>
 
       </div>
       <div class="hero-bs__overlay"></div>
       <div class="container hero-bs__content">
-        <div class="row">
-          <div class="col-12 col-lg-12 col-xl-12">
-            <h1 class="hero-bs__title">Encuentra el ataúd que buscas o personaliza a tu manera</h1>
-            <p class="hero-bs__text">Envíanos tu idea y lo fabricamos para ti. <br> Ten en cuenta que los tiempos de
-              entrega podrían aumentar.</p>
-            <a href="contactanos.html" class="btn btn--primary">Cotizar</a>
+
+      </div>
+    </section>
+
+    <!--contenido-->
+
+    <!-- HERO / VALUE PROPOSITION -->
+    <section class="about-hero py-5" id="about">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-9 text-center">
+
+            <span class="about-hero__eyebrow">Sobre Eternia</span>
+
+            <h1 class="about-hero__title mt-2">
+              No todas las vidas son iguales.<br>
+              Las despedidas tampoco deberían serlo.
+            </h1>
+
+            <p class="about-hero__lead mt-3">
+              Eternia es una plataforma de ataúdes personalizados que transforma
+              un proceso tradicional en una experiencia consciente, significativa
+              y alineada con la identidad de cada persona.
+            </p>
+
           </div>
         </div>
       </div>
     </section>
 
-    <!-- COLECCIONES-->
-    <section id="catalogo" class="section catalog">
+    <!-- QUIÉNES SOMOS -->
+    <section class="about-block py-5">
       <div class="container">
-        <div class="text-center">
-          <h2 class="section__title">Revisa nuestro catálogo online</h2>
-          <p class="section__subtitle">Elige el diseño que cuente tu historia y lo tendrás en menos de 24 horas</p>
-        </div>
-        <!--llamo al json-->
+        <div class="row align-items-center g-5">
 
-        <div class="row g-4 mt-4" id="catalogo-grid"></div>
+          <div class="col-12 col-lg-6">
+            <h2 class="about-block__title">Quiénes somos</h2>
+
+            <p>
+              Eternia nace desde una pregunta simple pero profunda:
+              <strong>¿por qué todas las despedidas deben verse iguales?</strong>
+            </p>
+
+            <p>
+              Observamos una industria marcada por lo genérico, lo rígido
+              y lo poco representativo. Frente a eso, proponemos una alternativa
+              basada en diseño, tecnología y sensibilidad humana.
+            </p>
+
+            <p>
+              Creamos ataúdes personalizados que permiten expresar historia,
+              valores y pasiones, entendiendo que despedir también puede ser
+              un acto de elección y memoria.
+            </p>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <div class="about-image"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- QUÉ HACEMOS (FEATURES) -->
+    <section class="about-features py-5">
+      <div class="container">
+
+        <div class="row justify-content-center mb-4">
+          <div class="col-12 col-lg-8 text-center">
+            <h2 class="about-features__title">Qué hacemos diferente</h2>
+            <p class="about-features__subtitle">
+              No vendemos solo un producto. Diseñamos una experiencia.
+            </p>
+          </div>
+        </div>
+
+        <div class="row g-4">
+
+          <div class="col-12 col-md-4">
+            <div class="feature-card h-100">
+              <h3>Personalización real</h3>
+              <p>
+                Cada diseño parte desde una historia: gustos, símbolos,
+                colores y referencias que representan a quien se despide.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <div class="feature-card h-100">
+              <h3>Experiencia digital clara</h3>
+              <p>
+                Facilitamos decisiones complejas mediante una plataforma
+                simple, empática y accesible, sin juicios ni imposiciones.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <div class="feature-card h-100">
+              <h3>Producción consciente</h3>
+              <p>
+                Trabajamos con fabricantes locales y materiales responsables,
+                entendiendo que el respeto también se extiende al entorno.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
   </main>
   <!-- Footer -->
   <footer class="footer footer--modern py-5" role="contentinfo">
@@ -127,10 +218,10 @@
 
         <!-- Brand -->
         <div class="col-12 col-lg-5">
-          <a href="#inicio" class="footer__brand d-inline-flex align-items-center gap-2 text-decoration-none">
+          <a href="../../index.html" class="footer__brand d-inline-flex align-items-center gap-2 text-decoration-none">
 
-            <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Eternia - Inicio">
-              <img src="assets/logo-eternia-blanco.png" alt="Logo Eternia" class="navbar-logo" loading="eager">
+            <a class="navbar-brand d-flex align-items-center" href="../../index.html" aria-label="Eternia - Inicio">
+              <img src="../../assets/logo-eternia-blanco.png" alt="Logo Eternia" class="navbar-logo" loading="eager">
             </a>
 
             <p class="footer__desc mt-3 mb-4">
@@ -165,18 +256,18 @@
         <div class="col-6 col-lg-3">
           <h6 class="footer__title">Explorar</h6>
           <ul class="list-unstyled footer__list mb-0">
-            <li><a class="footer__link" href="#inicio">Inicio</a></li>
-            <li><a class="footer__link" href="#catalogo">Catálogo</a></li>
-            <li><a class="footer__link" href="#nosotros">Nosotros</a></li>
-            <li><a class="footer__link" href="#contacto">Contacto</a></li>
-            <li><a class="footer__link" href="#contacto">Mi cuenta</a></li>
+            <li><a class="footer__link" href="../../index.html">Inicio</a></li>
+            <li><a class="footer__link" href="../catalogo/">Catálogo</a></li>
+            <li><a class="footer__link" href="../nosotros/">Nosotros</a></li>
+            <li><a class="footer__link" href="../contactanos/">Contacto</a></li>
+            <li><a class="footer__link" href="../cuenta/">Mi cuenta</a></li>
           </ul>
         </div>
 
         <div class="col-6 col-lg-4">
           <h6 class="footer__title">Legal</h6>
           <ul class="list-unstyled footer__list mb-3">
-            <li><a class="footer__link" href="politica-privacidad.html">Política de privacidad</a></li>
+            <li><a class="footer__link" href="../politica-privacidad/">Política de privacidad</a></li>
             <li><a class="footer__link" href="#">Términos y condiciones</a></li>
           </ul>
 
@@ -197,29 +288,16 @@
         class="footer__bottom mt-5 pt-4 d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
         <p class="mb-0 footer__copy">© 2025 Eternia. Todos los derechos reservados.</p>
         <!--logo transbank-->
-        <img src="assets/logo-web-pay-plus.png" alt="Logo webpay" class="footer__logo_wp">
+        <img src="../../assets/logo-web-pay-plus.png" alt="Logo webpay" class="footer__logo_wp">
       </div>
 
     </div>
   </footer>
 
-  <!-- Modal Detalle de Producto Premium -->
-  <div id="productModal" class="product-modal" aria-hidden="true">
-    <div class="product-modal__content">
-      <button class="product-modal__close" id="closeModal" aria-label="Cerrar">&times;</button>
-      <div id="modalBody">
-        <!-- Contenido dinámico -->
-      </div>
-    </div>
-  </div>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="navbar.js"></script>
-  <script src="script.js"></script>
-  <script src="wishlist.js"></script>
-  <script src="catalogo.js"></script>
-
-
+  <script src="../../js/components/navbar.js"></script>
+  <script src="../../js/utils/script.js"></script>
+  <script src="../../js/pages/wishlist.js"></script>
 </body>
 
 </html>

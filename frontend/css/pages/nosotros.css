@@ -1,0 +1,82 @@
+/* ================================================
+   NOSOTROS PAGE - Eternia
+   ================================================ */
+
+/* Hero Nosotros */
+.about-hero__eyebrow {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  font-size: 0.8rem;
+}
+
+.about-hero__title {
+  font-size: clamp(2.2rem, 3vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.about-hero__lead {
+  font-size: 1.15rem;
+  color: var(--color-text-muted);
+  max-width: 70ch;
+  margin: 0 auto;
+}
+
+/* Secciones */
+.about-block__title,
+.about-features__title,
+.about-principles__title,
+.about-cta__title {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.about-image {
+  height: 400px;
+  border-radius: var(--radius-lg);
+  background: url("../../assets/banner-contactanos.png") center / cover no-repeat;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* Feature Cards */
+.feature-card {
+  background: #c3c4c2;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+}
+
+.feature-card h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+/* Principles Section */
+.about-principles {
+  background: var(--color-bg-alt);
+}
+
+.about-principles__text {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+}
+
+/* CTA Section */
+.about-cta {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.about-cta__text {
+  color: rgba(255, 255, 255, 0.9);
+}

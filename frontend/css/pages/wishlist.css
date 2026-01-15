@@ -1,0 +1,217 @@
+/* ================================================
+   WISHLIST
+   ================================================ */
+
+/* Fondo especial para wishlist */
+.wishlist-layout {
+  min-height: 100vh;
+  padding-top: calc(var(--header-height) + 2rem);
+  padding-bottom: var(--spacing-xl);
+  background: linear-gradient(135deg, #102a34 0%, #1e3a5f 100%);
+}
+
+/* Fondo con imagen */
+.wishlist-layout::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("../../assets/bg_fondo.jpg") center / cover no-repeat;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Cards flotando */
+.wishlist-layout .row {
+  position: relative;
+  z-index: 1;
+}
+
+/* Header de la wishlist */
+.wishlist-header {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  color: #fff;
+}
+
+/* Título */
+.wishlist-header h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  margin-bottom: var(--spacing-xs);
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Subtítulo */
+.wishlist-header p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Modal de Producto */
+.product-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.product-modal.is-active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-modal__content {
+  background: #1a1a1a;
+  border-radius: var(--radius-lg);
+  max-width: 900px;
+  width: 100%;
+  position: relative;
+  animation: modalSlideIn 0.4s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.product-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+}
+
+.product-modal__close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+.product-modal__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .product-modal__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.product-modal__image {
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.product-modal__image img {
+  max-width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+  transition: transform 0.5s ease;
+}
+
+.product-modal__content:hover .product-modal__image img {
+  transform: scale(1.05);
+}
+
+.product-modal__info {
+  padding: 40px;
+  color: #fff;
+}
+
+.product-modal__title {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.product-modal__price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f7e7ce;
+  margin-bottom: var(--spacing-md);
+}
+
+.product-modal__price span {
+  font-size: 1.1rem;
+  color: #999;
+  text-decoration: line-through;
+  margin-left: 8px;
+}
+
+.product-modal__description {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+}
+
+.product-modal__specs {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.spec-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.spec-item span:first-child {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+}
+
+.spec-item span:last-child {
+  color: #fff;
+}
+
+.product-modal__actions {
+  display: flex;
+  gap: 12px;
+}
+
+.product-modal__btn {
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-size: 1rem;
+}
+
+.btn-buy {
+  background: #f7e7ce;
+  color: #1a1a1a;
+}
+
+.btn-buy:hover {
+  background: #d4af37;
+  transform: translateY(-2px);
+}
