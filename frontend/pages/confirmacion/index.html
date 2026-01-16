@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¡Pedido Confirmado! | Eternia Joyas</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- CSS Global -->
+  <link rel="stylesheet" href="../../css/global/reset.css">
+  <link rel="stylesheet" href="../../css/global/variables.css">
+
+  <!-- CSS Page -->
+  <link rel="stylesheet" href="../../css/pages/confirmation.css">
+</head>
+<body>
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="confirmation-page">
+    <div class="container">
+      
+      <!-- Success Animation -->
+      <div class="success-container">
+        <div class="success-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        
+        <h1 class="success-title">¡Gracias por tu compra!</h1>
+        <p class="success-subtitle">Tu pedido ha sido confirmado exitosamente</p>
+        
+        <!-- Logo -->
+        <div class="confirmation-logo">
+          <img src="../../assets/logo-eternia-azul.png" alt="Eternia Joyas" class="logo-img">
+        </div>
+      </div>
+
+      <!-- Order Info Card -->
+      <div class="order-card">
+        <div class="order-header">
+          <div class="order-number-container">
+            <span class="order-label">Número de Pedido</span>
+            <span class="order-number" id="orderNumber">---</span>
+          </div>
+          <div class="order-date-container">
+            <span class="order-label">Fecha</span>
+            <span class="order-date" id="orderDate">---</span>
+          </div>
+        </div>
+
+        <!-- Order Items -->
+        <div class="order-items-section">
+          <h3 class="section-title">
+            <i class="fas fa-box"></i>
+            Resumen del Pedido
+          </h3>
+          <div class="order-items" id="orderItems">
+            <!-- Items dinámicos -->
+          </div>
+        </div>
+
+        <!-- Totals -->
+        <div class="order-totals">
+          <div class="total-row">
+            <span>Subtotal</span>
+            <span id="orderSubtotal">$0</span>
+          </div>
+          <div class="total-row">
+            <span>Envío</span>
+            <span id="orderShipping">$0</span>
+          </div>
+          <div class="total-row total-final">
+            <span>Total Pagado</span>
+            <span id="orderTotal">$0</span>
+          </div>
+        </div>
+
+        <!-- Shipping Info -->
+        <div class="shipping-info-section">
+          <h3 class="section-title">
+            <i class="fas fa-truck"></i>
+            Información de Envío
+          </h3>
+          <div class="shipping-details" id="shippingDetails">
+            <!-- Info dinámica -->
+          </div>
+        </div>
+
+        <!-- Payment Info -->
+        <div class="payment-info-section">
+          <h3 class="section-title">
+            <i class="fas fa-credit-card"></i>
+            Método de Pago
+          </h3>
+          <div class="payment-details" id="paymentDetails">
+            <!-- Info dinámica -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Next Steps -->
+      <div class="next-steps">
+        <h3>¿Qué sigue?</h3>
+        <div class="steps-grid">
+          <div class="step-item">
+            <div class="step-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="step-content">
+              <h4>Confirmación por email</h4>
+              <p>Recibirás un correo con todos los detalles de tu pedido</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-icon">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <div class="step-content">
+              <h4>Preparación</h4>
+              <p>Tu pedido será preparado con el mayor cuidado</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-icon">
+              <i class="fas fa-shipping-fast"></i>
+            </div>
+            <div class="step-content">
+              <h4>Envío</h4>
+              <p>Recibirás un email cuando tu pedido esté en camino</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="confirmation-actions">
+        <a href="../catalogo/" class="btn btn-outline-primary btn-action">
+          <i class="fas fa-shopping-bag me-2"></i>
+          Seguir Comprando
+        </a>
+        <a href="../../index.html" class="btn btn-primary btn-action">
+          <i class="fas fa-home me-2"></i>
+          Volver al Inicio
+        </a>
+      </div>
+
+      <!-- Support Info -->
+      <div class="support-info">
+        <p>¿Tienes alguna pregunta sobre tu pedido?</p>
+        <a href="../contactanos/">
+          <i class="fas fa-headset me-1"></i>
+          Contacta a nuestro equipo de soporte
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Page JS -->
+  <script src="../../js/pages/confirmation.js"></script>
+</body>
+</html>
