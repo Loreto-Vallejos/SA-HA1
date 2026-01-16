@@ -1,11 +1,254 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eternia | Mi Carrito</title>
+
+    <meta name="description" content="Tu carrito de compras en Eternia." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="stylesheet" href="../../css/pages/cart.css" />
 </head>
-<body>
-    
+
+<body class="cart-page">
+
+    <!-- Header con Navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-md navbar-dark navbar-eternia fixed-top py-3">
+            <div class="container">
+
+                <a class="navbar-brand d-flex align-items-center" href="../../index.html" aria-label="Eternia - Inicio">
+                    <img src="../../assets/logo-eternia-blanco.png" alt="Logo Eternia" class="navbar-logo" loading="eager">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                    aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menú">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav ms-auto mb-2 mb-md-0 align-items-md-center">
+                        <li class="nav-item">
+                            <a class="nav-link nav-anim" href="../../index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-anim" href="../catalogo/">Catálogo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-anim" href="../nosotros/">Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-anim" href="../contactanos/">Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-anim" href="../wishlist/">
+                                <i class="fa-regular fa-heart"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-anim active" href="../carrito/">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item ms-md-2">
+                            <a class="btn btn-eternia-cta" href="../contactanos/">Cotizar</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="cart-page">
+        <div class="container py-5 mt-5">
+            
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../../index.html">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Mi Carrito</li>
+                </ol>
+            </nav>
+
+            <!-- Título -->
+            <div class="cart-header mb-4">
+                <h1 class="cart-title">Mi Carrito</h1>
+                <span class="cart-count" id="cartCount">0 productos</span>
+            </div>
+
+            <!-- Contenido del Carrito -->
+            <div class="row g-4">
+                <!-- Lista de Productos -->
+                <div class="col-12 col-lg-8">
+                    <div id="cartItems">
+                        <!-- Productos cargados por JS -->
+                    </div>
+                    
+                    <!-- Estado vacío -->
+                    <div id="emptyCart" class="empty-cart" style="display: none;">
+                        <div class="empty-cart-icon">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
+                        <h3>Tu carrito está vacío</h3>
+                        <p>Agrega productos desde nuestro catálogo para comenzar tu compra</p>
+                        <a href="../catalogo/" class="btn-browse">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            Ver catálogo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Resumen del Pedido -->
+                <div class="col-12 col-lg-4">
+                    <div class="cart-summary" id="cartSummary">
+                        <h3 class="summary-title">Resumen del Pedido</h3>
+                        
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal">$0</span>
+                        </div>
+                        
+                        <div class="summary-row">
+                            <span>Envío</span>
+                            <span id="shipping" class="shipping-text">Por calcular</span>
+                        </div>
+                        
+                        <div class="summary-divider"></div>
+                        
+                        <div class="summary-row summary-total">
+                            <span>Total</span>
+                            <span id="total">$0</span>
+                        </div>
+
+                        <button class="btn-checkout" id="checkoutBtn" disabled>
+                            <i class="fa-solid fa-lock"></i>
+                            Proceder al Pago
+                        </button>
+
+                        <div class="summary-security">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>Pago 100% seguro</span>
+                        </div>
+
+                        <div class="payment-icons">
+                            <i class="fa-brands fa-cc-visa"></i>
+                            <i class="fa-brands fa-cc-mastercard"></i>
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+                    </div>
+
+                    <!-- Continuar Comprando -->
+                    <a href="../catalogo/" class="continue-shopping">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Continuar comprando
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer footer--modern py-5" role="contentinfo">
+        <div class="container">
+
+            <!-- Top gradient hairline -->
+            <div class="footer__topline" aria-hidden="true"></div>
+
+            <div class="row g-4 align-items-start pt-4">
+
+                <!-- Brand -->
+                <div class="col-12 col-lg-5">
+                    <a href="../../index.html" class="footer__brand d-inline-flex align-items-center gap-2 text-decoration-none">
+
+                        <a class="navbar-brand d-flex align-items-center" href="../../index.html" aria-label="Eternia - Inicio">
+                            <img src="../../assets/logo-eternia-blanco.png" alt="Logo Eternia" class="navbar-logo" loading="eager">
+                        </a>
+
+                        <p class="footer__desc mt-3 mb-4">
+                            Tu último viaje, a tu manera.<br> Ataúdes personalizados que celebran la vida con diseños únicos y
+                            temáticos.
+                        </p>
+
+                        <!-- Social -->
+                        <div class="d-flex flex-wrap gap-2">
+
+                            <a class="footer__social" href="https://wa.me/569XXXXXXXX" target="_blank" rel="noopener noreferrer"
+                                aria-label="WhatsApp">
+                                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                            </a>
+
+                            <a class="footer__social" href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                            </a>
+
+                            <a class="footer__social" href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+                            </a>
+
+                            <a class="footer__social" href="#" target="_blank" rel="noopener noreferrer" aria-label="X">
+                                <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <!-- Links -->
+                    <div class="col-6 col-lg-3">
+                        <h6 class="footer__title">Explorar</h6>
+                        <ul class="list-unstyled footer__list mb-0">
+                            <li><a class="footer__link" href="../../index.html">Inicio</a></li>
+                            <li><a class="footer__link" href="../catalogo/">Catálogo</a></li>
+                            <li><a class="footer__link" href="../nosotros/">Nosotros</a></li>
+                            <li><a class="footer__link" href="../contactanos/">Contacto</a></li>
+                            <li><a class="footer__link" href="../cuenta/">Mi cuenta</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-6 col-lg-4">
+                        <h6 class="footer__title">Legal</h6>
+                        <ul class="list-unstyled footer__list mb-3">
+                            <li><a class="footer__link" href="../politica-privacidad/">Política de privacidad</a></li>
+                            <li><a class="footer__link" href="#">Términos y condiciones</a></li>
+                        </ul>
+
+                        <a>Suscríbete y recibe novedades</a>
+                        <form class="mt-3" action="#" method="post">
+                            <div class="input-group footer__inputgroup">
+                                <input type="email" class="form-control footer__input" placeholder="tucorreo@email.com"
+                                    aria-label="Correo">
+                                <button class="btn footer__btn" type="submit">Suscribirme</button>
+                            </div>
+                            <small class="footer__hint d-block mt-2">Al suscribirte aceptas la política de privacidad.</small>
+                        </form>
+                    </div>
+
+                </div>
+
+                <div
+                    class="footer__bottom mt-5 pt-4 d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+                    <p class="mb-0 footer__copy">© 2025 Eternia. Todos los derechos reservados.</p>
+                    <!--logo transbank-->
+                    <img src="../../assets/logo-web-pay-plus.png" alt="Logo webpay" class="footer__logo_wp">
+                </div>
+
+            </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/components/navbar.js"></script>
+    <script src="../../js/pages/carrito.js"></script>
 </body>
+
 </html>

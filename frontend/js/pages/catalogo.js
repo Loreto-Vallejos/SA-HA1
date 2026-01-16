@@ -115,7 +115,12 @@ function renderCard(p, isHome = false) {
                   ${precioAnterior ? `<p class="precio-anterior">$${precioAnterior}</p>` : ""}
                   <p class="precio">$${precio}</p>
                 </div>
-                <button class="add-to-cart" data-id="${id}" data-url="${productoUrl}" type="button">
+                <button class="add-to-cart" 
+                  data-id="${id}" 
+                  data-nombre="${nombre}" 
+                  data-precio="${p.precio}" 
+                  data-imagen="${imagen}"
+                  type="button">
                   <i class="fa-solid fa-cart-shopping"></i>
                   Agregar
                 </button>
@@ -229,16 +234,49 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       e.stopPropagation();
       
+      // Obtener datos del producto desde los data attributes
       const productId = addToCartBtn.getAttribute('data-id');
-      const productUrl = addToCartBtn.getAttribute('data-url');
+      const nombre = addToCartBtn.getAttribute('data-nombre');
+      const precio = parseInt(addToCartBtn.getAttribute('data-precio')) || 0;
+      const imagen = addToCartBtn.getAttribute('data-imagen');
       
-      // Aquí puedes agregar la lógica para agregar al carrito
-      console.log('Agregando producto al carrito:', productId);
+      // Obtener carrito actual de localStorage
+      let carrito = [];
+      try {
+        carrito = JSON.parse(localStorage.getItem('carritoEternia')) || [];
+      } catch (err) {
+        carrito = [];
+      }
       
-      // Opcional: mostrar feedback visual
+      // Buscar si el producto ya está en el carrito
+      const existeIndex = carrito.findIndex(item => String(item.id) === String(productId));
+      
+      if (existeIndex !== -1) {
+        // Si ya existe, incrementar cantidad
+        carrito[existeIndex].cantidad += 1;
+      } else {
+        // Si no existe, agregarlo
+        carrito.push({
+          id: productId,
+          nombre: nombre,
+          precio: precio,
+          imagen: imagen,
+          cantidad: 1
+        });
+      }
+      
+      // Guardar en localStorage
+      localStorage.setItem('carritoEternia', JSON.stringify(carrito));
+      
+      // Actualizar badge del carrito en navbar
+      updateCartBadge();
+      
+      // Mostrar feedback visual
       addToCartBtn.innerHTML = '<i class="fa-solid fa-check"></i> Agregado';
+      addToCartBtn.disabled = true;
       setTimeout(() => {
         addToCartBtn.innerHTML = '<i class="fa-solid fa-cart-shopping"></i> Agregar';
+        addToCartBtn.disabled = false;
       }, 2000);
     }
 
@@ -270,3 +308,31 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+/* =========================
+   CART BADGE UPDATE
+   ========================= */
+function updateCartBadge() {
+  let carrito = [];
+  try {
+    carrito = JSON.parse(localStorage.getItem('carritoEternia')) || [];
+  } catch (err) {
+    carrito = [];
+  }
+  
+  // Calcular total de items
+  const totalItems = carrito.reduce((sum, item) => sum + (item.cantidad || 1), 0);
+  
+  // Buscar el badge en el navbar (puede haber varios selectores)
+  const badges = document.querySelectorAll('#cartCount, #cartBadge, .cart-badge, .badge-cart');
+  badges.forEach(badge => {
+    if (badge) {
+      badge.textContent = totalItems;
+      badge.style.display = totalItems > 0 ? 'flex' : 'none';
+    }
+  });
+}
+
+// Actualizar badge al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+  updateCartBadge();
+});

@@ -260,6 +260,9 @@ function setupAddToCart(producto) {
 
       localStorage.setItem('carritoEternia', JSON.stringify(carrito));
 
+      // Actualizar badge del carrito
+      updateCartBadge();
+
       // Feedback visual
       const originalText = addToCartBtn.innerHTML;
       addToCartBtn.innerHTML = '<i class="fa-solid fa-check"></i> Agregado al carrito';
@@ -414,3 +417,32 @@ function copiarAlPortapapeles(text, btn) {
     console.error('Error al copiar:', err);
   });
 }
+
+/* =========================
+   CART BADGE UPDATE
+   ========================= */
+function updateCartBadge() {
+  let carrito = [];
+  try {
+    carrito = JSON.parse(localStorage.getItem('carritoEternia')) || [];
+  } catch (err) {
+    carrito = [];
+  }
+  
+  // Calcular total de items
+  const totalItems = carrito.reduce((sum, item) => sum + (item.cantidad || 1), 0);
+  
+  // Buscar el badge en el navbar
+  const badges = document.querySelectorAll('#cartCount, #cartBadge, .cart-badge, .badge-cart');
+  badges.forEach(badge => {
+    if (badge) {
+      badge.textContent = totalItems;
+      badge.style.display = totalItems > 0 ? 'flex' : 'none';
+    }
+  });
+}
+
+// Actualizar badge al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+  updateCartBadge();
+});

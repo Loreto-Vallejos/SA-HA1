@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eternia | Checkout</title>
+
+    <meta name="description" content="Finaliza tu compra en Eternia." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="stylesheet" href="../../css/pages/checkout.css" />
+</head>
+
+<body>
+
+    <main class="checkout-page">
+        <div class="container py-5">
+            
+            <!-- Logo -->
+            <div class="text-center mb-5">
+                <a href="../../index.html" class="d-inline-block">
+                    <img src="../../assets/logo-eternia-azul.png" alt="Eternia" class="checkout-logo" style="max-height: 80px; display: block; margin: 0 auto;">
+                </a>
+            </div>
+
+            <!-- Progress Steps -->
+            <div class="checkout-progress mb-5">
+                <div class="progress-step active">
+                    <div class="step-number">1</div>
+                    <span class="step-label">Carrito</span>
+                </div>
+                <div class="progress-line active"></div>
+                <div class="progress-step active">
+                    <div class="step-number">2</div>
+                    <span class="step-label">Datos</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step">
+                    <div class="step-number">3</div>
+                    <span class="step-label">Pago</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step">
+                    <div class="step-number">4</div>
+                    <span class="step-label">Confirmación</span>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <!-- Formulario -->
+                <div class="col-12 col-lg-7">
+                    <form id="checkoutForm" novalidate>
+                        
+                        <!-- Datos de Contacto -->
+                        <div class="checkout-section">
+                            <h2 class="section-title">
+                                <i class="fa-regular fa-user"></i>
+                                Datos de Contacto
+                            </h2>
+                            
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="nombre" class="form-label">Nombre *</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                    <div class="invalid-feedback">Por favor ingresa tu nombre</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="apellido" class="form-label">Apellido *</label>
+                                    <input type="text" class="form-control" id="apellido" name="apellido" required>
+                                    <div class="invalid-feedback">Por favor ingresa tu apellido</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email *</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                    <div class="invalid-feedback">Por favor ingresa un email válido</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="telefono" class="form-label">Teléfono *</label>
+                                    <input type="tel" class="form-control" id="telefono" name="telefono" 
+                                           placeholder="+56 9 1234 5678" required>
+                                    <div class="invalid-feedback">Por favor ingresa tu teléfono</div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="rut" class="form-label">RUT *</label>
+                                    <input type="text" class="form-control" id="rut" name="rut" 
+                                           placeholder="12.345.678-9" required>
+                                    <div class="invalid-feedback">Por favor ingresa tu RUT</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dirección de Envío -->
+                        <div class="checkout-section">
+                            <h2 class="section-title">
+                                <i class="fa-solid fa-truck-fast"></i>
+                                Dirección de Envío
+                            </h2>
+
+                            <div class="shipping-options mb-4">
+                                <label class="shipping-option active">
+                                    <input type="radio" name="tipoEnvio" value="domicilio" checked>
+                                    <div class="option-content">
+                                        <i class="fa-solid fa-house"></i>
+                                        <div>
+                                            <strong>Envío a Domicilio</strong>
+                                            <span>3-5 días hábiles</span>
+                                        </div>
+                                        <span class="option-price">$15.000</span>
+                                    </div>
+                                </label>
+                                <label class="shipping-option">
+                                    <input type="radio" name="tipoEnvio" value="retiro">
+                                    <div class="option-content">
+                                        <i class="fa-solid fa-store"></i>
+                                        <div>
+                                            <strong>Retiro en Tienda</strong>
+                                            <span>Listo en 24 horas</span>
+                                        </div>
+                                        <span class="option-price">Gratis</span>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div id="direccionFields" class="row g-3">
+                                <div class="col-12">
+                                    <label for="direccion" class="form-label">Dirección *</label>
+                                    <input type="text" class="form-control" id="direccion" name="direccion" 
+                                           placeholder="Calle y número" required>
+                                    <div class="invalid-feedback">Por favor ingresa tu dirección</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="depto" class="form-label">Depto/Oficina (opcional)</label>
+                                    <input type="text" class="form-control" id="depto" name="depto">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="comuna" class="form-label">Comuna *</label>
+                                    <input type="text" class="form-control" id="comuna" name="comuna" required>
+                                    <div class="invalid-feedback">Por favor ingresa tu comuna</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="ciudad" class="form-label">Ciudad *</label>
+                                    <input type="text" class="form-control" id="ciudad" name="ciudad" required>
+                                    <div class="invalid-feedback">Por favor ingresa tu ciudad</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="region" class="form-label">Región *</label>
+                                    <select class="form-control" id="region" name="region" required>
+                                        <option value="">Selecciona una región</option>
+                                        <option value="RM">Metropolitana de Santiago</option>
+                                        <option value="I">Tarapacá</option>
+                                        <option value="II">Antofagasta</option>
+                                        <option value="III">Atacama</option>
+                                        <option value="IV">Coquimbo</option>
+                                        <option value="V">Valparaíso</option>
+                                        <option value="VI">O'Higgins</option>
+                                        <option value="VII">Maule</option>
+                                        <option value="VIII">Biobío</option>
+                                        <option value="IX">Araucanía</option>
+                                        <option value="X">Los Lagos</option>
+                                        <option value="XI">Aysén</option>
+                                        <option value="XII">Magallanes</option>
+                                        <option value="XIV">Los Ríos</option>
+                                        <option value="XV">Arica y Parinacota</option>
+                                        <option value="XVI">Ñuble</option>
+                                    </select>
+                                    <div class="invalid-feedback">Por favor selecciona tu región</div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="instrucciones" class="form-label">Instrucciones de entrega (opcional)</label>
+                                    <textarea class="form-control" id="instrucciones" name="instrucciones" rows="2"
+                                              placeholder="Ej: Dejar con el conserje, tocar timbre, etc."></textarea>
+                                </div>
+                            </div>
+
+                            <div id="retiroInfo" class="retiro-info" style="display: none;">
+                                <div class="retiro-card">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <div>
+                                        <strong>Punto de Retiro Eternia</strong>
+                                        <p>Av. Providencia 1234, Providencia, Santiago</p>
+                                        <span>Horario: Lunes a Viernes 9:00 - 18:00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notas adicionales -->
+                        <div class="checkout-section">
+                            <h2 class="section-title">
+                                <i class="fa-regular fa-comment"></i>
+                                Notas del Pedido (opcional)
+                            </h2>
+                            <textarea class="form-control" id="notas" name="notas" rows="3"
+                                      placeholder="¿Alguna nota o requerimiento especial para tu pedido?"></textarea>
+                        </div>
+
+                        <!-- Botón Continuar -->
+                        <div class="checkout-actions">
+                            <a href="../carrito/" class="btn-back">
+                                <i class="fa-solid fa-arrow-left"></i>
+                                Volver al carrito
+                            </a>
+                            <button type="submit" class="btn-continue">
+                                Continuar al Pago
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Resumen del Pedido -->
+                <div class="col-12 col-lg-5">
+                    <div class="order-summary">
+                        <h3 class="summary-title">Resumen del Pedido</h3>
+                        
+                        <div id="orderItems" class="order-items">
+                            <!-- Items cargados por JS -->
+                        </div>
+
+                        <div class="summary-divider"></div>
+
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal">$0</span>
+                        </div>
+                        
+                        <div class="summary-row">
+                            <span>Envío</span>
+                            <span id="shippingCost">$15.000</span>
+                        </div>
+                        
+                        <div class="summary-divider"></div>
+                        
+                        <div class="summary-row summary-total">
+                            <span>Total</span>
+                            <span id="total">$0</span>
+                        </div>
+
+                        <div class="summary-security">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>Compra 100% segura</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Simplificado -->
+    <footer class="checkout-footer">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+                <p class="mb-0">© 2025 Eternia. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="../politica-privacidad/">Política de Privacidad</a>
+                    <a href="#">Términos y Condiciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/components/navbar.js"></script>
+    <script src="../../js/pages/checkout.js"></script>
+</body>
+
+</html>
