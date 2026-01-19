@@ -1,0 +1,22 @@
+/* ================================================
+   COTIZACIÓN / CONTACTO - Eternia
+   ================================================ */
+
+.cotizacion__wrap {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.cotizacion__form {
+  background: var(--color-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+  padding: 28px;
+}
+
+.cotizacion__actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 20px;
+}

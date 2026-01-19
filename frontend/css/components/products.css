@@ -1,0 +1,614 @@
+/* ================================================
+   PRODUCT CARDS & GALLERY - WOODMART STYLE
+   ================================================ */
+
+/* Cards Colecciones */
+.galeria-productos {
+  width: 100%;
+  margin: 0;
+  padding: 0 10px;
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  cursor: pointer;
+}
+
+figure.producto {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0 0 30px 0;
+  background: #ffffff;
+  overflow: visible;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+figure.producto:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(5, 64, 96, 0.15);
+}
+
+/* IMAGEN */
+.contenedor-imagen {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+  background: #f8f8f8;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.contenedor-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+figure.producto:hover .contenedor-imagen img {
+  transform: scale(1.08);
+}
+
+/* BADGE */
+.contenedor-imagen .info {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 3px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Botón Wishlist en tarjeta */
+.wishlist-btn-card {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.wishlist-btn-card:hover {
+  background: var(--color-primary);
+  transform: scale(1.1);
+}
+
+.wishlist-btn-card i {
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  transition: color 0.3s ease;
+}
+
+.wishlist-btn-card:hover i {
+  color: #fff;
+}
+
+.wishlist-btn-card.active i {
+  color: #e74c3c;
+}
+
+.wishlist-btn-card.active {
+  background: rgba(231, 76, 60, 0.1);
+}
+
+.wishlist-btn-card.active:hover {
+  background: #e74c3c;
+}
+
+.wishlist-btn-card.active:hover i {
+  color: #fff;
+}
+
+.info.sandia {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.info.calipso {
+  background: #3498db;
+  color: #fff;
+}
+
+.info.denim {
+  background: #2c3e50;
+  color: #fff;
+}
+
+.info.champagne {
+  background: #f39c12;
+  color: #fff;
+}
+
+/* CAPTION */
+figcaption {
+  padding: 0 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+figcaption h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #666;
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-height: 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--color-primary);
+  transition: color 0.3s ease;
+}
+
+.card-link:hover figcaption h3 {
+  color: var(--color-accent);
+}
+
+figcaption .descripcion {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+  line-height: 1.4;
+  min-height: 40px;
+}
+
+figcaption .precio-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 16px;
+  min-height: 70px;
+  justify-content: center;
+}
+
+figcaption .precio-anterior {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.45);
+  text-decoration: line-through;
+  margin: 0;
+  letter-spacing: 0.3px;
+  height: 20px;
+}
+
+figcaption .precio {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.5px;
+}
+/* Botón Add to Cart */
+.add-to-cart {
+  width: 100%;
+  padding: 10px 20px;
+  background: transparent;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  border: 2px solid var(--color-primary);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  gap: 8px;
+}
+
+.add-to-cart:hover {
+  background: var(--color-accent);
+  color: #0f0f0f;
+  border-color: var(--color-accent);
+}
+
+.add-to-cart i {
+  font-size: 1rem;
+}
+
+/* ACCIONES (iconos) - mantener para compatibilidad */
+.acciones {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.acciones li {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+}
+
+.acciones li:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(197, 151, 88, 0.4);
+}
+
+.acciones a,
+.acciones button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.acciones img {
+  width: 16px;
+  height: 16px;
+  display: block;
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s ease;
+}
+
+.acciones li:hover img {
+  filter: brightness(0) invert(0);
+}
+
+.acciones i {
+  font-size: 16px;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.acciones li:hover i {
+  color: #000;
+}
+
+/* Wishlist Button */
+.wishlist-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.wishlist-btn i {
+  color: inherit;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.wishlist-btn.is-active i {
+  color: #e74c3c;
+  font-weight: 900;
+}
+
+.wishlist-btn:hover i {
+  transform: scale(1.1);
+}
+
+/* Badge count en navbar */
+.badge-wishlist {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #e74c3c;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 18px;
+  text-align: center;
+  display: none;
+}
+
+/* ================================================
+   RESPONSIVE ADJUSTMENTS - WOODMART STYLE
+   ================================================ */
+
+@media (max-width: 991px) {
+  .contenedor-imagen {
+    height: 320px;
+  }
+
+  figcaption h3 {
+    font-size: 1rem;
+  }
+
+  figcaption .precio {
+    font-size: 1.15rem;
+  }
+
+  .add-to-cart {
+    padding: 10px 22px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .contenedor-imagen {
+    height: 280px;
+  }
+
+  .galeria-productos {
+    margin: 0;
+  }
+
+  figure.producto {
+    margin-bottom: 30px;
+  }
+
+  .overlay {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* Mostrar acciones siempre en móvil como botones flotantes */
+  .acciones {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    flex-direction: column;
+    gap: 8px;
+    opacity: 1;
+    z-index: 4;
+  }
+
+  .overlay {
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.7) 70%);
+    opacity: 1;
+    visibility: visible;
+    justify-content: flex-end;
+    padding-bottom: 20px;
+  }
+
+  .add-to-cart {
+    display: none;
+  }
+}
+
+/* ================================================
+   SECTION SPACING
+   ================================================ */
+.section.catalog {
+  padding: 80px 0;
+}
+
+@media (max-width: 767px) {
+  .section.catalog {
+    padding: 50px 0;
+  }
+}
+/* ================================================
+   QUICK VIEW MODAL
+   ================================================ */
+.quick-view-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  padding: 20px;
+}
+
+.quick-view-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.quick-view-modal__content {
+  background: #fff;
+  border-radius: 16px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 40px;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.quick-view-modal.active .quick-view-modal__content {
+  transform: scale(1);
+}
+
+.quick-view-modal__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 32px;
+  color: #666;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.quick-view-modal__close:hover {
+  background: #f0f0f0;
+  color: #000;
+  transform: rotate(90deg);
+}
+
+.quick-view__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.quick-view__image {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f4f5f7;
+}
+
+.quick-view__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.quick-view__details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.quick-view__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+}
+
+.quick-view__description {
+  font-size: 1rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.quick-view__price {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quick-view__precio-actual {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.quick-view__precio-anterior {
+  font-size: 1.25rem;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.quick-view__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.quick-view__actions .btn {
+  flex: 1;
+  padding: 14px 24px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Quick View Button in Product Card */
+.quick-view-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quick-view-btn i {
+  color: #fff;
+  font-size: 18px;
+}
+
+/* Responsive Quick View */
+@media (max-width: 768px) {
+  .quick-view-modal__content {
+    padding: 30px 20px;
+  }
+
+  .quick-view__content {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .quick-view__title {
+    font-size: 1.5rem;
+  }
+
+  .quick-view__precio-actual {
+    font-size: 1.5rem;
+  }
+
+  .quick-view__actions {
+    flex-direction: column;
+  }
+
+  .quick-view__actions .btn {
+    width: 100%;
+  }
+}

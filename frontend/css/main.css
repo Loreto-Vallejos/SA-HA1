@@ -1,0 +1,36 @@
+/* ================================================
+   MAIN CSS - Sistema Modular Eternia
+   ================================================
+   
+   Este archivo importa todos los módulos CSS del sistema.
+   Orden de importación: Global → Components → Pages
+   
+   Para agregar nuevos estilos:
+   1. Crea el archivo en la carpeta correspondiente
+   2. Impórtalo aquí en el orden correcto
+   ================================================ */
+
+/* === GLOBAL STYLES === */
+@import url('./global/variables.css');
+@import url('./global/reset.css');
+
+/* === COMPONENTS === */
+@import url('./components/buttons.css');
+@import url('./components/navbar.css');
+@import url('./components/footer.css');
+@import url('./components/cards.css');
+@import url('./components/hero.css');
+@import url('./components/products.css');
+@import url('./components/testimonials.css');
+@import url('./components/forms.css');
+
+/* === PAGES === */
+@import url('./pages/home.css');
+@import url('./pages/catalogo.css');
+@import url('./pages/nosotros.css');
+@import url('./pages/cotizacion.css');
+@import url('./pages/cart.css');
+@import url('./pages/payment.css');
+@import url('./pages/cuenta.css');
+@import url('./pages/wishlist.css');
+@import url('./pages/privacidad.css');

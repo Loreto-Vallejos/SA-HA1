@@ -1,0 +1,102 @@
+/* ================================================
+   BUTTONS - Eternia
+   ================================================ */
+
+/* Button Primary */
+.btn--primary {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  border: 2px solid transparent;
+  border-radius: 50px;
+  padding: 14px 32px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn--primary:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(5, 64, 96, 0.3);
+  color: var(--color-bg);
+}
+
+/* Button Secondary */
+.btn--secondary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: 50px;
+  padding: 14px 32px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn--secondary:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Button Accent/Gold */
+.btn--accent {
+  background-color: var(--color-accent);
+  color: #1a1a1a;
+  border: 2px solid var(--color-accent);
+  border-radius: 50px;
+  padding: 14px 32px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn--accent:hover {
+  background-color: var(--color-gold);
+  border-color: var(--color-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(212, 175, 55, 0.3);
+  color: #1a1a1a;
+}
+
+/* Button Large */
+.btn--lg {
+  padding: 16px 40px;
+  font-size: 1.1rem;
+}
+
+/* Button Small */
+.btn--sm {
+  padding: 10px 24px;
+  font-size: 0.9rem;
+}
+
+/* Button Full Width */
+.btn--block {
+  width: 100%;
+  display: block;
+}
+
+/* Button Disabled */
+.btn:disabled,
+.btn--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Button Group */
+.btn-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}

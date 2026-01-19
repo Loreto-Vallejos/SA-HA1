@@ -1,0 +1,158 @@
+/* ================================================
+   FORMS - Contact & Account
+   ================================================ */
+
+/* Contact Form */
+.contact__details {
+  margin-top: var(--spacing-md);
+  color: var(--color-text-muted);
+}
+
+.contact__form {
+  background-color: var(--color-bg-alt);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contact__form .form-control:focus {
+  border-color: rgba(5, 64, 96, 0.6);
+  box-shadow: 0 0 0 0.25rem rgba(5, 64, 96, 0.15);
+}
+
+/* Field Component */
+.field {
+  margin-bottom: 18px;
+}
+
+.field__label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.field__input,
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background: #fff;
+  font-family: inherit;
+}
+
+.field__input:focus,
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  border-color: rgba(212, 175, 55, 0.8);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15);
+}
+
+.field__hint {
+  display: block;
+  margin-top: 6px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.field__error,
+.field .error {
+  display: none;
+  margin-top: 6px;
+  color: #c0392b;
+  font-size: 0.9rem;
+}
+
+.field.is-invalid .field__input,
+.field.is-invalid input {
+  border-color: #c0392b;
+  box-shadow: 0 0 0 4px rgba(192, 57, 43, 0.12);
+}
+
+.field.is-invalid .field__error,
+.field.is-invalid .error {
+  display: block;
+}
+
+/* Password Toggle */
+.password-toggle {
+  position: relative;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  padding: 4px;
+  min-width: 18px;
+}
+
+/* Preview Image */
+.preview {
+  display: none;
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px dashed rgba(0, 0, 0, 0.18);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.preview.is-visible {
+  display: block;
+}
+
+.preview__img {
+  width: 100%;
+  max-height: 260px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.preview__remove {
+  margin-top: 10px;
+  background: transparent;
+  border: 0;
+  color: var(--color-primary);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Form Messages */
+.form__message,
+.account__message,
+.cotizacion__success {
+  display: block;
+  min-height: 24px;
+  margin-top: 16px;
+  text-align: center;
+  font-weight: 700;
+  padding: 12px 14px;
+  border-radius: 12px;
+}
+
+.form__message.success,
+.account__message.success,
+.cotizacion__success {
+  color: #1f7a3a;
+  background: rgba(31, 122, 58, 0.12);
+  border: 1px solid rgba(31, 122, 58, 0.25);
+}
+
+.form__message.error,
+.account__message.error {
+  color: #c0392b;
+  background: rgba(192, 57, 43, 0.12);
+  border: 1px solid rgba(192, 57, 43, 0.25);
+}

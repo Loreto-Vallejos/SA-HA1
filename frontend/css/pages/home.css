@@ -1,0 +1,88 @@
+/* ================================================
+   HOME PAGE - Eternia
+   ================================================ */
+
+/* About Home Section */
+.about-home-section {
+  background: #1a1a1a;
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-home-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("../../assets/craftsman_working_on_wood.png") center / cover no-repeat;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.about-home-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+.about-home-section .section__title {
+  color: #fff;
+}
+
+.about-home-section .section__subtitle {
+  color: #d1d5db;
+}
+
+.about-feature-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  height: 100%;
+  text-align: center;
+}
+
+.about-feature-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  border-color: var(--color-accent);
+}
+
+.about-feature-card__icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #065a85 100%);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.75rem;
+  transition: all 0.3s ease;
+}
+
+.about-feature-card:hover .about-feature-card__icon {
+  background: linear-gradient(135deg, var(--color-accent) 0%, #c49a2e 100%);
+  transform: scale(1.1);
+}
+
+.about-feature-card h3 {
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.about-feature-card p {
+  color: #d1d5db;
+  line-height: 1.7;
+  font-size: 0.9375rem;
+  margin: 0;
+}
+
+/* Collections Cards ya están en components/products.css */
