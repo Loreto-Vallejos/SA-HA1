@@ -87,7 +87,7 @@
       <div id="heroCarousel" class="carousel slide hero-bs__carousel" data-bs-ride="carousel" data-bs-interval="6000">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="../../assets/banner-catalogo.png" class="d-block w-100 hero-bs__img" alt="banner-promo-catalogo">
+            <img src="../../assets/Banner3.webp" class="d-block w-100 hero-bs__img" alt="banner-promo-catalogo">
           </div>
         </div>
 
@@ -96,10 +96,8 @@
       <div class="container hero-bs__content">
         <div class="row">
           <div class="col-12 col-lg-12 col-xl-12">
-            <h1 class="hero-bs__title">Encuentra el ataúd que buscas o personaliza a tu manera</h1>
-            <p class="hero-bs__text">Envíanos tu idea y lo fabricamos para ti. <br> Ten en cuenta que los tiempos de
-              entrega podrían aumentar.</p>
-            <a href="../contactanos/" class="btn btn--primary">Cotizar</a>
+            <h1 class="hero-bs__title">Revisa nuestro catálogo online</h1>
+            <p class="hero-bs__text">Elige el diseño que cuente tu historia y lo tendrás en menos de 24 horas</p>
           </div>
         </div>
       </div>
@@ -108,14 +106,95 @@
     <!-- COLECCIONES-->
     <section id="catalogo" class="section catalog py-5">
       <div class="container">
-        <div class="text-center">
-          <h2 class="section__title">Revisa nuestro catálogo online</h2>
-          <p class="section__subtitle">Elige el diseño que cuente tu historia y lo tendrás en menos de 24 horas</p>
-        </div>
-        <!--llamo al json-->
 
+        <!-- Categorías -->
+        <div class="catalogo-categorias d-flex justify-content-center flex-wrap gap-4 mb-5">
+          <div class="categoria-item active" data-category="all">
+            <div class="categoria-circle">
+              <img src="../../assets/modern_geometric_coffin.png" alt="Todos" loading="lazy">
+            </div>
+            <h6 class="categoria-title">Todos</h6>
+            <span class="categoria-count">8 productos</span>
+          </div>
+          <div class="categoria-item" data-category="Anime">
+            <div class="categoria-circle">
+              <img src="../../assets/anime_warrior_themed_coffin.png" alt="Anime" loading="lazy">
+            </div>
+            <h6 class="categoria-title">Anime</h6>
+            <span class="categoria-count">4 productos</span>
+          </div>
+          <div class="categoria-item" data-category="Lujo">
+            <div class="categoria-circle">
+              <img src="../../assets/ataud-aston-martin.png" alt="Lujo" loading="lazy">
+            </div>
+            <h6 class="categoria-title">Lujo</h6>
+            <span class="categoria-count">2 productos</span>
+          </div>
+          <div class="categoria-item" data-category="Urbano">
+            <div class="categoria-circle">
+              <img src="../../assets/hip_hop_graffiti_coffin.png" alt="Urbano" loading="lazy">
+            </div>
+            <h6 class="categoria-title">Urbano</h6>
+            <span class="categoria-count">2 productos</span>
+          </div>
+        </div>
+
+        <!-- Controles de búsqueda y ordenamiento -->
+        <div class="catalogo-controls">
+          <div class="controls-wrapper">
+            <div class="search-wrapper">
+              <input type="text" id="search-input" class="search-input" placeholder="Buscar productos...">
+              <i class="fas fa-search search-icon"></i>
+            </div>
+            <div class="sort-wrapper">
+              <select id="sort-select" class="sort-select">
+                <option value="default">Ordenar por</option>
+                <option value="price-asc">Precio: menor a mayor</option>
+                <option value="price-desc">Precio: mayor a menor</option>
+                <option value="name-asc">Nombre: A-Z</option>
+                <option value="name-desc">Nombre: Z-A</option>
+              </select>
+              <i class="fas fa-chevron-down sort-icon"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contador de resultados -->
+        <div id="results-count"></div>
+
+        <!-- Filtros por categoría -->
+        <div class="catalogo-filters d-none">
+          <button class="btn btn-light active" data-category="all">Todos</button>
+          <button class="btn btn-light" data-category="Anime">Anime</button>
+          <button class="btn btn-light" data-category="Lujo">Lujo</button>
+          <button class="btn btn-light" data-category="Urbano">Urbano</button>
+        </div>
+
+        <!--llamo al json-->
         <div class="row g-4 mt-4" id="catalogo-grid"></div>
   </main>
+
+  <!-- Nuevo Banner arriba del Footer -->
+  <section class="hero-bs position-relative overflow-hidden">
+    <div id="footerBannerCarousel" class="carousel slide hero-bs__carousel" data-bs-ride="false">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="../../assets/banner-catalogo.webp" class="d-block w-100 hero-bs__img" alt="banner-footer-catalogo">
+        </div>
+      </div>
+    </div>
+    <div class="hero-bs__overlay"></div>
+    <div class="container hero-bs__content">
+      <div class="row">
+        <div class="col-12 col-lg-8 col-xl-6">
+          <h2 class="hero-bs__title">Si no encuentras el ataúd que buscas, personalizalo a tu manera</h2>
+          <p class="hero-bs__text">Envíanos tu idea y lo fabricamos para ti. <br> Ten en cuenta que los tiempos de entrega podrían aumentar.</p>
+          <a href="../contactanos/" class="btn btn--primary">Cotizar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="footer footer--modern py-5" role="contentinfo">
     <div class="container">
