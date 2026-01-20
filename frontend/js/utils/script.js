@@ -83,6 +83,38 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
+     Newsletter Subscription
+  ========================= */
+  const newsletterForm = document.querySelector("form[action='#'][method='post']");
+
+  if (newsletterForm) {
+    // Crear elemento de éxito si no existe
+    let successMsg = newsletterForm.querySelector(".footer__success");
+    if (!successMsg) {
+      successMsg = document.createElement("div");
+      successMsg.className = "footer__success";
+      successMsg.textContent = "Te has suscrito con éxito";
+      newsletterForm.appendChild(successMsg);
+    }
+
+    newsletterForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const emailInput = newsletterForm.querySelector("input[type='email']");
+      if (!emailInput || !emailInput.value.trim()) return;
+
+      // Mostrar mensaje de éxito
+      successMsg.classList.add("show");
+
+      // Ocultar después de 3 segundos
+      setTimeout(() => {
+        successMsg.classList.remove("show");
+      }, 3000);
+
+      newsletterForm.reset();
+    });
+  }
+
+  /* =========================
      Cuenta (login / register) - TABS
      ✅ Asegura type="button"
   ========================= */
