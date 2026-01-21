@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eternia | Blog</title>
+
+  <meta name="description" content="Ataúdes personalizados que celebran la vida. Diseños únicos, temáticos y fuera de lo común." />
+
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/pages/blog.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+
+<body>
+
+   <!-- Header con Navbar-->
+  <header class="header">
+    <nav class="navbar navbar-expand-md navbar-dark navbar-eternia fixed-top py-3">
+      <div class="container">
+
+        <a class="navbar-brand d-flex align-items-center" href="../index.html" aria-label="Eternia - Inicio">
+          <img src="assets/logo-eternia-blanco.png" alt="Logo Eternia" class="navbar-logo" loading="eager">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+          aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-md-0 align-items-md-center">
+            <li class="nav-item">
+              <a class="nav-link nav-anim" href="index.html">Inicio</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link nav-anim" href="pages/catalogo/">Catálogo</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link nav-anim" href="pages/nosotros/">Nosotros</a>
+            </li>
+
+            <li class="nav-item d-flex align-items-center gap-2 ms-md-2 navbar-icons">
+
+              <!-- Mi cuenta -->
+              <a class="nav-link nav-icon" href="pages/cuenta/" aria-label="Mi cuenta">
+                <i class="fa-regular fa-user"></i>
+              </a>
+
+              <!-- Wishlist -->
+              <a class="nav-link nav-icon position-relative" href="pages/wishlist/" aria-label="Wishlist">
+                <i class="fa-regular fa-heart"></i>
+                <span id="wishlistCount" class="badge-wishlist">0</span>
+              </a>
+
+              <!-- Carrito -->
+              <a class="nav-link nav-icon position-relative" href="pages/carrito/" aria-label="Carrito">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cartBadge" class="badge-wishlist">0</span>
+              </a>
+            </li>
+
+            <li class="nav-item ms-md-2">
+              <a class="btn btn-eternia-cta px-3" href="pages/contactanos/">Cotizar</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+   
+
+  <main>
+        <!-- Blog Section -->
+        <section>
+            <!-- Hero Section -->
+            <div class="hero-section" id="inicio">
+                <div class="hero-content">
+                    <h1>Blog Eternia</h1>
+                    <h2>Descubre inspiración y tips para la elección</h2>                    
+                </div>
+            </div>
+
+            <!-- Blog Grid -->
+            <div class="container mt-5 mb-5">
+                <div class="blog-grid" id="blogGrid">
+                    
+                    <!-- Blog Card 1 -->
+                    <div class="blog-card" data-post-id="1">
+                        <div class="blog-image">
+                            <img src="assets/egipcio/egyptian_sarcophagus_themed_coffin_vista5.jpg" alt="Seating collection inspiration by modern">
+                            <div class="date-badge">
+                                <div class="day">21</div>
+                                <div class="month">Enero</div>
+                            </div>
+                            <div class="category-badge">Ideas</div>
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">Colección Cultural</h3>
+                            <div class="blog-meta">
+                                <div class="meta-item">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                    </svg>
+                                    <span>Posteado por María </span>
+                                </div>
+                                <div class="meta-item">
+                                   <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                                    <span>0</span>
+                                </div>                                
+                            </div>
+                            <p class="blog-excerpt">Inspirados en la cosmovisión del Antiguo Egipto, los ataúdes de estilo egipcio representan mucho más que un objeto funerario: simbolizan el tránsito hacia la vida eterna. Para esta civilización, la muerte no era un final, sino una transformación, y cada detalle del rito cumplía un propósito espiritual profundo....</p>
+                            <a class="read-more" href="#">Continuar leyendo</a>
+                        </div>
+                    </div>
+
+                    <!-- Blog Card 2 -->
+                    <div class="blog-card" data-post-id="2">
+                        <div class="blog-image">
+                            <img src="assets/close_up_detail_of_handcrafted_wooden_coffin.png" alt="Minimalist design furniture 2024">
+                            <div class="date-badge">
+                                <div class="day">21</div>
+                                <div class="month">Enero</div>
+                            </div>
+                            <div class="category-badge">Detalles</div>
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">Detalles de barniz</h3>
+                            <div class="blog-meta">
+                                <div class="meta-item">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                    </svg>
+                                    <span>Posted by Valentín</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                                    <span>0</span>
+                                </div>
+                               
+                            </div>
+                            <p class="blog-excerpt">El barniz realza la profundidad de la madera y protege la superficie, otorgando acabados que van desde el satinado elegante hasta el alto brillo ceremonial. Los tonos cálidos, dorados y oscuros evocan majestuosidad y atemporalidad, mientras que las capas de sellado aseguran una terminación uniforme y de larga duración....</p>
+                            <a class="read-more" href="#">Continuar leyendo</a>
+                        </div>
+                    </div>
+
+                    <!-- Blog Card 3 -->
+                    <div class="blog-card" data-post-id="3">
+                        <div class="blog-image">
+                            <img src="assets/reggaeton_urban_luxury_coffin.png" alt="Green interior design inspiration">
+                            <div class="date-badge">
+                                <div class="day">23</div>
+                                <div class="month">Dec</div>
+                            </div>
+                            <div class="category-badge">Furniture Inspiration</div>
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">Estilos personalizados</h3>
+                            <div class="blog-meta">
+                                <div class="meta-item">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                    </svg>
+                                    <span>Posteado por Cecilia</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                                    <span>0</span>
+                                </div>
+                                
+                            </div>
+                            <p class="blog-excerpt">El ploteado de ataúdes personalizados abre un nuevo lenguaje visual dentro del diseño funerario, permitiendo transformar cada pieza en una expresión auténtica de identidad. Inspirado en el estilo urbano, este tipo de personalización integra gráficos contemporáneos, tipografías audaces, ilustraciones y patrones que dialogan con la cultura callejera y el arte moderno....</p>
+                            <a class="read-more" href="#">Continuar leyendo</a>
+                        </div>
+                    </div>
+
+                    <!-- Blog Card 4 -->
+                    <div class="blog-card" data-post-id="4">
+                        <div class="blog-image">
+                            <img src="assets/dark_wood_coffin_with_painted_roses.png" alt="Reinterprets the classic bookshelf">
+                            <div class="date-badge">
+                                <div class="day">19</div>
+                                <div class="month">Dic</div>
+                            </div>
+                            <div class="category-badge">Detalles</div>
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">Arte hecho a mano</h3>
+                            <div class="blog-meta">
+                                <div class="meta-item">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                    </svg>
+                                    <span>Posteado por Estrella</span>
+                                </div>
+                                <div class="meta-item">
+                                   <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                                    <span>0</span>
+                                </div>
+                                <div class="meta-item">
+                                    
+                                </div>
+                            </div>
+                            <p class="blog-excerpt">Los ataúdes con detalles de pintura hecha a mano representan una de las formas más profundas y sensibles de personalización. Cada trazo es único, irrepetible y cargado de intención, transformando el ataúd en una verdadera obra artística que honra la historia, personalidad y legado de quien parte....</p>
+                            <a class="read-more" href="#">Continuar leyendo</a>
+                        </div>
+                    </div>
+
+                    <!-- Blog Card 5 -->
+                    <div class="blog-card" data-post-id="5">
+                        <div class="blog-image">
+                            <img src="assets/royal/royal_red_vista3.jpg" alt="Creative water features and exterior">
+                            <div class="date-badge">
+                                <div class="day">23</div>
+                                <div class="month">Dec</div>
+                            </div>
+                            <div class="category-badge">Detalles</div>
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">Detalles en metal</h3>
+                            <div class="blog-meta">
+                                <div class="meta-item">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                    </svg>
+                                    <span>Posteado por Luna</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                                    <span>0</span>
+                                </div>
+                            </div>
+                            <p class="blog-excerpt">Los ataúdes confeccionados con telas especiales y detalles en metal proponen una estética distinta, donde la suavidad de los textiles se combina con la firmeza y presencia de los elementos metálicos. Esta fusión crea piezas sobrias y elegantes, pensadas para homenajes que buscan delicadeza sin perder carácter.</p>
+                            <a class="read-more" href="#">Continuar leyendo</a>
+                        </div>
+                    </div>
+
+                    <!-- Blog Card 6 -->
+                    <div class="blog-card" data-post-id="6">
+                        <div class="blog-image">
+                            <img src="assets/banner-blog.png" alt="Sweet seat: functional seat for IT folks">
+                            <div class="date-badge">
+                                <div class="day">9</div>
+                                <div class="month">Nov</div>
+                            </div>
+                            <div class="category-badge">Decoración</div>
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">¿Cómo decorar el lugar? Tips</h3>
+                            <div class="blog-meta">
+                                <div class="meta-item">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                    </svg>
+                                    <span>Posteado por Loreta </span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                                    <span>0</span>
+                                </div>                                
+                            </div>
+                            <p class="blog-excerpt">La decoración de una ceremonia fúnebre cumple un rol esencial: acompañar la despedida con sobriedad, calidez y sentido. Elementos como flores, velas, telas suaves y una iluminación tenue ayudan a crear un ambiente de recogimiento y respeto, permitiendo que el espacio refleje tranquilidad y contención emocional....</p>
+                            <a class="read-more" href="#">Continuar leyendo</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination" id="pagination">
+                    <button class="active" data-page="1">1</button>
+                    <button data-page="2">2</button>
+                    <button data-page="3">3</button>
+                    <button data-page="4">4</button>
+                </div>
+            </div>
+
+        </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer footer--modern py-5" role="contentinfo">
+    <div class="container">
+
+      <!-- Top gradient hairline -->
+      <div class="footer__topline" aria-hidden="true"></div>
+
+      <div class="row g-4 align-items-start pt-4">
+
+        <!-- Brand Column -->
+        <div class="col-12 col-lg-5">
+          
+          <!-- Logo -->
+          <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Eternia - Inicio">
+            <img src="../assets/logo-eternia-blanco.png" alt="Logo Eternia" class="navbar-logo" loading="eager">
+          </a>
+
+          <!-- Description -->
+          <p class="footer__desc mt-3 mb-4">
+            Tu último viaje, a tu manera.<br> 
+            Ataúdes personalizados que celebran la vida con diseños únicos y temáticos.
+          </p>
+
+          <!-- Social Media -->
+          <div class="d-flex flex-wrap gap-2">
+
+            <a class="footer__social" href="https://wa.me/569XXXXXXXX" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+            </a>
+
+            <a class="footer__social" href="https://www.instagram.com/eterniadb2026?igsh=MXc3Nmx5bWloNmRjeA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            </a>
+
+            <a class="footer__social" href="https://www.facebook.com/share/1C4Xehc536/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+            </a>
+
+            <a class="footer__social" href="#" target="_blank" rel="noopener noreferrer" aria-label="X">
+              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+            </a>
+
+          </div>
+
+        </div>
+
+        <!-- Explorar Column -->
+        <div class="col-6 col-lg-3">
+          <h6 class="footer__title">Explorar</h6>
+          <ul class="list-unstyled footer__list mb-0">
+            <li><a class="footer__link" href="../index.html">Inicio</a></li>
+            <li><a class="footer__link" href="../index.html">Catálogo</a></li>
+            <li><a class="footer__link" href="../pages/nosotros/">Nosotros</a></li>
+            <li><a class="footer__link" href="../pages/contactanos/">Contacto</a></li>
+            <li><a class="footer__link" href="../pages/cuenta/">Mi cuenta</a></li>
+            <li><a class="footer__link" href="#inicio">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal & Newsletter Column -->
+        <div class="col-6 col-lg-4">
+          
+          <!-- Legal Links -->
+          <h6 class="footer__title">Legal</h6>
+          <ul class="list-unstyled footer__list mb-3">
+            <li><a class="footer__link" href="../pages/politica-privacidad/">Política de privacidad</a></li>
+            <li><a class="footer__link" href="../pages/politica-privacidad/">Términos y condiciones</a></li>
+          </ul>
+
+          <!-- Newsletter -->
+          <p>Suscríbete y recibe novedades</p>
+          <form class="mt-3" action="#" method="post">
+            <div class="input-group footer__inputgroup">
+                <input
+                type="email"
+                class="form-control footer__input"
+                placeholder="tucorreo@email.com"
+                aria-label="Correo"
+                required
+                >
+                <button class="btn footer__btn" type="submit">Suscribirme</button>
+            </div>
+
+            <div class="form-check mt-3">
+                <input class="form-check-input" type="checkbox" id="privacyCheck" required>
+                <label class="form-check-label footer__hint" for="privacyCheck">Acepto la política de privacidad
+                </label>
+            </div>
+          </form>                    
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer__bottom mt-5 pt-4 d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+        <p class="mb-0 footer__copy">© 2026 Eternia. Todos los derechos reservados.</p>
+        
+        <!-- Transbank Logo -->
+        <img src="front/assets/logo-web-pay-plus" alt="Logo webpay" class="footer__logo_wp">
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JS -->
+  <script src="js/components/navbar.js"></script>
+  <script src="js/utils/script.js"></script>
+  <script src="js/pages/wishlist.js"></script>
+  <script src="js/pages/catalogo.js"></script>
+  <script src="../js/pages/"></script>
+  <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -70,7 +70,7 @@
 }
 
 .footer__link:hover {
-  color: #f7e7ce;
+  color: var(--color-accent);
   padding-left: 20px;
 }
 
