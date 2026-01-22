@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: ecommerce-backend
+
+  datasource:
+    url: jdbc:postgresql://ep-small-base-acpx2n4u-pooler.sa-east-1.aws.neon.tech/neondb?sslmode=require
+    username: neondb_owner
+    password: npg_8hTtnfX7SQrp
+    driver-class-name: org.postgresql.Driver
+
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8080
+
+jwt:
+  secret: MiClaveSecretaSuperSeguraDebeSerMuyLargaAlMenos64Caracteres12345
+  expiration: 86400000
+
+logging:
+  level:
+    root: INFO
+    com.ecommerce_backend: DEBUG
