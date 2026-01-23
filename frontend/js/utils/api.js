@@ -1,3 +1,4 @@
+
 /**
  * ============================================================
  * API SERVICE - Conexión Frontend ↔ Backend
@@ -26,7 +27,7 @@
  * - LOCAL:      http://localhost:8080
  * - PRODUCCIÓN: https://tu-api.railway.app (cambiar después del deploy)
  */
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = "https://sa-ha1.onrender.com";
 
 /**
  * Tiempo máximo de espera para las peticiones (en milisegundos)

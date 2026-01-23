@@ -139,16 +139,37 @@
                 <h2 class="account__title">Crear cuenta</h2>
 
                 <div class="field">
-                  <label for="registerName">Nombre completo</label>
+                  <label for="registerName">Nombre</label>
                   <input type="text" id="registerName" name="registerName" placeholder="Escribe aquí tu nombre"
-                    autocomplete="name" required />
+                    autocomplete="given-name" required />
+                  <small class="error"></small>
+                </div>
+
+                <div class="field">
+                  <label for="registerLastName">Apellido</label>
+                  <input type="text" id="registerLastName" name="registerLastName" placeholder="Escribe aquí tu apellido"
+                    autocomplete="family-name" required />
                   <small class="error"></small>
                 </div>
 
                 <div class="field">
                   <label for="registerPhone">Número de teléfono</label>
                   <input type="tel" id="registerPhone" name="registerPhone" placeholder="+56 9 1234 5678"
-                    autocomplete="tel" required />
+                    autocomplete="tel" />
+                  <small class="error"></small>
+                </div>
+
+                <div class="field">
+                  <label for="registerAddress">Dirección</label>
+                  <input type="text" id="registerAddress" name="registerAddress" placeholder="Ej: Av. Principal 123"
+                    autocomplete="address-line1" />
+                  <small class="error"></small>
+                </div>
+
+                <div class="field">
+                  <label for="registerCity">Ciudad</label>
+                  <input type="text" id="registerCity" name="registerCity" placeholder="Ej: Santiago"
+                    autocomplete="address-level2" />
                   <small class="error"></small>
                 </div>
 
@@ -198,7 +219,8 @@
           </a>
 
           <p class="footer__desc mt-3 mb-4">
-            Tu último viaje, a tu manera.<br />
+            Tu último viaje, a tu manera.
+
             Ataúdes personalizados que celebran la vida con diseños únicos y temáticos.
           </p>
 
@@ -282,3 +304,4 @@
 </body>
 
 </html>
+ 
