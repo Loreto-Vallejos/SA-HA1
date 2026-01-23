@@ -112,14 +112,17 @@ document.addEventListener("DOMContentLoaded", () => {
     if (registerForm) {
         const registerMsg = document.getElementById("registerMsg");
         const nameInput = document.getElementById("registerName");
+        const lastNameInput = document.getElementById("registerLastName");
         const phoneInput = document.getElementById("registerPhone");
+        const addressInput = document.getElementById("registerAddress");
+        const cityInput = document.getElementById("registerCity");
         const emailInput = document.getElementById("registerEmail");
         const passInput = document.getElementById("registerPassword");
         const pass2Input = document.getElementById("registerPassword2");
         const submitBtn = registerForm.querySelector("button[type='submit']");
         
         // Limpiar errores al escribir
-        [nameInput, phoneInput, emailInput, passInput, pass2Input].forEach((el) => {
+        [nameInput, lastNameInput, phoneInput, addressInput, cityInput, emailInput, passInput, pass2Input].forEach((el) => {
             if (el) el.addEventListener("input", () => clearFieldError(el));
         });
         
@@ -128,8 +131,11 @@ document.addEventListener("DOMContentLoaded", () => {
             clearFormMessage(registerMsg);
             
             // Obtener valores
-            const fullName = (nameInput?.value || "").trim();
+            const name = (nameInput?.value || "").trim();
+            const lastName = (lastNameInput?.value || "").trim();
             const phoneRaw = (phoneInput?.value || "").trim();
+            const address = (addressInput?.value || "").trim();
+            const city = (cityInput?.value || "").trim();
             const email = (emailInput?.value || "").trim().toLowerCase();
             const password = passInput?.value || "";
             const password2 = pass2Input?.value || "";
@@ -140,14 +146,19 @@ document.addEventListener("DOMContentLoaded", () => {
             
             let isValid = true;
             
-            // Separar nombre y apellido
-            const nameParts = fullName.split(" ").filter(p => p.length > 0);
-            if (nameParts.length < 2) {
+            // Nombre
+            if (!name) {
                 isValid = false;
-                setFieldError(nameInput, "Ingresa nombre y apellido");
+                setFieldError(nameInput, "El nombre es requerido");
             }
             
-            // Teléfono
+            // Apellido
+            if (!lastName) {
+                isValid = false;
+                setFieldError(lastNameInput, "El apellido es requerido");
+            }
+            
+            // Teléfono (opcional, pero si se ingresa, validar)
             const phoneNormalized = normalizeCLPhone(phoneRaw);
             if (phoneRaw && !phoneNormalized) {
                 isValid = false;
@@ -186,13 +197,13 @@ document.addEventListener("DOMContentLoaded", () => {
             try {
                 // Preparar datos para la API
                 const userData = {
-                    nombre: nameParts[0],
-                    apellido: nameParts.slice(1).join(" "),
+                    nombre: name,
+                    apellido: lastName,
                     email: email,
                     contrasena: password,
                     telefono: phoneNormalized || null,
-                    direccion: null,
-                    ciudad: null
+                    direccion: address || null,
+                    ciudad: city || null
                 };
                 
                 console.log("📤 Enviando registro:", { ...userData, contrasena: "***" });
@@ -201,28 +212,35 @@ document.addEventListener("DOMContentLoaded", () => {
                 const response = await window.API.auth.register(userData);
                 
                 console.log("📥 Respuesta:", response);
-                
+                                      
                 if (response.success) {
-                    showFormMessage(registerMsg, " ¡Cuenta creada! Redirigiendo...", "success");
+                    showFormMessage(registerMsg, "✅ ¡Cuenta creada! Redirigiendo...", "success");
                     registerForm.reset();
+                    
+                    // Limpiar errores visuales
+                    registerForm.querySelectorAll(".field").forEach(field => {
+                        field.classList.remove("is-invalid");
+                    });
                     
                     // Redirigir después de 2 segundos
                     setTimeout(() => {
-                        window.location.href = "../catalogo/"; // O la página que prefieras
+                        window.location.href = "../catalogo/";
                     }, 2000);
-                } else {
-                    showFormMessage(registerMsg, response.message || "Error al crear cuenta", "error");
                 }
+ 
                 
             } catch (error) {
                 console.error("❌ Error en registro:", error);
                 
                 // Manejar errores específicos
-                if (error.message.includes("email ya está registrado")) {
+                const lowerMessage = error.message.toLowerCase();
+                if (lowerMessage.includes("email ya está registrado")) {
                     setFieldError(emailInput, "Este email ya está registrado");
+                } else if (lowerMessage.includes("contraseña")) {
+                    setFieldError(passInput, error.message);
+                } else {
+                    showFormMessage(registerMsg, error.message || "Error de conexión", "error");
                 }
-                
-                showFormMessage(registerMsg, error.message || "Error de conexión", "error");
                 
             } finally {
                 setButtonLoading(submitBtn, false);
@@ -289,7 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log("📥 Respuesta:", response);
                 
                 if (response.success) {
-                    showFormMessage(loginMsg, ` ¡Bienvenido, ${response.data.nombre}!`, "success");
+                    showFormMessage(loginMsg, `✅ ¡Bienvenido, ${response.data.nombre}!`, "success");
                     loginForm.reset();
                     
                     // Redirigir después de 1.5 segundos
@@ -329,3 +347,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
 });
+ 
+ 
