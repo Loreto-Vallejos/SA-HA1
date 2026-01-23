@@ -30,6 +30,112 @@ document.addEventListener("DOMContentLoaded", () => {
 
       grid.innerHTML = productosAMostrar.map(p => renderCard(p, isHome)).join("");
 
+      // Filtros por categoría
+      const filterButtons = document.querySelectorAll('.catalogo-categorias .categoria-item');
+      const searchInput = document.getElementById('search-input');
+      const sortSelect = document.getElementById('sort-select');
+      const resultsCount = document.getElementById('results-count');
+
+      let currentCategory = 'all';
+      let currentSearch = '';
+      let currentSort = 'default';
+
+      // Función para actualizar contadores de categorías
+      function updateCategoryCounts() {
+        const categorias = {
+          all: productosAMostrar.length,
+          Anime: productosAMostrar.filter(p => p.categoria === 'Anime').length,
+          Lujo: productosAMostrar.filter(p => p.categoria === 'Lujo').length,
+          Urbano: productosAMostrar.filter(p => p.categoria === 'Urbano').length
+        };
+
+        document.querySelectorAll('.categoria-item').forEach(item => {
+          const category = item.dataset.category;
+          const countEl = item.querySelector('.categoria-count');
+          if (countEl && categorias[category] !== undefined) {
+            countEl.textContent = `${categorias[category]} producto${categorias[category] !== 1 ? 's' : ''}`;
+          }
+        });
+      }
+
+      // Función para aplicar todos los filtros
+      function applyFilters() {
+        let filtered = [...productosAMostrar];
+
+        // Filtro por categoría
+        if (currentCategory !== 'all') {
+          filtered = filtered.filter(p => p.categoria === currentCategory);
+        }
+
+        // Filtro por búsqueda
+        if (currentSearch.trim()) {
+          const searchTerm = currentSearch.toLowerCase();
+          filtered = filtered.filter(p => 
+            p.nombre.toLowerCase().includes(searchTerm) || 
+            p.descripcion.toLowerCase().includes(searchTerm) ||
+            p.categoria.toLowerCase().includes(searchTerm)
+          );
+        }
+
+        // Ordenamiento
+        if (currentSort !== 'default') {
+          filtered.sort((a, b) => {
+            switch (currentSort) {
+              case 'price-asc':
+                return a.precio - b.precio;
+              case 'price-desc':
+                return b.precio - a.precio;
+              case 'name-asc':
+                return a.nombre.localeCompare(b.nombre);
+              case 'name-desc':
+                return b.nombre.localeCompare(a.nombre);
+              default:
+                return 0;
+            }
+          });
+        }
+
+        // Actualizar contador
+        if (resultsCount) {
+          resultsCount.textContent = `Mostrando ${filtered.length} de ${productosAMostrar.length} productos`;
+        }
+
+        // Renderizar
+        grid.innerHTML = filtered.map(p => renderCard(p, isHome)).join("");
+
+        // Re-sync wishlist
+        if (typeof updateWishlistCount === 'function') updateWishlistCount();
+        if (typeof syncWishlistButtons === 'function') syncWishlistButtons();
+      }
+
+      // Event listeners
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentCategory = btn.dataset.category;
+          applyFilters();
+        });
+      });
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          currentSearch = e.target.value;
+          applyFilters();
+        });
+      }
+
+      if (sortSelect) {
+        sortSelect.addEventListener('change', (e) => {
+          currentSort = e.target.value;
+          applyFilters();
+        });
+      }
+
+      // Aplicar filtros iniciales
+      updateCategoryCounts();
+      applyFilters();
+
       // ✅ IMPORTANTE: después de renderizar
       if (typeof updateWishlistCount === 'function') updateWishlistCount();
       if (typeof syncWishlistButtons === 'function') syncWishlistButtons();

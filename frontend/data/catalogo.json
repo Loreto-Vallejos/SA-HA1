@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "categoria": "Anime",
     "nombre": "Villano Otaku",
     "descripcion": "Ataúd temático inspirado en estética anime urbana.",
     "precio": 2500000,
@@ -18,6 +19,7 @@
   },
   {
     "id": 2,
+    "categoria": "Lujo",
     "nombre": "Barbie Girl",
     "descripcion": "Estética vibrante inspirada en fantasía y glamour.",
     "precio": 2800000,
@@ -35,6 +37,7 @@
   },
   {
     "id": 3,
+    "categoria": "Urbano",
     "nombre": "Hip-Hop Style",
     "descripcion": "Estética urbana inspirada en espíritu hip hop",
     "precio": 2300000,
@@ -52,6 +55,7 @@
   },
   {
     "id": 4,
+    "categoria": "Anime",
     "nombre": "Pokemon Soul",
     "descripcion": "Diseño épico inspirado en evolución Pokémon final",
     "precio": 3000000,
@@ -69,6 +73,7 @@
   },
   {
     "id": 5,
+    "categoria": "Lujo",
     "nombre": "Sueño de Lujo",
     "descripcion": "Prestigio británico inspirado en Aston Martin",
     "precio": 2700000,
@@ -86,6 +91,7 @@
   },
   {
     "id": 6,
+    "categoria": "Anime",
     "nombre": "Naruto Legend",
     "descripcion": "Fuerza y honor inspirados en camino ninja",
     "precio": 2600000,
@@ -103,6 +109,7 @@
   },
   {
     "id": 7,
+    "categoria": "Anime",
     "nombre": "One piece",
     "descripcion": "Legado aventurero inspirado en mares sin límites",
     "precio": 2400000,
@@ -120,6 +127,7 @@
   },
   {
     "id": 8,
+    "categoria": "Urbano",
     "nombre": "Motoquero",
     "descripcion": "Alma libre inspirada en caminos infinitos",
     "precio": 3100000,
