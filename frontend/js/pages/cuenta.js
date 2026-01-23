@@ -1,141 +1,331 @@
-
-/*inicio sesión*/
-
-// LOGIN: validaciones + auth con LocalStorage + redirección
+/**
+ * ============================================================
+ * CUENTA.JS - Login y Registro conectado al Backend
+ * ============================================================
+ * 
+ * Este archivo maneja:
+ * - Registro de usuarios (POST /auth/register)
+ * - Login de usuarios (POST /auth/login)
+ * - Validaciones de formulario
+ * - Manejo de errores de la API
+ * 
+ * REQUIERE: api.js cargado antes de este archivo
+ */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // ---------- Usuario de prueba (seed) ----------
-  // Requisito: "Almacenar los datos del usuario de prueba en el local storage"
-  // Esto crea un usuario demo solo si NO existe ya.
-  const USERS_KEY = "users";
-  const SESSION_KEY = "currentUser";
-
-  function getUsers() {
-    try {
-      const raw = localStorage.getItem(USERS_KEY);
-      const parsed = JSON.parse(raw || "[]");
-      return Array.isArray(parsed) ? parsed : [];
-    } catch (e) {
-      return [];
+    
+    // ============================================================
+    // TABS: Cambiar entre Login y Register
+    // ============================================================
+    
+    const tabs = document.querySelectorAll(".account__tab");
+    const accountForms = document.querySelectorAll(".account__form");
+    
+    const setActiveTab = (target) => {
+        tabs.forEach((t) => t.classList.toggle("is-active", t.dataset.target === target));
+        accountForms.forEach((f) => f.classList.toggle("is-active", f.id === `${target}Form`));
+    };
+    
+    tabs.forEach((tab) => {
+        tab.setAttribute("type", "button");
+        tab.addEventListener("click", () => setActiveTab(tab.dataset.target));
+    });
+    
+    // ============================================================
+    // UTILIDADES DE UI
+    // ============================================================
+    
+    function setFieldError(input, message) {
+        if (!input) return;
+        const field = input.closest(".field");
+        const errorEl = field?.querySelector(".error");
+        
+        if (field) field.classList.add("is-invalid");
+        if (errorEl) errorEl.textContent = message || "Campo inválido";
     }
-  }
-
-  function saveUsers(users) {
-    localStorage.setItem(USERS_KEY, JSON.stringify(users));
-  }
-
-  function seedTestUser() {
-    const users = getUsers();
-    const demoEmail = "demo@eternia.cl";
-    const demoPass = "Eternia123"; // cumple 8+ caracteres
-
-    const exists = users.some((u) => (u.email || "").toLowerCase() === demoEmail.toLowerCase());
-    if (!exists) {
-      users.push({
-        nombreCompleto: "Usuario Demo",
-        telefono: "+56912345678",
-        email: demoEmail,
-        password: demoPass,
-      });
-      saveUsers(users);
+    
+    function clearFieldError(input) {
+        if (!input) return;
+        const field = input.closest(".field");
+        const errorEl = field?.querySelector(".error");
+        
+        if (field) field.classList.remove("is-invalid");
+        if (errorEl) errorEl.textContent = "";
     }
-  }
-
-  seedTestUser();
-
-  // ---------- Helpers UI (login) ----------
-  const loginForm = document.getElementById("loginForm");
-  if (!loginForm) return;
-
-  const loginMsg = document.getElementById("loginMsg");
-  const loginEmail = document.getElementById("loginEmail");
-  const loginPassword = document.getElementById("loginPassword");
-
-  function setFieldError(input, message) {
-    const field = input.closest(".field");
-    const errorEl = field ? field.querySelector(".error") : null;
-
-    if (field) field.classList.add("is-invalid");
-    if (errorEl) errorEl.textContent = message || "Campo inválido";
-  }
-
-  function clearFieldError(input) {
-    const field = input.closest(".field");
-    const errorEl = field ? field.querySelector(".error") : null;
-
-    if (field) field.classList.remove("is-invalid");
-    if (errorEl) errorEl.textContent = "";
-  }
-
-  function showLoginMessage(text, type = "error") {
-    if (!loginMsg) return;
-    loginMsg.textContent = text;
-    loginMsg.classList.remove("success", "error");
-    loginMsg.classList.add(type);
-  }
-
-  function isValidEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
-  }
-
-  // Limpia errores al escribir
-  [loginEmail, loginPassword].forEach((el) => {
-    if (!el) return;
-    el.addEventListener("input", () => clearFieldError(el));
-  });
-
-  // ---------- Submit login ----------
-  loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (loginMsg) loginMsg.textContent = "";
-
-    let isOk = true;
-
-    const email = (loginEmail.value || "").trim().toLowerCase();
-    const password = loginPassword.value || "";
-
-    // Campos vacíos
-    if (!email) {
-      isOk = false;
-      setFieldError(loginEmail, "Ingresa tu email.");
-    } else if (!isValidEmail(email)) {
-      isOk = false;
-      setFieldError(loginEmail, "Email inválido.");
+    
+    function showFormMessage(msgElement, text, type = "error") {
+        if (!msgElement) return;
+        msgElement.textContent = text;
+        msgElement.classList.remove("success", "error");
+        msgElement.classList.add(type);
     }
-
-    if (!password) {
-      isOk = false;
-      setFieldError(loginPassword, "Ingresa tu contraseña.");
+    
+    function clearFormMessage(msgElement) {
+        if (!msgElement) return;
+        msgElement.textContent = "";
+        msgElement.classList.remove("success", "error");
     }
-
-    if (!isOk) {
-      showLoginMessage("Completa los campos requeridos.", "error");
-      return;
+    
+    function setButtonLoading(button, isLoading) {
+        if (!button) return;
+        if (isLoading) {
+            button.disabled = true;
+            button.dataset.originalText = button.textContent;
+            button.textContent = "Cargando...";
+        } else {
+            button.disabled = false;
+            button.textContent = button.dataset.originalText || button.textContent;
+        }
     }
-
-    // Auth contra usuarios preguardados
-    const users = getUsers();
-    const found = users.find((u) => (u.email || "").toLowerCase() === email);
-
-    // Usuario / contraseña inválidos
-    if (!found || found.password !== password) {
-      showLoginMessage("Nombre de usuario o contraseña inválidos.", "error");
-      return;
+    
+    // ============================================================
+    // VALIDACIONES
+    // ============================================================
+    
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(email || "").trim());
     }
-
-    // Login OK -> guardar sesión
-    localStorage.setItem(
-      SESSION_KEY,
-      JSON.stringify({
-        email: found.email,
-        nombreCompleto: found.nombreCompleto,
-        loginAt: new Date().toISOString(),
-      })
-    );
-
-    showLoginMessage("Inicio de sesión exitoso ✅ Redirigiendo...", "success");
-
-    // Redirección a inicio
-    window.location.href = "index.html";
-  });
+    
+    function isValidPassword(password) {
+        return String(password || "").length >= 6; // Mínimo 6 según backend
+    }
+    
+    function normalizeCLPhone(raw) {
+        const digits = String(raw || "").replace(/\D/g, "");
+        
+        if (digits.length === 11 && digits.startsWith("569")) return `+${digits}`;
+        if (digits.length === 11 && digits.startsWith("56")) {
+            const rest = digits.slice(2);
+            if (rest.length === 9 && rest.startsWith("9")) return `+56${rest}`;
+        }
+        if (digits.length === 9 && digits.startsWith("9")) return `+56${digits}`;
+        
+        return null;
+    }
+    
+    // ============================================================
+    // REGISTRO - Conectado al Backend
+    // ============================================================
+    
+    const registerForm = document.getElementById("registerForm");
+    
+    if (registerForm) {
+        const registerMsg = document.getElementById("registerMsg");
+        const nameInput = document.getElementById("registerName");
+        const phoneInput = document.getElementById("registerPhone");
+        const emailInput = document.getElementById("registerEmail");
+        const passInput = document.getElementById("registerPassword");
+        const pass2Input = document.getElementById("registerPassword2");
+        const submitBtn = registerForm.querySelector("button[type='submit']");
+        
+        // Limpiar errores al escribir
+        [nameInput, phoneInput, emailInput, passInput, pass2Input].forEach((el) => {
+            if (el) el.addEventListener("input", () => clearFieldError(el));
+        });
+        
+        registerForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            clearFormMessage(registerMsg);
+            
+            // Obtener valores
+            const fullName = (nameInput?.value || "").trim();
+            const phoneRaw = (phoneInput?.value || "").trim();
+            const email = (emailInput?.value || "").trim().toLowerCase();
+            const password = passInput?.value || "";
+            const password2 = pass2Input?.value || "";
+            
+            // ============================================================
+            // VALIDACIONES LOCALES
+            // ============================================================
+            
+            let isValid = true;
+            
+            // Separar nombre y apellido
+            const nameParts = fullName.split(" ").filter(p => p.length > 0);
+            if (nameParts.length < 2) {
+                isValid = false;
+                setFieldError(nameInput, "Ingresa nombre y apellido");
+            }
+            
+            // Teléfono
+            const phoneNormalized = normalizeCLPhone(phoneRaw);
+            if (phoneRaw && !phoneNormalized) {
+                isValid = false;
+                setFieldError(phoneInput, "Teléfono inválido. Ej: +56 9 1234 5678");
+            }
+            
+            // Email
+            if (!isValidEmail(email)) {
+                isValid = false;
+                setFieldError(emailInput, "Email inválido");
+            }
+            
+            // Password
+            if (!isValidPassword(password)) {
+                isValid = false;
+                setFieldError(passInput, "Mínimo 6 caracteres");
+            }
+            
+            // Confirmar password
+            if (password !== password2) {
+                isValid = false;
+                setFieldError(pass2Input, "Las contraseñas no coinciden");
+            }
+            
+            if (!isValid) {
+                showFormMessage(registerMsg, "Revisa los campos marcados en rojo", "error");
+                return;
+            }
+            
+            // ============================================================
+            // ENVIAR AL BACKEND
+            // ============================================================
+            
+            setButtonLoading(submitBtn, true);
+            
+            try {
+                // Preparar datos para la API
+                const userData = {
+                    nombre: nameParts[0],
+                    apellido: nameParts.slice(1).join(" "),
+                    email: email,
+                    contrasena: password,
+                    telefono: phoneNormalized || null,
+                    direccion: null,
+                    ciudad: null
+                };
+                
+                console.log("📤 Enviando registro:", { ...userData, contrasena: "***" });
+                
+                // Llamar a la API
+                const response = await window.API.auth.register(userData);
+                
+                console.log("📥 Respuesta:", response);
+                
+                if (response.success) {
+                    showFormMessage(registerMsg, " ¡Cuenta creada! Redirigiendo...", "success");
+                    registerForm.reset();
+                    
+                    // Redirigir después de 2 segundos
+                    setTimeout(() => {
+                        window.location.href = "../catalogo/"; // O la página que prefieras
+                    }, 2000);
+                } else {
+                    showFormMessage(registerMsg, response.message || "Error al crear cuenta", "error");
+                }
+                
+            } catch (error) {
+                console.error("❌ Error en registro:", error);
+                
+                // Manejar errores específicos
+                if (error.message.includes("email ya está registrado")) {
+                    setFieldError(emailInput, "Este email ya está registrado");
+                }
+                
+                showFormMessage(registerMsg, error.message || "Error de conexión", "error");
+                
+            } finally {
+                setButtonLoading(submitBtn, false);
+            }
+        });
+    }
+    
+    // ============================================================
+    // LOGIN - Conectado al Backend
+    // ============================================================
+    
+    const loginForm = document.getElementById("loginForm");
+    
+    if (loginForm) {
+        const loginMsg = document.getElementById("loginMsg");
+        const emailInput = document.getElementById("loginEmail");
+        const passInput = document.getElementById("loginPassword");
+        const submitBtn = loginForm.querySelector("button[type='submit']");
+        
+        // Limpiar errores al escribir
+        [emailInput, passInput].forEach((el) => {
+            if (el) el.addEventListener("input", () => clearFieldError(el));
+        });
+        
+        loginForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            clearFormMessage(loginMsg);
+            
+            const email = (emailInput?.value || "").trim().toLowerCase();
+            const password = passInput?.value || "";
+            
+            // ============================================================
+            // VALIDACIONES LOCALES
+            // ============================================================
+            
+            let isValid = true;
+            
+            if (!isValidEmail(email)) {
+                isValid = false;
+                setFieldError(emailInput, "Email inválido");
+            }
+            
+            if (!password) {
+                isValid = false;
+                setFieldError(passInput, "Ingresa tu contraseña");
+            }
+            
+            if (!isValid) {
+                showFormMessage(loginMsg, "Revisa los campos", "error");
+                return;
+            }
+            
+            // ============================================================
+            // ENVIAR AL BACKEND
+            // ============================================================
+            
+            setButtonLoading(submitBtn, true);
+            
+            try {
+                console.log("📤 Enviando login:", { email, contrasena: "***" });
+                
+                const response = await window.API.auth.login(email, password);
+                
+                console.log("📥 Respuesta:", response);
+                
+                if (response.success) {
+                    showFormMessage(loginMsg, ` ¡Bienvenido, ${response.data.nombre}!`, "success");
+                    loginForm.reset();
+                    
+                    // Redirigir después de 1.5 segundos
+                    setTimeout(() => {
+                        window.location.href = "../catalogo/"; // O la página que prefieras
+                    }, 1500);
+                } else {
+                    showFormMessage(loginMsg, response.message || "Credenciales inválidas", "error");
+                }
+                
+            } catch (error) {
+                console.error("❌ Error en login:", error);
+                
+                // Manejar errores específicos
+                if (error.status === 401 || error.message.includes("Credenciales")) {
+                    showFormMessage(loginMsg, "Email o contraseña incorrectos", "error");
+                } else {
+                    showFormMessage(loginMsg, error.message || "Error de conexión", "error");
+                }
+                
+            } finally {
+                setButtonLoading(submitBtn, false);
+            }
+        });
+    }
+    
+    // ============================================================
+    // VERIFICAR SI YA HAY SESIÓN ACTIVA
+    // ============================================================
+    
+    if (window.API?.auth?.isAuthenticated()) {
+        const user = window.API.auth.getCurrentUser();
+        console.log("👤 Usuario ya autenticado:", user?.nombre);
+        
+        // Opcional: mostrar mensaje o redirigir
+        // window.location.href = "../catalogo/";
+    }
+    
 });
