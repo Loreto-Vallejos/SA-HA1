@@ -117,13 +117,13 @@ Crea `index.html` dentro de la carpeta con esta plantilla:
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eternia | Nueva Página</title>
-  
+
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
+
   <!-- CSS Principal (modular) -->
   <link rel="stylesheet" href="../../css/main.css">
 </head>
@@ -238,7 +238,7 @@ console.log("✅ mi-componente.js cargado");
 
 function initMiComponente() {
   const elementos = document.querySelectorAll('.mi-componente');
-  
+
   elementos.forEach(elemento => {
     elemento.addEventListener('click', () => {
       elemento.classList.toggle('mi-componente--activo');
@@ -322,7 +322,7 @@ Para productos destacados en el home (`frontend/index.html`):
 
         <div class="overlay">
           <a href="./carrito.html" class="add-to-cart" data-id="9">Add to cart</a>
-          
+
           <ul class="acciones">
             <li><a href="#"><img src="assets/share.svg" alt="Compartir"></a></li>
             <li><a href="#"><img src="assets/compare.svg" alt="Comparar"></a></li>
@@ -354,14 +354,14 @@ Edita `frontend/css/global/variables.css`:
   --color-champagne: #f7e7ce;
   --color-sandia: #c1666b;
   --tu-nuevo-color: #hexcode;
-  
+
   /* Espaciado */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 1.5rem;
   --spacing-lg: 2rem;
   --spacing-xl: 3rem;
-  
+
   /* Border Radius */
   --radius-sm: 4px;
   --radius-md: 8px;
@@ -462,10 +462,11 @@ Este proyecto es académico. Todos los derechos reservados © 2025 Eternia.
 ## 👥 Contacto
 
 - **Email**: desarrollo@eternia.cl
-- **GitHub**: [https://github.com/tu-usuario/eternia](https://github.com/tu-usuario/eternia)
+- **GitHub**: [Repositorio del Proyecto](https://github.com/tu-usuario/eternia)
 
 ---
 
 **Última actualización**: Enero 2026
 **Versión**: 2.0.0 (Arquitectura Modular)
 **Estado**: ✅ Frontend Completo | 🔜 Backend Pendiente
+ 
