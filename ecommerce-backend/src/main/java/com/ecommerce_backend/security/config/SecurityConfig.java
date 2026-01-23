@@ -93,7 +93,7 @@ public class SecurityConfig {
                 "http://localhost:5500",       // Local Host
                 "http://localhost:5501",        // Local Host
                 "http://127.0.0.1:5501",     // Live Server
-                "https://eternia-liard.vercel.app"  // ← Vercel Server
+                "sa-ha-1-nmj1pc4k6-macerdava-6965s-projects.vercel.app"  // ← Vercel Server
 
 
         ));
