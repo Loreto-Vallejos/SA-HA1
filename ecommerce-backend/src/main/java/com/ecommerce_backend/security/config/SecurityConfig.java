@@ -91,9 +91,9 @@ public class SecurityConfig {
                 "http://127.0.0.1:5500",      // Live Server
                 "http://localhost:4200",       // Angular
                 "http://localhost:5500",       // Local Host
-                "http://localhost:5501",        // Local Host
-                "http://127.0.0.1:5501",     // Live Server
-                "sa-ha-1-nmj1pc4k6-macerdava-6965s-projects.vercel.app"  // ← Vercel Server
+                "http://localhost:5501",        // Local Host-1
+                "http://127.0.0.1:5501",     // Live Server-1
+                "https://sa-ha-1-nmj1pc4k6-macerdava-6965s-projects.vercel.app"  // ← Vercel Server
 
 
         ));
