@@ -92,7 +92,9 @@ public class SecurityConfig {
                 "http://localhost:4200",       // Angular
                 "http://localhost:5500",       // Local Host
                 "http://localhost:5501",        // Local Host
-                "http://127.0.0.1:5501"     // Live Server
+                "http://127.0.0.1:5501",     // Live Server
+                "https://eternia-liard.vercel.app"  // ← Vercel Server
+
 
         ));
 
