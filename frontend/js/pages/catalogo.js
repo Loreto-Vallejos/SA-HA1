@@ -1,338 +1,356 @@
-/* =========================
-   CATÁLOGO – FETCH + RENDER
-   ========================= */
+/**
+ * ============================================================
+ * CATALOGO.JS - Cargar productos desde el Backend
+ * ============================================================
+ * 
+ * Este archivo maneja:
+ * - Cargar lista de productos (GET /api/productos)
+ * - Filtrar por categoría
+ * - Buscar productos
+ * - Renderizar cards de productos
+ * 
+ * REQUIERE: api.js cargado antes de este archivo
+ */
+
 document.addEventListener("DOMContentLoaded", () => {
-  if (typeof initNavbarScrollColor === 'function') {
-    initNavbarScrollColor();
-  }
-
-  const grid = document.getElementById("catalogo-grid");
-  if (!grid) return;
-
-  // ✅ Soporte para límite de productos (data-limit)
-  const limit = parseInt(grid.dataset.limit) || 0;
-
-  // Detectar si estamos en el home o en la página de catálogo
-  const isHome = window.location.pathname.includes('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/frontend/');
-  const jsonPath = isHome ? "data/catalogo.json" : "../../data/catalogo.json";
-
-  // Cargar productos dinámicamente
-  fetch(jsonPath, { cache: "no-store" })
-    .then((res) => {
-      if (!res.ok) throw new Error(`HTTP ${res.status} al cargar catalogo.json`);
-      return res.json();
-    })
-    .then((productos) => {
-      if (!Array.isArray(productos)) throw new Error("catalogo.json debe ser un array []");
-
-      // Aplicar el límite si existe
-      let productosAMostrar = limit > 0 ? productos.slice(0, limit) : productos;
-
-      grid.innerHTML = productosAMostrar.map(p => renderCard(p, isHome)).join("");
-
-      // ✅ IMPORTANTE: después de renderizar
-      if (typeof updateWishlistCount === 'function') updateWishlistCount();
-      if (typeof syncWishlistButtons === 'function') syncWishlistButtons();
-    })
-    .catch((err) => {
-      console.error(err);
-      grid.innerHTML = `
-        <div class="col-12">
-          <p class="text-white" style="margin:0;">No se pudo cargar el catálogo. Revisa consola (F12).</p>
-        </div>
-      `;
-    });
-});
-
-/* =========================
-   HELPERS
-   ========================= */
-function formatCLP(numero) {
-  return new Intl.NumberFormat("es-CL").format(Number(numero) || 0);
-}
-
-function escapeHTML(str) {
-  return String(str ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-function hasPrecioAnterior(val) {
-  // Evita que "" se muestre como $0
-  if (val === null || val === undefined) return false;
-  if (typeof val === "string" && val.trim() === "") return false;
-  const n = Number(val);
-  return Number.isFinite(n) && n > 0;
-}
-
-/* =========================
-   RENDER CARD
-   ========================= */
-function renderCard(p, isHome = false) {
-  const id = escapeHTML(p.id);
-  const nombre = escapeHTML(p.nombre);
-  const descripcion = escapeHTML(p.descripcion);
-  
-  // Ajustar ruta de imagen según contexto
-  let imagen = escapeHTML(p.imagen);
-  if (isHome) {
-    // Si estamos en home, convertir rutas relativas a assets/
-    imagen = imagen.replace('../../assets/', 'assets/').replace('/frontend/assets/', 'assets/');
-  }
-
-  const descuento = escapeHTML(p.descuento ?? "");
-  const badgeColor = escapeHTML(p.badgeColor ?? "sandia");
-
-  const precio = formatCLP(p.precio);
-  const precioAnterior = hasPrecioAnterior(p.precioAnterior) ? formatCLP(p.precioAnterior) : "";
-
-  // Ajustar rutas según si estamos en home o catálogo
-  const productoUrl = isHome ? `pages/producto/?id=${id}` : `../producto/?id=${id}`;
-  const carritoUrl = isHome ? `pages/carrito/` : `../carrito/`;
-  const shareIcon = isHome ? `assets/share.svg` : `../../assets/share.svg`;
-
-  return `
-    <div class="col-12 col-md-6 col-lg-3">
-      <article>
-        <div class="galeria-productos">
-          <a href="${productoUrl}" class="card-link">
-            <figure class="producto">
-              <div class="contenedor-imagen">
-                <img src="${imagen}" alt="${nombre}">
-                ${descuento ? `<span class="info ${badgeColor}">${descuento}</span>` : ""}
-                <button class="wishlist-btn-card" data-id="${id}" type="button" aria-label="Agregar a wishlist">
-                  <i class="fa-regular fa-heart"></i>
-                </button>
-              </div>
-
-              <figcaption>
-                <h3>${nombre}</h3>
-                <p class="descripcion">${descripcion}</p>
-                <div class="precio-container">
-                  ${precioAnterior ? `<p class="precio-anterior">$${precioAnterior}</p>` : ""}
-                  <p class="precio">$${precio}</p>
-                </div>
-                <button class="add-to-cart" 
-                  data-id="${id}" 
-                  data-nombre="${nombre}" 
-                  data-precio="${p.precio}" 
-                  data-imagen="${imagen}"
-                  type="button">
-                  <i class="fa-solid fa-cart-shopping"></i>
-                  Agregar
-                </button>
-              </figcaption>
-            </figure>
-          </a>
-        </div>
-      </article>
-    </div>
-  `;
-}
-
-/* =========================
-   QUICK VIEW MODAL
-   ========================= */
-function attachQuickViewListeners() {
-  const quickViewButtons = document.querySelectorAll('.quick-view-btn');
-  
-  quickViewButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const id = btn.dataset.id;
-      const nombre = btn.dataset.nombre;
-      const descripcion = btn.dataset.descripcion;
-      const imagen = btn.dataset.imagen;
-      const precio = btn.dataset.precio;
-      const precioAnterior = btn.dataset.precioAnterior;
-      
-      showQuickView(id, nombre, descripcion, imagen, precio, precioAnterior);
-    });
-  });
-}
-
-function showQuickView(id, nombre, descripcion, imagen, precio, precioAnterior) {
-  const modal = document.getElementById('quickViewModal');
-  const modalBody = document.getElementById('quickViewModalBody');
-  
-  if (!modal || !modalBody) return;
-  
-  const precioAntHtml = precioAnterior && precioAnterior !== '' 
-    ? `<span class="quick-view__precio-anterior">$${precioAnterior}</span>` 
-    : '';
-  
-  modalBody.innerHTML = `
-    <div class="quick-view__content">
-      <div class="quick-view__image">
-        <img src="${imagen}" alt="${nombre}">
-      </div>
-      <div class="quick-view__details">
-        <h2 class="quick-view__title">${nombre}</h2>
-        <p class="quick-view__description">${descripcion}</p>
-        <div class="quick-view__price">
-          <span class="quick-view__precio-actual">$${precio}</span>
-          ${precioAntHtml}
-        </div>
-        <div class="quick-view__actions">
-          <a href="./carrito.html" class="btn btn--accent" data-id="${id}">
-            <i class="fa-solid fa-cart-shopping"></i> Agregar al carrito
-          </a>
-          <button class="btn btn--secondary wishlist-btn" type="button" data-id="${id}">
-            <i class="fa-regular fa-heart"></i> Wishlist
-          </button>
-        </div>
-      </div>
-    </div>
-  `;
-  
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-  
-  // Re-sync wishlist button
-  syncWishlistButtons();
-}
-
-function closeQuickView() {
-  const modal = document.getElementById('quickViewModal');
-  if (!modal) return;
-  
-  modal.classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-// Close modal listeners
-document.addEventListener('DOMContentLoaded', () => {
-  const modal = document.getElementById('quickViewModal');
-  const closeBtn = document.getElementById('closeQuickView');
-  
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeQuickView);
-  }
-  
-  if (modal) {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        closeQuickView();
-      }
-    });
-  }
-  
-  // ESC key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeQuickView();
+    
+    // ============================================================
+    // ELEMENTOS DEL DOM
+    // ============================================================
+    
+    const productosContainer = document.getElementById("productosContainer");
+    const loadingSpinner = document.getElementById("loadingSpinner");
+    const errorMessage = document.getElementById("errorMessage");
+    const filtroCategoria = document.getElementById("filtroCategoria");
+    const buscadorInput = document.getElementById("buscadorProductos");
+    
+    // ============================================================
+    // ESTADO
+    // ============================================================
+    
+    let todosLosProductos = [];
+    
+    // ============================================================
+    // FUNCIONES DE UI
+    // ============================================================
+    
+    function showLoading() {
+        if (loadingSpinner) loadingSpinner.style.display = "block";
+        if (errorMessage) errorMessage.style.display = "none";
     }
-  });
-
-  // Prevenir que el botón "Agregar al carro" navegue a la página de producto
-  document.addEventListener('click', (e) => {
-    const addToCartBtn = e.target.closest('.add-to-cart');
-    if (addToCartBtn) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      // Obtener datos del producto desde los data attributes
-      const productId = addToCartBtn.getAttribute('data-id');
-      const nombre = addToCartBtn.getAttribute('data-nombre');
-      const precio = parseInt(addToCartBtn.getAttribute('data-precio')) || 0;
-      const imagen = addToCartBtn.getAttribute('data-imagen');
-      
-      // Obtener carrito actual de localStorage
-      let carrito = [];
-      try {
-        carrito = JSON.parse(localStorage.getItem('carritoEternia')) || [];
-      } catch (err) {
-        carrito = [];
-      }
-      
-      // Buscar si el producto ya está en el carrito
-      const existeIndex = carrito.findIndex(item => String(item.id) === String(productId));
-      
-      if (existeIndex !== -1) {
-        // Si ya existe, incrementar cantidad
-        carrito[existeIndex].cantidad += 1;
-      } else {
-        // Si no existe, agregarlo
-        carrito.push({
-          id: productId,
-          nombre: nombre,
-          precio: precio,
-          imagen: imagen,
-          cantidad: 1
-        });
-      }
-      
-      // Guardar en localStorage
-      localStorage.setItem('carritoEternia', JSON.stringify(carrito));
-      
-      // Actualizar badge del carrito en navbar
-      updateCartBadge();
-      
-      // Mostrar feedback visual
-      addToCartBtn.innerHTML = '<i class="fa-solid fa-check"></i> Agregado';
-      addToCartBtn.disabled = true;
-      setTimeout(() => {
-        addToCartBtn.innerHTML = '<i class="fa-solid fa-cart-shopping"></i> Agregar';
-        addToCartBtn.disabled = false;
-      }, 2000);
+    
+    function hideLoading() {
+        if (loadingSpinner) loadingSpinner.style.display = "none";
     }
-
-    // Manejar botón wishlist
-    const wishlistBtn = e.target.closest('.wishlist-btn-card');
-    if (wishlistBtn) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      const productId = wishlistBtn.getAttribute('data-id');
-      
-      // Usar la función toggleWishlist de wishlist.js
-      if (typeof toggleWishlist === 'function') {
-        toggleWishlist(productId);
-        
-        // Actualizar el ícono
-        const icon = wishlistBtn.querySelector('i');
-        if (isInWishlist(productId)) {
-          icon.classList.remove('fa-regular');
-          icon.classList.add('fa-solid');
-          wishlistBtn.classList.add('active');
-        } else {
-          icon.classList.remove('fa-solid');
-          icon.classList.add('fa-regular');
-          wishlistBtn.classList.remove('active');
+    
+    function showError(message) {
+        hideLoading();
+        if (errorMessage) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = "block";
         }
-      }
     }
-  });
-});
-
-/* =========================
-   CART BADGE UPDATE
-   ========================= */
-function updateCartBadge() {
-  let carrito = [];
-  try {
-    carrito = JSON.parse(localStorage.getItem('carritoEternia')) || [];
-  } catch (err) {
-    carrito = [];
-  }
-  
-  // Calcular total de items
-  const totalItems = carrito.reduce((sum, item) => sum + (item.cantidad || 1), 0);
-  
-  // Buscar el badge en el navbar (puede haber varios selectores)
-  const badges = document.querySelectorAll('#cartCount, #cartBadge, .cart-badge, .badge-cart');
-  badges.forEach(badge => {
-    if (badge) {
-      badge.textContent = totalItems;
-      badge.style.display = totalItems > 0 ? 'flex' : 'none';
+    
+    // ============================================================
+    // RENDERIZAR PRODUCTOS
+    // ============================================================
+    
+    /**
+     * Crea el HTML de una card de producto
+     */
+    function crearCardProducto(producto) {
+        // Determinar estado del stock
+        let stockBadge = "";
+        if (producto.stock === 0 || producto.estadoStock === "AGOTADO") {
+            stockBadge = `<span class="badge bg-danger">Agotado</span>`;
+        } else if (producto.stock <= 3 || producto.estadoStock === "POCAS_UNIDADES") {
+            stockBadge = `<span class="badge bg-warning">¡Últimas unidades!</span>`;
+        }
+        
+        // Badge de descuento
+        let descuentoBadge = "";
+        if (producto.descuento) {
+            const badgeColor = producto.badgeColor || "sandia";
+            descuentoBadge = `<span class="product-badge badge--${badgeColor}">${producto.descuento}</span>`;
+        }
+        
+        // Precio anterior (si hay descuento)
+        let precioAnteriorHTML = "";
+        if (producto.precioAnterior) {
+            precioAnteriorHTML = `<span class="price-old">$${formatearPrecio(producto.precioAnterior)}</span>`;
+        }
+        
+        // Imagen (usar placeholder si no hay)
+        const imagenSrc = producto.imagen || "../../assets/placeholder-producto.png";
+        
+        return `
+            <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                <div class="product-card" data-id="${producto.idProducto}">
+                    ${descuentoBadge}
+                    
+                    <div class="product-card__image">
+                        <img src="${imagenSrc}" 
+                             alt="${producto.nombre}" 
+                             loading="lazy"
+                             onerror="this.src='../../assets/placeholder-producto.png'">
+                    </div>
+                    
+                    <div class="product-card__body">
+                        <span class="product-card__category">${producto.categoria || "Sin categoría"}</span>
+                        <h3 class="product-card__title">${producto.nombre}</h3>
+                        
+                        <div class="product-card__price">
+                            ${precioAnteriorHTML}
+                            <span class="price-current">$${formatearPrecio(producto.precio)}</span>
+                        </div>
+                        
+                        <div class="product-card__stock">
+                            ${stockBadge}
+                        </div>
+                        
+                        <div class="product-card__actions">
+                            <button class="btn btn--secondary btn-ver-detalle" 
+                                    data-id="${producto.idProducto}">
+                                Ver detalle
+                            </button>
+                            
+                            <button class="btn btn--primary btn-agregar-carrito" 
+                                    data-id="${producto.idProducto}"
+                                    ${producto.stock === 0 ? "disabled" : ""}>
+                                ${producto.stock === 0 ? "Agotado" : "Agregar"}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
     }
-  });
-}
-
-// Actualizar badge al cargar la página
-document.addEventListener('DOMContentLoaded', () => {
-  updateCartBadge();
+    
+    /**
+     * Formatea un precio con separador de miles
+     */
+    function formatearPrecio(precio) {
+        return Number(precio).toLocaleString("es-CL");
+    }
+    
+    /**
+     * Renderiza la lista de productos en el contenedor
+     */
+    function renderizarProductos(productos) {
+        if (!productosContainer) return;
+        
+        if (productos.length === 0) {
+            productosContainer.innerHTML = `
+                <div class="col-12 text-center py-5">
+                    <p class="text-muted">No se encontraron productos</p>
+                </div>
+            `;
+            return;
+        }
+        
+        productosContainer.innerHTML = productos.map(crearCardProducto).join("");
+        
+        // Agregar event listeners a los botones
+        agregarEventListeners();
+    }
+    
+    /**
+     * Agrega event listeners a los botones de las cards
+     */
+    function agregarEventListeners() {
+        // Botones "Ver detalle"
+        document.querySelectorAll(".btn-ver-detalle").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const id = btn.dataset.id;
+                // Redirigir a página de detalle
+                window.location.href = `./detalle.html?id=${id}`;
+            });
+        });
+        
+        // Botones "Agregar al carrito"
+        document.querySelectorAll(".btn-agregar-carrito").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const id = btn.dataset.id;
+                agregarAlCarrito(id);
+            });
+        });
+    }
+    
+    // ============================================================
+    // CARGAR PRODUCTOS DESDE LA API
+    // ============================================================
+    
+    async function cargarProductos() {
+        showLoading();
+        
+        try {
+            console.log("📤 Cargando productos...");
+            
+            const productos = await window.API.productos.getAll();
+            
+            console.log(`📥 ${productos.length} productos cargados`);
+            
+            todosLosProductos = productos;
+            renderizarProductos(productos);
+            
+        } catch (error) {
+            console.error("❌ Error cargando productos:", error);
+            showError(error.message || "Error al cargar productos");
+            
+        } finally {
+            hideLoading();
+        }
+    }
+    
+    // ============================================================
+    // FILTROS Y BÚSQUEDA
+    // ============================================================
+    
+    /**
+     * Filtra productos por categoría
+     */
+    async function filtrarPorCategoria(categoria) {
+        showLoading();
+        
+        try {
+            let productos;
+            
+            if (!categoria || categoria === "todas") {
+                productos = await window.API.productos.getAll();
+            } else {
+                productos = await window.API.productos.getByCategory(categoria);
+            }
+            
+            todosLosProductos = productos;
+            renderizarProductos(productos);
+            
+        } catch (error) {
+            console.error("❌ Error filtrando:", error);
+            showError(error.message);
+            
+        } finally {
+            hideLoading();
+        }
+    }
+    
+    /**
+     * Busca productos por nombre
+     */
+    async function buscarProductos(texto) {
+        if (!texto || texto.trim().length < 2) {
+            renderizarProductos(todosLosProductos);
+            return;
+        }
+        
+        showLoading();
+        
+        try {
+            const productos = await window.API.productos.search(texto.trim());
+            renderizarProductos(productos);
+            
+        } catch (error) {
+            console.error("❌ Error buscando:", error);
+            showError(error.message);
+            
+        } finally {
+            hideLoading();
+        }
+    }
+    
+    // ============================================================
+    // CARRITO (básico)
+    // ============================================================
+    
+    function agregarAlCarrito(productoId) {
+        // Obtener carrito actual
+        let carrito = JSON.parse(localStorage.getItem("carrito") || "[]");
+        
+        // Buscar si ya existe
+        const existe = carrito.find(item => item.id === productoId);
+        
+        if (existe) {
+            existe.cantidad += 1;
+        } else {
+            const producto = todosLosProductos.find(p => p.idProducto == productoId);
+            if (producto) {
+                carrito.push({
+                    id: productoId,
+                    nombre: producto.nombre,
+                    precio: producto.precio,
+                    imagen: producto.imagen,
+                    cantidad: 1
+                });
+            }
+        }
+        
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+        
+        // Mostrar feedback
+        mostrarToast("Producto agregado al carrito");
+        
+        // Actualizar contador del carrito en navbar
+        actualizarContadorCarrito();
+    }
+    
+    function actualizarContadorCarrito() {
+        const carrito = JSON.parse(localStorage.getItem("carrito") || "[]");
+        const total = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+        
+        const badge = document.querySelector(".cart-count");
+        if (badge) {
+            badge.textContent = total;
+            badge.style.display = total > 0 ? "flex" : "none";
+        }
+    }
+    
+    function mostrarToast(mensaje) {
+        // Crear toast si no existe
+        let toast = document.getElementById("toastNotificacion");
+        if (!toast) {
+            toast = document.createElement("div");
+            toast.id = "toastNotificacion";
+            toast.className = "toast-notification";
+            document.body.appendChild(toast);
+        }
+        
+        toast.textContent = mensaje;
+        toast.classList.add("show");
+        
+        setTimeout(() => {
+            toast.classList.remove("show");
+        }, 3000);
+    }
+    
+    // ============================================================
+    // EVENT LISTENERS
+    // ============================================================
+    
+    // Filtro por categoría
+    if (filtroCategoria) {
+        filtroCategoria.addEventListener("change", (e) => {
+            filtrarPorCategoria(e.target.value);
+        });
+    }
+    
+    // Buscador (con debounce)
+    let timeoutBusqueda;
+    if (buscadorInput) {
+        buscadorInput.addEventListener("input", (e) => {
+            clearTimeout(timeoutBusqueda);
+            timeoutBusqueda = setTimeout(() => {
+                buscarProductos(e.target.value);
+            }, 300);
+        });
+    }
+    
+    // ============================================================
+    // INICIALIZACIÓN
+    // ============================================================
+    
+    // Cargar productos al iniciar
+    cargarProductos();
+    
+    // Actualizar contador del carrito
+    actualizarContadorCarrito();
+    
 });

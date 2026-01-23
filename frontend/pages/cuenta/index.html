@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eternia | inicio</title>
+  <title>Eternia | Mi Cuenta</title>
 
   <meta name="description"
     content="Ataúdes personalizados que celebran la vida. Diseños únicos, temáticos y fuera de lo común." />
@@ -161,7 +161,7 @@
 
                 <div class="field">
                   <label for="registerPassword">Contraseña</label>
-                  <input type="password" id="registerPassword" name="registerPassword" placeholder="Mínimo 8 caracteres"
+                  <input type="password" id="registerPassword" name="registerPassword" placeholder="Mínimo 6 caracteres"
                     autocomplete="new-password" required />
                   <small class="error"></small>
                 </div>
@@ -225,7 +225,6 @@
         <div class="col-6 col-lg-3">
           <h6 class="footer__title">Explorar</h6>
 
-          <!-- ✅ Recomendado: links reales (no hashes que no existen acá) -->
           <ul class="list-unstyled footer__list mb-0">
             <li><a class="footer__link" href="../../index.html">Inicio</a></li>
             <li><a class="footer__link" href="../catalogo/">Catálogo</a></li>
@@ -262,11 +261,24 @@
     </div>
   </footer>
 
+  <!-- ============================================================ -->
+  <!-- SCRIPTS - ¡EL ORDEN ES IMPORTANTE! -->
+  <!-- ============================================================ -->
+  
+  <!-- 1. Bootstrap (framework) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- 2. API Service - DEBE IR PRIMERO QUE LOS DEMÁS -->
+  <script src="../../js/utils/api.js"></script>
+  
+  <!-- 3. Componentes y utilidades -->
   <script src="../../js/components/navbar.js"></script>
   <script src="../../js/utils/script.js"></script>
+  
+  <!-- 4. Scripts de páginas -->
   <script src="../../js/pages/wishlist.js"></script>
   <script src="../../js/pages/cuenta.js"></script>
+
 </body>
 
 </html>
