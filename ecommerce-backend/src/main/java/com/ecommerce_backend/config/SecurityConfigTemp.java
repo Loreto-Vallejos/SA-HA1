@@ -1,4 +1,4 @@
-package com.ecommerce_backend.config;
+/*package com.ecommerce_backend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,3 +21,4 @@ public class SecurityConfigTemp {
         return http.build();
     }
 }
+*/
