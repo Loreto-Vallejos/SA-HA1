@@ -85,17 +85,10 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         // Orígenes permitidos (ajusta según tu frontend)
-        configuration.setAllowedOrigins(Arrays.asList(
-                "http://localhost:3000",      // React
-                "http://localhost:5173",      // Vite
-                "http://127.0.0.1:5500",      // Live Server
-                "http://localhost:4200",       // Angular
-                "http://localhost:5500",       // Local Host
-                "http://localhost:5501",        // Local Host-1
-                "http://127.0.0.1:5501",     // Live Server-1
-                "https://sa-ha-1-nmj1pc4k6-macerdava-6965s-projects.vercel.app"  // ← Vercel Server
-
-
+        configuration.setAllowedOriginPatterns(Arrays.asList(
+                "http://localhost:*",
+                "http://127.0.0.1:*",
+                "https://*.vercel.app"
         ));
 
         // Métodos HTTP permitidos
