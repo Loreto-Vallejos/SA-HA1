@@ -91,33 +91,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
   function normalizeCLPhone(raw) {
+    // Convertir a string y extraer solo los dígitos
     const digits = String(raw || "").replace(/\D/g, "");
     
-    // Si está vacío, retornar null (es opcional)
+    // Si está vacío, retornar null
     if (!digits) return null;
     
-    // Si tiene código de país completo (+56 9 XXXX XXXX = 11 dígitos)
+    // Si tiene código de país completo (56 + 9 dígitos = 11)
+    if (digits.length === 11 && digits.startsWith("569")) {
+        return `+${digits}`;  // Retorna +569XXXXXXXX
+    }
+    
+    // Si tiene 9 dígitos y empieza con 9 (celular chileno)
+    if (digits.length === 9 && digits.startsWith("9")) {
+        return `+56${digits}`;  // Retorna +569XXXXXXXX
+    }
+    
+    // Si tiene 10 dígitos (podría ser fijo con código de área: 2 XXXX XXXX)
+    if (digits.length === 9 && digits.startsWith("2")) {
+        return `+56${digits}`;  // Retorna +562XXXXXXXX (fijo Santiago)
+    }
+    
+    // Manejar números que ya vienen con 56 pero sin el +
     if (digits.length === 11 && digits.startsWith("56")) {
         return `+${digits}`;
     }
     
-    // Si tiene 9 dígitos (número chileno sin código de país)
-    if (digits.length === 9) {
-        return `+56${digits}`;
-    }
-    
-    // Si tiene 8 dígitos (teléfono fijo)
-    if (digits.length === 8) {
-        return `+56${digits}`;
-    }
-    
-    // Aceptar cualquier número entre 8-12 dígitos
-    if (digits.length >= 8 && digits.length <= 12) {
-        if (digits.startsWith("56")) return `+${digits}`;
-        return `+56${digits}`;
-    }
-    
-    return null; // Muy corto o muy largo
+    // Si no cumple ningún formato válido chileno
+    return null;
 }
     
     // ============================================================
