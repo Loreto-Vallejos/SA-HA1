@@ -90,18 +90,35 @@ document.addEventListener("DOMContentLoaded", () => {
         return String(password || "").length >= 6; // Mínimo 6 según backend
     }
     
-    function normalizeCLPhone(raw) {
-        const digits = String(raw || "").replace(/\D/g, "");
-        
-        if (digits.length === 11 && digits.startsWith("569")) return `+${digits}`;
-        if (digits.length === 11 && digits.startsWith("56")) {
-            const rest = digits.slice(2);
-            if (rest.length === 9 && rest.startsWith("9")) return `+56${rest}`;
-        }
-        if (digits.length === 9 && digits.startsWith("9")) return `+56${digits}`;
-        
-        return null;
+  function normalizeCLPhone(raw) {
+    const digits = String(raw || "").replace(/\D/g, "");
+    
+    // Si está vacío, retornar null (es opcional)
+    if (!digits) return null;
+    
+    // Si tiene código de país completo (+56 9 XXXX XXXX = 11 dígitos)
+    if (digits.length === 11 && digits.startsWith("56")) {
+        return `+${digits}`;
     }
+    
+    // Si tiene 9 dígitos (número chileno sin código de país)
+    if (digits.length === 9) {
+        return `+56${digits}`;
+    }
+    
+    // Si tiene 8 dígitos (teléfono fijo)
+    if (digits.length === 8) {
+        return `+56${digits}`;
+    }
+    
+    // Aceptar cualquier número entre 8-12 dígitos
+    if (digits.length >= 8 && digits.length <= 12) {
+        if (digits.startsWith("56")) return `+${digits}`;
+        return `+56${digits}`;
+    }
+    
+    return null; // Muy corto o muy largo
+}
     
     // ============================================================
     // REGISTRO - Conectado al Backend
