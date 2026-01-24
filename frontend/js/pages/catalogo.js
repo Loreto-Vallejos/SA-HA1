@@ -81,7 +81,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
         // Imagen (usar logo si no hay)
+        console.log("Producto imagen:", producto.imagen); // Debug
         const imagenSrc = producto.imagen ? `/frontend/assets/${producto.imagen}` : "/frontend/assets/logo-eternia-blanco.png";
+        console.log("Imagen src:", imagenSrc); // Debug
         
         return `
             <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
