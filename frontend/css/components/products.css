@@ -612,3 +612,119 @@ figcaption .precio {
     width: 100%;
   }
 }
+
+/* Estilos para product-card (usado en catalogo.js) */
+.product-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0 0 30px 0;
+  background: #ffffff;
+  overflow: visible;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(5, 64, 96, 0.15);
+}
+
+.product-card__image {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+  background: #f8f8f8;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.product-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.product-card:hover .product-card__image img {
+  transform: scale(1.08);
+}
+
+.product-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 3px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.product-badge--sandia {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: white;
+}
+
+.product-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card__category {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.product-card__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #212529;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.product-card__price {
+  margin-bottom: 12px;
+}
+
+.price-current {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #212529;
+}
+
+.price-old {
+  font-size: 1rem;
+  color: #6c757d;
+  text-decoration: line-through;
+  margin-right: 8px;
+}
+
+.product-card__stock {
+  margin-bottom: 16px;
+}
+
+.product-card__actions {
+  margin-top: auto;
+  display: flex;
+  gap: 8px;
+}
+
+.product-card__actions .btn {
+  flex: 1;
+}
