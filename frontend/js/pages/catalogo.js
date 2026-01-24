@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Imagen (usar logo si no hay)
         console.log("Producto imagen:", producto.imagen); // Debug
-        const imagenSrc = producto.imagen ? `/frontend/assets/${producto.imagen}` : "/frontend/assets/logo-eternia-blanco.png";
+        const imagenSrc = producto.imagen ? `/frontend${producto.imagen}` : "/frontend/assets/logo-eternia-blanco.png";
         console.log("Imagen src:", imagenSrc); // Debug
         
         return `
