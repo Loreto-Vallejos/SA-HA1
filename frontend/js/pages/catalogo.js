@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
         // Imagen (usar logo si no hay)
-        const imagenSrc = producto.imagen || "../../assets/logo-eternia-blanco.png";
+        const imagenSrc = producto.imagen ? `/frontend/assets/${producto.imagen}` : "/frontend/assets/logo-eternia-blanco.png";
         
         return `
             <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <img src="${imagenSrc}" 
                              alt="${producto.nombre}" 
                              loading="lazy"
-                             onerror="this.src='../../assets/logo-eternia-blanco.png'">
+                             onerror="this.src='/frontend/assets/logo-eternia-blanco.png'">
                     </div>
                     
                     <div class="product-card__body">
