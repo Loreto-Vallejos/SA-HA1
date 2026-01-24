@@ -80,8 +80,8 @@ document.addEventListener("DOMContentLoaded", () => {
             precioAnteriorHTML = `<span class="price-old">$${formatearPrecio(producto.precioAnterior)}</span>`;
         }
         
-        // Imagen (usar placeholder si no hay)
-        const imagenSrc = producto.imagen || "../../assets/placeholder-producto.png";
+        // Imagen (usar logo si no hay)
+        const imagenSrc = producto.imagen || "../../assets/logo-eternia-blanco.png";
         
         return `
             <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <img src="${imagenSrc}" 
                              alt="${producto.nombre}" 
                              loading="lazy"
-                             onerror="this.src='../../assets/placeholder-producto.png'">
+                             onerror="this.src='../../assets/logo-eternia-blanco.png'">
                     </div>
                     
                     <div class="product-card__body">
