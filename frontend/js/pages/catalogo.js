@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <img src="${imagenSrc}" 
                              alt="${producto.nombre}" 
                              loading="lazy"
-                             onerror="this.src='/frontend/assets/logo-eternia-blanco.png'">
+                               onerror="this.src='../../assets/logo-eternia-blanco.png'">
                         <button class="wishlist-btn-card" data-id="${producto.idProducto}" aria-label="Agregar a wishlist">
                             <i class="far fa-heart"></i>
                         </button>

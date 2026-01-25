@@ -131,7 +131,7 @@ function renderWishlistCard(p) {
           <img src="${imagen}"
                alt="${nombre}"
                loading="lazy"
-               onerror="this.src='/frontend/assets/logo-eternia-blanco.png'">
+               onerror="this.src='../../assets/logo-eternia-blanco.png'">
           <button class="wishlist-btn-card" data-id="${id}" aria-label="Quitar de wishlist">
             <i class="fas fa-heart"></i>
           </button>
