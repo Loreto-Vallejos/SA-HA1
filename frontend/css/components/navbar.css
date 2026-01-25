@@ -96,7 +96,7 @@
 }
 
 .navbar-eternia .navbar-toggler-icon {
-  filter: invert(1);
+  /* filter: invert(1); */
 }
 
 .navbar-toggler:focus {
