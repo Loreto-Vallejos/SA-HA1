@@ -430,8 +430,15 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             console.log("📤 Cargando catálogo home desde JSON local...");
             
-            const res = await fetch("../../data/catalogo.json", { cache: "no-store" });
-            if (!res.ok) throw new Error("Error cargando catálogo");
+            // Determinar la ruta correcta según el entorno
+            const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1' && !window.location.hostname.includes('vercel-preview');
+            const rutaJSON = isProduction ? "data/catalogo.json" : "../../data/catalogo.json";
+            
+            console.log("🌐 Entorno detectado:", isProduction ? "producción" : "desarrollo");
+            console.log("📂 Ruta JSON:", rutaJSON);
+            
+            const res = await fetch(rutaJSON, { cache: "no-store" });
+            if (!res.ok) throw new Error(`Error cargando catálogo desde ${rutaJSON}`);
             
             const productos = await res.json();
             console.log(`📥 ${productos.length} productos cargados desde JSON`);
@@ -447,13 +454,19 @@ document.addEventListener("DOMContentLoaded", () => {
             // Fallback: intentar cargar desde API si es local
             if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
                 try {
+                    console.log("🔄 Intentando fallback con API local...");
                     const productos = await window.API.productos.getAll();
                     const limit = parseInt(catalogoGrid.dataset.limit) || 4;
                     const productosLimitados = productos.slice(0, limit);
                     renderizarCatalogoHome(productosLimitados);
                 } catch (apiError) {
                     console.error("❌ Error en fallback API:", apiError);
+                    // Mostrar mensaje de error en el grid
+                    catalogoGrid.innerHTML = '<div class="alert alert-warning">Error cargando productos. Por favor, intenta recargar la página.</div>';
                 }
+            } else {
+                // En producción, mostrar mensaje de error
+                catalogoGrid.innerHTML = '<div class="alert alert-warning">Error cargando productos. Por favor, intenta recargar la página.</div>';
             }
         }
     }
