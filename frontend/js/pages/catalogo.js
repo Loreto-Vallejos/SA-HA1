@@ -87,17 +87,29 @@ document.addEventListener("DOMContentLoaded", () => {
             if (producto.imagen.startsWith('http')) {
                 // URL absoluta, usar tal cual
                 imagenSrc = producto.imagen;
-            } else if (producto.imagen.startsWith('/assets/')) {
-                // Ruta relativa desde API, convertir a ruta del frontend
-                imagenSrc = `/frontend${producto.imagen}`;
+            } else if (producto.imagen.includes('assets/')) {
+                // Determinar la ruta correcta según la página
+                const isHomePage = document.getElementById("catalogo-grid") !== null;
+                if (isHomePage) {
+                    // En home, usar ruta tal cual (assets/)
+                    imagenSrc = producto.imagen;
+                } else {
+                    // En página de catálogo, convertir assets/ a ../../assets/
+                    imagenSrc = producto.imagen.replace('assets/', '../../assets/');
+                }
             } else {
                 // Otra ruta, usar tal cual
                 imagenSrc = producto.imagen;
             }
         } else {
-            imagenSrc = "/frontend/assets/logo-eternia-blanco.png";
+            const isHomePage = document.getElementById("catalogo-grid") !== null;
+            imagenSrc = isHomePage ? "assets/logo-eternia-blanco.png" : "../../assets/logo-eternia-blanco.png";
         }
         console.log("Imagen src final:", imagenSrc); // Debug
+        
+        // Determinar la ruta del logo fallback según la página
+        const isHomePage = document.getElementById("catalogo-grid") !== null;
+        const fallbackLogo = isHomePage ? "assets/logo-eternia-blanco.png" : "../../assets/logo-eternia-blanco.png";
         
         return `
             <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
@@ -108,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <img src="${imagenSrc}" 
                              alt="${producto.nombre}" 
                              loading="lazy"
-                               onerror="this.src='../../assets/logo-eternia-blanco.png'">
+                               onerror="this.src='${fallbackLogo}'">
                         <button class="wishlist-btn-card" data-id="${producto.idProducto}" aria-label="Agregar a wishlist">
                             <i class="far fa-heart"></i>
                         </button>
