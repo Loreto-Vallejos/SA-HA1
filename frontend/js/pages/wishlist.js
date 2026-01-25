@@ -59,7 +59,7 @@ function updateWishlistCount() {
 }
 
 function syncWishlistButtons() {
-  document.querySelectorAll(".wishlist-btn").forEach(btn => {
+  document.querySelectorAll(".wishlist-btn, .wishlist-btn-card").forEach(btn => {
     const id = btn.dataset.id;
     const icon = btn.querySelector("i");
     const active = isInWishlist(id);
@@ -98,10 +98,20 @@ function hasPrecioAnterior(val) {
 }
 
 function renderWishlistCard(p) {
-  const id = escapeHTML(p.id);
+  const id = escapeHTML(p.idProducto);
   const nombre = escapeHTML(p.nombre);
   const descripcion = escapeHTML(p.descripcion);
-  const imagen = escapeHTML(p.imagen);
+  
+  // Conversión de imagen para API
+  let imagenSrc = p.imagen;
+  if (imagenSrc && imagenSrc.startsWith('/assets/')) {
+    imagenSrc = '/frontend' + imagenSrc;
+  } else if (imagenSrc && !imagenSrc.startsWith('http')) {
+    imagenSrc = '/frontend/assets/' + imagenSrc;
+  } else {
+    imagenSrc = '/frontend/assets/logo-eternia-blanco.png';
+  }
+  const imagen = escapeHTML(imagenSrc);
 
   const descuento = escapeHTML(p.descuento ?? "");
   const badgeColor = escapeHTML(p.badgeColor ?? "sandia");
@@ -109,56 +119,61 @@ function renderWishlistCard(p) {
   const precio = formatCLP(p.precio);
   const precioAnterior = hasPrecioAnterior(p.precioAnterior) ? formatCLP(p.precioAnterior) : "";
 
+  // Badge de descuento
+  let descuentoBadge = "";
+  if (descuento) {
+    descuentoBadge = `<span class="product-badge ${badgeColor}">${descuento}</span>`;
+  }
+
+  // Precio anterior (si hay descuento)
+  let precioAnteriorHTML = "";
+  if (precioAnterior) {
+    precioAnteriorHTML = `<span class="price-old">$${precioAnterior}</span>`;
+  }
+
   return `
-    <div class="col-12 col-md-6 col-lg-3">
-      <article>
-        <div class="galeria-productos">
-          <figure class="producto">
-            <div class="contenedor-imagen">
-              <img src="${imagen}" alt="${nombre}">
-              ${descuento ? `<span class="info ${badgeColor}">${descuento}</span>` : ""}
-            </div>
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card" data-id="${id}">
+        ${descuentoBadge}
 
-            <figcaption>
-              <h3>${nombre}</h3>
-              <p>${descripcion}</p>
-              <p class="precio">
-                $${precio}
-                ${precioAnterior ? ` <span>$${precioAnterior}</span>` : ""}
-              </p>
-            </figcaption>
-
-            <div class="overlay">
-              <a href="./carrito.html" class="add-to-cart" data-id="${id}">Add to cart</a>
-
-              <ul class="acciones">
-                <li>
-                  <a href="#" aria-label="Compartir">
-                    <img src="../../assets/share.svg" alt="Compartir">
-                  </a>
-                </li>
-                <li>
-                  <a href="#" aria-label="Comparar">
-                    <img src="../../assets/compare.svg" alt="Comparar">
-                  </a>
-                </li>
-                <li>
-                  <button class="wishlist-btn" type="button" data-id="${id}" aria-label="Wishlist">
-                    <i class="fa-solid fa-heart"></i>
-                  </button>
-                </li>
-              </ul>
-            </div>
-          </figure>
+        <div class="product-card__image">
+          <img src="${imagen}"
+               alt="${nombre}"
+               loading="lazy"
+               onerror="this.src='/frontend/assets/logo-eternia-blanco.png'">
+          <button class="wishlist-btn-card" data-id="${id}" aria-label="Quitar de wishlist">
+            <i class="fas fa-heart"></i>
+          </button>
         </div>
-      </article>
+
+        <div class="product-card__body">
+          <span class="product-card__category">${escapeHTML(p.categoria || "Sin categoría")}</span>
+          <h3 class="product-card__title">${nombre}</h3>
+
+          <div class="product-card__price">
+            ${precioAnteriorHTML}
+            <span class="price-current">$${precio}</span>
+          </div>
+
+          <div class="product-card__stock">
+            <!-- Stock info could be added here if available -->
+          </div>
+
+          <div class="product-card__actions">
+            <button class="btn btn--primary btn-ver-detalle"
+                    data-id="${id}">
+              Ver detalle
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   `;
 }
 
 async function renderWishlist() {
   const grid = document.getElementById("wishlist-grid");
-  const empty = document.getElementById("wishlistEmpty");
+  const empty = document.getElementById("wishlist-empty");
   if (!grid) return;
 
   const ids = getWishlist().map(String);
@@ -172,11 +187,9 @@ async function renderWishlist() {
   if (empty) empty.style.display = "none";
 
   try {
-    const res = await fetch("/frontend/data/catalogo.json", { cache: "no-store" });
-    if (!res.ok) throw new Error("Error cargando catálogo");
-
-    const productos = await res.json();
-    const favs = productos.filter(p => ids.includes(String(p.id)));
+    // Cambiar a usar API en lugar de JSON local
+    const productos = await window.API.productos.getAll();
+    const favs = productos.filter(p => ids.includes(String(p.idProducto)));
 
     grid.innerHTML = favs.map(renderWishlistCard).join("");
     syncWishlistButtons();
@@ -208,10 +221,13 @@ function openModal(productId) {
       const precioAnterior = hasPrecioAnterior(p.precioAnterior) ? formatCLP(p.precioAnterior) : "";
       const d = p.detalles || {};
 
+      // Ajustar imagen path
+      const imagenSrc = p.imagen.startsWith("../../assets/") ? p.imagen.replace("../../assets/", "/frontend/assets/") : p.imagen;
+
       modalBody.innerHTML = `
         <div class="product-modal__grid">
           <div class="product-modal__image">
-            <img src="${p.imagen}" alt="${p.nombre}">
+            <img src="${imagenSrc}" alt="${p.nombre}">
           </div>
           <div class="product-modal__info">
             <h2 class="product-modal__title">${p.nombre}</h2>
@@ -241,8 +257,8 @@ function openModal(productId) {
             </div>
 
             <div class="product-modal__actions">
-              <button class="product-modal__btn btn-buy add-to-cart" data-id="${p.id}">
-                Añadir al carrito
+              <button class="product-modal__btn btn-buy ver-mas" data-id="${p.id}">
+                Ver más
               </button>
             </div>
           </div>
@@ -281,18 +297,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("click", (e) => {
   // Manejo de Wishlist
-  const wishBtn = e.target.closest(".wishlist-btn");
+  const wishBtn = e.target.closest(".wishlist-btn, .wishlist-btn-card");
   if (wishBtn) {
     e.preventDefault();
     toggleWishlist(wishBtn.dataset.id);
     return;
   }
 
-  // Manejo de Modal de Producto (click en imagen o figure)
-  const productImg = e.target.closest(".contenedor-imagen img");
+  // Manejo de Ver detalle
+  const detalleBtn = e.target.closest(".btn-ver-detalle");
+  if (detalleBtn) {
+    e.preventDefault();
+    const id = detalleBtn.dataset.id;
+    // Determinar la ruta correcta: si existe catalogo-grid, estamos en home
+    const isHomePage = document.getElementById("catalogo-grid") !== null;
+    const rutaProducto = isHomePage ? 'pages/producto/index.html' : '../producto/index.html';
+    // Redirigir a página de detalle
+    window.location.href = `${rutaProducto}?id=${id}`;
+    return;
+  }
+
+  // Manejo de Ver más en modal
+  const verMasBtn = e.target.closest(".ver-mas");
+  if (verMasBtn) {
+    e.preventDefault();
+    const id = verMasBtn.dataset.id;
+    // Determinar la ruta correcta
+    const isHomePage = document.getElementById("catalogo-grid") !== null;
+    const rutaProducto = isHomePage ? 'pages/producto/index.html' : '../producto/index.html';
+    // Redirigir a página de detalle
+    window.location.href = `${rutaProducto}?id=${id}`;
+    closeModal(); // Cerrar modal antes de redirigir
+    return;
+  }
+
+  // Manejo de Modal de Producto (click en imagen)
+  const productImg = e.target.closest(".product-card__image img");
   if (productImg) {
-    // Buscamos el ID en el botón de wishlist cercano o en el add-to-cart del overlay
-    const container = productImg.closest("article") || productImg.closest(".producto");
+    const container = productImg.closest(".product-card");
     const idBtn = container?.querySelector("[data-id]");
     if (idBtn) {
       openModal(idBtn.dataset.id);

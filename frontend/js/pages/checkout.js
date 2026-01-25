@@ -70,13 +70,31 @@ function renderOrderSummary(carrito) {
   // Render items
   orderItems.innerHTML = carrito.map(item => {
     const itemTotal = item.precio * item.cantidad;
-    const imagen = item.imagen.startsWith('/') || item.imagen.startsWith('http') 
-      ? item.imagen 
-      : `../../${item.imagen}`;
+    
+    // Fix image path logic
+    let imagen = item.imagen;
+    if (imagen.startsWith('http')) {
+      // External URL, use as-is
+    } else if (imagen.startsWith('/')) {
+      // Absolute path from root, convert to relative from checkout page
+      // /frontend/assets/image.png -> ../../assets/image.png
+      const pathParts = imagen.split('/');
+      if (pathParts[1] === 'frontend' && pathParts[2] === 'assets') {
+        imagen = `../../assets/${pathParts.slice(3).join('/')}`;
+      } else {
+        imagen = `../..${imagen}`;
+      }
+    } else if (imagen.startsWith('../')) {
+      // Already relative path like ../../assets/, use as-is
+      imagen = imagen;
+    } else {
+      // Just filename or other relative path, prepend assets path
+      imagen = `../../assets/${imagen}`;
+    }
 
     return `
       <div class="order-item">
-        <img src="${escapeHTML(imagen)}" alt="${escapeHTML(item.nombre)}" class="order-item-image">
+        <img src="${escapeHTML(imagen)}" alt="${escapeHTML(item.nombre)}" class="order-item-image" onerror="this.style.display='none'">
         <div class="order-item-info">
           <p class="order-item-name">${escapeHTML(item.nombre)}</p>
           <span class="order-item-qty">Cantidad: ${item.cantidad}</span>

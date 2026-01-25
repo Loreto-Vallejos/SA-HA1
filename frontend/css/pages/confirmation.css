@@ -82,7 +82,7 @@ body:has(.confirmation-page) .navbar.scrolled {
 
 .success-subtitle {
   font-size: 1.1rem;
-  color: var(--color-text-light, #6c757d);
+  color: var(--color-text-muted, #6b7280);
 }
 
 /* ==================================
@@ -189,7 +189,7 @@ body:has(.confirmation-page) .navbar.scrolled {
 
 .order-item-meta {
   font-size: 0.875rem;
-  color: var(--color-text-light, #6c757d);
+  color: var(--color-text-muted, #6b7280);
 }
 
 .order-item-price {
@@ -211,7 +211,7 @@ body:has(.confirmation-page) .navbar.scrolled {
   align-items: center;
   padding: 0.5rem 0;
   font-size: 0.95rem;
-  color: var(--color-text-light, #6c757d);
+  color: var(--color-text, #090808);
 }
 
 .total-row.total-final {
@@ -249,7 +249,7 @@ body:has(.confirmation-page) .navbar.scrolled {
 
 .info-label {
   font-size: 0.8rem;
-  color: var(--color-text-light, #6c757d);
+  color: var(--color-text-muted, #6b7280);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -314,7 +314,7 @@ body:has(.confirmation-page) .navbar.scrolled {
 
 .step-content p {
   font-size: 0.9rem;
-  color: var(--color-text-light, #6c757d);
+  color: var(--color-text, #090808);
   line-height: 1.5;
 }
 
@@ -373,7 +373,7 @@ body:has(.confirmation-page) .navbar.scrolled {
 
 .support-info p {
   font-size: 0.95rem;
-  color: var(--color-text-light, #6c757d);
+  color: var(--color-text, #090808);
   margin-bottom: 0.5rem;
 }
 

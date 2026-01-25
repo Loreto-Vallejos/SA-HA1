@@ -81,20 +81,37 @@
 
 
 
-  <main class="wishlist-layout container">
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-bs position-relative overflow-hidden">
+      <div class="hero-bs__overlay"></div>
+      <div class="container hero-bs__content">
+        <div class="row">
+          <div class="col-12">
+            <h1 class="hero-bs__title">Tu Selección Personal</h1>
+            <p class="hero-bs__text">Diseños que elegiste para rendir un homenaje único a tus seres queridos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <header class="wishlist-header">
-      <h1>Selección Personal</h1>
-      <p>Diseños que elegiste para rendir un homenaje único.</p>
-    </header>
+    <!-- Wishlist Content -->
+    <section class="section wishlist-section py-5">
+      <div class="container">
+        <div class="wishlist-content">
+          <!-- Mensaje cuando está vacío -->
+          <div id="wishlist-empty" class="wishlist-empty text-center" style="display: none;">
+            <i class="fas fa-heart-broken wishlist-empty__icon"></i>
+            <h3 class="wishlist-empty__title">Tu lista de deseos está vacía</h3>
+            <p class="wishlist-empty__text">Explora nuestro catálogo y agrega productos que te gusten.</p>
+            <a href="../catalogo/" class="btn btn--primary">Ver Catálogo</a>
+          </div>
 
-    <div class="row g-4 mt-3" id="wishlist-grid"></div>
-
-  </main>
-
-
-
-
+          <!-- Grid de productos -->
+          <div class="row g-4" id="wishlist-grid"></div>
+        </div>
+      </div>
+    </section>
   </main>
 
 
@@ -159,7 +176,7 @@
           <h6 class="footer__title">Legal</h6>
           <ul class="list-unstyled footer__list mb-3">
             <li><a class="footer__link" href="../politica-privacidad/">Política de privacidad</a></li>
-            <li><a class="footer__link" href="#">Términos y condiciones</a></li>
+            <li><a class="footer__link" href="../terminos-condiciones/">Términos y condiciones</a></li>
           </ul>
 
           <a>Suscríbete y recibe novedades</a>
@@ -207,6 +224,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../js/utils/api.js"></script>
   <!--<script src="../../js/utils/script.js"></script> -->
   <script src="../../js/components/navbar.js"></script>
   <script src="../../js/pages/wishlist.js"></script>

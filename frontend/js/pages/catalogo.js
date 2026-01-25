@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const productosContainer = document.getElementById("productosContainer");
     const loadingSpinner = document.getElementById("loadingSpinner");
     const errorMessage = document.getElementById("errorMessage");
-    const filtroCategoria = document.getElementById("filtroCategoria");
-    const buscadorInput = document.getElementById("buscadorProductos");
+    const filtroBotones = document.querySelectorAll(".categoria-item");
+    const buscadorInput = document.getElementById("search-input");
     
     // ============================================================
     // ESTADO
@@ -82,8 +82,22 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Imagen (usar logo si no hay)
         console.log("Producto imagen:", producto.imagen); // Debug
-        const imagenSrc = producto.imagen ? `/frontend${producto.imagen}` : "/frontend/assets/logo-eternia-blanco.png";
-        console.log("Imagen src:", imagenSrc); // Debug
+        let imagenSrc;
+        if (producto.imagen) {
+            if (producto.imagen.startsWith('http')) {
+                // URL absoluta, usar tal cual
+                imagenSrc = producto.imagen;
+            } else if (producto.imagen.startsWith('/assets/')) {
+                // Ruta relativa desde API, convertir a ruta del frontend
+                imagenSrc = `/frontend${producto.imagen}`;
+            } else {
+                // Otra ruta, usar tal cual
+                imagenSrc = producto.imagen;
+            }
+        } else {
+            imagenSrc = "/frontend/assets/logo-eternia-blanco.png";
+        }
+        console.log("Imagen src final:", imagenSrc); // Debug
         
         return `
             <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
@@ -95,6 +109,9 @@ document.addEventListener("DOMContentLoaded", () => {
                              alt="${producto.nombre}" 
                              loading="lazy"
                              onerror="this.src='/frontend/assets/logo-eternia-blanco.png'">
+                        <button class="wishlist-btn-card" data-id="${producto.idProducto}" aria-label="Agregar a wishlist">
+                            <i class="far fa-heart"></i>
+                        </button>
                     </div>
                     
                     <div class="product-card__body">
@@ -111,15 +128,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                         
                         <div class="product-card__actions">
-                            <button class="btn btn--secondary btn-ver-detalle" 
+                            <button class="btn btn--primary btn-ver-detalle" 
                                     data-id="${producto.idProducto}">
                                 Ver detalle
-                            </button>
-                            
-                            <button class="btn btn--primary btn-agregar-carrito" 
-                                    data-id="${producto.idProducto}"
-                                    ${producto.stock === 0 ? "disabled" : ""}>
-                                ${producto.stock === 0 ? "Agotado" : "Agregar"}
                             </button>
                         </div>
                     </div>
@@ -154,6 +165,11 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Agregar event listeners a los botones
         agregarEventListeners();
+        
+        // Sincronizar estado de wishlist buttons
+        if (typeof syncWishlistButtons === "function") {
+            syncWishlistButtons();
+        }
     }
     
     /**
@@ -164,16 +180,24 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll(".btn-ver-detalle").forEach(btn => {
             btn.addEventListener("click", () => {
                 const id = btn.dataset.id;
+                // Determinar la ruta correcta: si existe catalogoGrid, estamos en home
+                const isHomePage = document.getElementById("catalogo-grid") !== null;
+                const rutaProducto = isHomePage ? 'pages/producto/index.html' : '../producto/index.html';
                 // Redirigir a página de detalle
-                window.location.href = `./detalle.html?id=${id}`;
+                window.location.href = `${rutaProducto}?id=${id}`;
             });
         });
         
-        // Botones "Agregar al carrito"
-        document.querySelectorAll(".btn-agregar-carrito").forEach(btn => {
-            btn.addEventListener("click", () => {
-                const id = btn.dataset.id;
-                agregarAlCarrito(id);
+        // Botones wishlist
+        document.querySelectorAll(".wishlist-btn-card").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const productId = btn.getAttribute("data-id");
+                if (typeof toggleWishlist === "function") {
+                    toggleWishlist(productId);
+                }
             });
         });
     }
@@ -217,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             let productos;
             
-            if (!categoria || categoria === "todas") {
+            if (!categoria) {
                 productos = await window.API.productos.getAll();
             } else {
                 productos = await window.API.productos.getByCategory(categoria);
@@ -327,10 +351,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // EVENT LISTENERS
     // ============================================================
     
-    // Filtro por categoría
-    if (filtroCategoria) {
-        filtroCategoria.addEventListener("change", (e) => {
-            filtrarPorCategoria(e.target.value);
+    // Filtro por categoría (botones con círculos)
+    if (filtroBotones.length > 0) {
+        filtroBotones.forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                // Remover active de todos
+                filtroBotones.forEach(b => b.classList.remove("active"));
+                // Agregar active al clickeado
+                e.currentTarget.classList.add("active");
+                
+                const categoria = e.currentTarget.dataset.category;
+                filtrarPorCategoria(categoria === "all" ? "" : categoria);
+            });
         });
     }
     
@@ -346,12 +378,62 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     // ============================================================
+    // CARGAR CATÁLOGO EN HOME (desde API)
+    // ============================================================
+    
+    async function cargarCatalogoHomeDesdeAPI() {
+        const catalogoGrid = document.getElementById("catalogo-grid");
+        if (!catalogoGrid) return;
+        
+        try {
+            console.log("📤 Cargando catálogo home desde API...");
+            
+            const productos = await window.API.productos.getAll();
+            console.log(`📥 ${productos.length} productos cargados desde API`);
+            console.log("Primer producto de ejemplo:", productos[0]);
+            
+            // Limitar a 4 productos
+            const limit = parseInt(catalogoGrid.dataset.limit) || 4;
+            const productosLimitados = productos.slice(0, limit);
+
+            renderizarCatalogoHome(productosLimitados);
+        } catch (error) {
+            console.error("❌ Error cargando catálogo home desde API:", error);
+            // Fallback: intentar cargar desde JSON local
+            cargarCatalogoHome();
+        }
+    }
+    
+    function renderizarCatalogoHome(productos) {
+        const catalogoGrid = document.getElementById("catalogo-grid");
+        if (!catalogoGrid) return;
+        
+        catalogoGrid.innerHTML = productos.map(crearCardProducto).join("");
+        
+        // Agregar event listeners a todos los botones
+        agregarEventListeners();
+        
+        // Sincronizar estado de wishlist buttons
+        if (typeof syncWishlistButtons === "function") {
+            syncWishlistButtons();
+        }
+    }
+    
+    // ============================================================
     // INICIALIZACIÓN
     // ============================================================
     
-    // Cargar productos al iniciar
-    cargarProductos();
+    // Cargar productos al iniciar (página catálogo)
+    if (productosContainer) {
+        cargarProductos();
+    }
     
+    // Cargar catálogo en home si existe
+    const catalogoGrid = document.getElementById("catalogo-grid");
+    if (catalogoGrid) {
+        cargarCatalogoHomeDesdeAPI();
+    }
+
     // Actualizar contador del carrito
     actualizarContadorCarrito();
     
