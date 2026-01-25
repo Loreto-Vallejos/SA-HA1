@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <img src="${imagenSrc}" 
                              alt="${producto.nombre}" 
                              loading="lazy"
-                             onerror="this.src='/frontend/assets/logo-eternia-blanco.png'">
+                               onerror="this.src='../../assets/logo-eternia-blanco.png'">
                         <button class="wishlist-btn-card" data-id="${producto.idProducto}" aria-label="Agregar a wishlist">
                             <i class="far fa-heart"></i>
                         </button>
@@ -210,9 +210,12 @@ document.addEventListener("DOMContentLoaded", () => {
         showLoading();
         
         try {
-            console.log("📤 Cargando productos...");
+            console.log("📤 Cargando productos desde JSON local...");
             
-            const productos = await window.API.productos.getAll();
+            const res = await fetch("../../data/catalogo.json", { cache: "no-store" });
+            if (!res.ok) throw new Error("Error cargando catálogo");
+            
+            const productos = await res.json();
             
             console.log(`📥 ${productos.length} productos cargados`);
             
@@ -220,8 +223,20 @@ document.addEventListener("DOMContentLoaded", () => {
             renderizarProductos(productos);
             
         } catch (error) {
-            console.error("❌ Error cargando productos:", error);
-            showError(error.message || "Error al cargar productos");
+            console.error("❌ Error cargando productos desde JSON:", error);
+            // Fallback: intentar API si es localhost
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                try {
+                    const productos = await window.API.productos.getAll();
+                    todosLosProductos = productos;
+                    renderizarProductos(productos);
+                } catch (apiError) {
+                    console.error("❌ Error en fallback API:", apiError);
+                    showError("Error al cargar productos");
+                }
+            } else {
+                showError("Error al cargar productos");
+            }
             
         } finally {
             hideLoading();
@@ -239,12 +254,16 @@ document.addEventListener("DOMContentLoaded", () => {
         showLoading();
         
         try {
+            const res = await fetch("../../data/catalogo.json", { cache: "no-store" });
+            if (!res.ok) throw new Error("Error cargando catálogo");
+            
+            const todosProductos = await res.json();
             let productos;
             
             if (!categoria) {
-                productos = await window.API.productos.getAll();
+                productos = todosProductos;
             } else {
-                productos = await window.API.productos.getByCategory(categoria);
+                productos = todosProductos.filter(p => p.categoria === categoria);
             }
             
             todosLosProductos = productos;
@@ -252,7 +271,24 @@ document.addEventListener("DOMContentLoaded", () => {
             
         } catch (error) {
             console.error("❌ Error filtrando:", error);
-            showError(error.message);
+            // Fallback a API si es localhost
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                try {
+                    let productos;
+                    if (!categoria) {
+                        productos = await window.API.productos.getAll();
+                    } else {
+                        productos = await window.API.productos.getByCategory(categoria);
+                    }
+                    todosLosProductos = productos;
+                    renderizarProductos(productos);
+                } catch (apiError) {
+                    console.error("❌ Error en fallback API:", apiError);
+                    showError("Error al filtrar productos");
+                }
+            } else {
+                showError("Error al filtrar productos");
+            }
             
         } finally {
             hideLoading();
@@ -271,12 +307,18 @@ document.addEventListener("DOMContentLoaded", () => {
         showLoading();
         
         try {
-            const productos = await window.API.productos.search(texto.trim());
+            // Buscar localmente en todosLosProductos
+            const textoLower = texto.trim().toLowerCase();
+            const productos = todosLosProductos.filter(p => 
+                p.nombre.toLowerCase().includes(textoLower) || 
+                p.descripcion.toLowerCase().includes(textoLower) ||
+                p.categoria.toLowerCase().includes(textoLower)
+            );
             renderizarProductos(productos);
             
         } catch (error) {
             console.error("❌ Error buscando:", error);
-            showError(error.message);
+            showError("Error al buscar productos");
             
         } finally {
             hideLoading();
@@ -386,10 +428,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!catalogoGrid) return;
         
         try {
-            console.log("📤 Cargando catálogo home desde API...");
+            console.log("📤 Cargando catálogo home desde JSON local...");
             
-            const productos = await window.API.productos.getAll();
-            console.log(`📥 ${productos.length} productos cargados desde API`);
+            const res = await fetch("../../data/catalogo.json", { cache: "no-store" });
+            if (!res.ok) throw new Error("Error cargando catálogo");
+            
+            const productos = await res.json();
+            console.log(`📥 ${productos.length} productos cargados desde JSON`);
             console.log("Primer producto de ejemplo:", productos[0]);
             
             // Limitar a 4 productos
@@ -398,9 +443,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
             renderizarCatalogoHome(productosLimitados);
         } catch (error) {
-            console.error("❌ Error cargando catálogo home desde API:", error);
-            // Fallback: intentar cargar desde JSON local
-            cargarCatalogoHome();
+            console.error("❌ Error cargando catálogo home desde JSON:", error);
+            // Fallback: intentar cargar desde API si es local
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                try {
+                    const productos = await window.API.productos.getAll();
+                    const limit = parseInt(catalogoGrid.dataset.limit) || 4;
+                    const productosLimitados = productos.slice(0, limit);
+                    renderizarCatalogoHome(productosLimitados);
+                } catch (apiError) {
+                    console.error("❌ Error en fallback API:", apiError);
+                }
+            }
         }
     }
     

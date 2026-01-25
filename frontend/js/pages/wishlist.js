@@ -98,20 +98,11 @@ function hasPrecioAnterior(val) {
 }
 
 function renderWishlistCard(p) {
-  const id = escapeHTML(p.idProducto);
+  const id = escapeHTML(p.id);
   const nombre = escapeHTML(p.nombre);
   const descripcion = escapeHTML(p.descripcion);
-  
-  // Conversión de imagen para API
-  let imagenSrc = p.imagen;
-  if (imagenSrc && imagenSrc.startsWith('/assets/')) {
-    imagenSrc = '/frontend' + imagenSrc;
-  } else if (imagenSrc && !imagenSrc.startsWith('http')) {
-    imagenSrc = '/frontend/assets/' + imagenSrc;
-  } else {
-    imagenSrc = '/frontend/assets/logo-eternia-blanco.png';
-  }
-  const imagen = escapeHTML(imagenSrc);
+  const imagenRaw = p.imagen;
+  const imagen = escapeHTML(imagenRaw.startsWith("../../assets/") ? imagenRaw.replace("../../assets/", "/frontend/assets/") : imagenRaw);
 
   const descuento = escapeHTML(p.descuento ?? "");
   const badgeColor = escapeHTML(p.badgeColor ?? "sandia");
@@ -140,7 +131,7 @@ function renderWishlistCard(p) {
           <img src="${imagen}"
                alt="${nombre}"
                loading="lazy"
-               onerror="this.src='/frontend/assets/logo-eternia-blanco.png'">
+               onerror="this.src='../../assets/logo-eternia-blanco.png'">
           <button class="wishlist-btn-card" data-id="${id}" aria-label="Quitar de wishlist">
             <i class="fas fa-heart"></i>
           </button>
@@ -187,9 +178,12 @@ async function renderWishlist() {
   if (empty) empty.style.display = "none";
 
   try {
-    // Cambiar a usar API en lugar de JSON local
-    const productos = await window.API.productos.getAll();
-    const favs = productos.filter(p => ids.includes(String(p.idProducto)));
+    // Cargar desde JSON local para compatibilidad con GitHub Pages
+    const res = await fetch("../../data/catalogo.json", { cache: "no-store" });
+    if (!res.ok) throw new Error("Error cargando catálogo");
+
+    const productos = await res.json();
+    const favs = productos.filter(p => ids.includes(String(p.id)));
 
     grid.innerHTML = favs.map(renderWishlistCard).join("");
     syncWishlistButtons();
