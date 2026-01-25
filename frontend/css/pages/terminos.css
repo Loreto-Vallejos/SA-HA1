@@ -1,0 +1,182 @@
+/* ===========================================
+   TÉRMINOS Y CONDICIONES PAGE STYLES
+   =========================================== */
+
+.terms-hero-full {
+  position: relative;
+  height: 60vh;
+  background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-primary) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--color-text-light);
+  overflow: hidden;
+}
+
+.terms-hero-full__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.terms-hero-full__content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 1rem;
+}
+
+.terms-hero-full h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.terms-hero-full p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* ===========================================
+   INTRO SECTION
+   =========================================== */
+
+.terms-intro {
+  padding: 3rem 0;
+  background: var(--color-bg);
+}
+
+.terms-intro .container {
+  max-width: 1200px;
+}
+
+.terms-intro p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+}
+
+.terms-intro strong {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* ===========================================
+   CONTENT SECTION
+   =========================================== */
+
+.terms-content {
+  padding: 2rem 0 4rem;
+  background: var(--color-bg);
+}
+
+.terms-content .container {
+  max-width: 1200px;
+}
+
+.terms-section {
+  margin-bottom: 2.5rem;
+  padding: 2rem;
+  background: var(--color-bg-alt);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid var(--color-primary);
+}
+
+.terms-section h2 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.terms-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+
+.terms-section p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.terms-section ul {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.terms-section li {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.terms-section li::marker {
+  color: var(--color-primary);
+}
+
+/* ===========================================
+   RESPONSIVE DESIGN
+   =========================================== */
+
+@media (max-width: 768px) {
+  .terms-hero-full {
+    height: 50vh;
+  }
+
+  .terms-hero-full h1 {
+    font-size: 2.5rem;
+  }
+
+  .terms-intro {
+    padding: 2rem 0;
+  }
+
+  .terms-content {
+    padding: 1rem 0 3rem;
+  }
+
+  .terms-section {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .terms-section h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .terms-hero-full h1 {
+    font-size: 2rem;
+  }
+
+  .terms-section {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .terms-section h2 {
+    font-size: 1.3rem;
+  }
+}
