@@ -323,7 +323,7 @@ function crearCardProductoRelacionado(producto) {
   // Precio anterior (si hay descuento)
   let precioAnteriorHTML = "";
   if (producto.precioAnterior) {
-    precioAnteriorHTML = `<span class="price-old">$${formatearPrecio(producto.precioAnterior)}</span>`;
+    precioAnteriorHTML = `<div class="price-old">$${formatearPrecio(producto.precioAnterior)}</div>`;
   }
 
   // Imagen - en página de producto usar ../../assets/
@@ -366,7 +366,7 @@ function crearCardProductoRelacionado(producto) {
 
           <div class="product-card__price">
             ${precioAnteriorHTML}
-            <span class="price-current">$${formatearPrecio(producto.precio)}</span>
+            <div class="price-current">$${formatearPrecio(producto.precio)}</div>
           </div>
 
           <div class="product-card__stock">
