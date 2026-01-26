@@ -290,63 +290,119 @@ function renderRelacionados(productos, currentId) {
     .filter(p => p.id != currentId)
     .slice(0, 4);
 
-  grid.innerHTML = relacionados.map(p => {
-    const precio = formatCLP(p.precio);
-    const precioAnterior = p.precioAnterior ? formatCLP(p.precioAnterior) : '';
-    
-    return `
-      <div class="col-12 col-md-6 col-lg-3">
-        <article>
-          <div class="galeria-productos">
-            <a href="?id=${p.id}" class="card-link">
-              <figure class="producto">
-                <div class="contenedor-imagen">
-                  <img src="${escapeHTML(p.imagen)}" alt="${escapeHTML(p.nombre)}">
-                  ${p.descuento ? `<span class="info ${p.badgeColor || 'sandia'}">${escapeHTML(p.descuento)}</span>` : ''}
-                  <button class="wishlist-btn-card" data-id="${p.id}" type="button" aria-label="Agregar a wishlist">
-                    <i class="fa-regular fa-heart"></i>
-                  </button>
-                </div>
-                <figcaption>
-                  <h3>${escapeHTML(p.nombre)}</h3>
-                  <p class="descripcion">${escapeHTML(p.descripcion)}</p>
-                  <div class="precio-container">
-                    ${precioAnterior ? `<p class="precio-anterior">$${precioAnterior}</p>` : ''}
-                    <p class="precio">$${precio}</p>
-                  </div>
-                  <button class="add-to-cart" data-id="${p.id}" type="button">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    Agregar
-                  </button>
-                </figcaption>
-              </figure>
-            </a>
-          </div>
-        </article>
-      </div>
-    `;
-  }).join('');
+  grid.innerHTML = relacionados.map(crearCardProductoRelacionado).join("");
 
-  // Event listeners para wishlist en relacionados
-  document.querySelectorAll('.wishlist-btn-card').forEach(btn => {
+  // Agregar event listeners
+  agregarEventListenersRelacionados();
+
+  // Sincronizar wishlist buttons
+  if (typeof syncWishlistButtons === 'function') {
+    syncWishlistButtons();
+  }
+}
+
+/**
+ * Crea una tarjeta de producto relacionado usando la misma estructura del catálogo
+ */
+function crearCardProductoRelacionado(producto) {
+  // Determinar estado del stock
+  let stockBadge = "";
+  if (producto.stock === 0 || producto.estadoStock === "AGOTADO") {
+    stockBadge = `<span class="badge bg-danger">Agotado</span>`;
+  } else if (producto.stock <= 3 || producto.estadoStock === "POCAS_UNIDADES") {
+    stockBadge = `<span class="badge bg-warning">¡Últimas unidades!</span>`;
+  }
+
+  // Badge de descuento
+  let descuentoBadge = "";
+  if (producto.descuento) {
+    const badgeColor = producto.badgeColor || "sandia";
+    descuentoBadge = `<span class="product-badge badge--${badgeColor}">${producto.descuento}</span>`;
+  }
+
+  // Precio anterior (si hay descuento)
+  let precioAnteriorHTML = "";
+  if (producto.precioAnterior) {
+    precioAnteriorHTML = `<span class="price-old">$${formatearPrecio(producto.precioAnterior)}</span>`;
+  }
+
+  // Imagen - en página de producto usar ../../assets/
+  let imagenSrc;
+  if (producto.imagen) {
+    if (producto.imagen.startsWith('http')) {
+      // URL absoluta, usar tal cual
+      imagenSrc = producto.imagen;
+    } else if (producto.imagen.includes('assets/')) {
+      // Convertir assets/ a ../../assets/ para página de producto
+      imagenSrc = producto.imagen.replace('assets/', '../../assets/');
+    } else {
+      // Otra ruta, usar tal cual
+      imagenSrc = producto.imagen;
+    }
+  } else {
+    imagenSrc = "../../assets/logo-eternia-blanco.png";
+  }
+
+  const fallbackLogo = "../../assets/logo-eternia-blanco.png";
+
+  return `
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card" data-id="${producto.id}">
+        ${descuentoBadge}
+
+        <div class="product-card__image">
+          <img src="${imagenSrc}"
+               alt="${producto.nombre}"
+               loading="lazy"
+               onerror="this.src='${fallbackLogo}'">
+          <button class="wishlist-btn-card" data-id="${producto.id}" aria-label="Agregar a wishlist">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+
+        <div class="product-card__body">
+          <span class="product-card__category">${producto.categoria || "Sin categoría"}</span>
+          <h3 class="product-card__title">${producto.nombre}</h3>
+
+          <div class="product-card__price">
+            ${precioAnteriorHTML}
+            <span class="price-current">$${formatearPrecio(producto.precio)}</span>
+          </div>
+
+          <div class="product-card__stock">
+            ${stockBadge}
+          </div>
+
+          <div class="product-card__actions">
+            <button class="btn btn--primary btn-ver-detalle"
+                    data-id="${producto.id}">
+              Ver detalle
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+/**
+ * Formatea un precio con separador de miles
+ */
+function formatearPrecio(precio) {
+  return Number(precio).toLocaleString("es-CL");
+}
+
+/**
+ * Agrega event listeners a las tarjetas relacionadas
+ */
+function agregarEventListenersRelacionados() {
+  // Botones "Ver detalle"
+  document.querySelectorAll('#relatedGrid .btn-ver-detalle').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      e.stopPropagation();
-      
       const productId = btn.getAttribute('data-id');
-      if (typeof toggleWishlist === 'function') {
-        toggleWishlist(productId);
-        
-        const icon = btn.querySelector('i');
-        if (typeof isInWishlist === 'function' && isInWishlist(productId)) {
-          icon.classList.remove('fa-regular');
-          icon.classList.add('fa-solid');
-          btn.classList.add('active');
-        } else {
-          icon.classList.remove('fa-solid');
-          icon.classList.add('fa-regular');
-          btn.classList.remove('active');
-        }
+      if (productId) {
+        window.location.href = `?id=${productId}`;
       }
     });
   });
