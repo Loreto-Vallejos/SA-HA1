@@ -80,7 +80,7 @@ function renderProducto(p) {
 
     <div class="row g-4">
       <!-- Columna Imagen -->
-      <div class="col-12 col-lg-7">
+      <div class="col-12 col-lg-7 product-image-column">
         <div class="product-image-container">
           ${descuentoBadge}
           <img src="${imagen}" alt="${nombre}" class="product-image">

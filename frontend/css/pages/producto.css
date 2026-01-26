@@ -576,3 +576,18 @@
     font-size: 0.75rem;
   }
 }
+
+/* Imagen Sticky en Desktop */
+.product-image-column {
+  position: sticky;
+  top: 120px; /* Espacio para navbar + margen */
+  height: fit-content;
+}
+
+/* Desactivar sticky en mobile */
+@media (max-width: 991px) {
+  .product-image-column {
+    position: static;
+    top: auto;
+  }
+}
