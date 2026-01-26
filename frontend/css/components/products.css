@@ -739,14 +739,15 @@ figcaption .precio {
   margin-bottom: 8px;
   display: flex;
   flex-direction: column;
+  height: 2.5rem;
   justify-content: flex-end;
-  min-height: 2.5rem;
 }
 
 .price-current {
   font-size: 1.25rem;
   font-weight: 700;
   color: #212529;
+  margin-top: auto;
 }
 
 .price-old {
