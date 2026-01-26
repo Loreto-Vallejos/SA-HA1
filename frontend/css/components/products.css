@@ -739,7 +739,7 @@ figcaption .precio {
 
 .product-card__price {
   margin-bottom: 8px;
-  margin-top: 12px;
+  margin-top: 16px;
   display: flex;
   flex-direction: column;
   height: 2.5rem;
