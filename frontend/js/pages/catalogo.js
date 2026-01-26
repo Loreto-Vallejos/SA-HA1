@@ -87,17 +87,29 @@ document.addEventListener("DOMContentLoaded", () => {
             if (producto.imagen.startsWith('http')) {
                 // URL absoluta, usar tal cual
                 imagenSrc = producto.imagen;
-            } else if (producto.imagen.startsWith('/assets/')) {
-                // Ruta relativa desde API, convertir a ruta del frontend
-                imagenSrc = `/frontend${producto.imagen}`;
+            } else if (producto.imagen.includes('assets/')) {
+                // Determinar la ruta correcta según la página
+                const isHomePage = document.getElementById("catalogo-grid") !== null;
+                if (isHomePage) {
+                    // En home, usar ruta tal cual (assets/)
+                    imagenSrc = producto.imagen;
+                } else {
+                    // En página de catálogo, convertir assets/ a ../../assets/
+                    imagenSrc = producto.imagen.replace('assets/', '../../assets/');
+                }
             } else {
                 // Otra ruta, usar tal cual
                 imagenSrc = producto.imagen;
             }
         } else {
-            imagenSrc = "/frontend/assets/logo-eternia-blanco.png";
+            const isHomePage = document.getElementById("catalogo-grid") !== null;
+            imagenSrc = isHomePage ? "assets/logo-eternia-blanco.png" : "../../assets/logo-eternia-blanco.png";
         }
         console.log("Imagen src final:", imagenSrc); // Debug
+        
+        // Determinar la ruta del logo fallback según la página
+        const isHomePage = document.getElementById("catalogo-grid") !== null;
+        const fallbackLogo = isHomePage ? "assets/logo-eternia-blanco.png" : "../../assets/logo-eternia-blanco.png";
         
         return `
             <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
@@ -108,8 +120,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         <img src="${imagenSrc}" 
                              alt="${producto.nombre}" 
                              loading="lazy"
-                               onerror="this.src='../../assets/logo-eternia-blanco.png'">
-                        <button class="wishlist-btn-card" data-id="${producto.id || producto.idProducto}" aria-label="Agregar a wishlist">
+                               onerror="this.src='${fallbackLogo}'">
+                        <button class="wishlist-btn-card" data-id="${producto.idProducto}" aria-label="Agregar a wishlist">
                             <i class="far fa-heart"></i>
                         </button>
                     </div>
@@ -430,8 +442,15 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             console.log("📤 Cargando catálogo home desde JSON local...");
             
-            const res = await fetch("../../data/catalogo.json", { cache: "no-store" });
-            if (!res.ok) throw new Error("Error cargando catálogo");
+            // Determinar la ruta correcta según el entorno
+            const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1' && !window.location.hostname.includes('vercel-preview');
+            const rutaJSON = isProduction ? "data/catalogo.json" : "../../data/catalogo.json";
+            
+            console.log("🌐 Entorno detectado:", isProduction ? "producción" : "desarrollo");
+            console.log("📂 Ruta JSON:", rutaJSON);
+            
+            const res = await fetch(rutaJSON, { cache: "no-store" });
+            if (!res.ok) throw new Error(`Error cargando catálogo desde ${rutaJSON}`);
             
             const productos = await res.json();
             console.log(`📥 ${productos.length} productos cargados desde JSON`);
@@ -447,13 +466,19 @@ document.addEventListener("DOMContentLoaded", () => {
             // Fallback: intentar cargar desde API si es local
             if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
                 try {
+                    console.log("🔄 Intentando fallback con API local...");
                     const productos = await window.API.productos.getAll();
                     const limit = parseInt(catalogoGrid.dataset.limit) || 4;
                     const productosLimitados = productos.slice(0, limit);
                     renderizarCatalogoHome(productosLimitados);
                 } catch (apiError) {
                     console.error("❌ Error en fallback API:", apiError);
+                    // Mostrar mensaje de error en el grid
+                    catalogoGrid.innerHTML = '<div class="alert alert-warning">Error cargando productos. Por favor, intenta recargar la página.</div>';
                 }
+            } else {
+                // En producción, mostrar mensaje de error
+                catalogoGrid.innerHTML = '<div class="alert alert-warning">Error cargando productos. Por favor, intenta recargar la página.</div>';
             }
         }
     }
