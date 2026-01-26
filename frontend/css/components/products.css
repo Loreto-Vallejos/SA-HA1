@@ -737,6 +737,10 @@ figcaption .precio {
 
 .product-card__price {
   margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 2.5rem;
 }
 
 .price-current {
