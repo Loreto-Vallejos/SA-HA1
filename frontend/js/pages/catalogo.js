@@ -59,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
      * Crea el HTML de una card de producto
      */
     function crearCardProducto(producto) {
+        
         // Determinar estado del stock
         let stockBadge = "";
         if (producto.stock === 0 || producto.estadoStock === "AGOTADO") {
@@ -77,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Precio anterior (si hay descuento)
         let precioAnteriorHTML = "";
         if (producto.precioAnterior) {
-            precioAnteriorHTML = `<span class="price-old">$${formatearPrecio(producto.precioAnterior)}</span>`;
+            precioAnteriorHTML = `<div class="price-old">$${formatearPrecio(producto.precioAnterior)}</div>`;
         }
         
         // Imagen (usar logo si no hay)
@@ -113,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         return `
             <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <div class="product-card" data-id="${producto.id || producto.idProducto}">
+                <div class="product-card" data-id="${producto.id}">
                     ${descuentoBadge}
                     
                     <div class="product-card__image">
@@ -121,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
                              alt="${producto.nombre}" 
                              loading="lazy"
                                onerror="this.src='${fallbackLogo}'">
-                        <button class="wishlist-btn-card" data-id="${producto.idProducto}" aria-label="Agregar a wishlist">
+                        <button class="wishlist-btn-card" data-id="${producto.id}" aria-label="Agregar a wishlist">
                             <i class="far fa-heart"></i>
                         </button>
                     </div>
@@ -132,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         
                         <div class="product-card__price">
                             ${precioAnteriorHTML}
-                            <span class="price-current">$${formatearPrecio(producto.precio)}</span>
+                            <div class="price-current">$${formatearPrecio(producto.precio)}</div>
                         </div>
                         
                         <div class="product-card__stock">
@@ -141,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         
                         <div class="product-card__actions">
                             <button class="btn btn--primary btn-ver-detalle" 
-                                    data-id="${producto.id || producto.idProducto}">
+                                    data-id="${producto.id}">
                                 Ver detalle
                             </button>
                         </div>
@@ -351,7 +352,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (existe) {
             existe.cantidad += 1;
         } else {
-            const producto = todosLosProductos.find(p => (p.id || p.idProducto) == productoId);
+            const producto = todosLosProductos.find(p => p.id == productoId);
             if (producto) {
                 carrito.push({
                     id: productoId,

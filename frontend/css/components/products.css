@@ -717,6 +717,8 @@ figcaption .precio {
   flex: 1;
   display: flex;
   flex-direction: column;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
 .product-card__category {
@@ -737,19 +739,26 @@ figcaption .precio {
 
 .product-card__price {
   margin-bottom: 8px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 2.5rem;
+  justify-content: flex-end;
 }
 
 .price-current {
   font-size: 1.25rem;
   font-weight: 700;
   color: #212529;
+  margin-top: auto;
 }
 
 .price-old {
   font-size: 1rem;
   color: #6c757d;
   text-decoration: line-through;
-  margin-right: 8px;
+  margin-bottom: 0px;
+  display: block;
 }
 
 .product-card__stock {
