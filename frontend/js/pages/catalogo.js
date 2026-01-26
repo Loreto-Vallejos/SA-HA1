@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         return `
             <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <div class="product-card" data-id="${producto.idProducto}">
+                <div class="product-card" data-id="${producto.id || producto.idProducto}">
                     ${descuentoBadge}
                     
                     <div class="product-card__image">
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
                              alt="${producto.nombre}" 
                              loading="lazy"
                                onerror="this.src='../../assets/logo-eternia-blanco.png'">
-                        <button class="wishlist-btn-card" data-id="${producto.idProducto}" aria-label="Agregar a wishlist">
+                        <button class="wishlist-btn-card" data-id="${producto.id || producto.idProducto}" aria-label="Agregar a wishlist">
                             <i class="far fa-heart"></i>
                         </button>
                     </div>
@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         
                         <div class="product-card__actions">
                             <button class="btn btn--primary btn-ver-detalle" 
-                                    data-id="${producto.idProducto}">
+                                    data-id="${producto.id || producto.idProducto}">
                                 Ver detalle
                             </button>
                         </div>
@@ -339,7 +339,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (existe) {
             existe.cantidad += 1;
         } else {
-            const producto = todosLosProductos.find(p => p.idProducto == productoId);
+            const producto = todosLosProductos.find(p => (p.id || p.idProducto) == productoId);
             if (producto) {
                 carrito.push({
                     id: productoId,
