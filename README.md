@@ -54,12 +54,9 @@ SA-HA1/
 │   ├── data/                 # catalogo.json
 │   └── assets/               # Imágenes y recursos
 │
-├── 💾 database/               # Scripts SQL y configuración
-│   ├── scripts/
-│   └── docker/
-│
-└── 🧪 bruno/                  # Colección de pruebas API
-    └── proyecto-api/
+├── 💾 ecommerce-backend               # backend con API Rest
+ 
+  
 ```
 
 ## 🎨 Características Principales
